@@ -14,7 +14,7 @@
     <meta charset="utf-8">
 
 </head>
-<body  ng-controller='avivTest' ng-init="init_avivTest">
+<body  ng-controller='avivTest' ng-init="init_avivTest()">
     
 	<?php
 
