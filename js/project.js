@@ -59,7 +59,7 @@ app.controller('ng-cases', function ($scope, $http,$compile, $interval, fileUplo
 		//$("#nav").show();
         $scope.hidePages();
         $("#home").show();
-
+        console.log("bb");
     }; //the function
 
 
