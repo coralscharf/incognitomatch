@@ -4,8 +4,8 @@ app.directive('fileModel', ['$parse', function ($parse) {
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
-            var model = $parse(attrs.fileModel);
-            var modelSetter = model.assign;
+            let model = $parse(attrs.fileModel);
+            let modelSetter = model.assign;
 
             element.bind('change', function(){
                 scope.$apply(function(){
@@ -19,7 +19,7 @@ app.directive('fileModel', ['$parse', function ($parse) {
 		// We can write our own fileUpload service to reuse it in the controller
 		app.service('fileUpload', ['$http', function ($http) {
 			this.uploadFileToUrl = function(file, uploadUrl, name){
-				var fd = new FormData();
+				let fd = new FormData();
 				fd.append('file', file);
 				fd.append('name', name);
 				$http.post(uploadUrl, fd, {
@@ -55,12 +55,30 @@ app.directive('fileModel', ['$parse', function ($parse) {
 
 app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUpload, $window, $element, $timeout) {
 
-	$scope.init_avivTest = function () {
-		//$("#nav").show();
+    $scope.init_avivTest = function () {
+        //$("#nav").show();
         //$scope.hidePages();
-        //$("#home").show();
+        $scope.hide_pages();
+
         console.log("bb");
+        $scope.show_home();
     }; //the function
+
+    $scope.show_home = function(){
+        $("#home").show();
+    };
+
+    $scope.hide_pages = function () {
+        $("#home").hide();
+        $("#page2").hide();
+        console.log("hide");
+    };
+
+    $scope.show_page2 = function () {
+        $("#page2").show();
+
+    };
+
 
 
 });	 //app.controller
