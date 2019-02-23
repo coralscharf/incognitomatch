@@ -53,12 +53,12 @@ app.directive('fileModel', ['$parse', function ($parse) {
 
 //		 myApp.controller('myCtrl', ['$scope', 'fileUpload', function($scope, fileUpload){
 
-app.controller('ng-cases', function ($scope, $http,$compile, $interval, fileUpload, $window, $element, $timeout) {
+app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUpload, $window, $element, $timeout) {
 
-	$scope.init_case = function () {
+	$scope.init_avivTest = function () {
 		//$("#nav").show();
-        $scope.hidePages();
-        $("#home").show();
+        //$scope.hidePages();
+        //$("#home").show();
         console.log("bb");
     }; //the function
 
