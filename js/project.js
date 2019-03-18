@@ -71,11 +71,16 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     $scope.hide_pages = function () {
         $("#home").hide();
         $("#page2").hide();
+        $("#experiment").hide();
         console.log("hide");
     };
 
     $scope.show_page2 = function () {
         $("#page2").show();
+
+    };
+    $scope.show_exp = function () {
+        $("#experiment").show();
 
     };
 
