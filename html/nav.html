@@ -1,55 +1,60 @@
 <!-- Static navbar -->
 
 <div id="nav">
-	<nav class="navbar navbar-expand-sm navbar-custom fixed-top">
-		<a class="navbar-brand" href="#" ng-click=""><img src="img/fei_logo_dark_blue.png" height="45" width="90"></a>
-		<div class="collapse navbar-collapse" id="navbarToggler">
-			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-				<li class="nav-item">
-					<a class="nav-link" href="#" ng-click="hide_pages();init_avivTest()">
-						<span class="glyphicon glyphicon glyphicon-option-vertical" aria-hidden="true">
-						</span>
-						Home
-					</a>
-				</li>
-				<li class="nav-item" >
-					<a class="nav-link" href="#" ng-click="hide_pages();show_page2()">
-						<span class="glyphicon glyphicon glyphicon-option-vertical" aria-hidden="true" >
-						</span>
-						About
-					</a>
-				</li>
-				<li class="nav-item" >
-					<a class="nav-link" href="#" ng-click="hide_pages();show_exp()">
-						<span class="glyphicon glyphicon glyphicon-option-vertical" aria-hidden="true" >
-						</span>
-						The Experiment
-					</a>
-				</li>
-
-				<li class="nav-item">
-					<a class="nav-link" href="#" ng-click="">
+	<nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+		<div class="container">
+			<a class="navbar-brand" href="#" ng-click=""><img src="img/fei_logo_dark_blue.png" height="45" width="90"></a>
+			<!-- Left links-->
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link waves-effect" href="#" ng-click="hide_pages();init_avivTest()">
 							<span class="glyphicon glyphicon glyphicon-option-vertical" aria-hidden="true">
 							</span>
-						Statistics
-					</a>
-				</li>
+							Home
+						</a>
+					</li>
+					<li class="nav-item" >
+						<a class="nav-link waves-effect" href="#" ng-click="hide_pages();show_page2()">
+							<span class="glyphicon glyphicon glyphicon-option-vertical" aria-hidden="true" >
+							</span>
+							About
+						</a>
+					</li>
+					<li class="nav-item" >
+						<a class="nav-link waves-effect" href="#" ng-click="hide_pages();show_exp()">
+							<span class="glyphicon glyphicon glyphicon-option-vertical" aria-hidden="true" >
+							</span>
+							The Experiment
+						</a>
+					</li>
 
-			</ul>
-			<ul class="nav navbar-nav ml-auto justify-content-right">
-				<li class="nav-item ml-auto" >
-					<a class="nav-link" href="" id="loggin_user" readonly> </a>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink" data-toggle="dropdown" href="#"  aria-haspopup="true"
-					   aria-expanded="false">More</a>
-					<div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" id="navbar_admin">
-						<a class="dropdown-item" href="#"  data-toggle="modal" data-target="#add_user_modal">Add User </a>
-					</div>
-				 </li>
-			</ul>
-		</div>
+					<li class="nav-item">
+						<a class="nav-link waves-effect" href="#" ng-click="">
+								<span class="glyphicon glyphicon glyphicon-option-vertical" aria-hidden="true">
+								</span>
+							Statistics
+						</a>
+					</li>
+
+				</ul>
+
+				<!--Right links-->
+				<ul class="navbar-nav nav-flex-icons">
+					<li class="nav-item ml-auto" >
+						<a class="nav-link" href="" id="loggin_user" readonly> </a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink" data-toggle="dropdown" href="#"  aria-haspopup="true"
+						   aria-expanded="false">More</a>
+						<div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" id="navbar_admin">
+							<a class="dropdown-item" href="#"  data-toggle="modal" data-target="#add_user_modal">Add User </a>
+						</div>
+					 </li>
+				</ul>
+			</div>
 			<!-- Items -->
+		</div>
 	</nav>
 		<!-- Static navbar -->
 	<div class="modal fade" id="add_user_modal" tabindex="-1" role="dialog" aria-labelledby="Add User Modal" aria-hidden="true">

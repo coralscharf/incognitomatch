@@ -5,7 +5,7 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"  crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+    <script src="js/popper.min.js"></script>
     <script src="js/angular.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
@@ -16,11 +16,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <!-- Bootstrap core CSS -->
-    <link href="MDB/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
-    <link href="MDB/css/mdb.min.css" rel="stylesheet">
+    <link href="css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
-    <link href="MDB/css/style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+
 </head>
 <body  ng-controller='avivTest' ng-init="init_avivTest()">
     
@@ -32,5 +34,7 @@
         include "html/page2.html";
         include "html/exp.html";
 	?>
+    <script src="js/mdb.min.js"></script>
+
 </body>
 </html>
