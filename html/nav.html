@@ -139,53 +139,118 @@
 							</div>
 							<div class="col" style="margin-top: 25px">
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="defaultUnchecked">
-									<label class="custom-control-label" for="defaultUnchecked">Display instances</label>
-								</div>
-
-								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="defaultUnchecked1">
-									<label class="custom-control-label" for="defaultUnchecked1">Display type</label>
+									<input type="checkbox" class="custom-control-input" id="show_instance">
+									<label class="custom-control-label" for="show_instance">Display instances</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="defaultUnchecked2">
-									<label class="custom-control-label" for="defaultUnchecked2">Display Hierarchy</label>
+									<input type="checkbox" class="custom-control-input" id="show_type">
+									<label class="custom-control-label" for="show_type">Display type</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="defaultUnchecked3">
-									<label class="custom-control-label" for="defaultUnchecked3">Feedback</label>
-
+									<input type="checkbox" class="custom-control-input" id="show_hierarchy">
+									<label class="custom-control-label" for="show_hierarchy">Display Hierarchy</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input" id="show_feedback">
+									<label class="custom-control-label" for="show_feedback">Feedback</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input" id="show_control">
+									<label class="custom-control-label" for="show_control">Control</label>
 								</div>
 							</div>
 						</div>
 
 
 						<div class="form-row">
-							<div class="col">
-								<div class="col-sm-12 md-form input-group">
-									<div class="custom-file">
-										<input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
-										<label class="custom-file-label" for="inputGroupFile04">Choose XSD file</label>
+							<div class="col-sm-5 ">
+									<div class="input-default-wrapper">
+										<input type="file" id="file_csv" class="input-default-js">
+										<label class="label-for-default-js rounded-right mb-3" for="file_csv">
+											<span class="span-choose-file">Choose CSV file</span>
+										</label>
 									</div>
-									<span class="input-group-text  md-addon"> </span>
-									<div class="custom-file">
-										<input type="file" class="custom-file-input" id="inputGroupFile05" aria-describedby="inputGroupFileAddon05">
-										<label class="custom-file-label" for="inputGroupFile05">Choose XML file</label>
-									</div>
+							</div>
+						</div>
 
+
+
+						<ul class="nav nav-tabs" id="myTab" role="tablist">
+							<li class="nav-item">
+								<a class="nav-link active" id="first-schema-tab" data-toggle="tab" href="#first_schema" role="tab" aria-controls="first_schema"
+								   aria-selected="true">First Schema</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="sec-schema-tab" data-toggle="tab" href="#sec_schema" role="tab" aria-controls="sec_schema"
+								   aria-selected="false">Second Schema</a>
+							</li>
+
+						</ul>
+						<div class="tab-content" id="myTabContent">
+							<div class="tab-pane fade show active" id="first_schema" role="tabpanel" aria-labelledby="home-tab">
+								<div class="form-row">
+									<div class="col">
+										<div class="col-sm-12 md-form input-group">
+											<div class="input-default-wrapper">
+												<input type="file" id="first_xsd" class="input-default-js">
+												<label class="label-for-default-js rounded-right mb-3" for="first_xsd">
+													<span class="span-choose-file">Choose XSD file</span>
+												</label>
+											</div>
+										</div>
+
+									</div>
+									<div class="col">
+										<div class="col-sm-12 md-form input-group">
+											<div class="input-default-wrapper">
+												<input type="file" id="first_xml" class="input-default-js" data-multiple-target="{target} files selected"
+													   multiple>
+												<label class="label-for-default-js rounded-right" for="first_xml">
+													<span class="span-choose-file">Choose XML files</span>
+												</label>
+											</div>
+										</div>
+									</div>
 								</div>
+
 							</div>
-						</div>
-						<div class="form-row">
-							<div class="col">
-								<div class="col-sm-12 md-form input-group">
-									<div class="col-sm-6 custom-file ">
-										<input type="file" class="custom-file-input" id="inputGroupFile06" aria-describedby="inputGroupFileAddon06">
-										<label class="custom-file-label" for="inputGroupFile05">Choose CSV file</label>
+
+
+							<div class="tab-pane fade" id="sec_schema" role="tabpanel" aria-labelledby="profile-tab">
+								<div class="form-row">
+									<div class="col">
+										<div class="col-sm-12 md-form input-group">
+											<div class="input-default-wrapper">
+												<input type="file" id="sec_xsd" class="input-default-js">
+												<label class="label-for-default-js rounded-right mb-3" for="sec_xsd">
+													<span class="span-choose-file">Choose second XSD file</span>
+												</label>
+											</div>
+										</div>
+
+									</div>
+									<div class="col">
+										<div class="col-sm-12 md-form input-group">
+											<div class="input-default-wrapper">
+												<input type="file" id="sec_xml" class="input-default-js" data-multiple-target="{target} files selected"
+													   multiple>
+												<label class="label-for-default-js rounded-right" for="sec_xml">
+													<span class="span-choose-file">Choose second XML files</span>
+												</label>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+
+
+
+
+
+
+
+
 					</form>
 				</div>
 				<div class="modal-footer">
@@ -198,5 +263,8 @@
 			</div>
 		</div>
 	</div>
+
+
+
 
 </div>

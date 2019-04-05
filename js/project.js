@@ -62,6 +62,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
         console.log("bb");
         $scope.show_home();
+
     }; //the function
 
     $scope.show_home = function(){
@@ -81,8 +82,31 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
     $scope.show_exp = function () {
         $("#experiment").show();
+        $scope.getExp();
 
     };
+
+    $scope.getExp = function () {
+
+        $http({
+            method: 'POST',
+            url: 'php/get_exp_info.php',
+            data: $.param({
+                exp_id: 1,
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function (data) {
+
+            console.log(data.data);
+
+        });
+
+
+    }
+
+
 
 
 
