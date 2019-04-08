@@ -53,7 +53,10 @@ while (!$found)
         $instance[] = array(
             'id'=>$row['id'],
             'sch_id' => $row['sch_id'],
-            'instance' => $row['instance']
+            'instance' => $row['instance'],
+            'col_name' => $selected['col_name'],
+            'col_type' => $selected['col_type'],
+            'col_parent_id' => $selected['col_parent_id']
         );
     }
     if (sizeof($instance) !== 0 )
