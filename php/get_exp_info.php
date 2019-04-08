@@ -34,27 +34,36 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     );
 }
 
-echo sizeof($array);
+//echo sizeof($array);
 
 $index=rand(0,sizeof($array));
 //echo $index;
 sqlsrv_free_stmt($getResults);
 
 $selected=$array[$index];
-$sql_get_instance="select * from exp_instance where sch_id=".$selected['id'];
-$getResults_instance= sqlsrv_query($conn, $sql_get_instance);
-if ($getResults_instance == FALSE)
-    return (sqlsrv_errors());
-$instance = array();
-while ($row = sqlsrv_fetch_array($getResults_instance, SQLSRV_FETCH_ASSOC)) {
-    $instance[] = array(
-        'id'=>$row['id'],
-        'sch_id' => $row['sch_id'],
-        'instance' => $row['instance']
-    );
+$found=false;
+while (!$found)
+{
+    $sql_get_instance="select * from exp_instance where sch_id=".$selected['id'];
+    $getResults_instance= sqlsrv_query($conn, $sql_get_instance);
+    if ($getResults_instance == FALSE)
+        return (sqlsrv_errors());
+    $instance = array();
+    while ($row = sqlsrv_fetch_array($getResults_instance, SQLSRV_FETCH_ASSOC)) {
+        $instance[] = array(
+            'id'=>$row['id'],
+            'sch_id' => $row['sch_id'],
+            'instance' => $row['instance']
+        );
+    }
+    if (sizeof($instance) !== 0 )
+    {
+        $found = true;
+    }
+    sqlsrv_free_stmt($getResults_instance);
+
 }
 
-sqlsrv_free_stmt($getResults_instance);
 echo json_encode($instance);
 
 
