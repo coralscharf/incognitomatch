@@ -34,8 +34,10 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     );
 }
 
+echo sqlsrv_num_rows($getResults);
 
 $index=rand(0,sqlsrv_num_rows($getResults));
+echo $index;
 sqlsrv_free_stmt($getResults);
 
 $selected=$array[$index];
