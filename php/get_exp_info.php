@@ -14,7 +14,6 @@ $connectionInfo = array("UID" => "avivf@avivtest", "pwd" => "1qaZ2wsX!", "Databa
 $serverName = "tcp:avivtest.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 
-echo "vv";
 $sql="select * from exp_schema where exp_id=$exp_id";
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
