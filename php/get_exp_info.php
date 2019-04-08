@@ -14,6 +14,11 @@ $connectionInfo = array("UID" => "avivf@avivtest", "pwd" => "1qaZ2wsX!", "Databa
 $serverName = "tcp:avivtest.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 
+
+
+
+
+
 $sql="select * from exp_schema where exp_id=$exp_id";
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
@@ -28,8 +33,27 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
         'col_parent_id'=> $row['col_parent_id'],
     );
 }
+
+
+$index=rand(0,sqlsrv_num_rows($getResults));
 sqlsrv_free_stmt($getResults);
-echo json_encode($array);
+
+$selected=$array[$index];
+$sql_get_instance="select * from exp_instance where sch_id=".$selected['id'];
+$getResults_instance= sqlsrv_query($conn, $sql_get_instance);
+if ($getResults_instance == FALSE)
+    return (sqlsrv_errors());
+$instance = array();
+while ($row = sqlsrv_fetch_array($getResults_instance, SQLSRV_FETCH_ASSOC)) {
+    $instance[] = array(
+        'id'=>$row['id'],
+        'sch_id' => $row['sch_id'],
+        'instance' => $row['instance']
+    );
+}
+
+sqlsrv_free_stmt($getResults_instance);
+echo json_encode($instance);
 
 
 

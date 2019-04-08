@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PhpProjectSharedConfiguration" php_language_level="5.4.0" />
+  <component name="PhpProjectSharedConfiguration" php_language_level="7" />
   <component name="PhpRuntimeConfiguration">
     <extensions>
       <extension name="Ev" enabled="false" />
@@ -44,6 +44,7 @@
       <extension name="mongodb" enabled="false" />
       <extension name="mqseries" enabled="false" />
       <extension name="mssql" enabled="false" />
+      <extension name="mysql" enabled="false" />
       <extension name="mysql_xdevapi" enabled="false" />
       <extension name="ncurses" enabled="false" />
       <extension name="newrelic" enabled="false" />
@@ -57,7 +58,6 @@
       <extension name="pthreads" enabled="false" />
       <extension name="radius" enabled="false" />
       <extension name="rar" enabled="false" />
-      <extension name="readline" enabled="false" />
       <extension name="recode" enabled="false" />
       <extension name="redis" enabled="false" />
       <extension name="rrd" enabled="false" />
