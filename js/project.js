@@ -103,6 +103,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             let schema=data.data;
             let index = Math.floor((Math.random() * schema.length) + 1);
             console.log(schema[index]);
+            document.getElementById("A_col_name").innerText=schema[index]['col_name'];
+
         });
 
 
