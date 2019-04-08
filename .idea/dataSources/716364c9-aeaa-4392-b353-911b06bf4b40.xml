@@ -46,7 +46,7 @@
     </schema>
     <schema id="14" parent="2" name="dbo">
       <ObjectId>1</ObjectId>
-      <IntrospectionTimestamp>2019-04-05.17:25:10.307</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2019-04-08.11:43:21.207</IntrospectionTimestamp>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -62,9 +62,9 @@
       <ModifiedTimestamp>2019-04-05.17:25:04.900</ModifiedTimestamp>
     </table>
     <table id="18" parent="14" name="exp_schema">
-      <ObjectId>1301579675</ObjectId>
-      <CreatedTimestamp>2019-04-05.17:07:44.677</CreatedTimestamp>
-      <ModifiedTimestamp>2019-04-05.17:07:45.060</ModifiedTimestamp>
+      <ObjectId>1525580473</ObjectId>
+      <CreatedTimestamp>2019-04-08.11:32:50.053</CreatedTimestamp>
+      <ModifiedTimestamp>2019-04-08.11:42:59.873</ModifiedTimestamp>
     </table>
     <column id="19" parent="17" name="id">
       <Position>1</Position>
@@ -104,46 +104,43 @@
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="26" parent="18" name="exp_id">
+    <column id="26" parent="18" name="s_name">
       <Position>2</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
+      <DataType>varchar(200 char)|0s</DataType>
     </column>
-    <column id="27" parent="18" name="col_name">
+    <column id="27" parent="18" name="exp_id">
       <Position>3</Position>
-      <DataType>varchar(150 char)|0s</DataType>
-      <NotNull>1</NotNull>
+      <DataType>int|0s</DataType>
     </column>
-    <column id="28" parent="18" name="col_type">
+    <column id="28" parent="18" name="col_name">
       <Position>4</Position>
-      <DataType>varchar(150 char)|0s</DataType>
+      <DataType>varchar(250 char)|0s</DataType>
     </column>
-    <column id="29" parent="18" name="col_parent_id">
+    <column id="29" parent="18" name="col_type">
       <Position>5</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
+      <DataType>varchar(250 char)|0s</DataType>
     </column>
-    <index id="30" parent="18" name="exp_schema_pk">
+    <column id="30" parent="18" name="col_parent_id">
+      <Position>6</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <index id="31" parent="18" name="exp_schame_pk">
       <Position>2</Position>
       <ColNames>exp_id
+s_name
 col_name
 col_parent_id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="31" parent="18" name="exp_schema_id_uindex">
-      <Position>3</Position>
-      <ColNames>id</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="32" parent="18" name="exp_schema_pk">
-      <ObjectId>1317579732</ObjectId>
-      <CreatedTimestamp>2019-04-05.17:07:44.680</CreatedTimestamp>
-      <ModifiedTimestamp>2019-04-05.17:07:44.680</ModifiedTimestamp>
+    <key id="32" parent="18" name="exp_schame_pk">
+      <ObjectId>1541580530</ObjectId>
+      <CreatedTimestamp>2019-04-08.11:32:50.057</CreatedTimestamp>
+      <ModifiedTimestamp>2019-04-08.11:32:50.057</ModifiedTimestamp>
       <ColNames>exp_id
+s_name
 col_name
 col_parent_id</ColNames>
-      <UnderlyingIndexName>exp_schema_pk</UnderlyingIndexName>
-      <Primary>1</Primary>
+      <UnderlyingIndexName>exp_schame_pk</UnderlyingIndexName>
     </key>
   </database-model>
 </dataSource>

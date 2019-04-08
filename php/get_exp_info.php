@@ -22,6 +22,7 @@ $array = array();
 while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     $array[] = array(
         'id'=>$row['id'],
+        's_name' => $row['s_name'],
         'col_name'=>$row['col_name'],
         'col_type'=> $row['col_type'],
         'col_parent_id'=> $row['col_parent_id'],
