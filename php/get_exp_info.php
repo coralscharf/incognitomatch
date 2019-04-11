@@ -65,7 +65,7 @@ while (!$found)
         $found = true;
     }
     else{
-        echo json_encode($selected);
+        echo $index;
         die();
     }
     sqlsrv_free_stmt($getResults_instance);
