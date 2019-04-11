@@ -60,7 +60,7 @@ while (!$found)
             'col_parent_id' => $selected['col_parent_id']
         );
     }
-    if (sizeof($instance) !== 0 )
+    if (sizeof($instance) != 0 )
     {
         $found = true;
     }
