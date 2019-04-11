@@ -8,6 +8,7 @@
     <script src="js/popper.min.js"></script>
     <script src="js/angular.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
 
     <script src="js/project.js" ></script>
 
