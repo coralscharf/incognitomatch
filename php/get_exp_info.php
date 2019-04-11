@@ -65,7 +65,7 @@ while (!$found)
         $found = true;
     }
     else{
-        echo $sql_get_instance;
+        echo sizeof($instance);
         die();
     }
     sqlsrv_free_stmt($getResults_instance);

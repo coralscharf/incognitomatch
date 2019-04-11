@@ -100,7 +100,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         }).then(function (data) {
             console.log((data.data));
             console.log((data.data)[0]);
-            
+
             let schema=data.data;
             //let index = Math.floor((Math.random() * schema.length) + 1);
             //console.log(schema[index]);
