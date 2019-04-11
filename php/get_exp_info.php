@@ -65,7 +65,7 @@ while (!$found)
         $found = true;
     }
     else{
-        echo $index;
+        echo $sql_get_instance;
         die();
     }
     sqlsrv_free_stmt($getResults_instance);
