@@ -49,24 +49,20 @@ while (!$found)
     $getResults_instance= sqlsrv_query($conn, $sql_get_instance);
     if ($getResults_instance == FALSE)
         return (sqlsrv_errors());
-    $instance = array();
-    while ($row = sqlsrv_fetch_array($getResults_instance, SQLSRV_FETCH_ASSOC)) {
-        $instance[] = array(
-            'id'=>$row['id'],
-            'sch_id' => $row['sch_id'],
-            'instance' => $row['instance'],
-            'col_name' => $selected['col_name'],
-            'col_type' => $selected['col_type'],
-            'col_parent_id' => $selected['col_parent_id']
-        );
-    }
-    if (sizeof($instance) != 0 )
+    if (sqlsrv_has_rows($getResults_instance))
     {
         $found = true;
-    }
-    else{
-        echo sizeof($instance);
-        die();
+        $instance = array();
+        while ($row = sqlsrv_fetch_array($getResults_instance, SQLSRV_FETCH_ASSOC)) {
+            $instance[] = array(
+                'id'=>$row['id'],
+                'sch_id' => $row['sch_id'],
+                'instance' => $row['instance'],
+                'col_name' => $selected['col_name'],
+                'col_type' => $selected['col_type'],
+                'col_parent_id' => $selected['col_parent_id']
+            );
+        }
     }
     sqlsrv_free_stmt($getResults_instance);
 
