@@ -42,6 +42,7 @@ sqlsrv_free_stmt($getResults);
 
 $selected=$array[$index];
 $found=false;
+
 while (!$found)
 {
     $sql_get_instance="select * from exp_instance where sch_id=".$selected['id'];
@@ -62,6 +63,10 @@ while (!$found)
     if (sizeof($instance) !== 0 )
     {
         $found = true;
+    }
+    else{
+        echo json_encode($selected);
+        die();
     }
     sqlsrv_free_stmt($getResults_instance);
 
