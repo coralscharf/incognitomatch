@@ -67,7 +67,7 @@ while (!$found)
     else{
         $index=rand(0,sizeof($array));
         $selected=$array[$index];
-        
+
     }
     sqlsrv_free_stmt($getResults_instance);
 
