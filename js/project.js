@@ -118,7 +118,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         let fd = new FormData();
         fd.append('file', $scope.myFile);
         fd.append('name', "test");
-        $http.post("fileUpload.php", fd, {
+        $http.post("php/fileUpload.php", fd, {
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined, 'Process-Data': false}
         }).then(function (data) {
