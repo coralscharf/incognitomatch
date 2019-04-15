@@ -110,12 +110,30 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         });
 
 
-    }
+    };
 
 
     $scope.add_exp = function () {
-        fileUpload();
-    }
+
+        let fd = new FormData();
+        fd.append('file', $scope.myFile);
+        fd.append('name', "test");
+        $http.post("fileUpload.php", fd, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined, 'Process-Data': false}
+        }).then(function (data) {
+            let res = data.data;
+            if (res === "0") {
+                console.log("good");
+            } else {
+                console.log("not good");
+            }
+            console.log("res", res);
+
+
+        })
+
+    };
 
 
 
