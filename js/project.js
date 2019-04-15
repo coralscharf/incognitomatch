@@ -113,6 +113,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     }
 
 
+    $scope.add_exp = function () {
+        fileUpload();
+    }
+
 
 
 

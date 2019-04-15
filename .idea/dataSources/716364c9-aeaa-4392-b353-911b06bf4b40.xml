@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="avivtest">
-  <database-model serializer="dbm" dbms="AZURE" family-id="AZURE" format-version="4.14">
+  <database-model serializer="dbm" dbms="AZURE" family-id="AZURE" format-version="4.15">
     <root id="1">
       <ServerVersion>12.0.1300</ServerVersion>
       <Dbms>AZURE</Dbms>
@@ -10,6 +10,7 @@
       <Current>1</Current>
       <Visible>1</Visible>
       <Collation>SQL_Latin1_General_CP1_CI_AS</Collation>
+      <Fingerprint>5.43514/90DD4E19-048F-4F1D-AA19-271FAF54BBF8@avivtest</Fingerprint>
     </database>
     <database id="3" parent="1" name="master">
       <ObjectId>1</ObjectId>
@@ -46,7 +47,7 @@
     </schema>
     <schema id="14" parent="2" name="dbo">
       <ObjectId>1</ObjectId>
-      <IntrospectionTimestamp>2019-04-11.16:25:02.217</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2019-04-12.18:33:29.247</IntrospectionTimestamp>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -66,36 +67,41 @@
       <CreatedTimestamp>2019-04-05.16:03:53.427</CreatedTimestamp>
       <ModifiedTimestamp>2019-04-05.17:25:04.900</ModifiedTimestamp>
     </table>
-    <table id="19" parent="14" name="exp_schema">
+    <table id="19" parent="14" name="exp_pairs">
+      <ObjectId>1589580701</ObjectId>
+      <CreatedTimestamp>2019-04-12.18:33:23.140</CreatedTimestamp>
+      <ModifiedTimestamp>2019-04-12.18:33:23.140</ModifiedTimestamp>
+    </table>
+    <table id="20" parent="14" name="exp_schema">
       <ObjectId>1525580473</ObjectId>
       <CreatedTimestamp>2019-04-08.11:32:50.053</CreatedTimestamp>
       <ModifiedTimestamp>2019-04-08.11:42:59.873</ModifiedTimestamp>
     </table>
-    <column id="20" parent="17" name="id">
+    <column id="21" parent="17" name="id">
       <Position>1</Position>
       <SequenceIdentity>1</SequenceIdentity>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="21" parent="17" name="usr">
+    <column id="22" parent="17" name="usr">
       <Position>2</Position>
       <DataType>varchar(150 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="22" parent="17" name="pass">
+    <column id="23" parent="17" name="pass">
       <Position>3</Position>
       <DataType>varchar(150 char)|0s</DataType>
     </column>
-    <column id="23" parent="17" name="f_name">
+    <column id="24" parent="17" name="f_name">
       <Position>4</Position>
       <DataType>varchar(150 char)|0s</DataType>
     </column>
-    <index id="24" parent="17" name="admins_pk">
+    <index id="25" parent="17" name="admins_pk">
       <Position>2</Position>
       <ColNames>usr</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="25" parent="17" name="admins_pk">
+    <key id="26" parent="17" name="admins_pk">
       <ObjectId>1573580644</ObjectId>
       <CreatedTimestamp>2019-04-11.16:24:56.810</CreatedTimestamp>
       <ModifiedTimestamp>2019-04-11.16:24:56.810</ModifiedTimestamp>
@@ -103,31 +109,31 @@
       <UnderlyingIndexName>admins_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="26" parent="18" name="id">
+    <column id="27" parent="18" name="id">
       <Position>1</Position>
       <SequenceIdentity>1</SequenceIdentity>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="27" parent="18" name="sch_id">
+    <column id="28" parent="18" name="sch_id">
       <Position>2</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="28" parent="18" name="instance">
+    <column id="29" parent="18" name="instance">
       <Position>3</Position>
       <DataType>varchar(1000 char)|0s</DataType>
     </column>
-    <index id="29" parent="18" name="exp_instance_id_uindex">
+    <index id="30" parent="18" name="exp_instance_id_uindex">
       <Position>2</Position>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="30" parent="18" name="exp_instance_pk">
+    <index id="31" parent="18" name="exp_instance_pk">
       <Position>3</Position>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="31" parent="18" name="exp_instance_pk">
+    <key id="32" parent="18" name="exp_instance_pk">
       <ObjectId>1253579504</ObjectId>
       <CreatedTimestamp>2019-04-05.16:03:54.113</CreatedTimestamp>
       <ModifiedTimestamp>2019-04-05.16:03:54.113</ModifiedTimestamp>
@@ -135,33 +141,77 @@
       <UnderlyingIndexName>exp_instance_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="32" parent="19" name="id">
+    <column id="33" parent="19" name="id">
       <Position>1</Position>
       <SequenceIdentity>1</SequenceIdentity>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="33" parent="19" name="s_name">
-      <Position>2</Position>
-      <DataType>varchar(200 char)|0s</DataType>
-    </column>
     <column id="34" parent="19" name="exp_id">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="35" parent="19" name="sch_id_1">
       <Position>3</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="35" parent="19" name="col_name">
+    <column id="36" parent="19" name="sch_id_2">
       <Position>4</Position>
-      <DataType>varchar(250 char)|0s</DataType>
+      <DataType>int|0s</DataType>
     </column>
-    <column id="36" parent="19" name="col_type">
+    <column id="37" parent="19" name="alg">
       <Position>5</Position>
       <DataType>varchar(250 char)|0s</DataType>
     </column>
-    <column id="37" parent="19" name="col_parent_id">
+    <column id="38" parent="19" name="score">
+      <Position>6</Position>
+      <DataType>float|0s</DataType>
+    </column>
+    <index id="39" parent="19" name="exp_pairs_pk">
+      <Position>2</Position>
+      <ColNames>exp_id
+sch_id_1
+sch_id_2
+alg</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="40" parent="19" name="exp_pairs_pk">
+      <ObjectId>1605580758</ObjectId>
+      <CreatedTimestamp>2019-04-12.18:33:23.140</CreatedTimestamp>
+      <ModifiedTimestamp>2019-04-12.18:33:23.140</ModifiedTimestamp>
+      <ColNames>exp_id
+sch_id_1
+sch_id_2
+alg</ColNames>
+      <UnderlyingIndexName>exp_pairs_pk</UnderlyingIndexName>
+    </key>
+    <column id="41" parent="20" name="id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="42" parent="20" name="s_name">
+      <Position>2</Position>
+      <DataType>varchar(200 char)|0s</DataType>
+    </column>
+    <column id="43" parent="20" name="exp_id">
+      <Position>3</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="44" parent="20" name="col_name">
+      <Position>4</Position>
+      <DataType>varchar(250 char)|0s</DataType>
+    </column>
+    <column id="45" parent="20" name="col_type">
+      <Position>5</Position>
+      <DataType>varchar(250 char)|0s</DataType>
+    </column>
+    <column id="46" parent="20" name="col_parent_id">
       <Position>6</Position>
       <DataType>int|0s</DataType>
     </column>
-    <index id="38" parent="19" name="exp_schame_pk">
+    <index id="47" parent="20" name="exp_schame_pk">
       <Position>2</Position>
       <ColNames>exp_id
 s_name
@@ -169,7 +219,7 @@ col_name
 col_parent_id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="39" parent="19" name="exp_schame_pk">
+    <key id="48" parent="20" name="exp_schame_pk">
       <ObjectId>1541580530</ObjectId>
       <CreatedTimestamp>2019-04-08.11:32:50.057</CreatedTimestamp>
       <ModifiedTimestamp>2019-04-08.11:32:50.057</ModifiedTimestamp>

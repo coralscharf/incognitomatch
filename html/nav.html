@@ -193,7 +193,7 @@
 									<div class="col">
 										<div class="col-sm-12 md-form input-group">
 											<div class="input-default-wrapper">
-												<input type="file" id="first_xsd" class="input-default-js">
+												<input type="file" id="first_xsd" class="input-default-js" ng-model="myFileName" file-reader="fileContent" file-model="myFile">
 												<label class="label-for-default-js rounded-right mb-3" for="first_xsd">
 													<span class="span-choose-file">Choose XSD file</span>
 												</label>
@@ -258,7 +258,7 @@
 					<div id="add_exp_log">
 
 					</div>
-					<button class="btn btn-md btn-info m-1 px-3" type="button">Add Experiment</button>
+					<button class="btn btn-md btn-info m-1 px-3" type="button" ng-click="add_exp()"">Add Experiment</button>
 					<button class="btn btn-md btn-info m-0 px-3" type="button" data-dismiss="modal">Close</button>
 				</div>
 			</div>

@@ -4,7 +4,6 @@
   <component name="PhpRuntimeConfiguration">
     <extensions>
       <extension name="Ev" enabled="false" />
-      <extension name="LevelDB" enabled="false" />
       <extension name="SQLite" enabled="false" />
       <extension name="SplType" enabled="false" />
       <extension name="Zend OPcache" enabled="false" />
