@@ -43,6 +43,7 @@ sqlsrv_free_stmt($getResults);
 
 $selected=$array[$index];
 $sql_get_col_1="select * from exp_schema where id=".$selected[$term_a_or_b];
+
 $getResults_col= sqlsrv_query($conn, $sql_get_col_1);
 if ($getResults_col == FALSE)
     return (sqlsrv_errors());
@@ -63,17 +64,15 @@ if ($getResults_instance == FALSE)
     return (sqlsrv_errors());
 if (sqlsrv_has_rows($getResults_instance))
 {
-    $found = true;
     $instance = array();
-
     while ($row = sqlsrv_fetch_array($getResults_instance, SQLSRV_FETCH_ASSOC)) {
         $instance[] = array(
             'id'=>$row['id'],
             'sch_id' => $row['sch_id'],
             'instance' => $row['instance'],
-            'col_name' => $col_prop['col_name'],
-            'col_type' => $col_prop['col_type'],
-            'col_parent_id' => $col_prop['col_parent_id']
+            'col_name' => $col_prop[0]['col_name'],
+            'col_type' => $col_prop[0]['col_type'],
+            'col_parent_id' => $col_prop[0]['col_parent_id']
         );
     }
 
