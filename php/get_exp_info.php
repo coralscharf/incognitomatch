@@ -15,7 +15,7 @@ $connectionInfo = array("UID" => "avivf@avivtest", "pwd" => "1qaZ2wsX!", "Databa
 $serverName = "tcp:avivtest.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 
-
+echo $index_from_a;
 
 if ($term_a_or_b == 'sch_id_2')
 {
