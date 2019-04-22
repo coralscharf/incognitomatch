@@ -10,7 +10,7 @@
 $exp_id=stripcslashes($_POST['exp_id']);
 $term_a_or_b=stripcslashes($_POST['term_a_or_b']);
 $index_from_a = stripcslashes($_POST['index_from_a']);
-
+echo $index_from_a;
 $connectionInfo = array("UID" => "avivf@avivtest", "pwd" => "1qaZ2wsX!", "Database" => "avivtest", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
 $serverName = "tcp:avivtest.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
