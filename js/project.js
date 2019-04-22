@@ -115,7 +115,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 data: $.param({
                     exp_id: 1,
                     term_a_or_b: 'sch_id_2',
-                    index_from_a: schema['index']
+                    index_from_a: schema[0]['index']
                 }),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'

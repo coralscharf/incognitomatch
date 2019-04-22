@@ -15,8 +15,6 @@ $connectionInfo = array("UID" => "avivf@avivtest", "pwd" => "1qaZ2wsX!", "Databa
 $serverName = "tcp:avivtest.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 
-echo $index_from_a;
-
 if ($term_a_or_b == 'sch_id_2')
 {
     $sql="select * from exp_pairs where exp_id=$exp_id and id=$index_from_a";
