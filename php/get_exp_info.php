@@ -72,7 +72,10 @@ if (sqlsrv_has_rows($getResults_instance))
             'instance' => $row['instance'],
             'col_name' => $col_prop[0]['col_name'],
             'col_type' => $col_prop[0]['col_type'],
-            'col_parent_id' => $col_prop[0]['col_parent_id']
+            'col_parent_id' => $col_prop[0]['col_parent_id'],
+            'order' => $array[0]['order'],
+            'score'=> $array[0]['score'],
+            'realConf'=> $array[0]['realConf']
         );
     }
 

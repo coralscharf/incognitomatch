@@ -130,7 +130,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             document.getElementById("B_col_name").innerText=schema2[0]['col_name'];
             document.getElementById("B_col_type").innerText=schema2[0]['col_type'];
             document.getElementById("B_col_instance").innerText=schema2[0]['instance'];
+            document.getElementById("exp_pair_score").innerText="System Suggestion: "+
+                schema2[0]['order']+" similar";
         });
+
+
 
 
 
