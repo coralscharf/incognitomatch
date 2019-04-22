@@ -42,7 +42,7 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
 //echo sizeof($array);
 
 $index=rand(0,sizeof($array));
-//echo $index;
+echo 'ind '.$index;
 sqlsrv_free_stmt($getResults);
 
 $selected=$array[$index];
@@ -57,7 +57,10 @@ while ($row = sqlsrv_fetch_array($getResults_col, SQLSRV_FETCH_ASSOC)) {
     'col_name' => $row['col_name'],
     'col_type' => $row['col_type'],
     'col_parent_id' => $row['col_parent_id'],
-    'index' => $index
+    'index' => $index,
+    'score'=> $row['score'],
+    'realConf'=> $row['realConf'],
+    'order' => $row['order']
     );
 }
 sqlsrv_free_stmt($getResults_col);
