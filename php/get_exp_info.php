@@ -9,6 +9,7 @@
 
 $exp_id=stripcslashes($_POST['exp_id']);
 $term_a_or_b=stripcslashes($_POST['term_a_or_b']);
+$index_from_a = stripcslashes($_POST['term_a_or_b']);
 
 $connectionInfo = array("UID" => "avivf@avivtest", "pwd" => "1qaZ2wsX!", "Database" => "avivtest", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
 $serverName = "tcp:avivtest.database.windows.net,1433";
@@ -16,10 +17,16 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 
 
 
+if ($term_a_or_b == 'sch_id_2')
+{
+    $sql="select * from exp_pairs where exp_id=$exp_id and id=$index";
+}
+else
+{
+    $sql="select * from exp_pairs where exp_id=$exp_id";
+}
 
 
-
-$sql="select * from exp_pairs where exp_id=$exp_id";
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
     return (sqlsrv_errors());
@@ -52,7 +59,8 @@ while ($row = sqlsrv_fetch_array($getResults_col, SQLSRV_FETCH_ASSOC)) {
     $col_prop[] = array(
     'col_name' => $row['col_name'],
     'col_type' => $row['col_type'],
-    'col_parent_id' => $row['col_parent_id']
+    'col_parent_id' => $row['col_parent_id'],
+    'index' => $index
     );
 }
 sqlsrv_free_stmt($getResults_col);
@@ -75,7 +83,8 @@ if (sqlsrv_has_rows($getResults_instance))
             'col_parent_id' => $col_prop[0]['col_parent_id'],
             'order' => $array[$index]['order'],
             'score'=> $array[$index]['score'],
-            'realConf'=> $array[$index]['realConf']
+            'realConf'=> $array[$index]['realConf'],
+            'index' => $col_prop[0]['index']
         );
     }
 

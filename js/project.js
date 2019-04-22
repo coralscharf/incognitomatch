@@ -108,31 +108,34 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             document.getElementById("A_col_name").innerText=schema[0]['col_name'];
             document.getElementById("A_col_type").innerText=schema[0]['col_type'];
             document.getElementById("A_col_instance").innerText=schema[0]['instance'];
+
+            $http({
+                method: 'POST',
+                url: 'php/get_exp_info.php',
+                data: $.param({
+                    exp_id: 1,
+                    term_a_or_b: 'sch_id_2',
+                    index_from_a: schema['index']
+                }),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            }).then(function (data) {
+                console.log((data.data));
+                console.log((data.data)[0]);
+
+                let schema2=data.data;
+                //let index = Math.floor((Math.random() * schema.length) + 1);
+                //console.log(schema[index]);
+                document.getElementById("B_col_name").innerText=schema2[0]['col_name'];
+                document.getElementById("B_col_type").innerText=schema2[0]['col_type'];
+                document.getElementById("B_col_instance").innerText=schema2[0]['instance'];
+                document.getElementById("exp_pair_score").innerText="System Suggestion: "+
+                    schema2[0]['order']+" similar";
+            });
+
         });
 
-        $http({
-            method: 'POST',
-            url: 'php/get_exp_info.php',
-            data: $.param({
-                exp_id: 1,
-                term_a_or_b: 'sch_id_2'
-            }),
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        }).then(function (data) {
-            console.log((data.data));
-            console.log((data.data)[0]);
-
-            let schema2=data.data;
-            //let index = Math.floor((Math.random() * schema.length) + 1);
-            //console.log(schema[index]);
-            document.getElementById("B_col_name").innerText=schema2[0]['col_name'];
-            document.getElementById("B_col_type").innerText=schema2[0]['col_type'];
-            document.getElementById("B_col_instance").innerText=schema2[0]['instance'];
-            document.getElementById("exp_pair_score").innerText="System Suggestion: "+
-                schema2[0]['order']+" similar";
-        });
 
 
 
