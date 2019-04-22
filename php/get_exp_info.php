@@ -42,6 +42,20 @@ $index=rand(0,sizeof($array));
 sqlsrv_free_stmt($getResults);
 
 $selected=$array[$index];
+$sql_get_col_1="select * from exp_schema where id=".$selected[$term_a_or_b];
+$getResults_col= sqlsrv_query($conn, $sql_get_col_1);
+if ($getResults_col == FALSE)
+    return (sqlsrv_errors());
+$col_prop = array();
+while ($row = sqlsrv_fetch_array($getResults_col, SQLSRV_FETCH_ASSOC)) {
+    $col_prop[] = array(
+    'col_name' => $row['col_name'],
+    'col_type' => $row['col_type'],
+    'col_parent_id' => $row['col_parent_id']
+    );
+}
+sqlsrv_free_stmt($getResults_col);
+
 
 $sql_get_instance_1="select * from exp_instance where sch_id=".$selected[$term_a_or_b];
 $getResults_instance= sqlsrv_query($conn, $sql_get_instance_1);
@@ -51,23 +65,22 @@ if (sqlsrv_has_rows($getResults_instance))
 {
     $found = true;
     $instance = array();
-    $sql_get_col_1="select * from exp_schema where id=".$selected[$term_a_or_b];
-    $getResults_col= sqlsrv_query($conn, $sql_get_col_1);
-    if ($getResults_col == FALSE)
-        return (sqlsrv_errors());
+
     while ($row = sqlsrv_fetch_array($getResults_instance, SQLSRV_FETCH_ASSOC)) {
-        $row2 = sqlsrv_fetch_array($getResults_col, SQLSRV_FETCH_ASSOC);
         $instance[] = array(
             'id'=>$row['id'],
             'sch_id' => $row['sch_id'],
             'instance' => $row['instance'],
-            'col_name' => $row2['col_name'],
-            'col_type' => $row2['col_type'],
-            'col_parent_id' => $row2['col_parent_id']
+            'col_name' => $col_prop['col_name'],
+            'col_type' => $col_prop['col_type'],
+            'col_parent_id' => $col_prop['col_parent_id']
         );
     }
-    sqlsrv_free_stmt($getResults_col);
 
+}
+else{
+    echo json_encode($col_prop);
+    die();
 }
 
 sqlsrv_free_stmt($getResults_instance);
