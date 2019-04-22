@@ -23,7 +23,6 @@ else
 {
     $sql="select * from exp_pairs where exp_id=$exp_id";
 }
-echo $sql;
 
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
