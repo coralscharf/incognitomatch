@@ -8,7 +8,7 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 if (!empty($_FILES)) {
     $path = 'font/' . $_FILES['file']['name'];
     echo ($path);
-    if (move_uploaded_file($_FILES['file'], $path)) {
+    if (move_uploaded_file($_FILES['file']['tmp_name'], $path)) {
         echo("file moved");
 
     }

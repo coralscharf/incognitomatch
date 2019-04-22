@@ -93,6 +93,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             url: 'php/get_exp_info.php',
             data: $.param({
                 exp_id: 1,
+                term_a_or_b: 'sch_id_1'
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'

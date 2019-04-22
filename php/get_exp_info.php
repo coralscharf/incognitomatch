@@ -8,7 +8,7 @@
 
 
 $exp_id=stripcslashes($_POST['exp_id']);
-
+$term_a_or_b=stripcslashes($_POST['term_a_or_b']);
 
 $connectionInfo = array("UID" => "avivf@avivtest", "pwd" => "1qaZ2wsX!", "Database" => "avivtest", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
 $serverName = "tcp:avivtest.database.windows.net,1433";
@@ -19,7 +19,7 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 
 
 
-$sql="select * from exp_schema where exp_id=$exp_id";
+$sql="select * from exp_pairs where exp_id=$exp_id";
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
     return (sqlsrv_errors());
@@ -27,10 +27,11 @@ $array = array();
 while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     $array[] = array(
         'id'=>$row['id'],
-        's_name' => $row['s_name'],
-        'col_name'=>$row['col_name'],
-        'col_type'=> $row['col_type'],
-        'col_parent_id'=> $row['col_parent_id'],
+        'sch_id_1' => $row['sch_id_1'],
+        'sch_id_2'=>$row['sch_id_2'],
+        'score'=> $row['score'],
+        'realConf'=> $row['realConf'],
+        'order' => $row['order']
     );
 }
 
@@ -41,37 +42,37 @@ $index=rand(0,sizeof($array));
 sqlsrv_free_stmt($getResults);
 
 $selected=$array[$index];
-$found=false;
 
-while (!$found)
+$sql_get_instance_1="select * from exp_instance where sch_id=".$selected[$term_a_or_b];
+$getResults_instance= sqlsrv_query($conn, $sql_get_instance_1);
+if ($getResults_instance == FALSE)
+    return (sqlsrv_errors());
+if (sqlsrv_has_rows($getResults_instance))
 {
-    $sql_get_instance="select * from exp_instance where sch_id=".$selected['id'];
-    $getResults_instance= sqlsrv_query($conn, $sql_get_instance);
-    if ($getResults_instance == FALSE)
+    $found = true;
+    $instance = array();
+    $sql_get_col_1="select * from exp_schema where id=".$selected[$term_a_or_b];
+    $getResults_col= sqlsrv_query($conn, $sql_get_col_1);
+    if ($getResults_col == FALSE)
         return (sqlsrv_errors());
-    if (sqlsrv_has_rows($getResults_instance))
-    {
-        $found = true;
-        $instance = array();
-        while ($row = sqlsrv_fetch_array($getResults_instance, SQLSRV_FETCH_ASSOC)) {
-            $instance[] = array(
-                'id'=>$row['id'],
-                'sch_id' => $row['sch_id'],
-                'instance' => $row['instance'],
-                'col_name' => $selected['col_name'],
-                'col_type' => $selected['col_type'],
-                'col_parent_id' => $selected['col_parent_id']
-            );
-        }
+    while ($row = sqlsrv_fetch_array($getResults_instance, SQLSRV_FETCH_ASSOC)) {
+        $row2 = sqlsrv_fetch_array($getResults_col, SQLSRV_FETCH_ASSOC);
+        $instance[] = array(
+            'id'=>$row['id'],
+            'sch_id' => $row['sch_id'],
+            'instance' => $row['instance'],
+            'col_name' => $row2['col_name'],
+            'col_type' => $row2['col_type'],
+            'col_parent_id' => $row2['col_parent_id']
+        );
     }
-    else{
-        $index=rand(0,sizeof($array));
-        $selected=$array[$index];
-
-    }
-    sqlsrv_free_stmt($getResults_instance);
+    sqlsrv_free_stmt($getResults_col);
 
 }
+
+sqlsrv_free_stmt($getResults_instance);
+
+
 
 echo json_encode($instance);
 
