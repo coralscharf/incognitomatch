@@ -86,7 +86,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     };
 
-    $scope.getExp = function () {
+    $scope.getExp2 = function (callback) {
 
         $http({
             method: 'POST',
@@ -109,6 +109,20 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             document.getElementById("A_col_type").innerText=schema[0]['col_type'];
             document.getElementById("A_col_instance").innerText=schema[0]['instance'];
             console.log(schema[0]['index']);
+
+
+        });
+        callback();
+
+
+
+
+
+
+    };
+
+    $scope.getExp = function(){
+        $scope.getExp2(function(){
             $http({
                 method: 'POST',
                 url: 'php/get_exp_info.php',
@@ -133,15 +147,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 document.getElementById("exp_pair_score").innerText="System Suggestion: "+
                     schema2[0]['order']+" similar";
             });
-
         });
-
-
-
-
-
-
     };
+
 
 
     $scope.add_exp = function () {
