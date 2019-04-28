@@ -167,7 +167,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 sch_id_1: $scope.schema[0]['sch_id'],
                 sch_id_2: $scope.schema2[0]['sch_id'],
                 realconf: $scope.schema[0]['realconf'],
-                userconf: document.getElementById("user_confidence").value()
+                userconf: document.getElementById("user_confidence").value
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
