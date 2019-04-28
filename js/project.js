@@ -110,9 +110,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             document.getElementById("A_col_instance").innerText=schema[0]['instance'];
             console.log(schema[0]['index']);
 
-
+            callback(schema);
         });
-        callback();
+
 
 
 
@@ -122,7 +122,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
     $scope.getExp = function(){
-        $scope.getExp2(function(){
+        $scope.getExp2(function(schema){
             $http({
                 method: 'POST',
                 url: 'php/get_exp_info.php',
