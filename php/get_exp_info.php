@@ -17,6 +17,7 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 
 if ($term_a_or_b == 'sch_id_2')
 {
+    echo $index_from_a;
     $sql="select * from exp_pairs where exp_id=$exp_id and id=$index_from_a";
 }
 else
@@ -56,7 +57,7 @@ while ($row = sqlsrv_fetch_array($getResults_col, SQLSRV_FETCH_ASSOC)) {
     'col_name' => $row['col_name'],
     'col_type' => $row['col_type'],
     'col_parent_id' => $row['col_parent_id'],
-    'index' => $index,
+    'index' => $index + 1 ,
     'score'=> $array['score'],
     'realConf'=> $array['realConf'],
     'order' => $array['order']
