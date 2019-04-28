@@ -19,7 +19,6 @@ if ($term_a_or_b == 'sch_id_2')
 {
 
     $sql="select * from exp_pairs where exp_id=$exp_id and id=".$index_from_a;
-    echo $sql;
 }
 else
 {
@@ -42,8 +41,14 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
 }
 
 //echo sizeof($array);
+if ($term_a_or_b == 'sch_id_2')
+{
+    $index=0;
+}
+else{
+    $index=rand(0,sizeof($array));
 
-$index=rand(0,sizeof($array));
+}
 sqlsrv_free_stmt($getResults);
 
 $selected=$array[$index];
