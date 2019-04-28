@@ -112,7 +112,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             //console.log(schema[index]);
             document.getElementById("A_col_name").innerText=schema[0]['col_name'];
             document.getElementById("A_col_type").innerText=schema[0]['col_type'];
-            document.getElementById("A_col_instance").innerText=schema[0]['instance'];
+            document.getElementById("A_col_instance").innerText=str_instance;
             console.log(schema[0]['index']);
 
             callback(schema);
@@ -145,11 +145,16 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 console.log((data.data)[0]);
 
                 let schema2=data.data;
+                let str_instance="";
+                for (let i=0;i<schema2.length;i++)
+                {
+                    str_instance=str_instance+schema2[i]['instance']+", ";
+                }
                 //let index = Math.floor((Math.random() * schema.length) + 1);
                 //console.log(schema[index]);
                 document.getElementById("B_col_name").innerText=schema2[0]['col_name'];
                 document.getElementById("B_col_type").innerText=schema2[0]['col_type'];
-                document.getElementById("B_col_instance").innerText=schema2[0]['instance'];
+                document.getElementById("B_col_instance").innerText=str_instance;
                 document.getElementById("exp_pair_score").innerText="System Suggestion: "+
                     schema2[0]['order']+" similar";
             });
