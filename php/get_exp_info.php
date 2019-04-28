@@ -60,6 +60,7 @@ if ($getResults_col == FALSE)
 $col_prop = array();
 while ($row = sqlsrv_fetch_array($getResults_col, SQLSRV_FETCH_ASSOC)) {
     $col_prop[] = array(
+    'sch_id' => $row['id'],
     'col_name' => $row['col_name'],
     'col_type' => $row['col_type'],
     'col_parent_id' => $row['col_parent_id'],
@@ -82,7 +83,7 @@ if (sqlsrv_has_rows($getResults_instance))
     while ($row = sqlsrv_fetch_array($getResults_instance, SQLSRV_FETCH_ASSOC)) {
         $instance[] = array(
             'id'=>$row['id'],
-            'sch_id' => $row['sch_id'],
+            'sch_id' => $col_prop[0]['sch_id'],
             'instance' => $row['instance'],
             'col_name' => $col_prop[0]['col_name'],
             'col_type' => $col_prop[0]['col_type'],
