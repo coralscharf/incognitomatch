@@ -17,8 +17,9 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 
 if ($term_a_or_b == 'sch_id_2')
 {
-    echo $index_from_a;
-    $sql="select * from exp_pairs where exp_id=$exp_id and id=$index_from_a";
+
+    $sql="select * from exp_pairs where exp_id=$exp_id and id=".$index_from_a;
+    echo $sql;
 }
 else
 {
