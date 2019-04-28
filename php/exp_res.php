@@ -13,5 +13,5 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 
 
 $sql="insert into exp_results(user_id, exp_id, sch_id_1, sch_id_2, realconf, userconf) values($user_id,$exp_id,$sch_id_1,$sch_id_2,$realconf,$userconf)";
-echo sql;
+echo $sql;
 
