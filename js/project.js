@@ -75,6 +75,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $("#home").hide();
         $("#page2").hide();
         $("#experiment").hide();
+        $("#begin_exp_user").hide();
         console.log("hide");
     };
 
@@ -83,10 +84,23 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     };
     $scope.show_exp = function () {
-        $("#experiment").show();
-        $scope.getExp();
+        $("#begin_exp_user").show();
+
 
     };
+    $scope.begin_exp = function(){
+        $("#experiment").show();
+        $scope.getExp();
+    };
+
+
+    $scope.new_user_exp = function(){
+
+
+        $scope.begin_exp();
+
+    };
+
 
     $scope.getExp2 = function (callback) {
 

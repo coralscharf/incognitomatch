@@ -34,6 +34,7 @@
         include "html/nav.html";
         include "html/page2.html";
         include "html/exp.html";
+        include "html/new_user.html"
 	?>
     <script src="js/mdb.min.js"></script>
 
