@@ -8,4 +8,4 @@ $userconf=stripcslashes($_POST['userconf']);
 
 
 
-echo $userconf;
+echo $exp_id.$user_id.$sch_id_1.$sch_id_2.$realconf;
