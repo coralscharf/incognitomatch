@@ -166,7 +166,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 user_id: 1,
                 sch_id_1: $scope.schema[0]['sch_id'],
                 sch_id_2: $scope.schema2[0]['sch_id'],
-                realconf: $scope.schema[0]['realconf'],
+                realconf: $scope.schema[0]['realConf'],
                 userconf: document.getElementById("user_confidence").value
             }),
             headers: {
