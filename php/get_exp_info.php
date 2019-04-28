@@ -57,9 +57,9 @@ while ($row = sqlsrv_fetch_array($getResults_col, SQLSRV_FETCH_ASSOC)) {
     'col_type' => $row['col_type'],
     'col_parent_id' => $row['col_parent_id'],
     'index' => $index,
-    'score'=> $row['score'],
-    'realConf'=> $row['realConf'],
-    'order' => $row['order']
+    'score'=> $array['score'],
+    'realConf'=> $array['realConf'],
+    'order' => $array['order']
     );
 }
 sqlsrv_free_stmt($getResults_col);
