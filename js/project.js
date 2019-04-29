@@ -96,7 +96,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.new_user_exp = function(){
 
-
+        $("#begin_exp_user").hide();
         $scope.begin_exp();
 
     };
