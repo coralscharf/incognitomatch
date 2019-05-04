@@ -64,6 +64,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.show_home();
         $scope.schema2=[];
         $scope.schema=[];
+        $scope.h_1=[];
+        $scope.h_2=[];
 
     }; //the function
 
@@ -119,6 +121,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             //console.log((data.data)[0]);
 
             $scope.schema=data.data;
+            let h_1_temp=$scope.schema[0]['h_1'].split(".");
+            for (let j=0;j<h_1_temp.length;j++)
+            {
+                $scope.h_1.push({"index":j,"val":h_1_temp[j]});
+            }
+
+
             let str_instance="";
             for (let i=0;i<$scope.schema.length;i++)
             {
@@ -154,6 +163,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 console.log((data.data)[0]);
 
                 $scope.schema2=data.data;
+                let h_2_temp=$scope.schema[0]['h_2'].split(".");
+                for (let j=0;j<h_2_temp.length;j++)
+                {
+                    $scope.h_2.push({"index":j,"val":h_2_temp[j]});
+                }
                 let str_instance="";
                 for (let i=0;i<$scope.schema2.length;i++)
                 {
