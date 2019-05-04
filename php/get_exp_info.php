@@ -36,7 +36,9 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
         'sch_id_2'=>$row['sch_id_2'],
         'score'=> $row['score'],
         'realConf'=> $row['realConf'],
-        'order' => $row['order']
+        'order' => $row['order'],
+        'h_1' => $row['sch_id_1'],
+        'h_2' => $row['sch_id_2']
     );
 }
 
@@ -67,7 +69,9 @@ while ($row = sqlsrv_fetch_array($getResults_col, SQLSRV_FETCH_ASSOC)) {
     'index' => $index + 1 ,
     'score'=> $array['score'],
     'realConf'=> $array['realConf'],
-    'order' => $array['order']
+    'order' => $array['order'],
+    'h_1' => $array['sch_id_1'],
+    'h_2' => $array['sch_id_2']
     );
 }
 sqlsrv_free_stmt($getResults_col);
@@ -91,7 +95,9 @@ if (sqlsrv_has_rows($getResults_instance))
             'order' => $array[$index]['order'],
             'score'=> $array[$index]['score'],
             'realConf'=> $array[$index]['realConf'],
-            'index' => $col_prop[0]['index']
+            'index' => $array[$index]['index'],
+            'h_1' => $array[$index]['sch_id_1'],
+            'h_2' => $array[$index]['sch_id_2']
         );
     }
 
