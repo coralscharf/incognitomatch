@@ -121,6 +121,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             //console.log((data.data)[0]);
 
             $scope.schema=data.data;
+            $scope.h_1=[];
             let h_1_temp=$scope.schema[0]['h_1'].split(".");
             for (let j=0;j<h_1_temp.length;j++)
             {
@@ -163,6 +164,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 console.log((data.data)[0]);
 
                 $scope.schema2=data.data;
+                $scope.h_2=[];
                 let h_2_temp=$scope.schema[0]['h_2'].split(".");
                 for (let j=0;j<h_2_temp.length;j++)
                 {
