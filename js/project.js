@@ -130,10 +130,18 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
 
             let str_instance="";
-            for (let i=0;i<$scope.schema.length;i++)
+            if ("instance" in $scope.schema[0])
             {
-                str_instance=str_instance+$scope.schema[i]['instance']+", ";
+                for (let i=0;i<$scope.schema.length;i++)
+                {
+                    str_instance=str_instance+$scope.schema[i]['instance']+", ";
+                }
+                str_instance=str_instance.substring(0, str_instance.length-1);
             }
+            else {
+                str_instance = "N/A";
+            }
+
             //let index = Math.floor((Math.random() * schema.length) + 1);
             //console.log(schema[index]);
             document.getElementById("A_col_name").innerText=$scope.schema[0]['col_name'];
@@ -171,9 +179,14 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     $scope.h_2.push({"index":j,"val":h_2_temp[j]});
                 }
                 let str_instance="";
-                for (let i=0;i<$scope.schema2.length;i++)
-                {
-                    str_instance=str_instance+$scope.schema2[i]['instance']+", ";
+                if ("instance" in $scope.schema2[0]) {
+                    for (let i = 0; i < $scope.schema2.length; i++) {
+                        str_instance = str_instance + $scope.schema2[i]['instance'] + ", ";
+                    }
+                    str_instance=str_instance.substring(0, str_instance.length-1);
+                }
+                else {
+                    str_instance = "N/A";
                 }
                 //let index = Math.floor((Math.random() * schema.length) + 1);
                 //console.log(schema[index]);
