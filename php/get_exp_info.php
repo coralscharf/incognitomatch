@@ -67,11 +67,11 @@ while ($row = sqlsrv_fetch_array($getResults_col, SQLSRV_FETCH_ASSOC)) {
     'col_type' => $row['col_type'],
     'col_parent_id' => $row['col_parent_id'],
     'index' => $index + 1 ,
-    'score'=> $array['score'],
-    'realConf'=> $array['realConf'],
-    'order' => $array['order'],
-    'h_1' => $array['h_1'],
-    'h_2' => $array['h_2']
+    'score'=> $array[$index]['score'],
+    'realConf'=> $array[$index]['realConf'],
+    'order' => $array[$index]['order'],
+    'h_1' => $array[$index]['h_1'],
+    'h_2' => $array[$index]['h_2']
     );
 }
 sqlsrv_free_stmt($getResults_col);
