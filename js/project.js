@@ -252,7 +252,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
     $scope.captureCoordinate = function($event){
-        console.log($event);
+        setInterval(function() {
+            console.log("x= " + $event.x + "y = " + $event.y);
+            },3000);
     };
 
 
