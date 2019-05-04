@@ -253,7 +253,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.captureCoordinate = function($event){
         $timeout(function() {
-            console.log($event);
+            console.log("x:",$event['pageX'],"y:",$event['pageY']);
             },3000);
     };
 
