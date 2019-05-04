@@ -12,7 +12,8 @@ $serverName = "tcp:avivtest.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 
 
-$sql="insert into exp_results(user_id, exp_id, sch_id_1, sch_id_2, realconf, userconf) values($user_id,$exp_id,$sch_id_1,$sch_id_2,$realconf,$userconf)";
+$sql="insert into exp_results(user_id, exp_id, sch_id_1, sch_id_2, realconf, userconf,rec_time) 
+    values($user_id,$exp_id,$sch_id_1,$sch_id_2,$realconf,$userconf,getdate())";
 
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
