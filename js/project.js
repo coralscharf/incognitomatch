@@ -254,7 +254,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     $scope.captureCoordinate = function($event){
 
         $timeout(function() {
-            update_captureCoordinate($event);
+            $scope.update_captureCoordinate($event);
         },3000);
     };
 
