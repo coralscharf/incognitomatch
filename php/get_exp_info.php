@@ -62,16 +62,16 @@ if ($getResults_col == FALSE)
 $col_prop = array();
 while ($row = sqlsrv_fetch_array($getResults_col, SQLSRV_FETCH_ASSOC)) {
     $col_prop[] = array(
-    'sch_id' => $row['id'],
-    'col_name' => $row['col_name'],
-    'col_type' => $row['col_type'],
-    'col_parent_id' => $row['col_parent_id'],
-    'index' => $array[$index]['id'],
-    'score'=> $array[$index]['score'],
-    'realConf'=> $array[$index]['realConf'],
-    'order' => $array[$index]['order'],
-    'h_1' => $array[$index]['h_1'],
-    'h_2' => $array[$index]['h_2']
+        'sch_id' => $row['id'],
+        'col_name' => $row['col_name'],
+        'col_type' => $row['col_type'],
+        'col_parent_id' => $row['col_parent_id'],
+        'index' => $array[$index]['id'],
+        'score'=> $array[$index]['score'],
+        'realConf'=> $array[$index]['realConf'],
+        'order' => $array[$index]['order'],
+        'h_1' => $array[$index]['h_1'],
+        'h_2' => $array[$index]['h_2']
     );
 }
 sqlsrv_free_stmt($getResults_col);
@@ -95,7 +95,7 @@ if (sqlsrv_has_rows($getResults_instance))
             'order' => $array[$index]['order'],
             'score'=> $array[$index]['score'],
             'realConf'=> $array[$index]['realConf'],
-            'index' => $array[$index]['index'],
+            'index' => $array[$index]['id'],
             'h_1' => $array[$index]['h_1'],
             'h_2' => $array[$index]['h_2']
         );
