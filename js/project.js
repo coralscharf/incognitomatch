@@ -252,16 +252,16 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
     $scope.captureCoordinate = function($event){
-
-        setInterval(function() {
-            $scope.update_captureCoordinate($event);
-        },3000);
-    };
-
-    $scope.update_captureCoordinate = function($event){
-        console.log("x:" + $event['pageX']+ " y:" + $event['pageY']);
+        let d = new Date();
+        let sec = d.getSeconds();
+        if (sec % 20 === 0)
+        {
+            console.log("x:" + $event['pageX']+ " y:" + $event['pageY']);
+        }
 
     };
+
+
 
 
 });	 //app.controller
