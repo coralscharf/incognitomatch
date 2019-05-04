@@ -207,6 +207,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             if (data.data === "1")
             {
                 $scope.getExp();
+                document.getElementById("user_confidence").value="";
             }
 
         });
