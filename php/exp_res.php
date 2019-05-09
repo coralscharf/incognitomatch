@@ -14,7 +14,7 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 
 for($i=0;$i<sizeof($mouse_loc);$i++)
 {
-    echo (sizeof($mouse_loc));
+    echo ($mouse_loc[$i]);
 }
 die();
 
