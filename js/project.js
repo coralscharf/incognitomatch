@@ -273,8 +273,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     };
 
-    $scope.decorateWithB = function(num, val) {
-        return Array(+num + 1).join('   ') + "<i class=\"fas fa-long-arrow-alt-right\"></i>" + val;
+    $scope.decorateWithSpace = function(num) {
+        return Array(+num + 1).join('   ');
     };
 
 
