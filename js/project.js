@@ -206,7 +206,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
         console.log($scope.mouse_moves);
         console.log($scope.last_time_mouse);
-        /*$http({
+        $http({
             method: 'POST',
             url: 'php/exp_res.php',
             data: $.param({
@@ -215,7 +215,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 sch_id_1: $scope.schema[0]['sch_id'],
                 sch_id_2: $scope.schema2[0]['sch_id'],
                 realconf: $scope.schema[0]['realConf'],
-                userconf: document.getElementById("user_confidence").value
+                userconf: document.getElementById("user_confidence").value,
+                mouse_loc: $scope.mouse_moves
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -228,7 +229,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 document.getElementById("user_confidence").value="";
             }
 
-        });*/
+        });
     };
 
 
@@ -257,13 +258,14 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
     $scope.captureCoordinate = function($event){
+        // save mouse location every 500 milliseconds (0.5 second)
         let d = new Date();
         if ($scope.last_time_mouse.length === 0)
         {
             $scope.last_time_mouse = d.getTime();
             $scope.mouse_moves.push({"time":d.getTime(),"x":$event['pageX'],"y":$event['pageY']});
         }
-        else if (d.getTime() -  $scope.last_time_mouse > 1000 )
+        else if (d.getTime() -  $scope.last_time_mouse > 500 )
         {
             $scope.mouse_moves.push({"time":d.getTime(),"x":$event['pageX'],"y":$event['pageY']});
             $scope.last_time_mouse = d.getTime();
