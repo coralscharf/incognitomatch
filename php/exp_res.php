@@ -11,11 +11,12 @@ $mouse_loc=$_POST['mouse_loc'];
 $connectionInfo = array("UID" => "avivf@avivtest", "pwd" => "1qaZ2wsX!", "Database" => "avivtest", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
 $serverName = "tcp:avivtest.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
-
+$mouse_str="";
 for($i=0;$i<sizeof($mouse_loc);$i++)
 {
-    echo ($mouse_loc[$i]);
+    $mouse_str=$mouse_str."(".$mouse_loc[$i]["x"].",".$mouse_loc[$i]["y"].");";
 }
+echo $mouse_str;
 die();
 
 
