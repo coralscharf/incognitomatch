@@ -66,6 +66,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.schema=[];
         $scope.h_1=[];
         $scope.h_2=[];
+        $scope.last_time_mouse="";
+        $scope.mouse_moves=[];
 
     }; //the function
 
@@ -254,6 +256,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     $scope.captureCoordinate = function($event){
         let d = new Date();
         let sec = d.getSeconds();
+        //$scope.mouse_moves.push(["time":d.getDate(),"x":$event['pageX'],"y":$event['pageY'])
         if (sec % 2 === 0)
         {
             console.log($event);
@@ -261,6 +264,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     };
 
+    $scope.decorateWithB = function(num, val) {
+        return Array(+num + 1).join(' ') + val;
+    };
 
 
 
