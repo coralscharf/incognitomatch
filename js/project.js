@@ -149,7 +149,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             document.getElementById("A_col_name").innerText=$scope.schema[0]['col_name'];
             document.getElementById("A_col_type").innerText=$scope.schema[0]['col_type'];
             document.getElementById("A_col_instance").innerText=str_instance;
-            angular.element(document.getElementById("term_a_table_h")).append($compile(document.getElementById("term_a_table_h"))($scope));
             callback($scope.schema);
         });
 
@@ -274,7 +273,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
     $scope.decorateWithSpace = function(num,val) {
-        return Array(+num + 1).join('&emsp;')+"<i class=\"fas fa-long-arrow-alt-right\"></i>"+val;
+        let name="table_a_"+num;
+        angular.element(document.getElementById(name)).append($compile(Array(+num + 1).join('&emsp;')+"<i class=\"fas fa-long-arrow-alt-right\"></i>"+val)($scope));
     };
 
 
