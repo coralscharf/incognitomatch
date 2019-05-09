@@ -265,7 +265,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
     $scope.decorateWithB = function(num, val) {
-        return Array(+num + 1).join(' ') + val;
+        return Array(+num + 1).join('b') + val;
     };
 
 
