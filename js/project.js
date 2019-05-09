@@ -273,8 +273,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     };
 
-    $scope.decorateWithSpace = function(num) {
-        return Array(+num + 1).join('   ');
+    $scope.decorateWithSpace = function(num,val) {
+        return Array(+num + 1).join('   ')+val;
     };
 
 
