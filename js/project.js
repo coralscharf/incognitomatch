@@ -257,8 +257,16 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.captureCoordinate = function($event){
         let d = new Date();
-        let sec = d.getSeconds();
-        $scope.mouse_moves.push({"time":d.getDate(),"x":$event['pageX'],"y":$event['pageY']});
+        if ($scope.last_time_mouse.length === 0)
+        {
+            $scope.last_time_mouse = d.getTime();
+            $scope.mouse_moves.push({"time":d.getTime(),"x":$event['pageX'],"y":$event['pageY']});
+        }
+        else if (d.getTime() -  $scope.last_time_mouse > 3 )
+        {
+            $scope.mouse_moves.push({"time":d.getTime(),"x":$event['pageX'],"y":$event['pageY']});
+            $scope.last_time_mouse = d.getTime();ו
+        }
 
     };
 
