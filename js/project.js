@@ -254,9 +254,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     $scope.captureCoordinate = function($event){
         let d = new Date();
         let sec = d.getSeconds();
-        if (sec % 20 === 0)
+        if (sec % 2 === 0)
         {
-            console.log("x:" + $event['pageX']+ " y:" + $event['pageY']);
+            console.log($event);
         }
 
     };
