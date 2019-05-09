@@ -203,7 +203,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
 
     $scope.exp_res = function(){
-        $http({
+
+        console.log($scope.mouse_moves);
+        /*$http({
             method: 'POST',
             url: 'php/exp_res.php',
             data: $.param({
@@ -225,7 +227,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 document.getElementById("user_confidence").value="";
             }
 
-        });
+        });*/
     };
 
 
@@ -256,11 +258,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     $scope.captureCoordinate = function($event){
         let d = new Date();
         let sec = d.getSeconds();
-        //$scope.mouse_moves.push(["time":d.getDate(),"x":$event['pageX'],"y":$event['pageY'])
-        if (sec % 2 === 0)
-        {
-            console.log($event);
-        }
+        $scope.mouse_moves.push({"time":d.getDate(),"x":$event['pageX'],"y":$event['pageY']});
 
     };
 
