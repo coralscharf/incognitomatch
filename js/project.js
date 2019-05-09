@@ -205,6 +205,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     $scope.exp_res = function(){
 
         console.log($scope.mouse_moves);
+        console.log($scope.last_time_mouse);
         /*$http({
             method: 'POST',
             url: 'php/exp_res.php',
@@ -262,7 +263,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             $scope.last_time_mouse = d.getTime();
             $scope.mouse_moves.push({"time":d.getTime(),"x":$event['pageX'],"y":$event['pageY']});
         }
-        else if (d.getTime() -  $scope.last_time_mouse > 3 )
+        else if (d.getTime() -  $scope.last_time_mouse > 10 )
         {
             $scope.mouse_moves.push({"time":d.getTime(),"x":$event['pageX'],"y":$event['pageY']});
             $scope.last_time_mouse = d.getTime();
