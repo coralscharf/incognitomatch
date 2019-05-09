@@ -265,7 +265,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         else if (d.getTime() -  $scope.last_time_mouse > 3 )
         {
             $scope.mouse_moves.push({"time":d.getTime(),"x":$event['pageX'],"y":$event['pageY']});
-            $scope.last_time_mouse = d.getTime();ו
+            $scope.last_time_mouse = d.getTime();
         }
 
     };
