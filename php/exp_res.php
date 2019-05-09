@@ -5,7 +5,7 @@ $sch_id_1=stripcslashes($_POST['sch_id_1']);
 $sch_id_2=stripcslashes($_POST['sch_id_2']);
 $realconf=stripcslashes($_POST['realconf']);
 $userconf=stripcslashes($_POST['userconf']);
-$mouse_loc=json_decode(stripcslashes($_POST['mouse_loc']));
+$mouse_loc=$_POST['mouse_loc'];
 
 
 $connectionInfo = array("UID" => "avivf@avivtest", "pwd" => "1qaZ2wsX!", "Database" => "avivtest", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
