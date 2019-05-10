@@ -69,7 +69,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.last_time_mouse="";
         $scope.mouse_moves=[];
         $scope.new_user_gender_val="";
-
+        $scope.curr_user=[];
     }; //the function
 
     $scope.show_home = function(){
@@ -90,8 +90,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
     $scope.show_exp = function () {
         $("#begin_exp_user").show();
-
-
+        document.getElementById("exp_hello").innerText="Hello, " + $scope.curr_user["last"] + " " + $scope.curr_user['first'];
+        
     };
     $scope.begin_exp = function(){
         $("#experiment").show();
@@ -100,7 +100,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
 
     $scope.new_user_exp = function(){
-
+        $scope.curr_user=[{"first":document.getElementById("new_user_first").value,"last":document.getElementById("new_user_last").value}];
         $http({
             method: 'POST',
             url: 'php/exp_new_user.php',
