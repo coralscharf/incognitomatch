@@ -101,6 +101,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.new_user_exp = function(){
         $scope.curr_user={"first":document.getElementById("new_user_first").value,"last":document.getElementById("new_user_last").value};
+        console.log($scope.curr_user);
         $http({
             method: 'POST',
             url: 'php/exp_new_user.php',
