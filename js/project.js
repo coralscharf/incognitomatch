@@ -27,16 +27,15 @@ app.directive('fileModel', ['$parse', function ($parse) {
 					headers: {'Content-Type': undefined,'Process-Data': false}
 				}).then(function(data){
                     let res=data.data;
+                    console.log(res);
                     if (res==="0")
                     {
                         console.log("good");
-                        document.getElementById("couldnt_add_new_file").style.display="none";
-                        document.getElementById("added_file_successfully").style.display="block";
+
                     }
                     else {
                         console.log("not good");
-                        document.getElementById("couldnt_add_new_file").style.display="block";
-                        document.getElementById("added_file_successfully").style.display="none";
+
                     }
                     console.log("res",res );
 
