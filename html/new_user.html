@@ -5,6 +5,7 @@
 	<div class="row">
 		<div class="col">
 			<div class="md-form">
+				<i class="fas fa-user prefix"></i>
 				<input type="text" class="form-control" placeholder="First Name" aria-label="First Name" aria-describedby="material-addon1">
 			</div>
 		</div>
@@ -34,28 +35,44 @@
 		</div>
 		<div class="col">
 			<div class="md-form">
-				<i class="fas fa-language"></i>
-				<input type="text" class="form-control" placeholder="Language" aria-label="Language" aria-describedby="material-addon5">
+				<i class="fas fa-language prefix"></i>
+				<input type="text" class="form-control" id="new_user_lang">
+				<label for="new_user_lang">Language</label>
 			</div>
 		</div>
 		<div class="col">
 			<div class="md-form">
-				<i class="fas fa-child"></i>
-				<input type="text" class="form-control" placeholder="Age" aria-label="Age" aria-describedby="material-addon6">
+				<i class="fas fa-child prefix"></i>
+				<input type="text" class="form-control" id="new_user_age">
+				<label for="new_user_age">Age</label>
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-12 md-form input-group">
-		<i class="fas fa-briefcase"></i>
-		<input type="text" class="form-control" placeholder="Occupation" aria-label="Occupation" aria-describedby="material-addon7">
-		<span class="input-group-text md-addon"> </span>
-
-		<i class="fas fa-school"></i>
-		<input type="text" class="form-control" placeholder="Education" aria-label="Education" aria-describedby="material-addon8">
-		<span class="input-group-text md-addon"> </span>
-
-		<i class="fas fa-venus-mars"></i>
-		<input type="text" class="form-control" placeholder="Gender" aria-label="Gender" aria-describedby="material-addon9">
+	<div class="row">
+		<div class="col">
+			<div class="md-form">
+				<i class="fas fa-briefcase prefix"></i>
+				<input type="text" class="form-control" id="new_user_occ">
+				<label for="new_user_occ">Occupation</label>
+			</div>
+		</div>
+		<div class="col">
+			<div class="md-form">
+				<i class="fas fa-school prefix"></i>
+				<input type="text" class="form-control" id="new_user_edu">
+				<label for="new_user_edu">Education</label>
+			</div>
+		</div>
+		<div class="col">
+			<div class="custom-control custom-radio custom-control-inline">
+				<i class="fas fa-venus prefix"></i>
+				<input type="radio" class="custom-control-input" name="new_user_gender" id="new_user_woman">
+				<label for="new_user_woman">Woman</label>
+				<i class="fas fa-mars prefix"></i>
+				<input type="radio" class="custom-control-input" name="new_user_gender" id="new_user_man">
+				<label for="new_user_man">Man</label>
+			</div>
+		</div>
 	</div>
 
 
