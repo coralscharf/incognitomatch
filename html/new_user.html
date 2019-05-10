@@ -5,13 +5,15 @@
 	<div class="row">
 		<div class="col">
 			<div class="md-form">
-				<i class="fas fa-user"></i>
-				<input type="text" class="form-control" placeholder="First Name" aria-label="First Name" aria-describedby="material-addon1">
+				<i class="fas fa-user prefix"></i>
+				<input type="text" class="form-control" id="new_user_first">
+				<label for="new_user_first">First Name</label>
 			</div>
 		</div>
 		<div class="col">
 			<div class="md-form">
-				<input type="text" class="form-control" placeholder="Last Name" aria-label="Last Name" aria-describedby="material-addon2">
+				<input type="text" class="form-control" id="new_user_last">
+				<label for="new_user_last">Last Name</label>
 			</div>
 		</div>
 	</div>
@@ -63,14 +65,14 @@
 				<label for="new_user_edu">Education</label>
 			</div>
 		</div>
-		<div class="col">
+		<div class="col" style="margin-top:30px">
 			<div class="custom-control custom-radio custom-control-inline">
 				<i class="fas fa-venus prefix"></i>
 				<input type="radio" class="custom-control-input" name="new_user_gender" id="new_user_woman">
 				<label class="custom-control-label" for="new_user_woman">Woman</label>
 			</div>
 			<div class="custom-control custom-radio custom-control-inline">
-			<i class="fas fa-mars prefix"></i>
+				<i class="fas fa-mars prefix"></i>
 				<input type="radio" class="custom-control-input" name="new_user_gender" id="new_user_man">
 				<label class="custom-control-label" for="new_user_man">Man</label>
 			</div>
