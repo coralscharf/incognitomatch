@@ -16,6 +16,7 @@ if (!empty($_FILES)) {
 
         $new_name = time() . '_' . basename($_FILES["file"]["name"][$i]);
         $target_file = $target_dir . $new_name;
+        echo $target_file;
         if (move_uploaded_file($_FILES['file']['tmp_name'][$i], $target_file)) {
             $arr =$arr.",0";
 
