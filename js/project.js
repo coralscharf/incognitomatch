@@ -18,10 +18,11 @@ app.directive('fileModel', ['$parse', function ($parse) {
 
 		// We can write our own fileUpload service to reuse it in the controller
 		app.service('fileUpload', ['$http', function ($http) {
-			this.uploadFileToUrl = function(file, uploadUrl, name){
+			this.uploadFileToUrl = function(file, uploadUrl, name, exp_name){
 				let fd = new FormData();
 				fd.append('file', file);
 				fd.append('name', name);
+                fd.append('exp_name', exp_name);
 				$http.post(uploadUrl, fd, {
 					transformRequest: angular.identity,
 					headers: {'Content-Type': undefined,'Process-Data': false}
@@ -295,10 +296,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         let file = $scope.myFile;
 
         console.dir(file);
-
+        let exp_name = document.getElementById("exp_name").value;
         let uploadUrl = "php/fileUpload.php";
         let text = file.name;
-        fileUpload.uploadFileToUrl(file, uploadUrl, text);
+        fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);
 
     };
 

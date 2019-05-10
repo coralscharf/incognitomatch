@@ -3,10 +3,15 @@ $connectionInfo = array("UID" => "avivf@avivtest", "pwd" => "1qaZ2wsX!", "Databa
 $serverName = "tcp:avivtest.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 
-
+$exp_name=stripcslashes($_POST['exp_name']);
 
 if (!empty($_FILES)) {
-    $target_dir = "D:\home\\site\\wwwroot\\font\\";
+
+    $target_dir = "D:\home\\site\\wwwroot\\exp_files\\$exp_name\\";
+    if ( ! is_dir($target_dir))
+    {
+        mkdir($target_dir);
+    }
     $name = $_POST['file'];
 //print_r($_FILES);
     $new_name=time().'_'.basename($_FILES["file"]["name"]);
