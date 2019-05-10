@@ -90,12 +90,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
     $scope.show_exp = function () {
         $("#begin_exp_user").show();
-        document.getElementById("exp_hello").innerText="Hello, " + $scope.curr_user["last"] + " " + $scope.curr_user['first'];
 
     };
     $scope.begin_exp = function(){
         $("#experiment").show();
         $scope.getExp();
+        document.getElementById("exp_hello").innerText="Hello, " + $scope.curr_user["last"] + " " + $scope.curr_user['first'];
+
     };
 
 
