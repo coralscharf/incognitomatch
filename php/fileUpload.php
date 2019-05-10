@@ -7,6 +7,7 @@ $exp_name=stripcslashes($_POST['exp_name']);
 
 if (!empty($_FILES)) {
     $total=count($_FILES['upload']['name']);
+    echo $total;
     $arr = array();
     for( $i=0 ; $i < $total ; $i++ ) {
         $target_dir = "D:\home\\site\\wwwroot\\exp_files\\$exp_name\\";
