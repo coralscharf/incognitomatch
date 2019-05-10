@@ -18,7 +18,7 @@ for($i=0;$i<sizeof($mouse_loc);$i++)
 }
 
 $sql="insert into exp_results(user_id, exp_id, sch_id_1, sch_id_2, realconf, userconf,rec_time,mouse_loc) 
-    values($user_id,$exp_id,$sch_id_1,$sch_id_2,$realconf,$userconf,getdate(),$mouse_str)";
+    values($user_id,$exp_id,$sch_id_1,$sch_id_2,$realconf,$userconf,getdate(),'$mouse_str')";
 
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
