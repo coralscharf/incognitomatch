@@ -6,10 +6,8 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 $exp_name=stripcslashes($_POST['exp_name']);
 
 if (!empty($_FILES)) {
-    echo json_encode($_FILES);
-    $total=sizeof($_FILES);
-    echo $total;
-    $arr = array();
+    $total=count($_FILES['file']['name']);
+    $arr = "";
     for( $i=0 ; $i < $total ; $i++ ) {
         $target_dir = "D:\home\\site\\wwwroot\\exp_files\\$exp_name\\";
         if (!is_dir($target_dir)) {
@@ -19,14 +17,14 @@ if (!empty($_FILES)) {
         $new_name = time() . '_' . basename($_FILES["file"]["name"][$i]);
         $target_file = $target_dir . $new_name;
         if (move_uploaded_file($_FILES['file']['tmp_name'][$i], $target_file)) {
-            $arr[] = 0;
+            $arr =$arr.",0";
 
         }
         else{
-            $arr[] = 1;
+            $arr=$arr.",1";
         }
     }
 } else {
     echo("1");
 }
-echo json_encode($arr);
+echo $arr;
