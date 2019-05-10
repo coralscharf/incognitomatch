@@ -112,7 +112,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 u_age: document.getElementById("new_user_age").value,
                 u_occ: document.getElementById("new_user_occ").value,
                 u_edu: document.getElementById("new_user_edu").value,
-                u_woman: $scope.new_user_gender,
+                u_woman: "Vv",
                 u_man: document.getElementById("new_user_man").selected,
             }),
             headers: {
