@@ -6,7 +6,8 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 $exp_name=stripcslashes($_POST['exp_name']);
 
 if (!empty($_FILES)) {
-    $total=count($_FILES['upload']['name']);
+    echo json_encode($_FILES);
+    $total=sizeof($_FILES);
     echo $total;
     $arr = array();
     for( $i=0 ; $i < $total ; $i++ ) {
