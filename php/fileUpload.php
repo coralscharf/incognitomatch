@@ -27,3 +27,4 @@ if (!empty($_FILES)) {
 } else {
     echo("1");
 }
+echo json_encode($arr);
