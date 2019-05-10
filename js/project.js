@@ -16,6 +16,19 @@ app.directive('fileModel', ['$parse', function ($parse) {
     };
 }]);
 
+app.directive('ngFile', ['$parse', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            element.bind('change', function(){
+
+                $parse(attrs.ngFile).assign(scope,element[0].files);
+                scope.$apply();
+            });
+        }
+    };
+}]);
+
 		// We can write our own fileUpload service to reuse it in the controller
 		app.service('fileUpload', ['$http', function ($http) {
 			this.uploadFileToUrl = function(file, uploadUrl, name, exp_name){
