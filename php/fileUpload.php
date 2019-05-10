@@ -4,7 +4,8 @@ $serverName = "tcp:avivtest.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 
 $exp_name=stripcslashes($_POST['exp_name']);
-
+$total=count($_FILES['file']['name']);
+echo "bb ".$total;
 if (!empty($_FILES)) {
     $total=count($_FILES['file']['name']);
     $arr = "";
