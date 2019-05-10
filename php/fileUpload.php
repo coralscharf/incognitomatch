@@ -6,9 +6,12 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 
 
 if (!empty($_FILES)) {
-    $path = 'font/' . $_FILES['file']['name'];
-    echo ($path);
-    if (move_uploaded_file($_FILES['file']['tmp_name'], $path)) {
+    $target_dir = "D:\home\\site\\wwwroot\\font\\";
+    $name = $_POST['file'];
+//print_r($_FILES);
+    $new_name=time().'_'.basename($_FILES["file"]["name"]);
+    $target_file = $target_dir .$new_name;
+    if (move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
         echo("file moved");
 
     }
