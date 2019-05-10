@@ -70,6 +70,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.mouse_moves=[];
         $scope.new_user_gender_val="";
         $scope.curr_user={};
+
     }; //the function
 
     $scope.show_home = function(){
@@ -291,24 +292,14 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.add_exp = function () {
 
-        let fd = new FormData();
-        console.log($scope.myFile);
-        fd.append('file', $scope.myFile);
-        fd.append('name', "test");
-        $http.post("php/fileUpload.php", fd, {
-            transformRequest: angular.identity,
-            headers: {'Content-Type': undefined, 'Process-Data': false}
-        }).then(function (data) {
-            let res = data.data;
-            if (res === "0") {
-                console.log("good");
-            } else {
-                console.log("not good");
-            }
-            console.log("res", res);
 
+        let file = $scope.myFile;
 
-        })
+        console.dir(file);
+
+        let uploadUrl = "php/fileUpload.php";
+        let text = file.name;
+        fileUpload.uploadFileToUrl(file, uploadUrl, text);
 
     };
 
