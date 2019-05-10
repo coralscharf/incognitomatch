@@ -227,6 +227,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             {
                 $scope.getExp();
                 document.getElementById("user_confidence").value="";
+                // to init array of mouse locations remove the comment sign
+                //$scope.mouse_moves=[];
+                //$scope.last_time_mouse="";
             }
             else
             {
