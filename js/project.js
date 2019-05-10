@@ -294,6 +294,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
 
         let file = $scope.first_xml_file;
+        console.log(file);
         let exp_name = document.getElementById("exp_name").value;
         let uploadUrl = "php/fileUpload.php";
         let text = file.name;
