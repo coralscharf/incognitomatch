@@ -293,9 +293,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     $scope.add_exp = function () {
 
 
-        let file = $scope.myFile;
-
-        console.dir(file);
+        let file = $scope.first_xml_file;
         let exp_name = document.getElementById("exp_name").value;
         let uploadUrl = "php/fileUpload.php";
         let text = file.name;

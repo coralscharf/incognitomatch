@@ -6,20 +6,25 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 $exp_name=stripcslashes($_POST['exp_name']);
 
 if (!empty($_FILES)) {
+    $total=count($_FILES['upload']['name']);
+    $arr = array();
+    for( $i=0 ; $i < $total ; $i++ ) {
+        $target_dir = "D:\home\\site\\wwwroot\\exp_files\\$exp_name\\";
+        if (!is_dir($target_dir)) {
+            mkdir($target_dir);
+        }
+        $name = $_POST['file'];
 
-    $target_dir = "D:\home\\site\\wwwroot\\exp_files\\$exp_name\\";
-    if ( ! is_dir($target_dir))
-    {
-        mkdir($target_dir);
-    }
-    $name = $_POST['file'];
-//print_r($_FILES);
-    $new_name=time().'_'.basename($_FILES["file"]["name"]);
-    $target_file = $target_dir .$new_name;
-    if (move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
-        echo("file moved");
+        $new_name = time() . '_' . basename($_FILES["file"]["name"]);
+        $target_file = $target_dir . $new_name;
+        if (move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
+            $arr[] = 0;
 
+        }
+        else{
+            $arr[] = 1;
+        }
     }
 } else {
-    echo("error!!!");
+    echo("1");
 }
