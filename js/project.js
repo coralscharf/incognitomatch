@@ -68,6 +68,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.h_2=[];
         $scope.last_time_mouse="";
         $scope.mouse_moves=[];
+        $scope.new_user_gender_val="";
 
     }; //the function
 
@@ -112,8 +113,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 u_age: document.getElementById("new_user_age").value,
                 u_occ: document.getElementById("new_user_occ").value,
                 u_edu: document.getElementById("new_user_edu").value,
-                u_woman: "Vv",
-                u_man: document.getElementById("new_user_man").selected,
+                u_gender: $scope.new_user_gender_val
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
