@@ -100,6 +100,19 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
 
+    $scope.clear_user_form = function()
+    {
+        document.getElementById("new_user_first").value="";
+        document.getElementById("new_user_last").value="";
+        document.getElementById("new_user_email").value="";
+        document.getElementById("new_user_country").value="";
+        document.getElementById("new_user_lang").value="";
+        document.getElementById("new_user_age").value="";
+        document.getElementById("new_user_occ").value="";
+        document.getElementById("new_user_edu").value="";
+    };
+
+
     $scope.new_user_exp = function(){
         $scope.curr_user={"first":document.getElementById("new_user_first").value,"last":document.getElementById("new_user_last").value};
         console.log($scope.curr_user);
@@ -126,6 +139,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             {
                 $("#begin_exp_user").hide();
                 $scope.begin_exp();
+                $scope.clear_user_form();
             }
             else
             {
