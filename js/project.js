@@ -100,8 +100,40 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.new_user_exp = function(){
 
-        $("#begin_exp_user").hide();
-        $scope.begin_exp();
+        $http({
+            method: 'POST',
+            url: 'php/exp_new_user.php',
+            data: $.param({
+                u_first: document.getElementById("new_user_first").value,
+                u_last: document.getElementById("new_user_last").value,
+                u_email: document.getElementById("new_user_email").value,
+                u_loc: document.getElementById("new_user_country").value,
+                u_lang: document.getElementById("new_user_lang").value,
+                u_age: document.getElementById("new_user_age").value,
+                u_occ: document.getElementById("new_user_occ").value,
+                u_edu: document.getElementById("new_user_edu").value,
+                u_woman: document.getElementById("new_user_woman").value,
+                u_man: document.getElementById("new_user_man").value,
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function (data) {
+            console.log((data.data));
+            if (data.data === "1")
+            {
+                $("#begin_exp_user").hide();
+                $scope.begin_exp();
+            }
+            else
+            {
+                console.log(data.data);
+            }
+
+        });
+
+
+
 
     };
 
