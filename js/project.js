@@ -31,9 +31,11 @@ app.directive('ngFile', ['$parse', function ($parse) {
 
 		// We can write our own fileUpload service to reuse it in the controller
 		app.service('fileUpload', ['$http', function ($http) {
-			this.uploadFileToUrl = function(file, uploadUrl, name, exp_name){
+			this.uploadFileToUrl = function(files, uploadUrl, name, exp_name){
 				let fd = new FormData();
-				fd.append('file', file);
+                angular.forEach(files,function(file){
+                    fd.append('file[]',file);
+                });
 				fd.append('name', name);
                 fd.append('exp_name', exp_name);
 				$http.post(uploadUrl, fd, {
