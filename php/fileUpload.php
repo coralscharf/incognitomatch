@@ -13,11 +13,10 @@ if (!empty($_FILES)) {
         if (!is_dir($target_dir)) {
             mkdir($target_dir);
         }
-        $name = $_POST['file'];
 
-        $new_name = time() . '_' . basename($_FILES["file"]["name"]);
+        $new_name = time() . '_' . basename($_FILES["file"]["name"][$i]);
         $target_file = $target_dir . $new_name;
-        if (move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
+        if (move_uploaded_file($_FILES['file']['tmp_name'][$i], $target_file)) {
             $arr[] = 0;
 
         }
