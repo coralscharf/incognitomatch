@@ -315,6 +315,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         let text = file.name;
         fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);
 
+
     };
 
     $scope.captureCoordinate = function($event){
@@ -335,7 +336,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.decorateWithSpace = function(num,val) {
 
-        return Array(+num + 1).join(' - ')+val;
+        return Array(+num + 1).join(' - ')+val+ "<i class=\"fas fa-folder-open\"></i>";
 
 
     };

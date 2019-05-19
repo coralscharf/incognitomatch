@@ -4,8 +4,7 @@ $serverName = "tcp:avivtest.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 
 $exp_name=stripcslashes($_POST['exp_name']);
-$total=count($_FILES['file']['name']);
-echo "bb ".$total;
+
 if (!empty($_FILES)) {
     $total=count($_FILES['file']['name']);
     $arr = "";
@@ -14,7 +13,6 @@ if (!empty($_FILES)) {
         if (!is_dir($target_dir)) {
             mkdir($target_dir);
         }
-
         $new_name = time() . '_' . basename($_FILES["file"]["name"][$i]);
         $target_file = $target_dir . $new_name;
         echo $target_file;
