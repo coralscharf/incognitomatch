@@ -75,7 +75,7 @@
                     <tbody ng-repeat="item2 in h_2">
                         <tr ng-if="item2.index==0">
                             <td>
-                                <i class="fas fa-folder"></i> {{item2.val}}
+                                <i class="fas fa-folder"></i> {{item2.index}}
                             </td>
                         </tr>
                         <tr ng-if="item2.index!=0">
@@ -83,7 +83,7 @@
                                 {{decorateWithSpace($index,item2.val)}}
                             </td>-->
                             <td>
-                                <i class="fa fa-star" ng-repeat="t in getCustomRepeatArray(3)"></i>{{item2.val}}
+                                <i class="fa fa-star" ng-repeat="t in getCustomRepeatArray(3)"></i>{{item2.index}}
                             </td>
                         </tr>
                     </tbody>
