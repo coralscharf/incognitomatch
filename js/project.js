@@ -261,6 +261,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 document.getElementById("B_col_instance").innerText=str_instance;
                 document.getElementById("exp_pair_score").innerText="System Suggestion: "+
                     $scope.schema2[0]['order']+" similar";
+                console.log(document.getElementById("table_b_1"));
             });
         });
     };
