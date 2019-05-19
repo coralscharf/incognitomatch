@@ -29,6 +29,19 @@ app.directive('ngFile', ['$parse', function ($parse) {
     };
 }]);
 
+
+app.directive('starRating', function () {
+    return {
+        scope: {
+            value: '='
+        },
+        template: '<div class="stars"><i class="fa fa-star" ng-repeat="r in entries"></i></div>',
+        controller: function ($scope) {
+            $scope.entries = _.range($scope.value);
+        }
+    }
+});
+
 		// We can write our own fileUpload service to reuse it in the controller
 		app.service('fileUpload', ['$http', function ($http) {
 			this.uploadFileToUrl = function(files, uploadUrl, name, exp_name){
@@ -261,7 +274,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 document.getElementById("B_col_instance").innerText=str_instance;
                 document.getElementById("exp_pair_score").innerText="System Suggestion: "+
                     $scope.schema2[0]['order']+" similar";
-                console.log(document.getElementById("table_b_1"));
             });
         });
     };

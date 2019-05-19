@@ -79,8 +79,12 @@
                             </td>
                         </tr>
                         <tr ng-if="item2.index!=0">
-                            <td id="table_b_{{$index}}">
+                            <!--<td id="table_b_{{$index}}">
                                 {{decorateWithSpace($index,item2.val)}}
+                            </td>-->
+                            <td>
+                                <star-rating value="{{$index}}">
+                                </star-rating>
                             </td>
                         </tr>
                     </tbody>
