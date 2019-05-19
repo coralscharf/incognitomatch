@@ -83,8 +83,7 @@
                                 {{decorateWithSpace($index,item2.val)}}
                             </td>-->
                             <td>
-                                <star-rating value="$index">
-                                </star-rating>
+                                <i class="fa fa-star" ng-repeat="t in getCustomRepeatArray($index)"></i>
                             </td>
                         </tr>
                     </tbody>
