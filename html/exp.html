@@ -82,9 +82,9 @@
                             <!--<td id="table_b_{{$index}}">
                                 {{decorateWithSpace($index,item2.val)}}
                             </td>-->
-                            <td><p ng-repeat="t in getCustomRepeatArray(item2.index)"> - </p></td>
+                            <td><p ng-repeat="t in getCustomRepeatArray($index)"> - </p></td>
                             <td>
-                                <i class="fa fa-star" ng-repeat="t in getCustomRepeatArray(item2.index)"></i>{{item2.val}}
+                                <i class="fa fa-star" ng-repeat="t in getCustomRepeatArray($index)"></i>{{item2.val}}
                             </td>
                         </tr>
                     </tbody>
