@@ -337,6 +337,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         if ($scope.last_time_mouse.length === 0)
         {
             $scope.last_time_mouse = d.getTime();
+            console.log($event);
             $scope.mouse_moves.push({"time":d.getTime(),"x":$event['pageX'],"y":$event['pageY']});
         }
         else if (d.getTime() -  $scope.last_time_mouse > 500 )
