@@ -356,13 +356,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.getCustomRepeatArray = function (size) {
 
-        console.log(size);
+
         let bla=new Array(size+1);
         for (let b=0;b<size;b++)
         {
             bla[b]=b;
         }
-        console.log(bla);
+
         return bla;
     };
 
