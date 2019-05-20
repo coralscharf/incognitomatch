@@ -338,11 +338,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         {
             $scope.last_time_mouse = d.getTime();
             console.log($event);
-            $scope.mouse_moves.push({"time":d.getTime(),"x":$event['pageX'],"y":$event['pageY']});
+            $scope.mouse_moves.push({"time":d.getTime(),"x":$event['pageX'],"y":$event['pageY'],"w":$event['which']});
         }
         else if (d.getTime() -  $scope.last_time_mouse > 500 )
         {
-            $scope.mouse_moves.push({"time":d.getTime(),"x":$event['pageX'],"y":$event['pageY']});
+            $scope.mouse_moves.push({"time":d.getTime(),"x":$event['pageX'],"y":$event['pageY'],"w":$event['which']});
             $scope.last_time_mouse = d.getTime();
         }
 
