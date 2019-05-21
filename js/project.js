@@ -328,10 +328,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 exp_sch_name: document.getElementById("exp_sch_name").value,
                 exp_num_pairs: document.getElementById("exp_num_pairs").value,
                 show_instance: document.getElementById("show_instance").checked,
-                show_type: document.getElementById("show_type").value,
-                show_hierarchy: document.getElementById("show_hierarchy").value,
-                show_feedback: document.getElementById("show_feedback").value,
-                show_control: document.getElementById("show_control").value
+                show_type: document.getElementById("show_type").checked,
+                show_hierarchy: document.getElementById("show_hierarchy").checked,
+                show_feedback: document.getElementById("show_feedback").checked,
+                show_control: document.getElementById("show_control").checked
 
             }),
             headers: {
