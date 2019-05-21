@@ -320,13 +320,41 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.add_exp = function () {
 
+        $http({
+            method: 'POST',
+            url: 'php/new_exp.php',
+            data: $.param({
+                exp_name: document.getElementById("exp_name").value,
+                exp_sch_name: document.getElementById("exp_sch_name").value,
+                exp_num_pairs: document.getElementById("exp_num_pairs").value,
+                show_instance: document.getElementById("show_instance").value,
+                show_type: document.getElementById("show_type").value,
+                show_hierarchy: document.getElementById("show_hierarchy").value,
+                show_feedback: document.getElementById("show_feedback").value,
+                show_control: document.getElementById("show_control").value
 
-        let file = $scope.first_xml_file;
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function (data) {
+            console.log((data.data));
+            if (data.data === "1")
+            {
+
+            }
+            else
+            {
+                console.log(data.data);
+            }
+
+        });
+        /*let file = $scope.first_xml_file;
         console.log(file);
         let exp_name = document.getElementById("exp_name").value;
         let uploadUrl = "php/fileUpload.php";
         let text = file.name;
-        fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);
+        fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);*/
 
 
     };
