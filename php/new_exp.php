@@ -13,7 +13,7 @@ $serverName = "tcp:avivtest.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 
 
-if ($show_instance === false)
+if ($show_instance === "false")
 {
     $show_instance=0;
 }
@@ -21,7 +21,7 @@ else
 {
     $show_instance=1;
 }
-if ($show_type === false)
+if ($show_type === "false")
 {
     $show_type=0;
 }
@@ -29,7 +29,7 @@ else
 {
     $show_type=1;
 }
-if ($show_hierarchy === false)
+if ($show_hierarchy === "false")
 {
     $show_hierarchy=0;
 }
@@ -37,7 +37,7 @@ else
 {
     $show_hierarchy=1;
 }
-if ($show_feedback === false)
+if ($show_feedback === "false")
 {
     $show_feedback=0;
 }
@@ -45,7 +45,7 @@ else
 {
     $show_feedback=1;
 }
-if ($show_control === false)
+if ($show_control === "false")
 {
     $show_control=0;
 }
