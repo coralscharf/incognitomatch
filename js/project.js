@@ -337,12 +337,33 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         if ($scope.last_time_mouse.length === 0)
         {
             $scope.last_time_mouse = d.getTime();
-            console.log($event);
-            $scope.mouse_moves.push({"time":d.getTime(),"x":$event['pageX'],"y":$event['pageY'],"w":$event['which']});
+            let left=false,right=false,scroll=false;
+            if ($event['which']===0){
+                left=true;
+            }
+            else if ($event['which']===1){
+                right=true;
+            }
+            else if ($event['which']===2){
+                scroll=true;
+            }
+
+
+            $scope.mouse_moves.push({"time":d.getTime(),"x":$event['pageX'],"y":$event['pageY'],"l":left,"r":right,"s":scroll});
         }
         else if (d.getTime() -  $scope.last_time_mouse > 500 )
         {
-            $scope.mouse_moves.push({"time":d.getTime(),"x":$event['pageX'],"y":$event['pageY'],"w":$event['which']});
+            let left=false,right=false,scroll=false;
+            if ($event['which']===0){
+                left=true;
+            }
+            else if ($event['which']===1){
+                right=true;
+            }
+            else if ($event['which']===2){
+                scroll=true;
+            }
+            $scope.mouse_moves.push({"time":d.getTime(),"x":$event['pageX'],"y":$event['pageY'],"l":left,"r":right,"s":scroll});
             $scope.last_time_mouse = d.getTime();
         }
 
