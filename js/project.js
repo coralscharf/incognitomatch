@@ -121,9 +121,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $("#begin_exp_user").show();
 
     };
-    $scope.begin_exp = function(){
+    $scope.begin_exp = function(exp_id){
         $("#experiment").show();
-        $scope.getExp();
+        $scope.getExp(exp_id);
         document.getElementById("exp_hello").innerText="Hello, " + $scope.curr_user["last"] + " " + $scope.curr_user['first'];
 
     };
@@ -164,10 +164,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
         }).then(function (data) {
             console.log((data.data));
-            if (data.data === "1")
+            if (data.data !== "err")
             {
                 $("#begin_exp_user").hide();
-                $scope.begin_exp();
+                let exp_id=data.data;
+                $scope.begin_exp(exp_id);
                 $scope.clear_user_form();
             }
             else
@@ -183,13 +184,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
 
-    $scope.getExp2 = function (callback) {
+    $scope.getExp2 = function (callback,exp_id) {
 
         $http({
             method: 'POST',
             url: 'php/get_exp_info.php',
             data: $.param({
-                exp_id: 1,
+                exp_id: exp_id,
                 term_a_or_b: 'sch_id_1'
             }),
             headers: {
@@ -232,14 +233,14 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     };
 
-    $scope.getExp = function(){
-        $scope.getExp2(function(schema){
+    $scope.getExp = function(exp_id){
+        $scope.getExp2(function(schema,exp_id){
             console.log(schema);
             $http({
                 method: 'POST',
                 url: 'php/get_exp_info.php',
                 data: $.param({
-                    exp_id: 1,
+                    exp_id: exp_id,
                     term_a_or_b: 'sch_id_2',
                     index_from_a: schema[0]['index']
                 }),

@@ -24,6 +24,22 @@ $sql="Insert INTO exp_users(u_first, u_last, email, u_loc, lang, age, occupation
 
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
-    return (sqlsrv_errors());
+    echo 'err';
 sqlsrv_free_stmt($getResults);
-echo "1";
+
+$get_exp_id="SELECT id from experiments where is_active=1";
+$getResults= sqlsrv_query($conn, $get_exp_id);
+if ($getResults == FALSE)
+    echo 'err';
+$arr=array();
+while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
+    $arr[] = array(
+        'id' => $row['id']
+    );
+}
+
+
+sqlsrv_free_stmt($getResults);
+
+
+echo $index=$arr[rand(0,sizeof($arr))];
