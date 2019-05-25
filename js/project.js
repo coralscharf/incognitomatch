@@ -121,9 +121,17 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $("#begin_exp_user").show();
 
     };
-    $scope.begin_exp = function(exp_id){
+    $scope.begin_exp = function(exp){
         $("#experiment").show();
-        $scope.getExp(exp_id);
+        if (exp['disp_type'] === 0)
+        {
+            $("#row_type").hide();
+        }
+        else 
+        {
+            $("#row_type").show();
+        }
+        $scope.getExp(exp['id']);
         document.getElementById("exp_hello").innerText="Hello, " + $scope.curr_user["last"] + " " + $scope.curr_user['first'];
 
     };
@@ -167,9 +175,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             if (data.data !== "err")
             {
                 $("#begin_exp_user").hide();
-                let exp_id=(data.data)['id'];
-                console.log("id=",exp_id);
-                $scope.begin_exp(exp_id);
+                let exp=data.data;
+                $scope.begin_exp(exp);
                 $scope.clear_user_form();
             }
             else
