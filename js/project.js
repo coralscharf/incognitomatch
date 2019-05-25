@@ -186,7 +186,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
 
     $scope.getExp2 = function (callback,exp_id) {
-
+        console.log("getExp2",exp_id);
         $http({
             method: 'POST',
             url: 'php/get_exp_info.php',
