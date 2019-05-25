@@ -235,7 +235,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
     $scope.getExp = function(exp_id){
-        $scope.getExp2(function(schema,exp_id){
+        $scope.getExp2(function(schema){
             console.log(schema);
             $http({
                 method: 'POST',
@@ -277,7 +277,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 document.getElementById("exp_pair_score").innerText="System Suggestion: "+
                     $scope.schema2[0]['order']+" similar";
             });
-        });
+        },exp_id);
     };
 
 
