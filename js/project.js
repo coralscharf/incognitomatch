@@ -98,6 +98,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.mouse_moves=[];
         $scope.new_user_gender_val="";
         $scope.curr_user={};
+        $scope.curr_exp_id="";
 
     }; //the function
 
@@ -147,7 +148,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         {
             $("#row_control").show();
         }
-        $scope.getExp(exp['id']);
+        $scope.curr_exp_id=exp['id'];
+        $scope.getExp($scope.curr_exp_id);
         document.getElementById("exp_hello").innerText="Hello, " + $scope.curr_user["last"] + " " + $scope.curr_user['first'];
 
     };
@@ -312,7 +314,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             method: 'POST',
             url: 'php/exp_res.php',
             data: $.param({
-                exp_id: 1,
+                exp_id: $scope.curr_exp_id,
                 user_id: 1,
                 sch_id_1: $scope.schema[0]['sch_id'],
                 sch_id_2: $scope.schema2[0]['sch_id'],
@@ -327,7 +329,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             console.log((data.data));
             if (data.data === "1")
             {
-                $scope.getExp();
+                $scope.getExp($scope.curr_exp_id);
                 document.getElementById("user_confidence").value="";
                 // to init array of mouse locations remove the comment sign
                 //$scope.mouse_moves=[];
