@@ -41,5 +41,6 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
 
 sqlsrv_free_stmt($getResults);
 
-
-echo $arr[rand(0,sizeof($arr))];
+$ind=rand(0,sizeof($arr));
+echo $ind;
+echo $arr[$ind];
