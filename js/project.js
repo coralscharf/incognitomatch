@@ -167,7 +167,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             if (data.data !== "err")
             {
                 $("#begin_exp_user").hide();
-                let exp_id=data.data;
+                let exp_id=(data.data)['id'];
                 $scope.begin_exp(exp_id);
                 $scope.clear_user_form();
             }

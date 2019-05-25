@@ -43,4 +43,4 @@ sqlsrv_free_stmt($getResults);
 
 $ind=rand(0,sizeof($arr)-1);
 echo $ind;
-echo $arr[$ind];
+echo json_encode($arr[$ind]);
