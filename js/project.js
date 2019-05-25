@@ -168,6 +168,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             {
                 $("#begin_exp_user").hide();
                 let exp_id=(data.data)['id'];
+                console.log("id=",exp_id);
                 $scope.begin_exp(exp_id);
                 $scope.clear_user_form();
             }
