@@ -127,9 +127,25 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         {
             $("#row_type").hide();
         }
-        else 
+        else
         {
             $("#row_type").show();
+        }
+        if (exp['disp_h'] === 0)
+        {
+            $("#row_h").hide();
+        }
+        else
+        {
+            $("#row_h").show();
+        }
+        if (exp['disp_control'] === 0)
+        {
+            $("#row_control").hide();
+        }
+        else
+        {
+            $("#row_control").show();
         }
         $scope.getExp(exp['id']);
         document.getElementById("exp_hello").innerText="Hello, " + $scope.curr_user["last"] + " " + $scope.curr_user['first'];
