@@ -30,7 +30,7 @@
 	<?php
 
 		include "html/home.html";
-
+        include "html/finish_exp.html";
         include "html/nav.html";
         include "html/page2.html";
         include "html/exp.html";

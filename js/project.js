@@ -99,6 +99,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.new_user_gender_val="";
         $scope.curr_user={};
         $scope.curr_exp_id="";
+        $scope.curr_count_ans=0;
+        $scope.total_ans_needed=0;
 
     }; //the function
 
@@ -111,6 +113,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $("#page2").hide();
         $("#experiment").hide();
         $("#begin_exp_user").hide();
+        $("#finish_exp").hide();
         console.log("hide");
     };
 
@@ -149,6 +152,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             $("#row_control").show();
         }
         $scope.curr_exp_id=exp['id'];
+        $scope.total_ans_needed = exp['num_pairs'];
         $scope.getExp($scope.curr_exp_id);
         document.getElementById("exp_hello").innerText="Hello, " + $scope.curr_user["last"] + " " + $scope.curr_user['first'];
 
@@ -170,6 +174,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.new_user_exp = function(){
         $scope.curr_user={"first":document.getElementById("new_user_first").value,"last":document.getElementById("new_user_last").value};
+        $scope.curr_count_ans=0;
         console.log($scope.curr_user);
         $http({
             method: 'POST',
@@ -334,6 +339,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 // to init array of mouse locations remove the comment sign
                 //$scope.mouse_moves=[];
                 //$scope.last_time_mouse="";
+                $scope.curr_count_ans = $scope.curr_count_ans + 1;
+                if ($scope.curr_count_ans >  $scope.total_ans_needed)
+                {
+                    $("#experiment").hide();
+                    $("#finish_exp").show();
+                }
+
             }
             else
             {
