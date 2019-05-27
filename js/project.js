@@ -342,6 +342,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 $scope.curr_count_ans = $scope.curr_count_ans + 1;
                 if ($scope.curr_count_ans >  $scope.total_ans_needed)
                 {
+                    console.log($scope.curr_count_ans);
                     $("#experiment").hide();
                     $("#finish_exp").show();
                 }
