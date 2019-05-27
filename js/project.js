@@ -340,6 +340,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 //$scope.mouse_moves=[];
                 //$scope.last_time_mouse="";
                 $scope.curr_count_ans = $scope.curr_count_ans + 1;
+                console.log($scope.curr_count_ans);
                 if ($scope.curr_count_ans >  $scope.total_ans_needed)
                 {
                     console.log($scope.curr_count_ans);
