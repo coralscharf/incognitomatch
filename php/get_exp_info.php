@@ -27,12 +27,12 @@ else
 {
     $sql="select * from exp_pairs where exp_id=$exp_id and [order] = $order";
 }
-echo $sql;
-die();
+
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
     return (sqlsrv_errors());
 $array = array();
+$return_order="";
 while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     $array[] = array(
         'id'=>$row['id'],
@@ -42,12 +42,13 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
         'realConf'=> $row['realConf'],
         'order' => $row['order'],
         'h_1' => $row['h_sch_1'],
-        'h_2' => $row['h_sch_2']
+        'h_2' => $row['h_sch_2'],
+        'return_order' => $return_order
     );
 }
 
 //echo sizeof($array);
-$return_order="";
+
 if ($term_a_or_b == 'sch_id_2')
 {
     $index=0;
