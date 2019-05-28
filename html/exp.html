@@ -114,14 +114,14 @@
                 <td colspan="3">
                     <div style="margin-top: 100px; ">
                         <div class="md-form col-sm-5" style="margin: 0 auto;float: none;">
-                            <input type="text" id="user_confidence" class="form-control" aria-describedby="user_confidenceMD">
+                            <input type="text" id="user_confidence" class="form-control" aria-describedby="user_confidenceMD" min="0" max="1" size="0.1">
                             <label for="user_confidence">Your Confidence</label>
                             <small id="user_confidenceMD" class="form-text text-muted">
                                 Insert Confidence level that this two terms are the same (in [0,1])
                             </small>
 
                         </div>
-                        <button class="btn btn-md btn-info m-0 px-3" type="button" ng-click="exp_res()">submit</button>
+                        <button class="btn btn-md btn-info m-0 px-3" type="button" ng-click="exp_res()" >submit</button>
 
 
                     </div>
