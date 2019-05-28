@@ -102,6 +102,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.curr_count_ans=0;
         $scope.total_ans_needed=0;
         $scope.curr_order=1;
+        $scope.exclude_ids="";
 
     }; //the function
 
@@ -218,6 +219,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.getExp2 = function (callback,exp_id) {
         console.log("getExp2",exp_id);
+        console.log("order", $scope.curr_order);
         $http({
             method: 'POST',
             url: 'php/get_exp_info.php',
@@ -260,6 +262,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             document.getElementById("A_col_name").innerText=$scope.schema[0]['col_name'];
             document.getElementById("A_col_type").innerText=$scope.schema[0]['col_type'];
             document.getElementById("A_col_instance").innerText=str_instance;
+            $scope.exclude_ids = $scope.exclude_ids + "^" + $scope.schema[0]['index'];
             if ($scope.schema[0]['return_order'] === "change")
             {
                 $scope.curr_order = $scope.curr_order + 1;
