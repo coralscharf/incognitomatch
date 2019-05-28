@@ -351,6 +351,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     console.log($scope.curr_count_ans);
                     $("#experiment").hide();
                     $("#finish_exp").show();
+                    $scope.curr_order = 1;
                 }
 
             }
