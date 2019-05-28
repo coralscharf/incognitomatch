@@ -10,7 +10,7 @@
 $exp_id=stripcslashes($_POST['exp_id']);
 $term_a_or_b=stripcslashes($_POST['term_a_or_b']);
 $index_from_a = stripcslashes($_POST['index_from_a']);
-
+$order = stripcslashes($_POST['order']);
 $connectionInfo = array("UID" => "avivf@avivtest", "pwd" => "1qaZ2wsX!", "Database" => "avivtest", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
 $serverName = "tcp:avivtest.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
@@ -22,7 +22,7 @@ if ($term_a_or_b == 'sch_id_2')
 }
 else
 {
-    $sql="select * from exp_pairs where exp_id=$exp_id";
+    $sql="select * from exp_pairs where exp_id=$exp_id and [order] = $order";
 }
 
 $getResults= sqlsrv_query($conn, $sql);
@@ -43,12 +43,20 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
 }
 
 //echo sizeof($array);
+$return_order="";
 if ($term_a_or_b == 'sch_id_2')
 {
     $index=0;
 }
 else{
     $index=rand(0,sizeof($array));
+    if(sizeof($array) > 1)
+    {
+        $return_order="same";
+    }
+    else{
+        $return_order="change";
+    }
 
 }
 sqlsrv_free_stmt($getResults);
@@ -71,7 +79,8 @@ while ($row = sqlsrv_fetch_array($getResults_col, SQLSRV_FETCH_ASSOC)) {
         'realConf'=> $array[$index]['realConf'],
         'order' => $array[$index]['order'],
         'h_1' => $array[$index]['h_1'],
-        'h_2' => $array[$index]['h_2']
+        'h_2' => $array[$index]['h_2'],
+        'return_order' => $return_order
     );
 }
 sqlsrv_free_stmt($getResults_col);
@@ -97,7 +106,8 @@ if (sqlsrv_has_rows($getResults_instance))
             'realConf'=> $array[$index]['realConf'],
             'index' => $array[$index]['id'],
             'h_1' => $array[$index]['h_1'],
-            'h_2' => $array[$index]['h_2']
+            'h_2' => $array[$index]['h_2'],
+            'return_order' => $return_order
         );
     }
 

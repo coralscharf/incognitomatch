@@ -101,6 +101,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.curr_exp_id="";
         $scope.curr_count_ans=0;
         $scope.total_ans_needed=0;
+        $scope.curr_order=1;
 
     }; //the function
 
@@ -222,6 +223,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             url: 'php/get_exp_info.php',
             data: $.param({
                 exp_id: exp_id,
+                order: $scope.curr_order,
                 term_a_or_b: 'sch_id_1'
             }),
             headers: {
@@ -258,7 +260,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             document.getElementById("A_col_name").innerText=$scope.schema[0]['col_name'];
             document.getElementById("A_col_type").innerText=$scope.schema[0]['col_type'];
             document.getElementById("A_col_instance").innerText=str_instance;
-
+            if ($scope.schema[0]['return_order'] === "change")
+            {
+                $scope.curr_order = $scope.curr_order + 1;
+            }
             callback($scope.schema);
         });
 
