@@ -32,6 +32,7 @@ else
     else
     {
         echo $excludes;
+        # TODO: exclude is empty
         $sql="select * from exp_pairs where exp_id=$exp_id and [order] = $order $excludes";
     }
 }
