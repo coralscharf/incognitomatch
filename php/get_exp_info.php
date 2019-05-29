@@ -27,7 +27,7 @@ else
 {
     $sql="select * from exp_pairs where exp_id=$exp_id and [order] = $order";
 }
-# TODO: check why not working with order
+
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
     return (sqlsrv_errors());
@@ -61,7 +61,9 @@ else{
     }
     else{
         $return_order="change";
+        echo $return_order;
     }
+
 
 }
 sqlsrv_free_stmt($getResults);
