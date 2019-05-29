@@ -46,6 +46,8 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
         'return_order' => $return_order
     );
 }
+echo json_encode($array);
+die();
 
 //echo sizeof($array);
 
@@ -61,7 +63,6 @@ else{
     }
     else{
         $return_order="change";
-        echo $return_order;
     }
 
 
