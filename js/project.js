@@ -264,6 +264,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             document.getElementById("A_col_type").innerText=$scope.schema[0]['col_type'];
             document.getElementById("A_col_instance").innerText=str_instance;
             $scope.exclude_ids = $scope.exclude_ids +  " and id!=" + $scope.schema[0]['index'];
+            console.log("ex_id",$scope.exclude_ids);
             if ($scope.schema[0]['return_order'] === "change")
             {
                 $scope.curr_order = $scope.curr_order + 1;
