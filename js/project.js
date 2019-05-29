@@ -226,7 +226,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             data: $.param({
                 exp_id: exp_id,
                 order: $scope.curr_order,
-                term_a_or_b: 'sch_id_1'
+                term_a_or_b: 'sch_id_1',
+                exclude_ids: $scope.exclude_ids
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -262,7 +263,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             document.getElementById("A_col_name").innerText=$scope.schema[0]['col_name'];
             document.getElementById("A_col_type").innerText=$scope.schema[0]['col_type'];
             document.getElementById("A_col_instance").innerText=str_instance;
-            $scope.exclude_ids = $scope.exclude_ids + "^" + $scope.schema[0]['index'];
+            $scope.exclude_ids = $scope.exclude_ids +  " and id!=" + $scope.schema[0]['index'];
             if ($scope.schema[0]['return_order'] === "change")
             {
                 $scope.curr_order = $scope.curr_order + 1;
