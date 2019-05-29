@@ -46,8 +46,6 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
         'return_order' => $return_order
     );
 }
-echo json_encode($array);
-die();
 
 //echo sizeof($array);
 
@@ -56,7 +54,7 @@ if ($term_a_or_b == 'sch_id_2')
     $index=0;
 }
 else{
-    $index=rand(0,sizeof($array));
+    $index=rand(0,sizeof($array)-1);
     if(sizeof($array) > 1)
     {
         $return_order="same";
