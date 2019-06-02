@@ -32,10 +32,7 @@ else
     else
     {
         $sql="select * from exp_pairs where exp_id=$exp_id and [order] = $order $excludes";
-        if ($order == "2")
-        {
-            echo $sql;
-        }
+        
 
     }
 }
