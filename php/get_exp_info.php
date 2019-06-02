@@ -97,9 +97,10 @@ $brothers=[];
 while ($row = sqlsrv_fetch_array($getBrothers_res, SQLSRV_FETCH_ASSOC)) {
     $bro_ind=strrpos($row[$for_sql],".");
     $bro_h=substr($row[$for_sql],0,$bro_ind);
-    if ($bro_h === $cur_for_brothers)
+    $bro=substr($row[$for_sql],$bro_ind+1);
+    if ($bro_h === $cur_for_brothers and !in_array($bro,$brothers))
     {
-        $brothers[] = substr($row[$for_sql],$bro_ind+1);
+        $brothers[] = $bro;
     }
 }
 
