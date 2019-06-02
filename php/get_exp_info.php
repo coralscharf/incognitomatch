@@ -88,7 +88,7 @@ else{
 }
 $cur_h_ind=strrpos($cur_h,".");
 $cur_for_brothers=substr($cur_h,0,$cur_h_ind);
-$get_brothers="SELECT * from exp_pairs where $for_sql LIKE '$cur_for_brothers%'";
+$get_brothers="SELECT * from exp_pairs where $for_sql LIKE '$cur_for_brothers.%'";
 
 $getBrothers_res= sqlsrv_query($conn, $get_brothers);
 if ($getBrothers_res == FALSE)
@@ -96,7 +96,7 @@ if ($getBrothers_res == FALSE)
 $brothers=[];
 while ($row = sqlsrv_fetch_array($getBrothers_res, SQLSRV_FETCH_ASSOC)) {
     $bro_ind=strrpos($row[$for_sql],".");
-    $brothers[] = substr($row[$for_sql],$bro_ind);
+    $brothers[] = substr($row[$for_sql],$bro_ind+1);
 }
 
 
