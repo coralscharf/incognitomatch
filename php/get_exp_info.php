@@ -25,7 +25,7 @@ if ($term_a_or_b == 'sch_id_2')
 }
 else
 {
-    if ($excludes !== "")
+    if (!isset($excludes) || $excludes !== "")
     {
         $sql="select * from exp_pairs where exp_id=$exp_id and [order] = $order";
     }
