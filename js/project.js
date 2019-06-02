@@ -301,10 +301,17 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                 $scope.schema2=data.data;
                 $scope.h_2=[];
-                let h_2_temp=$scope.schema[0]['h_2'].split(".");
+                let h_2_temp=$scope.schema2[0]['h_2'].split(".");
+                let last=0;
                 for (let j=0;j<h_2_temp.length;j++)
                 {
                     $scope.h_2.push({"index":j,"val":h_2_temp[j]});
+                    last=j;
+                }
+
+                for (let k=0;k<$scope.schema2[0]['brothers'].length;k++)
+                {
+                    $scope.h_2.push({"index":last,"val":$scope.schema2[0]['brothers'][k]});
                 }
                 let str_instance="";
                 if ("instance" in $scope.schema2[0]) {
