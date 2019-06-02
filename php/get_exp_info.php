@@ -89,8 +89,16 @@ else{
 $cur_h_ind=strrpos($cur_h,".");
 $cur_for_brothers=substr($cur_h,0,$cur_h_ind);
 $get_brothers="SELECT * from exp_pairs where $for_sql LIKE '$cur_for_brothers%'";
-echo $get_brothers;
-die();
+
+$getBrothers_res= sqlsrv_query($conn, $get_brothers);
+if ($getBrothers_res == FALSE)
+    return (sqlsrv_errors());
+$brothers=[];
+while ($row = sqlsrv_fetch_array($getBrothers_res, SQLSRV_FETCH_ASSOC)) {
+    $bro_ind=strrpos($row[$for_sql],".");
+    $brothers[] = substr($row[$for_sql],$bro_ind);
+}
+
 
 
 
@@ -113,7 +121,8 @@ while ($row = sqlsrv_fetch_array($getResults_col, SQLSRV_FETCH_ASSOC)) {
         'order' => $array[$index]['order'],
         'h_1' => $array[$index]['h_1'],
         'h_2' => $array[$index]['h_2'],
-        'return_order' => $return_order
+        'return_order' => $return_order,
+        'brothers' => $brothers
     );
 }
 sqlsrv_free_stmt($getResults_col);
@@ -140,7 +149,8 @@ if (sqlsrv_has_rows($getResults_instance))
             'index' => $array[$index]['id'],
             'h_1' => $array[$index]['h_1'],
             'h_2' => $array[$index]['h_2'],
-            'return_order' => $return_order
+            'return_order' => $return_order,
+            'brothers' => $brothers
         );
     }
 
