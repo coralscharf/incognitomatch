@@ -79,16 +79,16 @@ $selected=$array[$index];
 
 # get brothers from same h
 if ($term_a_or_b == 'sch_id_2') {
-    $cur_h = $selected['h_1'];
-    $for_sql="h_sch_1";
-}
-else{
     $cur_h = $selected['h_2'];
     $for_sql="h_sch_2";
 }
+else{
+    $cur_h = $selected['h_1'];
+    $for_sql="h_sch_1";
+}
 $cur_h_ind=strrpos($cur_h,".");
 $cur_for_brothers=substr($cur_h,0,$cur_h_ind);
-$get_brothers="SELECT * from exp_pairs where $for_sql LIKE '$cur_for_brothers.%'";
+$get_brothers="SELECT * from exp_pairs where $for_sql LIKE '$cur_for_brothers%'";
 echo $get_brothers;
 die();
 
