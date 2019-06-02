@@ -32,8 +32,6 @@ else
     else
     {
         $sql="select * from exp_pairs where exp_id=$exp_id and [order] = $order $excludes";
-        
-
     }
 }
 
@@ -77,6 +75,26 @@ else{
 sqlsrv_free_stmt($getResults);
 
 $selected=$array[$index];
+
+
+# get brothers from same h
+if ($term_a_or_b == 'sch_id_2') {
+    $cur_h = $selected['h_1'];
+    $for_sql="h_sch_1";
+}
+else{
+    $cur_h = $selected['h_2'];
+    $for_sql="h_sch_2";
+}
+$cur_h_ind=strrpos($cur_h,".");
+$cur_for_brothers=substr($cur_h,0,$cur_h_ind);
+$get_brothers="SELECT * from exp_pairs where $for_sql LIKE '$cur_for_brothers.%'";
+echo $get_brothers;
+die();
+
+
+
+
 $sql_get_col_1="select * from exp_schema where id=".$selected[$term_a_or_b];
 
 $getResults_col= sqlsrv_query($conn, $sql_get_col_1);
