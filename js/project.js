@@ -239,10 +239,17 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             $scope.schema=data.data;
             $scope.h_1=[];
             let h_1_temp=$scope.schema[0]['h_1'].split(".");
+            let last=0;
             for (let j=0;j<h_1_temp.length;j++)
             {
                 $scope.h_1.push({"index":j,"val":h_1_temp[j]});
+                last=j;
             }
+            for (let k=0;k<$scope.schema[0]['brothers'].length;k++)
+            {
+                $scope.h_1.push({"index":last,"val":$scope.schema[0]['brothers'][k]});
+            }
+
 
 
             let str_instance="";
