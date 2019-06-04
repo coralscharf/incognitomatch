@@ -315,13 +315,19 @@
 									<input type="text" class="form-control" id="upt_exp_num_pairs_{{exp.id}}" value="{{exp.num_pairs}}">
 								</td>
 								<td>
-									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input" id="upt_exp_disp_instacne_{{exp.id}}" value="{{exp.disp_instance}}">
+									<div class="custom-control custom-checkbox" ng-if="exp.disp_instance==1">
+										<input type="checkbox" class="custom-control-input" id="upt_exp_disp_instacne_checked_{{exp.id}}" checked>
+									</div>
+									<div class="custom-control custom-checkbox" ng-if="exp.disp_instance==0">
+										<input type="checkbox" class="custom-control-input" id="upt_exp_disp_instacne_{{exp.id}}">
 									</div>
 								</td>
 								<td>
-									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input" id="upt_exp_disp_type_{{exp.id}}" value="{{exp.disp_type}}">
+									<div class="custom-control custom-checkbox" ng-if="exp.disp_type==1">
+										<input type="checkbox" class="custom-control-input" id="upt_exp_disp_type_checked_{{exp.id}}" checked>
+									</div>
+									<div class="custom-control custom-checkbox" ng-if="exp.disp_type==0">
+										<input type="checkbox" class="custom-control-input" id="upt_exp_disp_type_{{exp.id}}">
 									</div>
 								</td>
 								<td>
