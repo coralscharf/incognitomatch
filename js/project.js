@@ -103,6 +103,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.total_ans_needed=0;
         $scope.curr_order=1;
         $scope.exclude_ids="";
+        $scope.experiments=[];
 
     }; //the function
 
@@ -483,6 +484,31 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
 
+    
+    $scope.get_exp_for_update = function () {
+        $http({
+            method: 'POST',
+            url: 'php/get_exp_for_update.php',
+            data: $.param({
+
+
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function (data) {
+            console.log((data.data));
+            if (data.data === "1") //error
+            {
+                console.log(data.data);
+            }
+            else
+            {
+                $scope.experiments = data.data;
+            }
+
+        });
+    }
 
 
 });	 //app.controller

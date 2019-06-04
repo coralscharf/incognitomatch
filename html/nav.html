@@ -265,6 +265,73 @@
 					</button>
 				</div>
 				<div class="modal-body">
+					<table class="table table-borderless">
+						<thead>
+						<tr>
+							<th>
+								ID
+							</th>
+							<th>
+								Name
+							</th>
+							<th>
+								Schema Name
+							</th>
+							<th>
+								Display Instances
+							</th>
+							<th>
+								Display Types
+							</th>
+							<th>
+								Display Hierarchy
+							</th>
+							<th>
+								Display Feedback
+							</th>
+							<th>
+								Display Control
+							</th>
+							<th>
+								Is Active
+							</th>
+						</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="exp in experiments">
+								<td>
+									exp.id
+								</td>
+								<td>
+									exp.name
+								</td>
+								<td>
+									exp.schema_name
+								</td>
+								<td>
+									exp.num_pairs
+								</td>
+								<td>
+									exp.disp_instance
+								</td>
+								<td>
+									exp.disp_type
+								</td>
+								<td>
+									exp.disp_h
+								</td>
+								<td>
+									exp.disp_feedback
+								</td>
+								<td>
+									exp.disp_control
+								</td>
+								<td>
+									exp.is_active
+								</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 				<div class="modal-footer">
 					<div id="update_exp_log">
