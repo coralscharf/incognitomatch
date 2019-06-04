@@ -306,31 +306,43 @@
 									{{exp.id}}
 								</td>
 								<td>
-									<input type="text" class="form-control" id="upt_exp_name" value="{{exp.name}}">
+									<input type="text" class="form-control" id="upt_exp_name_{{exp.id}}" value="{{exp.name}}">
 								</td>
 								<td>
-									<input type="text" class="form-control" id="upt_exp_shema_name" value="{{exp.schema_name}}">
+									<input type="text" class="form-control" id="upt_exp_shema_name_{{exp.id}}" value="{{exp.schema_name}}">
 								</td>
 								<td>
-									<input type="text" class="form-control" id="upt_exp_num_pairs" value="{{exp.num_pairs}}">
+									<input type="text" class="form-control" id="upt_exp_num_pairs_{{exp.id}}" value="{{exp.num_pairs}}">
 								</td>
 								<td>
-									<input type="checkbox" class="custom-control-input" id="upt_exp_disp_instacne" value="{{exp.disp_instance}}">
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="upt_exp_disp_instacne_{{exp.id}}" value="{{exp.disp_instance}}">
+									</div>
 								</td>
 								<td>
-									<input type="checkbox" class="custom-control-input" id="upt_exp_disp_type" value="{{exp.disp_type}}">
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="upt_exp_disp_type_{{exp.id}}" value="{{exp.disp_type}}">
+									</div>
 								</td>
 								<td>
-									<input type="checkbox" class="custom-control-input" id="upt_exp_disp_h" value="{{exp.disp_h}}">
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="upt_exp_disp_h_{{exp.id}}" value="{{exp.disp_h}}">
+									</div>
 								</td>
 								<td>
-									<input type="checkbox" class="custom-control-input" id="upt_exp_disp_feedback" value="{{exp.disp_feedback}}">
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="upt_exp_disp_feedback_{{exp.id}}" value="{{exp.disp_feedback}}">
+									</div>
 								</td>
 								<td>
-									<input type="checkbox" class="custom-control-input" id="upt_exp_disp_control" value="{{exp.disp_control}}">
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="upt_exp_disp_control_{{exp.id}}" value="{{exp.disp_control}}">
+									</div>
 								</td>
 								<td>
-									<input type="checkbox" class="custom-control-input" id="upt_exp_is_active" value="{{exp.is_active}}">
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="upt_exp_is_active_{{exp.id}}" value="{{exp.is_active}}">
+									</div>
 								</td>
 							</tr>
 						</tbody>
