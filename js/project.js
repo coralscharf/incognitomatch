@@ -523,7 +523,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             let schema_name_l="upt_exp_shema_name_"+$scope.exp_ids[i];
             let num_pairs_l="upt_exp_num_pairs_"+$scope.exp_ids[i];
             let upt_exp_disp_instacne = "upt_exp_disp_instacne_checked_"+$scope.exp_ids[i];
-            
+
             let disp_inst_val=0;
             if (angular.element("#"+upt_exp_disp_instacne).length>0  && document.getElementById(upt_exp_disp_instacne).checked === true)
             {
@@ -629,11 +629,18 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         }).then(function (data) {
             if (data.data === "1") //error
             {
-                console.log(data.data);
+                document.getElementById("update_exp_log").innerHTML="Error!!";
+                $timeout(function() {
+                    document.getElementById("update_exp_log").innerHTML="";
+                },3000);
+                
             }
             else
             {
-                console.log(data.data);
+                document.getElementById("update_exp_log").innerHTML="Changes Saved!";
+                $timeout(function() {
+                    document.getElementById("update_exp_log").innerHTML="";
+                },3000);
             }
 
         });
