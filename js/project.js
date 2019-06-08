@@ -379,6 +379,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     {
                         $scope.done_test = true;
                         $("#experiment").hide();
+                        $("#instruction_after").show();
                         $scope.curr_order = 1;
                     }
                     else {
@@ -401,7 +402,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.after_instructions = function () {
 
+
         $scope.begin_exp($scope.exp_after_test);
+        $("#instruction_after").hide();
     };
 
 
