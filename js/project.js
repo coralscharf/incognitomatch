@@ -513,7 +513,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
 
         });
-    }
+    };
 
     $scope.update_exp = function () {
         let exps = [];
