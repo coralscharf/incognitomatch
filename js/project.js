@@ -104,6 +104,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.curr_order=1;
         $scope.exclude_ids="";
         $scope.experiments=[];
+        $scope.exp_ids=0;
 
     }; //the function
 
@@ -505,9 +506,69 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             else
             {
                 $scope.experiments = data.data;
+                for (let i = 0; i < $scope.experiments.length; i++)
+                {
+                    $scope.exp_ids.push($scope.experiments[i]['id']);
+                }
             }
 
         });
+    }
+
+    $scope.update_exp = function () {
+        let exps = [];
+        for (let i = 0; i < $scope.exp_ids.length; i++)
+        {
+            let name_l="upt_exp_name_"+$scope.exp_ids[i];
+            let schema_name_l="upt_exp_shema_name_"+$scope.exp_ids[i];
+            let num_pairs_l="upt_exp_num_pairs_"+$scope.exp_ids[i];
+            let upt_exp_disp_instacne = "upt_exp_disp_instacne_checked_"+$scope.exp_ids[i];
+            let disp_inst_val=0;
+            if (document.getElementById("upt_exp_disp_instacne").checked)
+            {
+                disp_inst_val=1;
+            }
+            else{
+                let upt_exp_disp_instacne = "upt_exp_disp_instacne_"+$scope.exp_ids[i];
+                if (document.getElementById("upt_exp_disp_instacne").checked)
+                {
+                    disp_inst_val=1;
+                }
+            }
+            exps.push({'id':$scope.exp_ids[i],
+                'name':document.getElementById(name_l).value,
+                'schema_name':document.getElementById(schema_name_l).value,
+                'num_pairs':document.getElementById(num_pairs_l).value,
+                'disp_instance': disp_inst_val
+
+            })
+        }
+
+
+        $http({
+            method: 'POST',
+            url: 'php/update_exp.php',
+            data: $.param({
+                exps: exps
+
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function (data) {
+            console.log((data.data));
+            if (data.data === "1") //error
+            {
+                console.log(data.data);
+            }
+            else
+            {
+                console.log(data.data);
+            }
+
+        });
+
+
     }
 
 
