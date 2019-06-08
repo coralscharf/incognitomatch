@@ -529,22 +529,94 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 disp_inst_val=1;
             }
             else{
-                let upt_exp_disp_instacne = "upt_exp_disp_instacne_"+$scope.exp_ids[i];
+                upt_exp_disp_instacne = "upt_exp_disp_instacne_"+$scope.exp_ids[i];
                 if (document.getElementById(upt_exp_disp_instacne).checked)
                 {
                     disp_inst_val=1;
                 }
             }
+            let upt_exp_disp_type = "upt_exp_disp_type_checked_"+$scope.exp_ids[i];
+            let disp_type_val=0;
+            if (document.getElementById(upt_exp_disp_type).checked)
+            {
+                disp_type_val=1;
+            }
+            else{
+                upt_exp_disp_type = "upt_exp_disp_type_"+$scope.exp_ids[i];
+                if (document.getElementById(upt_exp_disp_type).checked)
+                {
+                    disp_type_val=1;
+                }
+            }
+            let upt_exp_disp_h = "upt_exp_disp_h_checked_"+$scope.exp_ids[i];
+            let disp_h_val=0;
+            if (document.getElementById(upt_exp_disp_h).checked)
+            {
+                disp_h_val=1;
+            }
+            else{
+                upt_exp_disp_h = "upt_exp_disp_h_"+$scope.exp_ids[i];
+                if (document.getElementById(upt_exp_disp_h).checked)
+                {
+                    disp_h_val=1;
+                }
+            }
+            let upt_exp_disp_feedback = "upt_exp_disp_feedback_checked_"+$scope.exp_ids[i];
+            let disp_feedback_val=0;
+            if (document.getElementById(upt_exp_disp_feedback).checked)
+            {
+                disp_feedback_val=1;
+            }
+            else{
+                upt_exp_disp_feedback = "upt_exp_disp_feedback_"+$scope.exp_ids[i];
+                if (document.getElementById(upt_exp_disp_feedback).checked)
+                {
+                    disp_feedback_val=1;
+                }
+            }
+            let upt_exp_disp_control = "upt_exp_disp_control_checked_"+$scope.exp_ids[i];
+            let disp_control_val=0;
+            if (document.getElementById(upt_exp_disp_control).checked)
+            {
+                disp_control_val=1;
+            }
+            else{
+                upt_exp_disp_control = "upt_exp_disp_control_"+$scope.exp_ids[i];
+                if (document.getElementById(upt_exp_disp_control).checked)
+                {
+                    disp_control_val=1;
+                }
+            }
+            let upt_exp_active = "upt_exp_is_active_checked_"+$scope.exp_ids[i];
+            let disp_active_val=0;
+            if (document.getElementById(upt_exp_active).checked)
+            {
+                disp_active_val=1;
+            }
+            else{
+                upt_exp_active = "upt_exp_is_active_"+$scope.exp_ids[i];
+                if (document.getElementById(upt_exp_active).checked)
+                {
+                    disp_active_val=1;
+                }
+            }
+
+
+
             exps.push({'id':$scope.exp_ids[i],
                 'name':document.getElementById(name_l).value,
                 'schema_name':document.getElementById(schema_name_l).value,
                 'num_pairs':document.getElementById(num_pairs_l).value,
-                'disp_instance': disp_inst_val
+                'disp_instance': disp_inst_val,
+                'disp_type': disp_type_val,
+                'disp_h': disp_h_val,
+                'disp_feedback': disp_feedback_val,
+                'disp_conrtrol': disp_control_val,
+                'is_active': disp_active_val
 
             })
         }
 
-        console.log(exps);
         $http({
             method: 'POST',
             url: 'php/update_exp.php',
