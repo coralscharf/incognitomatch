@@ -32,7 +32,7 @@ if ($getResults == FALSE)
 
 sqlsrv_free_stmt($getResults);
 
-$get_exp_id="SELECT * from experiments where is_active=1";
+$get_exp_id="SELECT * from experiments where is_active=1 and [name]!= 'Test'";
 $getResults= sqlsrv_query($conn, $get_exp_id);
 if ($getResults == FALSE)
 {

@@ -633,7 +633,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 $timeout(function() {
                     document.getElementById("update_exp_log").innerHTML="";
                 },3000);
-                
+
             }
             else
             {
