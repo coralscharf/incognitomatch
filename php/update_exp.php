@@ -22,7 +22,7 @@ for( $i=0; $i<sizeof($exp_id);$i++)
     disp_control = ".$exp_id[$i]['disp_control'].",
     is_active = ".$exp_id[$i]['is_active']."
     where id=".$exp_id[$i]['id'];
-    
+
     $getResults= sqlsrv_query($conn, $sql);
     if ($getResults == FALSE)
     {
