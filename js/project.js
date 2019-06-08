@@ -589,7 +589,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
             let upt_exp_active = "upt_exp_is_active_checked_"+$scope.exp_ids[i];
             let disp_active_val=0;
-            if (document.getElementById(upt_exp_active).checked)
+            if ( angular.element(upt_exp_active).length  && document.getElementById(upt_exp_active).checked)
             {
                 disp_active_val=1;
             }
