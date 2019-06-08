@@ -104,7 +104,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.curr_order=1;
         $scope.exclude_ids="";
         $scope.experiments=[];
-        $scope.exp_ids=0;
+        $scope.exp_ids=[];
 
     }; //the function
 
