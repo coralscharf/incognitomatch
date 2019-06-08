@@ -611,7 +611,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 'disp_type': disp_type_val,
                 'disp_h': disp_h_val,
                 'disp_feedback': disp_feedback_val,
-                'disp_conrtrol': disp_control_val,
+                'disp_control': disp_control_val,
                 'is_active': disp_active_val
 
             })
