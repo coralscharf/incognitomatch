@@ -381,7 +381,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         $scope.done_test = true;
                         $("#experiment").hide();
                         $("#instruction_after").show();
-                        $scope.curr_order = 1;
+                        $scope.curr_order = 0;
                         $scope.curr_count_ans = 0;
                     }
                     else {
