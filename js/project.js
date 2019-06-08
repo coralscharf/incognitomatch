@@ -532,7 +532,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
             else{
                 upt_exp_disp_instacne = "upt_exp_disp_instacne_"+$scope.exp_ids[i];
-                if (document.getElementById(upt_exp_disp_instacne).checked)
+                if (angular.element(upt_exp_disp_instacne).length>0 && document.getElementById(upt_exp_disp_instacne).checked)
                 {
                     disp_inst_val=1;
                 }
