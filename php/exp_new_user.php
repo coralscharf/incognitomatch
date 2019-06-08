@@ -48,7 +48,7 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
         'disp_instance' => $row['disp_instance'],
         'disp_type' => $row['disp_type'],
         'disp_h' => $row['disp_h'],
-        'dist_feedback' => $row['dist_feedback'],
+        'disp_feedback' => $row['disp_feedback'],
         'disp_control' => $row['disp_control']
     );
 }
@@ -74,7 +74,7 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
         'disp_instance' => $row['disp_instance'],
         'disp_type' => $row['disp_type'],
         'disp_h' => $row['disp_h'],
-        'dist_feedback' => $row['dist_feedback'],
+        'disp_feedback' => $row['disp_feedback'],
         'disp_control' => $row['disp_control']
     ];
 }

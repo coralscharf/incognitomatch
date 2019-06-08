@@ -106,6 +106,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.experiments=[];
         $scope.exp_ids=[];
         $scope.done_test=false;
+        $scope.exp_after_test=[];
+
 
     }; //the function
 
@@ -203,10 +205,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             if (data.data !== "err")
             {
                 $("#begin_exp_user").hide();
-                let exp=data.data[0];
-                let test_schema_id=data.data[1];
-                console.log("test",test_schema_id);
-                $scope.begin_exp(exp);
+                $scope.exp_after_test = data.data[0];
+                let test_schema=data.data[1];
+
+                console.log("test",test_schema);
+                $scope.begin_exp(test_schema);
                 $scope.clear_user_form();
             }
             else
@@ -372,6 +375,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 console.log($scope.curr_count_ans);
                 if ($scope.curr_count_ans >  $scope.total_ans_needed)
                 {
+                    if($scope.done_test === false)
+                    {
+                        $scope.done_test = true;
+                        $("#experiment").hide();
+                    }
                     console.log($scope.curr_count_ans);
                     $("#experiment").hide();
                     $("#finish_exp").show();
@@ -387,6 +395,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         });
     };
 
+    $scope.after_instructions = function () {
+
+        $scope.begin_exp($scope.exp_after_test);
+    };
 
 
     $scope.add_exp = function () {
