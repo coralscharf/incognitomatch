@@ -524,13 +524,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             let num_pairs_l="upt_exp_num_pairs_"+$scope.exp_ids[i];
             let upt_exp_disp_instacne = "upt_exp_disp_instacne_checked_"+$scope.exp_ids[i];
             let disp_inst_val=0;
-            if (document.getElementById("upt_exp_disp_instacne").checked)
+            if (document.getElementById(upt_exp_disp_instacne).checked)
             {
                 disp_inst_val=1;
             }
             else{
                 let upt_exp_disp_instacne = "upt_exp_disp_instacne_"+$scope.exp_ids[i];
-                if (document.getElementById("upt_exp_disp_instacne").checked)
+                if (document.getElementById(upt_exp_disp_instacne).checked)
                 {
                     disp_inst_val=1;
                 }
