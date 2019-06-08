@@ -57,4 +57,19 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
 sqlsrv_free_stmt($getResults);
 
 $ind=rand(0,sizeof($arr)-1);
-echo json_encode($arr[$ind]);
+
+# get id for test scheme
+$get_exp_id_test="SELECT * from experiments where is_active=1 and [name]= 'Test'";
+$getResults= sqlsrv_query($conn, $get_exp_id_test);
+if ($getResults == FALSE)
+{
+    echo 'err';
+    die();
+}
+$test_id="";
+while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
+    $test_id = $row['id'];
+}
+
+$res=[$arr[$ind],$test_id];
+echo json_encode($res);

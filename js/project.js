@@ -105,6 +105,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.exclude_ids="";
         $scope.experiments=[];
         $scope.exp_ids=[];
+        $scope.done_test=false;
 
     }; //the function
 
@@ -202,7 +203,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             if (data.data !== "err")
             {
                 $("#begin_exp_user").hide();
-                let exp=data.data;
+                let exp=data.data[0];
+                let test_schema_id=data.data[1];
+                console.log("test",test_schema_id);
                 $scope.begin_exp(exp);
                 $scope.clear_user_form();
             }
