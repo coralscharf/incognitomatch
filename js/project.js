@@ -545,7 +545,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
             else{
                 upt_exp_disp_type = "upt_exp_disp_type_"+$scope.exp_ids[i];
-                if (document.getElementById(upt_exp_disp_type).checked)
+                if (angular.element(upt_exp_disp_type).length  && document.getElementById(upt_exp_disp_type).checked)
                 {
                     disp_type_val=1;
                 }
@@ -558,7 +558,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
             else{
                 upt_exp_disp_h = "upt_exp_disp_h_"+$scope.exp_ids[i];
-                if (document.getElementById(upt_exp_disp_h).checked)
+                if (angular.element(upt_exp_disp_h).length  && document.getElementById(upt_exp_disp_h).checked)
                 {
                     disp_h_val=1;
                 }
@@ -571,33 +571,33 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
             else{
                 upt_exp_disp_feedback = "upt_exp_disp_feedback_"+$scope.exp_ids[i];
-                if (document.getElementById(upt_exp_disp_feedback).checked)
+                if (angular.element(upt_exp_disp_feedback).length  && document.getElementById(upt_exp_disp_feedback).checked)
                 {
                     disp_feedback_val=1;
                 }
             }
             let upt_exp_disp_control = "upt_exp_disp_control_checked_"+$scope.exp_ids[i];
             let disp_control_val=0;
-            if (angular.element(upt_exp_disp_control).length  &&document.getElementById(upt_exp_disp_control).checked)
+            if (angular.element(upt_exp_disp_control).length  && document.getElementById(upt_exp_disp_control).checked)
             {
                 disp_control_val=1;
             }
             else{
                 upt_exp_disp_control = "upt_exp_disp_control_"+$scope.exp_ids[i];
-                if (document.getElementById(upt_exp_disp_control).checked)
+                if (angular.element(upt_exp_disp_control).length  && document.getElementById(upt_exp_disp_control).checked)
                 {
                     disp_control_val=1;
                 }
             }
             let upt_exp_active = "upt_exp_is_active_checked_"+$scope.exp_ids[i];
             let disp_active_val=0;
-            if ( angular.element(upt_exp_active).length  && document.getElementById(upt_exp_active).checked)
+            if (angular.element(upt_exp_active).length  && document.getElementById(upt_exp_active).checked)
             {
                 disp_active_val=1;
             }
             else{
                 upt_exp_active = "upt_exp_is_active_"+$scope.exp_ids[i];
-                if (document.getElementById(upt_exp_active).checked)
+                if (angular.element(upt_exp_active).length  && document.getElementById(upt_exp_active).checked)
                 {
                     disp_active_val=1;
                 }
