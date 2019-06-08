@@ -544,7 +544,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             })
         }
 
-
+        console.log(exps);
         $http({
             method: 'POST',
             url: 'php/update_exp.php',

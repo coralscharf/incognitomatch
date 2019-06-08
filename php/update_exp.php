@@ -1,5 +1,5 @@
 <?php
 
 
-$exp_id=stripcslashes($_POST['exps']);
+$exp_id=$_POST['exps'];
 echo json_encode($exp_id);
