@@ -121,6 +121,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $("#experiment").hide();
         $("#begin_exp_user").hide();
         $("#finish_exp").hide();
+        $("#instruction_after").hide();
         console.log("hide");
     };
 
