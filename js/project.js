@@ -533,6 +533,14 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             else{
                 console.log("the");
             }
+            if(angular.element(upt_exp_disp_instacne).length>0)
+            {
+                console.log("what????");
+            }
+            else
+            {
+                console.log("the?????");
+            }
             if (angular.element(upt_exp_disp_instacne).length>0  && document.getElementById(upt_exp_disp_instacne).checked === true)
             {
                 disp_inst_val=1;
