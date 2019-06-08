@@ -66,10 +66,18 @@ if ($getResults == FALSE)
     echo 'err';
     die();
 }
-$test_id="";
+$test_sch="";
 while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
-    $test_id = $row['id'];
+    $test_sch=[
+    'id' => $row['id'],
+        'num_pairs' => $row['num_pairs'],
+        'disp_instance' => $row['disp_instance'],
+        'disp_type' => $row['disp_type'],
+        'disp_h' => $row['disp_h'],
+        'dist_feedback' => $row['dist_feedback'],
+        'disp_control' => $row['disp_control']
+    ];
 }
 
-$res=[$arr[$ind],$test_id];
+$res=[$arr[$ind],$test_sch];
 echo json_encode($res);
