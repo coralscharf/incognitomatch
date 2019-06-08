@@ -524,7 +524,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             let num_pairs_l="upt_exp_num_pairs_"+$scope.exp_ids[i];
             let upt_exp_disp_instacne = "upt_exp_disp_instacne_checked_"+$scope.exp_ids[i];
             let disp_inst_val=0;
-            if (document.getElementById(upt_exp_disp_instacne).checked)
+            if (angular.element(upt_exp_disp_instacne).length  && document.getElementById(upt_exp_disp_instacne).checked)
             {
                 disp_inst_val=1;
             }
@@ -537,7 +537,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
             let upt_exp_disp_type = "upt_exp_disp_type_checked_"+$scope.exp_ids[i];
             let disp_type_val=0;
-            if (document.getElementById(upt_exp_disp_type).checked)
+            if (angular.element(upt_exp_disp_type).length  && document.getElementById(upt_exp_disp_type).checked)
             {
                 disp_type_val=1;
             }
@@ -550,7 +550,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
             let upt_exp_disp_h = "upt_exp_disp_h_checked_"+$scope.exp_ids[i];
             let disp_h_val=0;
-            if (document.getElementById(upt_exp_disp_h).checked)
+            if (angular.element(upt_exp_disp_h).length  && document.getElementById(upt_exp_disp_h).checked)
             {
                 disp_h_val=1;
             }
@@ -563,7 +563,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
             let upt_exp_disp_feedback = "upt_exp_disp_feedback_checked_"+$scope.exp_ids[i];
             let disp_feedback_val=0;
-            if (document.getElementById(upt_exp_disp_feedback).checked)
+            if (angular.element(upt_exp_disp_feedback).length  && document.getElementById(upt_exp_disp_feedback).checked)
             {
                 disp_feedback_val=1;
             }
@@ -576,7 +576,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
             let upt_exp_disp_control = "upt_exp_disp_control_checked_"+$scope.exp_ids[i];
             let disp_control_val=0;
-            if (document.getElementById(upt_exp_disp_control).checked)
+            if (angular.element(upt_exp_disp_control).length  &&document.getElementById(upt_exp_disp_control).checked)
             {
                 disp_control_val=1;
             }
