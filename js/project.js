@@ -533,7 +533,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             else{
                 console.log("the");
             }
-            if(angular.element(upt_exp_disp_instacne).length>0)
+            if(angular.element("#"+upt_exp_disp_instacne).length>0)
             {
                 console.log("what????");
             }
