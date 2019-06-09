@@ -532,7 +532,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);
 
 
-        file = $scope.first_xml_file;
+        file = $scope.first_xsd_file;
         console.log(file);
         exp_name = document.getElementById("exp_name").value;
         uploadUrl = "php/fileUpload.php";
@@ -547,6 +547,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         text = file.name;
         fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);
 
+        file = $scope.sec_xml_file;
+        console.log(file);
+        exp_name = document.getElementById("exp_name").value;
+        uploadUrl = "php/fileUpload.php";
+        text = file.name;
+        fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);
+        
         file = $scope.sec_xsd_file;
         console.log(file);
         exp_name = document.getElementById("exp_name").value;
@@ -554,12 +561,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         text = file.name;
         fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);
 
-        file = $scope.sec_xml_file;
-        console.log(file);
-        exp_name = document.getElementById("exp_name").value;
-        uploadUrl = "php/fileUpload.php";
-        text = file.name;
-        fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);
+
 
 
     };
