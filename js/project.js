@@ -107,6 +107,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.exp_ids=[];
         $scope.done_test=false;
         $scope.exp_after_test=[];
+        $scope.files_to_upload={"csv":"","xml":[],"xsd":[]};
 
 
     }; //the function
@@ -529,6 +530,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         let exp_name = document.getElementById("exp_name").value;
         let uploadUrl = "php/fileUpload.php";
         let text = file.name;
+        $scope.files_to_upload['xml'].push(text);
         fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);
 
 
@@ -537,6 +539,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         exp_name = document.getElementById("exp_name").value;
         uploadUrl = "php/fileUpload.php";
         text = file.name;
+        $scope.files_to_upload['xsd'].push(text);
         fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);
 
 
@@ -545,6 +548,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         exp_name = document.getElementById("exp_name").value;
         uploadUrl = "php/fileUpload.php";
         text = file.name;
+        $scope.files_to_upload['csv'].push(text);
         fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);
 
         file = $scope.sec_xml_file;
@@ -552,16 +556,18 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         exp_name = document.getElementById("exp_name").value;
         uploadUrl = "php/fileUpload.php";
         text = file.name;
+        $scope.files_to_upload['xml'].push(text);
         fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);
-        
+
         file = $scope.sec_xsd_file;
         console.log(file);
         exp_name = document.getElementById("exp_name").value;
         uploadUrl = "php/fileUpload.php";
         text = file.name;
+        $scope.files_to_upload['xsd'].push(text);
         fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);
 
-
+        console.log($scope.files_to_upload);
 
 
     };

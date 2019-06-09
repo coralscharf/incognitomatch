@@ -60,5 +60,14 @@ if ($getResults == FALSE)
     return (sqlsrv_errors());
 sqlsrv_free_stmt($getResults);
 
+$param = " -p \"bla.csv\" -xs \"bla.xsd,bla2.xsd\" -xm \"bla1.xml,bla2.xml\"";
 
+$command="D:\\home\\site\\wwwroot\\scripts\\new_exp.exe ".$param;
+//echo $command;
+//$out= shell_exec ( $command);
+
+//$out= shell_exec ("D:\home\site\wwwroot\aviv\scripts\cluster.exe \"BANK OF AMERICA CORPORATION\"" );
+//exec( "D:\home\site\wwwroot\aviv\scripts\cluster.exe \"BANK OF AMERICA CORPORATION\"", $output,$ret);
+//exec( "D:\home\site\wwwroot\aviv\scripts\hello.exe", $output,$ret);
+//echo $ret;
 echo "1";
