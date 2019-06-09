@@ -18,8 +18,8 @@ $serverName = "tcp:avivtest.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 
 
-$sql="Insert INTO exp_users(u_first, u_last, email, u_loc, lang, age, occupation, education, gender) values (
-       '$u_first','$u_last','$u_email','$u_loc','$u_lang',$u_age,'$u_occ','$u_edu','$u_gender')";
+$sql="Insert INTO exp_users(u_first, u_last, email, u_loc, lang, age, occupation, education, gender) OUTPUT INSERTED.id
+values ('$u_first','$u_last','$u_email','$u_loc','$u_lang',$u_age,'$u_occ','$u_edu','$u_gender')";
 
 
 $getResults= sqlsrv_query($conn, $sql);
@@ -27,6 +27,11 @@ if ($getResults == FALSE)
 {
     echo 'err';
     die();
+}
+# get new user id
+$user_id="";
+while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
+    $user_id=$row['id'];
 }
 
 
@@ -79,5 +84,5 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     ];
 }
 
-$res=[$arr[$ind],$test_sch];
+$res=[$arr[$ind],$test_sch,$user_id];
 echo json_encode($res);

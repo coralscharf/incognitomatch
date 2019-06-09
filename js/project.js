@@ -181,9 +181,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
 
     $scope.new_user_exp = function(){
-        $scope.curr_user={"first":document.getElementById("new_user_first").value,"last":document.getElementById("new_user_last").value};
         $scope.curr_count_ans=0;
-        console.log($scope.curr_user);
+        //console.log($scope.curr_user);
         $http({
             method: 'POST',
             url: 'php/exp_new_user.php',
@@ -208,7 +207,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 $("#begin_exp_user").hide();
                 $scope.exp_after_test = data.data[0];
                 let test_schema=data.data[1];
-
+                $scope.curr_user={"first":document.getElementById("new_user_first").value,
+                    "last":document.getElementById("new_user_last").value,
+                    "id": data.data[2]
+                };
                 console.log("test",test_schema);
                 $scope.begin_exp(test_schema);
                 $scope.clear_user_form();
@@ -353,7 +355,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             url: 'php/exp_res.php',
             data: $.param({
                 exp_id: $scope.curr_exp_id,
-                user_id: 1,
+                user_id: $scope.curr_user['id'],
                 sch_id_1: $scope.schema[0]['sch_id'],
                 sch_id_2: $scope.schema2[0]['sch_id'],
                 realconf: $scope.schema[0]['realConf'],
