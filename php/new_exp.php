@@ -55,8 +55,8 @@ else
 {
     $show_control=1;
 }
-$sql="insert into experiments(name, schema_name, num_pairs, disp_instance, disp_type, disp_h, disp_feedback, disp_control) 
-values('$exp_name','$exp_sch_name',$exp_num_pairs,$show_instance,$show_type,$show_hierarchy,$show_feedback,$show_control)";
+$sql="insert into experiments(name, schema_name, num_pairs, disp_instance, disp_type, disp_h, disp_feedback, disp_control,is_active) 
+values('$exp_name','$exp_sch_name',$exp_num_pairs,$show_instance,$show_type,$show_hierarchy,$show_feedback,$show_control,1)";
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
     return (sqlsrv_errors());
@@ -70,9 +70,9 @@ $xml=substr($xml,0,strlen($xml)-1);
 $param = " -p \"".$files['csv']."\" -xs \"".$files['xsd'][0].",".$files['xsd'][1]."\" -xm \"$xml\"";
 
 $command="D:\\home\\site\\wwwroot\\scripts\\new_exp.exe ".$param;
-echo $command;
-//$out= shell_exec ( $command);
-
+//echo $command;
+$out= shell_exec($command);
+echo $out;
 //$out= shell_exec ("D:\home\site\wwwroot\aviv\scripts\cluster.exe \"BANK OF AMERICA CORPORATION\"" );
 //exec( "D:\home\site\wwwroot\aviv\scripts\cluster.exe \"BANK OF AMERICA CORPORATION\"", $output,$ret);
 //exec( "D:\home\site\wwwroot\aviv\scripts\hello.exe", $output,$ret);
