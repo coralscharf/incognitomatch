@@ -21,7 +21,7 @@ if ($getResults == FALSE)
 }
 else
 {
-    
+
 
     /*$uid="";
     while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
