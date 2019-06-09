@@ -59,4 +59,6 @@ $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
     return (sqlsrv_errors());
 sqlsrv_free_stmt($getResults);
+
+
 echo "1";

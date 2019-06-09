@@ -521,45 +521,81 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     };
 
-    $scope.add_exp = function () {
+    $scope.upload_exp_files = function(){
 
-        $http({
-            method: 'POST',
-            url: 'php/new_exp.php',
-            data: $.param({
-                exp_name: document.getElementById("exp_name").value,
-                exp_sch_name: document.getElementById("exp_sch_name").value,
-                exp_num_pairs: document.getElementById("exp_num_pairs").value,
-                show_instance: document.getElementById("show_instance").checked,
-                show_type: document.getElementById("show_type").checked,
-                show_hierarchy: document.getElementById("show_hierarchy").checked,
-                show_feedback: document.getElementById("show_feedback").checked,
-                show_control: document.getElementById("show_control").checked
 
-            }),
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        }).then(function (data) {
-            console.log((data.data));
-            if (data.data === "1")
-            {
-
-            }
-            else
-            {
-                console.log(data.data);
-            }
-
-        });
-        /*let file = $scope.first_xml_file;
+        let file = $scope.first_xml_file;
         console.log(file);
         let exp_name = document.getElementById("exp_name").value;
         let uploadUrl = "php/fileUpload.php";
         let text = file.name;
-        fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);*/
+        fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);
 
 
+        file = $scope.first_xml_file;
+        console.log(file);
+        exp_name = document.getElementById("exp_name").value;
+        uploadUrl = "php/fileUpload.php";
+        text = file.name;
+        fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);
+
+
+        file = $scope.file_csv;
+        console.log(file);
+        exp_name = document.getElementById("exp_name").value;
+        uploadUrl = "php/fileUpload.php";
+        text = file.name;
+        fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);
+
+        file = $scope.sec_xsd_file;
+        console.log(file);
+        exp_name = document.getElementById("exp_name").value;
+        uploadUrl = "php/fileUpload.php";
+        text = file.name;
+        fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);
+
+        file = $scope.sec_xml_file;
+        console.log(file);
+        exp_name = document.getElementById("exp_name").value;
+        uploadUrl = "php/fileUpload.php";
+        text = file.name;
+        fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);
+
+
+    };
+
+    $scope.add_exp = function () {
+        //upload file before insert new exp
+        $scope.upload_exp_files(function() {
+            $http({
+                method: 'POST',
+                url: 'php/new_exp.php',
+                data: $.param({
+                    exp_name: document.getElementById("exp_name").value,
+                    exp_sch_name: document.getElementById("exp_sch_name").value,
+                    exp_num_pairs: document.getElementById("exp_num_pairs").value,
+                    show_instance: document.getElementById("show_instance").checked,
+                    show_type: document.getElementById("show_type").checked,
+                    show_hierarchy: document.getElementById("show_hierarchy").checked,
+                    show_feedback: document.getElementById("show_feedback").checked,
+                    show_control: document.getElementById("show_control").checked
+
+                }),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            }).then(function (data) {
+                console.log((data.data));
+                if (data.data === "1") {
+
+                } else {
+                    console.log(data.data);
+                }
+
+            });
+
+
+        });
     };
 
     $scope.captureCoordinate = function($event){
