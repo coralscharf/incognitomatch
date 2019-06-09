@@ -56,17 +56,17 @@ app.directive('starRating', function () {
 					headers: {'Content-Type': undefined,'Process-Data': false}
 				}).then(function(data){
                     let res=data.data;
-                    console.log(res);
+                    //console.log(res);
                     if (res==="0")
                     {
-                        console.log("good");
+                        //console.log("good");
 
                     }
                     else {
-                        console.log("not good");
+                        console.log("error upload files");
 
                     }
-                    console.log("res",res );
+                    //console.log("res",res );
 
 
 
@@ -522,7 +522,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     };
 
-    $scope.upload_exp_files = function(){
+    $scope.upload_exp_files = function(callback){
 
 
         let file = $scope.first_xml_file;
@@ -575,7 +575,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
         console.log($scope.files_to_upload);
 
-
+        callback(); // create exp in db
     };
 
     $scope.add_exp = function () {
@@ -592,15 +592,16 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     show_type: document.getElementById("show_type").checked,
                     show_hierarchy: document.getElementById("show_hierarchy").checked,
                     show_feedback: document.getElementById("show_feedback").checked,
-                    show_control: document.getElementById("show_control").checked
-
+                    show_control: document.getElementById("show_control").checked,
+                    files: $scope.files_to_upload
                 }),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             }).then(function (data) {
-                console.log((data.data));
+
                 if (data.data === "1") {
+                    console.log((data.data));
 
                 } else {
                     console.log(data.data);

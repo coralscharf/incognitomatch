@@ -13,18 +13,20 @@ if (!empty($_FILES)) {
         if (!is_dir($target_dir)) {
             mkdir($target_dir);
         }
-        $new_name = time() . '_' . basename($_FILES["file"]["name"][$i]);
+        // user time() to not overwrite if exists
+        //$new_name = time() . '_' . basename($_FILES["file"]["name"][$i]);
+        $new_name = basename($_FILES["file"]["name"][$i]);
         $target_file = $target_dir . $new_name;
-        echo $target_file;
+        //echo $target_file;
         if (move_uploaded_file($_FILES['file']['tmp_name'][$i], $target_file)) {
             $arr =$arr.",0";
 
         }
         else{
-            $arr=$arr.",1";
+            echo 'err';
         }
     }
 } else {
     echo("1");
 }
-echo $arr;
+echo 0;

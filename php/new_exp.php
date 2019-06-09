@@ -7,6 +7,8 @@ $show_type=stripcslashes($_POST['show_type']);
 $show_hierarchy=stripcslashes($_POST['show_hierarchy']);
 $show_feedback=stripcslashes($_POST['show_feedback']);
 $show_control=stripcslashes($_POST['show_control']);
+$files = $_POST['files'];
+
 
 $connectionInfo = array("UID" => "avivf@avivtest", "pwd" => "1qaZ2wsX!", "Database" => "avivtest", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
 $serverName = "tcp:avivtest.database.windows.net,1433";
@@ -59,11 +61,16 @@ $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
     return (sqlsrv_errors());
 sqlsrv_free_stmt($getResults);
-
-$param = " -p \"bla.csv\" -xs \"bla.xsd,bla2.xsd\" -xm \"bla1.xml,bla2.xml\"";
+$xml="";
+for ($i=0; $i<sizeof($files['xml']);$i++)
+{
+    $xml=$xml.$files['xml'][$i].',';
+}
+$xml=substr($xml,0,strlen($xml)-1);
+$param = " -p \"".$files['csv']."\" -xs \"".$files['xsd'][0].",".$files['xsd'][0]."\" -xm \"$xml\"";
 
 $command="D:\\home\\site\\wwwroot\\scripts\\new_exp.exe ".$param;
-//echo $command;
+echo $command;
 //$out= shell_exec ( $command);
 
 //$out= shell_exec ("D:\home\site\wwwroot\aviv\scripts\cluster.exe \"BANK OF AMERICA CORPORATION\"" );
