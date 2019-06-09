@@ -481,11 +481,12 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     "\t\t\t\t\t\t\t<a class=\"dropdown-item\" href=\"#\"  data-toggle=\"modal\" data-target=\"#new_admin\">New Admin</a>\n" +
                     "\t\t\t\t\t\t\t<a class=\"dropdown-item\" href=\"#\"  data-toggle=\"modal\" data-target=\"#add_exp_modal\">Add Experiment</a>\n" +
                     "\t\t\t\t\t\t\t<a class=\"dropdown-item\" href=\"#\"  data-toggle=\"modal\" data-target=\"#update_exp_modal\" ng-click=\"get_exp_for_update()\">Update Experiment</a>\n" +
+                    "\t\t\t\t\t\t\t<a class=\"dropdown-item\" href=\"#\"  ng-click=\"admin_logout()\">Logout</a>\n" +
                     "\t\t\t\t\t\t</div>")($scope));
                 console.log( $scope.admin_details);
                 $timeout(function() {
                     $('#admin_login').modal('hide')
-                },2000);
+                },1000);
             }
 
 
@@ -493,6 +494,31 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         });
 
     };
+
+    $scope.admin_logout = function(){
+        $http({
+            method: 'POST',
+            url: 'php/new_exp.php',
+            data: $.param({
+
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function (data) {
+            $scope.admin_details=[];
+            document.getElementById("nav_admin").innerText = "";
+            angular.element(document.getElementById("nav_admin")).append($compile(
+                "<a class=\"nav-link dropdown-toggle\"  id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" href=\"#\"  aria-haspopup=\"true\"\n" +
+                "\t\t\t\t\t\t   aria-expanded=\"false\">More</a>\n" +
+                "\t\t\t\t\t\t<div class=\"dropdown-menu  dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink\" id=\"navbar_admin\">\n" +
+                "\t\t\t\t\t\t\t<a class=\"dropdown-item\" href=\"#\"  data-toggle=\"modal\" data-target=\"#admin_login\">Log in</a>\n" +
+                "\t\t\t\t\t\t</div>")($scope));
+
+        });
+
+    };
+
     $scope.add_exp = function () {
 
         $http({
