@@ -88,7 +88,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         //$scope.hidePages();
         $scope.hide_pages();
 
-        console.log("bb");
+        //console.log("bb");
         $scope.show_home();
         $scope.schema2=[];
         $scope.schema=[];

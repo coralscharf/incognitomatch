@@ -9,7 +9,7 @@
     <script src="js/angular.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
-
+	<link rel="icon" href="favicon.ico"/>
     <script src="js/project.js" ></script>
 
 
