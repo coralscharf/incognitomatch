@@ -548,7 +548,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         exp_name = document.getElementById("exp_name").value;
         uploadUrl = "php/fileUpload.php";
         text = file.name;
-        $scope.files_to_upload['csv'].push(text);
+        $scope.files_to_upload['csv']=text;
         fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);
 
         file = $scope.sec_xml_file;
