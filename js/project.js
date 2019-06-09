@@ -431,7 +431,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
             else
             {
-                console.log(data.data);
+                document.getElementById("new_admin_log").innerHTML="Done";
+                $timeout(function() {
+                    document.getElementById("new_admin_log").innerHTML="";
+                    $('new_admin').modal('hide')
+                },3000);
             }
 
         });
