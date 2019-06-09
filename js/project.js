@@ -473,6 +473,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
             else {
                 $scope.admin_details = data.data;
+                document.getElementById("nav_admin").innerText = "";
                 angular.element(document.getElementById("nav_admin")).append($compile(
                     "<a class=\"nav-link dropdown-toggle\"  id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" href=\"#\"  aria-haspopup=\"true\"\n" +
                     "\t\t\t\t\t\t   aria-expanded=\"false\">More</a>\n" +
