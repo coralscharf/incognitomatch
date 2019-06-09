@@ -30,10 +30,7 @@ else
     $_SESSION['full_name'] = $user_name;
     $_SESSION['user'] = $user;
     $_SESSION['time'] = time();
-    if(isset($_SESSION['user']))
-    {
-        header('Location: /#');
-    }
+    echo "Done";
 
 
 }
