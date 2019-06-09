@@ -412,6 +412,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $("#instruction_after").hide();
     };
 
+    $scope.new_admin = function() {
+
+
+    };
 
     $scope.add_exp = function () {
 
