@@ -530,7 +530,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         let exp_name = document.getElementById("exp_name").value;
         let uploadUrl = "php/fileUpload.php";
         let text = file.name;
-        $scope.files_to_upload['xml'].push(text);
+        for (let i=0;i<file.length;i++)
+        {
+            $scope.files_to_upload['xml'].push(file[i].name);
+        }
         fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);
 
 
@@ -539,7 +542,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         exp_name = document.getElementById("exp_name").value;
         uploadUrl = "php/fileUpload.php";
         text = file.name;
-        $scope.files_to_upload['xsd'].push(text);
+        $scope.files_to_upload['xsd'].push(file[0].name);
         fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);
 
 
@@ -548,7 +551,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         exp_name = document.getElementById("exp_name").value;
         uploadUrl = "php/fileUpload.php";
         text = file.name;
-        $scope.files_to_upload['csv']=text;
+        $scope.files_to_upload['csv']=file[0].name;
         fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);
 
         file = $scope.sec_xml_file;
@@ -556,7 +559,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         exp_name = document.getElementById("exp_name").value;
         uploadUrl = "php/fileUpload.php";
         text = file.name;
-        $scope.files_to_upload['xml'].push(text);
+        for (let i=0;i<file.length;i++)
+        {
+            $scope.files_to_upload['xml'].push(file[i].name);
+        }
         fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);
 
         file = $scope.sec_xsd_file;
@@ -564,7 +570,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         exp_name = document.getElementById("exp_name").value;
         uploadUrl = "php/fileUpload.php";
         text = file.name;
-        $scope.files_to_upload['xsd'].push(text);
+        $scope.files_to_upload['xsd'].push(file[0].name);
         fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);
 
         console.log($scope.files_to_upload);
