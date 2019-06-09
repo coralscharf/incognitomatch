@@ -14,7 +14,7 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 $mouse_str="";
 for($i=0;$i<sizeof($mouse_loc);$i++)
 {
-    $mouse_str=$mouse_str."(".$mouse_loc[$i]["x"].",".$mouse_loc[$i]["y"].",".$mouse_loc[$i]["l"].",".$mouse_loc[$i]["r"].",".$mouse_loc[$i]["s"].");";
+    $mouse_str=$mouse_str."(".$mouse_loc[$i]["time"].",".$mouse_loc[$i]["x"].",".$mouse_loc[$i]["y"].",".$mouse_loc[$i]["l"].",".$mouse_loc[$i]["r"].",".$mouse_loc[$i]["s"].");";
 }
 
 $sql="insert into exp_results(user_id, exp_id, sch_id_1, sch_id_2, realconf, userconf,rec_time,mouse_loc) 
