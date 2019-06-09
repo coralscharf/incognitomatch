@@ -1,3 +1,12 @@
+<?php
+	session_start();
+	if (isset($_SESSION['id'])
+	{
+		echo $_SESSION;
+	}
+
+
+?>
 <html lang="en" ng-app="template" >
 <title>Aviv Test</title>
 <head>
