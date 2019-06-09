@@ -458,16 +458,16 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         }).then(function (data) {
             if (data.data === "err") // sql error
             {
-                document.getElementById("new_admin_log").innerHTML="Error";
+                document.getElementById("admin_login_log").innerHTML="Error";
                 $timeout(function() {
-                    document.getElementById("new_admin_log").innerHTML="";
+                    document.getElementById("admin_login_log").innerHTML="";
                 },3000);
             }
             else if (data.data === "no_user")
             {
-                document.getElementById("new_admin_log").innerHTML="Wrong user or password";
+                document.getElementById("admin_login_log").innerHTML="Wrong user or password";
                 $timeout(function() {
-                    document.getElementById("new_admin_log").innerHTML="";
+                    document.getElementById("admin_login_log").innerHTML="";
                     $('#new_admin').modal('hide')
                 },2000);
             }
