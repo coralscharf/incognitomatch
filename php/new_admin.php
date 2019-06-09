@@ -21,7 +21,9 @@ if ($getResults == FALSE)
 }
 else
 {
-    $uid="";
+    
+
+    /*$uid="";
     while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
         $uid=$row['uid'];
     }
@@ -29,7 +31,7 @@ else
     $_SESSION['id'] = $uid;
     $_SESSION['full_name'] = $user_name;
     $_SESSION['user'] = $user;
-    $_SESSION['time'] = time();
+    $_SESSION['time'] = time();*/
     echo "Done";
 
 

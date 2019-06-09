@@ -427,7 +427,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         }).then(function (data) {
             if (data.data === "err")
             {
-                console.log((data.data));
+                document.getElementById("new_admin_log").innerHTML="Error";
+                $timeout(function() {
+                    document.getElementById("new_admin_log").innerHTML="";
+                },3000);
             }
             else
             {
@@ -435,7 +438,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 $timeout(function() {
                     document.getElementById("new_admin_log").innerHTML="";
                     $('#new_admin').modal('hide')
-                },3000);
+                },2000);
             }
 
         });
