@@ -483,8 +483,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     "\t\t\t\t\t\t\t<a class=\"dropdown-item\" href=\"#\"  data-toggle=\"modal\" data-target=\"#update_exp_modal\" ng-click=\"get_exp_for_update()\">Update Experiment</a>\n" +
                     "\t\t\t\t\t\t\t<a class=\"dropdown-item\" href=\"#\"  ng-click=\"admin_logout()\">Logout</a>\n" +
                     "\t\t\t\t\t\t</div>")($scope));
-                console.log( $scope.admin_details);
+                //console.log( $scope.admin_details);
                 $timeout(function() {
+                    document.getElementById("admin_email").value="";
+                    document.getElementById("admin_pass").value="";
                     $('#admin_login').modal('hide')
                 },1000);
             }
