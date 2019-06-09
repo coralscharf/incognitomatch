@@ -1,98 +1,104 @@
 <div id="begin_exp_user" class="col-sm-12" style="margin-top: 100px;margin-left: 20px">
 
 	<h5 >Add User</h5>
-	<div class="col-sm-1"></div>
-	<div class="col-sm-10">
-		<div class="row">
-			<div class="col">
-				<div class="md-form">
-					<i class="fas fa-user prefix"></i>
-					<input type="text" class="form-control" id="new_user_first">
-					<label for="new_user_first">First Name</label>
-				</div>
-			</div>
-			<div class="col">
-				<div class="md-form">
-					<input type="text" class="form-control" id="new_user_last">
-					<label for="new_user_last">Last Name</label>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col">
-				<div class="md-form">
-					<i class="fas fa-envelope prefix"></i>
-					<input type="email" id="new_user_email" class="form-control validate">
-					<label for="new_user_email" data-error="wrong" data-success="right">Type your email</label>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col">
-				<div class="md-form">
-					<i class="fas fa-map-marked prefix"></i>
-					<input type="text" id="new_user_country" class="form-control">
-					<label for="new_user_country">Location</label>
-
-				</div>
-			</div>
-			<div class="col">
-				<div class="md-form">
-					<i class="fas fa-language prefix"></i>
-					<input type="text" class="form-control" id="new_user_lang">
-					<label for="new_user_lang">Language</label>
-				</div>
-			</div>
-			<div class="col">
-				<div class="md-form">
-					<i class="fas fa-child prefix"></i>
-					<input type="number" class="form-control" id="new_user_age">
-					<label for="new_user_age">Age</label>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col">
-				<div class="md-form">
-					<i class="fas fa-briefcase prefix"></i>
-					<input type="text" class="form-control" id="new_user_occ">
-					<label for="new_user_occ">Occupation</label>
-				</div>
-			</div>
-			<div class="col">
-				<div class="md-form">
-					<i class="fas fa-school prefix"></i>
-					<input type="text" class="form-control" id="new_user_edu">
-					<label for="new_user_edu">Education</label>
-				</div>
-			</div>
-			<div class="col" style="margin-top:30px">
-				<div class="custom-control custom-radio custom-control-inline">
-					<i class="fas fa-venus prefix"></i>
-					<input type="radio" class="custom-control-input" id="new_user_woman" ng-model="new_user_gender_val" value="woman">
-					<label class="custom-control-label" for="new_user_woman">Woman</label>
-				</div>
-				<div class="custom-control custom-radio custom-control-inline">
-					<i class="fas fa-mars prefix"></i>
-					<input type="radio" class="custom-control-input" id="new_user_man" ng-model="new_user_gender_val" value="man">
-					<label class="custom-control-label" for="new_user_man">Man</label>
-				</div>
-				<div class="custom-control custom-radio custom-control-inline">
-					<i class="fas fa-venus-mars prefix"></i>
-					<input type="radio" class="custom-control-input" id="new_user_other" ng-model="new_user_gender_val" value="other">
-					<label class="custom-control-label" for="new_user_other">Other</label>
-				</div>
-			</div>
-		</div>
+	<div class="row">
 
 
-		<div id="add_user_log">
+		<div class="col">
 
 		</div>
-		<button class="btn btn-md btn-info m-1 px-3" type="button" ng-click="new_user_exp()">Add User</button>
-	</div>
-	<div class="col-sm-1">
+		<div class="col-sm-10">
+			<div class="row">
+				<div class="col">
+					<div class="md-form">
+						<i class="fas fa-user prefix"></i>
+						<input type="text" class="form-control" id="new_user_first">
+						<label for="new_user_first">First Name</label>
+					</div>
+				</div>
+				<div class="col">
+					<div class="md-form">
+						<input type="text" class="form-control" id="new_user_last">
+						<label for="new_user_last">Last Name</label>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<div class="md-form">
+						<i class="fas fa-envelope prefix"></i>
+						<input type="email" id="new_user_email" class="form-control validate">
+						<label for="new_user_email" data-error="wrong" data-success="right">Type your email</label>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<div class="md-form">
+						<i class="fas fa-map-marked prefix"></i>
+						<input type="text" id="new_user_country" class="form-control">
+						<label for="new_user_country">Location</label>
 
+					</div>
+				</div>
+				<div class="col">
+					<div class="md-form">
+						<i class="fas fa-language prefix"></i>
+						<input type="text" class="form-control" id="new_user_lang">
+						<label for="new_user_lang">Language</label>
+					</div>
+				</div>
+				<div class="col">
+					<div class="md-form">
+						<i class="fas fa-child prefix"></i>
+						<input type="number" class="form-control" id="new_user_age">
+						<label for="new_user_age">Age</label>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<div class="md-form">
+						<i class="fas fa-briefcase prefix"></i>
+						<input type="text" class="form-control" id="new_user_occ">
+						<label for="new_user_occ">Occupation</label>
+					</div>
+				</div>
+				<div class="col">
+					<div class="md-form">
+						<i class="fas fa-school prefix"></i>
+						<input type="text" class="form-control" id="new_user_edu">
+						<label for="new_user_edu">Education</label>
+					</div>
+				</div>
+				<div class="col" style="margin-top:30px">
+					<div class="custom-control custom-radio custom-control-inline">
+						<i class="fas fa-venus prefix"></i>
+						<input type="radio" class="custom-control-input" id="new_user_woman" ng-model="new_user_gender_val" value="woman">
+						<label class="custom-control-label" for="new_user_woman">Woman</label>
+					</div>
+					<div class="custom-control custom-radio custom-control-inline">
+						<i class="fas fa-mars prefix"></i>
+						<input type="radio" class="custom-control-input" id="new_user_man" ng-model="new_user_gender_val" value="man">
+						<label class="custom-control-label" for="new_user_man">Man</label>
+					</div>
+					<div class="custom-control custom-radio custom-control-inline">
+						<i class="fas fa-venus-mars prefix"></i>
+						<input type="radio" class="custom-control-input" id="new_user_other" ng-model="new_user_gender_val" value="other">
+						<label class="custom-control-label" for="new_user_other">Other</label>
+					</div>
+				</div>
+			</div>
+
+
+			<div id="add_user_log">
+
+			</div>
+			<button class="btn btn-md btn-info m-1 px-3" type="button" ng-click="new_user_exp()">Add User</button>
+		</div>
+		<div class="col-sm-1">
+
+		</div>
 	</div>
 </div>
 
