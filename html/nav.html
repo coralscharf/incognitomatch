@@ -269,36 +269,32 @@
 				<div class="modal-body">
 					<div>
 						<div class="container">
-							<form id="Login" action='../php/new_admin.php' method='post' accept-charset='UTF-8'>
-								<div class="login-form">
-									<div class="main-div">
-										<div class="md-form">
-											<i class="fas fa-user prefix"></i>
-											<input type="text" id="new_admin_name" class="form-control">
-											<label for="new_admin_name" >Type your email</label>
-										</div>
-										<div class="md-form">
-											<i class="fas fa-envelope prefix"></i>
-											<input type="email" id="new_admin_email" class="form-control validate">
-											<label for="new_admin_email" data-error="wrong" data-success="right">Type your email</label>
-										</div>
-										<div class="md-form">
-											<i class="fas fa-lock prefix"></i>
-											<input type="password" id="new_admin_pass" class="form-control">
-											<label for="new_admin_pass" data-error="wrong" data-success="right">Type your password</label>
-										</div>
+							<div class="login-form">
+								<div class="main-div">
+									<div class="md-form">
+										<i class="fas fa-user prefix"></i>
+										<input type="text" id="new_admin_name" class="form-control">
+										<label for="new_admin_name" >Type your email</label>
+									</div>
+									<div class="md-form">
+										<i class="fas fa-envelope prefix"></i>
+										<input type="email" id="new_admin_email" class="form-control validate">
+										<label for="new_admin_email" data-error="wrong" data-success="right">Type your email</label>
+									</div>
+									<div class="md-form">
+										<i class="fas fa-lock prefix"></i>
+										<input type="password" id="new_admin_pass" class="form-control">
+										<label for="new_admin_pass" data-error="wrong" data-success="right">Type your password</label>
 									</div>
 								</div>
-								<button type="submit" class="btn btn-primary">Register</button>
-							</form>
+							</div>
 						</div>
-
 					</div>
 					<div class="modal-footer">
 						<div id="new_admin_log">
 
 						</div>
-						<button class="btn btn-md btn-info m-0 px-3" type="button" data-dismiss="modal">Close</button>
+						<button class="btn btn-md btn-info m-0 px-3" type="button" ng-click="new_admin()">Register</button>
 					</div>
 				</div>
 			</div>

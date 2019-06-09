@@ -15,7 +15,10 @@ $sql="INSERT into admins ([usr],[pass],f_name) OUTPUT Inserted.id values ('$user
 
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
-    header('Location: /#');
+{
+    echo 'err';
+    die();
+}
 else
 {
     $uid="";

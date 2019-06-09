@@ -413,7 +413,29 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
     $scope.new_admin = function() {
+        $http({
+            method: 'POST',
+            url: 'php/new_admin.php',
+            data: $.param({
+                new_admin_email: document.getElementById("new_admin_email").value,
+                new_admin_pass: document.getElementById("new_admin_pass").value,
+                new_admin_name: document.getElementById("new_admin_name").value,
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function (data) {
+            console.log((data.data));
+            if (data.data === "1")
+            {
 
+            }
+            else
+            {
+                console.log(data.data);
+            }
+
+        });
 
     };
 
