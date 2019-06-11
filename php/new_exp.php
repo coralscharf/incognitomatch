@@ -55,11 +55,17 @@ else
 {
     $show_control=1;
 }
-$sql="insert into experiments(name, schema_name, num_pairs, disp_instance, disp_type, disp_h, disp_feedback, disp_control,is_active) 
+$sql="insert into experiments(name, schema_name, num_pairs, disp_instance, disp_type, disp_h, disp_feedback, disp_control,is_active) OUTPUT INSERTED.id
 values('$exp_name','$exp_sch_name',$exp_num_pairs,$show_instance,$show_type,$show_hierarchy,$show_feedback,$show_control,1)";
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
     return (sqlsrv_errors());
+$exp_id="";
+while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
+    $exp_id=$row['id'];
+}
+
+
 sqlsrv_free_stmt($getResults);
 $xml="";
 for ($i=0; $i<sizeof($files['xml']);$i++)
@@ -67,7 +73,7 @@ for ($i=0; $i<sizeof($files['xml']);$i++)
     $xml=$xml.$files['xml'][$i].',';
 }
 $xml=substr($xml,0,strlen($xml)-1);
-$param = " -p \"".$files['csv']."\" -xs \"".$files['xsd'][0].",".$files['xsd'][1]."\" -xm \"$xml\"";
+$param = "-id $exp_id -p \"".$files['csv']."\" -xs \"".$files['xsd'][0].",".$files['xsd'][1]."\" -xm \"$xml\"";
 
 $command="D:\home\site\wwwroot\script\\new_exp.exe ".$param;
 //echo $command;
