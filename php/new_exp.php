@@ -77,7 +77,7 @@ $param = "-id $exp_id -p \"".$files['csv']."\" -xs \"".$files['xsd'][0].",".$fil
 
 $command="D:\home\site\wwwroot\script\\new_exp.exe ".$param;
 //echo $command;
-$out= exec($command);
+$out= shell_exec($command);
 echo $out;
 //$out= shell_exec ("D:\home\site\wwwroot\aviv\scripts\cluster.exe \"BANK OF AMERICA CORPORATION\"" );
 //exec( "D:\home\site\wwwroot\aviv\scripts\cluster.exe \"BANK OF AMERICA CORPORATION\"", $output,$ret);
