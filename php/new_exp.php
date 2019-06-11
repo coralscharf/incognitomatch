@@ -71,7 +71,7 @@ $param = " -p \"".$files['csv']."\" -xs \"".$files['xsd'][0].",".$files['xsd'][1
 
 $command="D:\home\site\wwwroot\script\\new_exp.exe ".$param;
 //echo $command;
-$out= shell_exec($command);
+$out= exec($command);
 echo $out;
 //$out= shell_exec ("D:\home\site\wwwroot\aviv\scripts\cluster.exe \"BANK OF AMERICA CORPORATION\"" );
 //exec( "D:\home\site\wwwroot\aviv\scripts\cluster.exe \"BANK OF AMERICA CORPORATION\"", $output,$ret);
