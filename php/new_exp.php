@@ -69,7 +69,7 @@ for ($i=0; $i<sizeof($files['xml']);$i++)
 $xml=substr($xml,0,strlen($xml)-1);
 $param = " -p \"".$files['csv']."\" -xs \"".$files['xsd'][0].",".$files['xsd'][1]."\" -xm \"$xml\"";
 
-$command="D:\home\site\wwwroot\scripts\\new_exp.exe ".$param;
+$command="D:\home\site\wwwroot\script\\new_exp.exe ".$param;
 //echo $command;
 $out= shell_exec($command);
 echo $out;
