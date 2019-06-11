@@ -523,7 +523,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
     $scope.upload_exp_files = function(callback){
-
+        $scope.files_to_upload={"csv":"","xml":[],"xsd":[]};
 
         let file = $scope.first_xml_file;
         console.log(file);
