@@ -399,9 +399,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 //$scope.last_time_mouse="";
                 $scope.curr_count_ans = $scope.curr_count_ans + 1;
                 //console.log($scope.curr_count_ans);
-                if ($scope.curr_count_ans >=  $scope.total_ans_needed)
+                if ($scope.curr_count_ans >=  $scope.total_ans_needed) // check if exp is done
                 {
-                    if($scope.done_test === false)
+                    if($scope.done_test === false) // check if user in test exp, if yes - show instruction, else show finished
                     {
                         $scope.done_test = true;
                         $("#experiment").hide();
@@ -428,9 +428,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
 
                 }
+                // TODO: show feedback modal
+
+
+
 
             }
-            else
+            else // error while update the answer from user
             {
                 console.log(data.data);
             }
