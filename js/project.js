@@ -124,7 +124,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $("#begin_exp_user").hide();
         $("#finish_exp").hide();
         $("#instruction_after").hide();
-        console.log("hide");
+        //console.log("hide");
     };
 
     $scope.show_page2 = function () {
@@ -211,7 +211,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         }).then(function (data) {
-            console.log((data.data));
+            //console.log((data.data));
             if (data.data !== "err")
             {
                 $("#begin_exp_user").hide();
@@ -221,7 +221,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     "last":document.getElementById("new_user_last").value,
                     "id": data.data[2]
                 };
-                console.log("test",test_schema);
+                //console.log("test",test_schema);
                 $scope.begin_exp(test_schema);
                 $scope.clear_user_form();
             }
@@ -239,8 +239,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
 
     $scope.getExp2 = function (callback,exp_id) {
-        console.log("getExp2",exp_id);
-        console.log("order", $scope.curr_order);
+        //console.log("getExp2",exp_id);
+        //console.log("order", $scope.curr_order);
         $http({
             method: 'POST',
             url: 'php/get_exp_info.php',
@@ -311,7 +311,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.getExp = function(exp_id){
         $scope.getExp2(function(schema){
-            console.log(schema);
+            //console.log(schema);
             $http({
                 method: 'POST',
                 url: 'php/get_exp_info.php',
@@ -325,7 +325,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 }
             }).then(function (data) {
                 console.log((data.data));
-                console.log((data.data)[0]);
+                //console.log((data.data)[0]);
 
                 $scope.schema2=data.data;
                 $scope.h_2=[];
@@ -371,8 +371,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.exp_res = function(){
 
-        console.log($scope.mouse_moves);
-        console.log($scope.last_time_mouse);
+        //console.log($scope.mouse_moves);
+        //console.log($scope.last_time_mouse);
         $http({
             method: 'POST',
             url: 'php/exp_res.php',
@@ -389,7 +389,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         }).then(function (data) {
-            console.log((data.data));
+            //console.log((data.data));
             if (data.data === "1")
             {
                 $scope.getExp($scope.curr_exp_id);
@@ -398,7 +398,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 //$scope.mouse_moves=[];
                 //$scope.last_time_mouse="";
                 $scope.curr_count_ans = $scope.curr_count_ans + 1;
-                console.log($scope.curr_count_ans);
+                //console.log($scope.curr_count_ans);
                 if ($scope.curr_count_ans >=  $scope.total_ans_needed)
                 {
                     if($scope.done_test === false)
@@ -716,7 +716,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         }).then(function (data) {
-            console.log((data.data));
+            //console.log((data.data));
             if (data.data === "1") //error
             {
                 console.log(data.data);
