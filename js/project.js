@@ -164,6 +164,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.curr_exp_id=exp['id'];
         $scope.total_ans_needed = exp['num_pairs'];
         $scope.time_to_pause = Math.floor(exp['num_pairs']*0.2);
+        $scope.time_to_pause = 2;
         $scope.getExp($scope.curr_exp_id);
         document.getElementById("exp_hello").innerText="Hello, " + $scope.curr_user["last"] + " " + $scope.curr_user['first'];
 
@@ -415,6 +416,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 else if($scope.curr_count_ans % $scope.time_to_pause === 0){
                     // show pause modal every $scope.time_to_pause answers
                     $("#pause_exp_modal").modal('show');
+                    console.log("pause");
                 }
 
             }
