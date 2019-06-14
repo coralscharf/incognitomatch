@@ -170,7 +170,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.total_ans_needed = exp['num_pairs'];
 
         $scope.time_to_pause = Math.floor(exp['num_pairs']*0.2);
-        console.log("time_to_pause",$scope.time_to_pause);
+        //console.log("time_to_pause",$scope.time_to_pause);
         $scope.getExp($scope.curr_exp_id);
         document.getElementById("exp_hello").innerText="Hello, " + $scope.curr_user["last"] + " " + $scope.curr_user['first'];
 
