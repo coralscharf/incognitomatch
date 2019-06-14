@@ -267,7 +267,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             {
                 $scope.h_1.push({"index":last,"val":$scope.schema[0]['brothers'][k],"color":'blue'});
             }
-            console.log( $scope.h_1);
+            
 
 
 
@@ -324,13 +324,19 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 let last=0;
                 for (let j=0;j<h_2_temp.length;j++)
                 {
-                    $scope.h_2.push({"index":j,"val":h_2_temp[j]});
+                    if ($scope.schema[0]['col_name'] === h_2_temp[j]){
+                        $scope.h_2.push({"index":j,"val":h_2_temp[j],"color":'red'});
+                    }
+                    else{
+                        $scope.h_2.push({"index":j,"val":h_2_temp[j],"color":'green'});
+                    }
+
                     last=j;
                 }
 
                 for (let k=0;k<$scope.schema2[0]['brothers'].length;k++)
                 {
-                    $scope.h_2.push({"index":last,"val":$scope.schema2[0]['brothers'][k]});
+                    $scope.h_2.push({"index":last,"val":$scope.schema2[0]['brothers'][k],"color":'blue'});
                 }
                 let str_instance="";
                 if ("instance" in $scope.schema2[0]) {
