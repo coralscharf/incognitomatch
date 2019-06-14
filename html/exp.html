@@ -81,7 +81,7 @@
                             <table class="table table-borderless"  id="term_a_table_h">
                                 <tbody ng-repeat="item in h_1">
                                     <tr ng-if="item.index==0">
-                                        <td>
+                                        <td  style="color:{{item.color}}">
                                             <i class="fas fa-folder"></i>{{item.val}}
                                         </td>
                                     </tr>
@@ -101,7 +101,7 @@
                             <table class="table table-borderless" id="term_b_table_h">
                                 <tbody ng-repeat="item2 in h_2">
                                     <tr ng-if="item2.index==0">
-                                        <td >
+                                        <td  style="color:{{item2.color}}">
                                             <i class="fas fa-folder"></i> {{item2.val}}
                                         </td>
                                     </tr>
