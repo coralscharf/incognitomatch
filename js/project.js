@@ -267,7 +267,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             {
                 $scope.h_1.push({"index":last,"val":$scope.schema[0]['brothers'][k],"color":'blue'});
             }
-            
+
 
 
 
