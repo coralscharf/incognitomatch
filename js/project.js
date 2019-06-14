@@ -254,12 +254,18 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             let last=0;
             for (let j=0;j<h_1_temp.length;j++)
             {
-                $scope.h_1.push({"index":j,"val":h_1_temp[j]});
+                if ($scope.schema[0]['col_name'] === h_1_temp[j]){
+                    $scope.h_1.push({"index":j,"val":h_1_temp[j],"color":'red'});
+                }
+                else{
+                    $scope.h_1.push({"index":j,"val":h_1_temp[j],"color":'green'});
+                }
+
                 last=j;
             }
             for (let k=0;k<$scope.schema[0]['brothers'].length;k++)
             {
-                $scope.h_1.push({"index":last,"val":$scope.schema[0]['brothers'][k]});
+                $scope.h_1.push({"index":last,"val":$scope.schema[0]['brothers'][k],"color":'blue'});
             }
 
 
