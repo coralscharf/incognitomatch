@@ -413,10 +413,14 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                 }
 
-                else if($scope.curr_count_ans % $scope.time_to_pause === 0){
+                else if($scope.done_test === true && ($scope.curr_count_ans % $scope.time_to_pause === 0)){
                     // show pause modal every $scope.time_to_pause answers
+                    // show pause only for non-test schema
+                    
                     $("#pause_exp_modal").modal('show');
-                    console.log("pause");
+                    //console.log("pause");
+
+
                 }
 
             }
