@@ -324,7 +324,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 let last=0;
                 for (let j=0;j<h_2_temp.length;j++)
                 {
-                    if ($scope.schema[0]['col_name'] === h_2_temp[j]){
+                    if ($scope.schema2[0]['col_name'] === h_2_temp[j]){
                         $scope.h_2.push({"index":j,"val":h_2_temp[j],"color":'red'});
                     }
                     else{
