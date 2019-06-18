@@ -167,7 +167,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         {
             $("#row_control").show();
         }
-        if (exp['disp_feedback'] === 0)
+        if (exp['disp_feedback'] === 1)
         {
             $scope.disp_feedback=true;
         }
