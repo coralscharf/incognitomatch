@@ -109,6 +109,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.exp_after_test=[];
         $scope.files_to_upload={"csv":"","xml":[],"xsd":[]};
         $scope.time_to_pause="";
+        $scope.disp_feedback=false;
 
 
     }; //the function
@@ -136,7 +137,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.curr_order=1;
         $scope.mouse_moves=[];
         $scope.done_test=false;
-
+        $scope.disp_feedback=false;
         $("#begin_exp_user").show();
 
     };
@@ -165,6 +166,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         else
         {
             $("#row_control").show();
+        }
+        if (exp['disp_feedback'] === 0)
+        {
+            $scope.disp_feedback=true;
+        }
+        else {
+            $scope.disp_feedback=false;
         }
         $scope.curr_exp_id=exp['id'];
         $scope.total_ans_needed = exp['num_pairs'];
@@ -418,6 +426,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     }
 
                 }
+                else if($scope.disp_feedback === true )
+                {
+                    $("#disp_feedback_modal").modal('show');
+                }
+
 
                 else if($scope.done_test === true && ($scope.curr_count_ans % $scope.time_to_pause === 0)){
                     // show pause modal every $scope.time_to_pause answers
@@ -428,7 +441,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
 
                 }
-                // TODO: show feedback modal
+
 
 
 
@@ -440,6 +453,17 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
 
         });
+    };
+
+    $scope.show_pause_after_feedback = function(){
+        if($scope.done_test === true && ($scope.curr_count_ans % $scope.time_to_pause === 0)) {
+            // show pause modal every $scope.time_to_pause answers
+            // show pause only for non-test schema
+
+            $("#pause_exp_modal").modal('show');
+            //console.log("pause");
+        }
+
     };
 
     $scope.after_instructions = function () {
