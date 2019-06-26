@@ -312,6 +312,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             {
                 $scope.curr_order = $scope.curr_order + 1;
             }
+            document.getElementById("user_confidence").value=0;
             callback($scope.schema);
         });
 
@@ -426,7 +427,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     }
 
                 }
-                else if($scope.disp_feedback === true )
+                else if($scope.done_test === true && $scope.disp_feedback === true )
                 {
                     $("#disp_feedback_modal").modal('show');
                 }
