@@ -402,7 +402,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             if (data.data === "1")
             {
                 $scope.getExp($scope.curr_exp_id);
-                document.getElementById("user_confidence").value="";
+                document.getElementById("user_confidence").value=0; // init range to 0
                 // to init array of mouse locations remove the comment sign
                 //$scope.mouse_moves=[];
                 //$scope.last_time_mouse="";
