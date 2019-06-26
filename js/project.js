@@ -436,9 +436,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 else if($scope.done_test === true && ($scope.curr_count_ans % $scope.time_to_pause === 0)){
                     // show pause modal every $scope.time_to_pause answers
                     // show pause only for non-test schema
-                    document.getElementById("puase_modal_body").innerText=
-                        "Get ready for the next Step." +
+                    let str="Get ready for the next Step." +
                         "Pairs remaining: " + ($scope.total_ans_needed - $scope.curr_count_ans);
+                    console.log(str);
+                    document.getElementById("pause_modal_body").innerText=str;
+
 
                     $("#pause_exp_modal").modal('show');
                     //console.log("pause");
