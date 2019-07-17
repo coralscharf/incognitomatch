@@ -110,6 +110,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.files_to_upload={"csv":"","xml":[],"xsd":[]};
         $scope.time_to_pause="";
         $scope.disp_feedback=false;
+        $scope.test_schema="";
 
 
     }; //the function
@@ -120,7 +121,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.hide_pages = function () {
         $("#home").hide();
-        $("#page2").hide();
+        $("#riddle").hide();
         $("#experiment").hide();
         $("#begin_exp_user").hide();
         $("#finish_exp").hide();
@@ -128,8 +129,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         //console.log("hide");
     };
 
-    $scope.show_page2 = function () {
-        $("#page2").show();
+    $scope.show_riddle = function () {
+        $("#riddle").show();
 
     };
     $scope.show_exp = function () {
@@ -140,6 +141,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.disp_feedback=false;
         $("#begin_exp_user").show();
 
+    };
+    $scope.show_test = function() {
+        $("#riddle").hide();
+        document.getElementById("riddle_1").value="";
+        document.getElementById("riddle_2").value="";
+        document.getElementById("riddle_3").value="";
+        $scope.begin_exp($scope.test_schema);
     };
     $scope.begin_exp = function(exp){
         $("#experiment").show();
@@ -224,13 +232,20 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             {
                 $("#begin_exp_user").hide();
                 $scope.exp_after_test = data.data[0];
-                let test_schema=data.data[1];
+                // TODO: need to chose here random test schema for Ofra
+                $scope.test_schema=data.data[1];
                 $scope.curr_user={"first":document.getElementById("new_user_first").value,
                     "last":document.getElementById("new_user_last").value,
                     "id": data.data[2]
                 };
                 //console.log("test",test_schema);
-                $scope.begin_exp(test_schema);
+
+                // for Ofra only this:
+                //$scope.begin_exp(test_schema);
+
+                // for Roee only this:
+                $scope.show_riddle();
+
                 $scope.clear_user_form();
             }
             else

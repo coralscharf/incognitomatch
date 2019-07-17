@@ -41,7 +41,7 @@
 		include "html/home.html";
         include "html/finish_exp.html";
         include "html/nav.html";
-        include "html/page2.html";
+        include "html/riddle.html";
         include "html/exp.html";
         include "html/new_user.html";
 		include "html/instruction_after.html"
