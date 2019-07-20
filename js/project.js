@@ -437,7 +437,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.exp_res = function(){
 
-        console.log($scope.user_ans_match);
         //console.log($scope.last_time_mouse);
         $http({
             method: 'POST',
@@ -449,7 +448,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 sch_id_2: $scope.schema2[0]['sch_id'],
                 realconf: $scope.schema[0]['realConf'],
                 userconf: document.getElementById("user_confidence").value,
-                mouse_loc: $scope.mouse_moves
+                mouse_loc: $scope.mouse_moves,
+                user_ans_match:$scope.user_ans_match
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'

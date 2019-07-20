@@ -6,6 +6,7 @@ $sch_id_2=stripcslashes($_POST['sch_id_2']);
 $realconf=stripcslashes($_POST['realconf']);
 $userconf=stripcslashes($_POST['userconf']);
 $mouse_loc=$_POST['mouse_loc'];
+$user_ans_match=stripcslashes($_POST['user_ans_match']);
 
 
 $connectionInfo = array("UID" => "avivf@avivtest", "pwd" => "1qaZ2wsX!", "Database" => "avivtest", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
@@ -17,8 +18,8 @@ for($i=0;$i<sizeof($mouse_loc);$i++)
     $mouse_str=$mouse_str."(".$mouse_loc[$i]["time"].",".$mouse_loc[$i]["x"].",".$mouse_loc[$i]["y"].",".$mouse_loc[$i]["l"].",".$mouse_loc[$i]["r"].",".$mouse_loc[$i]["s"].");";
 }
 
-$sql="insert into exp_results(user_id, exp_id, sch_id_1, sch_id_2, realconf, userconf,rec_time,mouse_loc) 
-    values($user_id,$exp_id,$sch_id_1,$sch_id_2,$realconf,$userconf,getdate(),'$mouse_str')";
+$sql="insert into exp_results(user_id, exp_id, sch_id_1, sch_id_2, realconf, userconf,rec_time,mouse_loc,user_ans_is_match) 
+    values($user_id,$exp_id,$sch_id_1,$sch_id_2,$realconf,$userconf,getdate(),'$mouse_str',$user_ans_match)";
 
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
