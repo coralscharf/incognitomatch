@@ -144,43 +144,52 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
     $scope.show_test = function() {
 
-        $http({
-            method: 'POST',
-            url: 'php/riddles.php',
-            data: $.param({
-                riddle_1: document.getElementById("riddle_1").value,
-                riddle_2: document.getElementById("riddle_2").value,
-                riddle_3: document.getElementById("riddle_3").value,
-                riddle_4: document.getElementById("riddle_4").value,
-                riddle_5: document.getElementById("riddle_5").value,
-                riddle_6: document.getElementById("riddle_6").value,
-                riddle_7: document.getElementById("riddle_7").value,
-                user_id: $scope.curr_user['id']
-            }),
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        }).then(function (data) {
-            if (data.data !== "err")
-            {
-                $("#riddle").hide();
-                document.getElementById("riddle_1").value="";
-                document.getElementById("riddle_2").value="";
-                document.getElementById("riddle_3").value="";
-                document.getElementById("riddle_4").value="";
-                document.getElementById("riddle_5").value="";
-                document.getElementById("riddle_6").value="";
-                document.getElementById("riddle_7").value="";
-                $scope.begin_exp($scope.test_schema);
-            }
-            else
-            {
-                console.log(data.data);
-            }
 
-        });
+        // if need to answer all riddle duplicate this.
+        if (document.getElementById("riddle_1").value === "")
+        {
+            document.getElementById("riddle_err_log").innerHTML="please answer riddle number 1";
+            $timeout(function() {
+                document.getElementById("riddle_err_log").innerHTML="";
+            },3000);
+        }
+        else {
 
 
+            $http({
+                method: 'POST',
+                url: 'php/riddles.php',
+                data: $.param({
+                    riddle_1: document.getElementById("riddle_1").value,
+                    riddle_2: document.getElementById("riddle_2").value,
+                    riddle_3: document.getElementById("riddle_3").value,
+                    riddle_4: document.getElementById("riddle_4").value,
+                    riddle_5: document.getElementById("riddle_5").value,
+                    riddle_6: document.getElementById("riddle_6").value,
+                    riddle_7: document.getElementById("riddle_7").value,
+                    user_id: $scope.curr_user['id']
+                }),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            }).then(function (data) {
+                if (data.data !== "err") {
+                    $("#riddle").hide();
+                    document.getElementById("riddle_1").value = "";
+                    document.getElementById("riddle_2").value = "";
+                    document.getElementById("riddle_3").value = "";
+                    document.getElementById("riddle_4").value = "";
+                    document.getElementById("riddle_5").value = "";
+                    document.getElementById("riddle_6").value = "";
+                    document.getElementById("riddle_7").value = "";
+                    $scope.begin_exp($scope.test_schema);
+                } else {
+                    console.log(data.data);
+                }
+
+            });
+
+        }
     };
     $scope.begin_exp = function(exp){
         $("#experiment").show();
