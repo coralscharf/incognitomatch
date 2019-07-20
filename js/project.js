@@ -437,8 +437,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.exp_res = function(){
 
-        console.log(document.getElementById("user_ans_yes").value);
-        console.log(document.getElementById("user_ans_no").value);
+        console.log($scope.user_ans_match);
         //console.log($scope.last_time_mouse);
         $http({
             method: 'POST',
