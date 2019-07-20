@@ -47,7 +47,7 @@
     </schema>
     <schema id="14" parent="2" name="dbo">
       <ObjectId>1</ObjectId>
-      <IntrospectionTimestamp>2019-07-20.17:31:26.490</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2019-07-20.17:54:44.870</IntrospectionTimestamp>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -75,7 +75,7 @@
     <table id="20" parent="14" name="exp_results">
       <ObjectId>1621580815</ObjectId>
       <CreatedTimestamp>2019-04-28.11:58:41.700</CreatedTimestamp>
-      <ModifiedTimestamp>2019-05-09.19:12:08.150</ModifiedTimestamp>
+      <ModifiedTimestamp>2019-07-20.17:54:39.730</ModifiedTimestamp>
     </table>
     <table id="21" parent="14" name="exp_schema">
       <ObjectId>1525580473</ObjectId>
@@ -95,7 +95,7 @@
     <table id="24" parent="14" name="riddles">
       <ObjectId>18099105</ObjectId>
       <CreatedTimestamp>2019-07-20.17:31:19.253</CreatedTimestamp>
-      <ModifiedTimestamp>2019-07-20.17:31:20.307</ModifiedTimestamp>
+      <ModifiedTimestamp>2019-07-20.17:51:08.767</ModifiedTimestamp>
     </table>
     <column id="25" parent="17" name="id">
       <Position>1</Position>
@@ -259,33 +259,37 @@ alg</ColNames>
       <Position>9</Position>
       <DataType>varchar(2500 char)|0s</DataType>
     </column>
-    <column id="58" parent="21" name="id">
+    <column id="58" parent="20" name="user_ans_is_match">
+      <Position>10</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="59" parent="21" name="id">
       <Position>1</Position>
       <SequenceIdentity>1</SequenceIdentity>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="59" parent="21" name="s_name">
+    <column id="60" parent="21" name="s_name">
       <Position>2</Position>
       <DataType>varchar(200 char)|0s</DataType>
     </column>
-    <column id="60" parent="21" name="exp_id">
+    <column id="61" parent="21" name="exp_id">
       <Position>3</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="61" parent="21" name="col_name">
+    <column id="62" parent="21" name="col_name">
       <Position>4</Position>
       <DataType>varchar(250 char)|0s</DataType>
     </column>
-    <column id="62" parent="21" name="col_type">
+    <column id="63" parent="21" name="col_type">
       <Position>5</Position>
       <DataType>varchar(250 char)|0s</DataType>
     </column>
-    <column id="63" parent="21" name="col_parent_id">
+    <column id="64" parent="21" name="col_parent_id">
       <Position>6</Position>
       <DataType>int|0s</DataType>
     </column>
-    <index id="64" parent="21" name="exp_schame_pk">
+    <index id="65" parent="21" name="exp_schame_pk">
       <Position>2</Position>
       <ColNames>exp_id
 s_name
@@ -293,7 +297,7 @@ col_name
 col_parent_id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="65" parent="21" name="exp_schame_pk">
+    <key id="66" parent="21" name="exp_schame_pk">
       <ObjectId>1541580530</ObjectId>
       <CreatedTimestamp>2019-04-08.11:32:50.057</CreatedTimestamp>
       <ModifiedTimestamp>2019-04-08.11:32:50.057</ModifiedTimestamp>
@@ -303,143 +307,143 @@ col_name
 col_parent_id</ColNames>
       <UnderlyingIndexName>exp_schame_pk</UnderlyingIndexName>
     </key>
-    <column id="66" parent="22" name="id">
+    <column id="67" parent="22" name="id">
       <Position>1</Position>
       <SequenceIdentity>1</SequenceIdentity>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="67" parent="22" name="u_first">
+    <column id="68" parent="22" name="u_first">
       <Position>2</Position>
       <DataType>varchar(250 char)|0s</DataType>
     </column>
-    <column id="68" parent="22" name="u_last">
+    <column id="69" parent="22" name="u_last">
       <Position>3</Position>
       <DataType>varchar(250 char)|0s</DataType>
     </column>
-    <column id="69" parent="22" name="email">
+    <column id="70" parent="22" name="email">
       <Position>4</Position>
       <DataType>varchar(250 char)|0s</DataType>
     </column>
-    <column id="70" parent="22" name="u_loc">
+    <column id="71" parent="22" name="u_loc">
       <Position>5</Position>
       <DataType>varchar(250 char)|0s</DataType>
     </column>
-    <column id="71" parent="22" name="lang">
+    <column id="72" parent="22" name="lang">
       <Position>6</Position>
       <DataType>varchar(250 char)|0s</DataType>
     </column>
-    <column id="72" parent="22" name="age">
+    <column id="73" parent="22" name="age">
       <Position>7</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="73" parent="22" name="occupation">
+    <column id="74" parent="22" name="occupation">
       <Position>8</Position>
       <DataType>varchar(500 char)|0s</DataType>
     </column>
-    <column id="74" parent="22" name="education">
+    <column id="75" parent="22" name="education">
       <Position>9</Position>
       <DataType>varchar(500 char)|0s</DataType>
     </column>
-    <column id="75" parent="22" name="gender">
+    <column id="76" parent="22" name="gender">
       <Position>10</Position>
       <DataType>varchar(50 char)|0s</DataType>
     </column>
-    <column id="76" parent="23" name="id">
+    <column id="77" parent="23" name="id">
       <Position>1</Position>
       <SequenceIdentity>1</SequenceIdentity>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="77" parent="23" name="name">
+    <column id="78" parent="23" name="name">
       <Position>2</Position>
       <DataType>varchar(500 char)|0s</DataType>
     </column>
-    <column id="78" parent="23" name="schema_name">
+    <column id="79" parent="23" name="schema_name">
       <Position>3</Position>
       <DataType>varchar(500 char)|0s</DataType>
     </column>
-    <column id="79" parent="23" name="num_pairs">
+    <column id="80" parent="23" name="num_pairs">
       <Position>4</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="80" parent="23" name="disp_instance">
+    <column id="81" parent="23" name="disp_instance">
       <Position>5</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="81" parent="23" name="disp_type">
+    <column id="82" parent="23" name="disp_type">
       <Position>6</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="82" parent="23" name="disp_h">
+    <column id="83" parent="23" name="disp_h">
       <Position>7</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="83" parent="23" name="disp_feedback">
+    <column id="84" parent="23" name="disp_feedback">
       <Position>8</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="84" parent="23" name="disp_control">
+    <column id="85" parent="23" name="disp_control">
       <Position>9</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="85" parent="23" name="is_active">
+    <column id="86" parent="23" name="is_active">
       <Position>10</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="86" parent="24" name="id">
+    <column id="87" parent="24" name="id">
       <Position>1</Position>
       <SequenceIdentity>1</SequenceIdentity>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="87" parent="24" name="user_id">
+    <column id="88" parent="24" name="user_id">
       <Position>2</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="88" parent="24" name="riddle_1">
+    <column id="89" parent="24" name="riddle_1">
       <Position>3</Position>
-      <DataType>int|0s</DataType>
+      <DataType>float|0s</DataType>
     </column>
-    <column id="89" parent="24" name="riddle_2">
+    <column id="90" parent="24" name="riddle_2">
       <Position>4</Position>
-      <DataType>int|0s</DataType>
+      <DataType>float|0s</DataType>
     </column>
-    <column id="90" parent="24" name="riddle_3">
+    <column id="91" parent="24" name="riddle_3">
       <Position>5</Position>
-      <DataType>int|0s</DataType>
+      <DataType>float|0s</DataType>
     </column>
-    <column id="91" parent="24" name="riddle_4">
+    <column id="92" parent="24" name="riddle_4">
       <Position>6</Position>
-      <DataType>int|0s</DataType>
+      <DataType>float|0s</DataType>
     </column>
-    <column id="92" parent="24" name="riddle_5">
+    <column id="93" parent="24" name="riddle_5">
       <Position>7</Position>
-      <DataType>int|0s</DataType>
+      <DataType>float|0s</DataType>
     </column>
-    <column id="93" parent="24" name="riddle_6">
+    <column id="94" parent="24" name="riddle_6">
       <Position>8</Position>
-      <DataType>int|0s</DataType>
+      <DataType>float|0s</DataType>
     </column>
-    <column id="94" parent="24" name="riddle_7">
+    <column id="95" parent="24" name="riddle_7">
       <Position>9</Position>
-      <DataType>int|0s</DataType>
+      <DataType>float|0s</DataType>
     </column>
-    <column id="95" parent="24" name="time">
+    <column id="96" parent="24" name="time">
       <Position>10</Position>
       <DataType>datetime|0s</DataType>
     </column>
-    <index id="96" parent="24" name="riddles_id_uindex">
+    <index id="97" parent="24" name="riddles_id_uindex">
       <Position>2</Position>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="97" parent="24" name="riddles_pk">
+    <index id="98" parent="24" name="riddles_pk">
       <Position>3</Position>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="98" parent="24" name="riddles_pk">
+    <key id="99" parent="24" name="riddles_pk">
       <ObjectId>34099162</ObjectId>
       <CreatedTimestamp>2019-07-20.17:31:20.303</CreatedTimestamp>
       <ModifiedTimestamp>2019-07-20.17:31:20.303</ModifiedTimestamp>
