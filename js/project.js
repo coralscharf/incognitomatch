@@ -460,7 +460,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             {
                 $scope.getExp($scope.curr_exp_id);
                 document.getElementById("user_confidence").value=0; // init range to 0
-                $scope.user_ans_match = false;
+                $scope.user_ans_match = false; // init radio button match/no match
                 // to disable init array of mouse locations add the comment sign
                 $scope.mouse_moves=[];
 
@@ -775,28 +775,24 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     };
 
-    $scope.decorateWithSpace = function(num,val) {
-
-        return Array(+num + 1).join(' - ')+val+ "<i class=\"fas fa-folder-open\"></i>";
-
-
-    };
+    
 
     $scope.getCustomRepeatArray = function (size) {
-
-
-        let bla=new Array(size);
+        // this function makes the hierarchy design in the exp form.
+        // get the current level in the hierarchy and return an array in that size - this is for ng repeat.
+        let sized_array=new Array(size);
         for (let b=0;b<size-1;b++)
         {
-            bla[b]=b;
+            sized_array[b]=b;
         }
 
-        return bla;
+        return sized_array;
     };
 
 
     
     $scope.get_exp_for_update = function () {
+        // this function get all the experiments meta data for the update modal for the admin.
         $http({
             method: 'POST',
             url: 'php/get_exp_for_update.php',
@@ -826,6 +822,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
     $scope.update_exp = function () {
+        // this function update every experiment according to changes made by admin in the update experiment modal.
         let exps = [];
         for (let i = 0; i < $scope.exp_ids.length; i++)
         {
