@@ -460,11 +460,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             {
                 $scope.getExp($scope.curr_exp_id);
                 document.getElementById("user_confidence").value=0; // init range to 0
-                // to init array of mouse locations remove the comment sign
+                $scope.user_ans_match = false;
+                // to disable init array of mouse locations add the comment sign
                 $scope.mouse_moves=[];
-                //$scope.last_time_mouse="";
+
                 $scope.curr_count_ans = $scope.curr_count_ans + 1;
-                //console.log($scope.curr_count_ans);
                 if ($scope.curr_count_ans >=  $scope.total_ans_needed) // check if exp is done
                 {
                     if($scope.done_test === false) // check if user in test exp, if yes - show instruction, else show finished
