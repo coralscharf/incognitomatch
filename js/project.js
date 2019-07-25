@@ -511,6 +511,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
             else // error while update the answer from user
             {
+                console.log($scope.mouse_moves);
                 console.log(data.data);
             }
 
