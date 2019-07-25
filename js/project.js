@@ -84,11 +84,10 @@ app.directive('starRating', function () {
 app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUpload, $window, $element, $timeout) {
 
     $scope.init_avivTest = function () {
-        //$("#nav").show();
-        //$scope.hidePages();
-        $scope.hide_pages();
+        // this function called when loading the site. init all params.
 
-        //console.log("bb");
+
+        $scope.hide_pages();
         $scope.show_home();
         $scope.schema2=[];
         $scope.schema=[];
@@ -116,10 +115,12 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     }; //the function
 
     $scope.show_home = function(){
+        // this function show the home div - the instuctions.
         $("#home").show();
     };
 
     $scope.hide_pages = function () {
+        //this function hide all pages.
         $("#home").hide();
         $("#riddle").hide();
         $("#experiment").hide();
@@ -130,10 +131,12 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
     $scope.show_riddle = function () {
+        //this function show the riddles div after the user read the instruction.
         $("#riddle").show();
 
     };
     $scope.show_exp = function () {
+        // this function show the new user form after clicking on the "experiment" in the nav bar.
         $scope.exclude_ids="";
         $scope.curr_order=1;
         $scope.mouse_moves=[];
@@ -142,8 +145,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $("#begin_exp_user").show();
 
     };
+
     $scope.show_test = function() {
 
+        //this function save the riddles answers and forward the user to the test schema.
 
         // if need to answer all riddle duplicate this.
         if (document.getElementById("riddle_1").value === "")
@@ -192,6 +197,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         }
     };
     $scope.begin_exp = function(exp){
+        //this function set the experiment form accordingly to the correct settings and call getExp function
+        // to get the first pair.
+
         $("#experiment").show();
         if (exp['disp_type'] === 0)
         {
@@ -237,6 +245,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.clear_user_form = function()
     {
+        //this function clear the new user form after data saved.
         document.getElementById("new_user_first").value="";
         document.getElementById("new_user_last").value="";
         document.getElementById("new_user_email").value="";
@@ -249,8 +258,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
 
     $scope.new_user_exp = function(){
+        // this function create new user for experiment.
+
         $scope.curr_count_ans=0;
-        //console.log($scope.curr_user);
         $http({
             method: 'POST',
             url: 'php/exp_new_user.php',
@@ -304,8 +314,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
 
     $scope.getExp2 = function (callback,exp_id) {
-        //console.log("getExp2",exp_id);
-        //console.log("order", $scope.curr_order);
+        // function to retrieves the term from shcema 1
+
         $http({
             method: 'POST',
             url: 'php/get_exp_info.php',
@@ -376,8 +386,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
     $scope.getExp = function(exp_id){
+        // this function retrieves from the DB a pair to display in the expertiment.
+        // first the callback function run - the term from schema 1.
+
         $scope.getExp2(function(schema){
-            //console.log(schema);
+            // then this function - the term from schema 2.
             $http({
                 method: 'POST',
                 url: 'php/get_exp_info.php',
@@ -436,8 +449,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
 
     $scope.exp_res = function(){
+        //this function save user answer for current pair to DB.
 
-        //console.log($scope.last_time_mouse);
         $http({
             method: 'POST',
             url: 'php/exp_res.php',
@@ -518,6 +531,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
     $scope.show_pause_after_feedback = function(){
+        // this function show pause modal after the feedback modal dismissed.
+
         if($scope.done_test === true && ($scope.curr_count_ans % $scope.time_to_pause === 0)) {
             // show pause modal every $scope.time_to_pause answers
             // show pause only for non-test schema
@@ -531,13 +546,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
     $scope.after_instructions = function () {
-
-
+        // this function redirect user to begin the experiment
         $scope.begin_exp($scope.exp_after_test);
         $("#instruction_after").hide();
     };
 
     $scope.new_admin = function() {
+        // this function create new admin.
         $http({
             method: 'POST',
             url: 'php/new_admin.php',
@@ -570,6 +585,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     };
     $scope.admin_login = function() {
+        // this function check if admin authenticate correctly and adds menu options for admin.
         $http({
             method: 'POST',
             url: 'php/admin_login.php',
@@ -623,6 +639,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
     $scope.admin_logout = function(){
+        // this function disconnect admin user and remove the admin panel from nav bar.
         $http({
             method: 'POST',
             url: 'php/new_exp.php',
@@ -738,7 +755,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
     $scope.captureCoordinate = function($event){
-        // save mouse location every 500 milliseconds (0.5 second)
+        // this function save mouse location every 500 milliseconds (0.5 second)
         let d = new Date();
         if ($scope.last_time_mouse.length === 0)
         {
@@ -775,7 +792,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     };
 
-    
+
 
     $scope.getCustomRepeatArray = function (size) {
         // this function makes the hierarchy design in the exp form.
