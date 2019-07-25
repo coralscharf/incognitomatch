@@ -23,6 +23,6 @@ $sql="insert into exp_results(user_id, exp_id, sch_id_1, sch_id_2, realconf, use
 
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
-    return (sqlsrv_errors());
+    echo $mouse_str;
 sqlsrv_free_stmt($getResults);
 echo "1";
