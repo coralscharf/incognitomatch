@@ -7,7 +7,7 @@ $show_type=stripcslashes($_POST['show_type']);
 $show_hierarchy=stripcslashes($_POST['show_hierarchy']);
 $show_feedback=stripcslashes($_POST['show_feedback']);
 $show_control=stripcslashes($_POST['show_control']);
-$files = $_POST['files'];
+//$files = $_POST['files'];
 
 
 $connectionInfo = array("UID" => "avivf@avivtest", "pwd" => "1qaZ2wsX!", "Database" => "avivtest", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
@@ -65,9 +65,9 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     $exp_id=$row['id'];
 }
 
-
+echo $exp_id;
 sqlsrv_free_stmt($getResults);
-$xml="";
+/*$xml="";
 for ($i=0; $i<sizeof($files['xml']);$i++)
 {
     $xml=$xml.$files['xml'][$i].',';
@@ -82,5 +82,5 @@ echo $out;
 //$out= shell_exec ("D:\home\site\wwwroot\aviv\scripts\cluster.exe \"BANK OF AMERICA CORPORATION\"" );
 //exec( "D:\home\site\wwwroot\aviv\scripts\cluster.exe \"BANK OF AMERICA CORPORATION\"", $output,$ret);
 //exec( "D:\home\site\wwwroot\aviv\scripts\hello.exe", $output,$ret);
-//echo $ret;
-echo "1";
+//echo $ret;*/
+echo "err";

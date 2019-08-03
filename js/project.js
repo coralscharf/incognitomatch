@@ -720,38 +720,36 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
     $scope.add_exp = function () {
-        //upload file before insert new exp
-        $scope.upload_exp_files(function() {
-            $http({
-                method: 'POST',
-                url: 'php/new_exp.php',
-                data: $.param({
-                    exp_name: document.getElementById("exp_name").value,
-                    exp_sch_name: document.getElementById("exp_sch_name").value,
-                    exp_num_pairs: document.getElementById("exp_num_pairs").value,
-                    show_instance: document.getElementById("show_instance").checked,
-                    show_type: document.getElementById("show_type").checked,
-                    show_hierarchy: document.getElementById("show_hierarchy").checked,
-                    show_feedback: document.getElementById("show_feedback").checked,
-                    show_control: document.getElementById("show_control").checked,
-                    files: $scope.files_to_upload
-                }),
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            }).then(function (data) {
 
-                if (data.data === "1") {
-                    console.log((data.data));
+        $http({
+            method: 'POST',
+            url: 'php/new_exp.php',
+            data: $.param({
+                exp_name: document.getElementById("exp_name").value,
+                exp_sch_name: document.getElementById("exp_sch_name").value,
+                exp_num_pairs: document.getElementById("exp_num_pairs").value,
+                show_instance: document.getElementById("show_instance").checked,
+                show_type: document.getElementById("show_type").checked,
+                show_hierarchy: document.getElementById("show_hierarchy").checked,
+                show_feedback: document.getElementById("show_feedback").checked,
+                show_control: document.getElementById("show_control").checked,
+                //files: $scope.files_to_upload
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function (data) {
 
-                } else {
-                    console.log(data.data);
-                }
+            if (data.data === "err") {
+                console.log((data.data));
 
-            });
-
+            } else {
+                console.log("new exp id:", data.data);
+            }
 
         });
+
+
     };
 
     $scope.captureCoordinate = function($event){
