@@ -91,6 +91,9 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
         'disp_control' => $row['disp_control']
     ];
 }
+#for roee:
+#->>$res=[$arr[$ind],$test_sch,$user_id];
 
-$res=[$arr[$ind],$test_sch,$user_id];
+#for ofra:
+$res=[$test_sch,$arr[$ind],$user_id];
 echo json_encode($res);
