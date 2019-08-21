@@ -213,7 +213,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
             });
 
-        
+
     };
     $scope.begin_exp = function(exp){
         //this function set the experiment form accordingly to the correct settings and call getExp function
