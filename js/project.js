@@ -132,6 +132,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.show_riddle = function () {
         //this function show the riddles div after the user read the instruction.
+
+        $("#riddle").show();
         $("#riddle_1").show();
         $("#riddle_2").show();
         $("#riddle_3").show();
@@ -139,8 +141,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $("#riddle_5").show();
         $("#riddle_6").show();
         $("#riddle_7").show();
-        $("#riddle").show();
-
         let hide1=Math.floor((Math.random() * 7) + 1);
         let choose = false;
         let hide2;
