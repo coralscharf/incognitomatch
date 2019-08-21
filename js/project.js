@@ -145,7 +145,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
         }
         let str1="#tr_riddle_"+hide1;
-        
+
         let str2="#tr_riddle_"+hide2;
         console.log(str1,str2);
         $(str1).hide();
