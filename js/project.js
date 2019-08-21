@@ -133,6 +133,23 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     $scope.show_riddle = function () {
         //this function show the riddles div after the user read the instruction.
         $("#riddle").show();
+        let hide1=Math.floor((Math.random() * 7) + 1);
+        let choose = false;
+        let hide2;
+        while (!choose)
+        {
+            hide2=Math.floor((Math.random() * 7) + 1);
+            if (hide1!==hide2)
+            {
+                choose = true;
+            }
+        }
+        let str1="#tr_riddle_"+hide1;
+        let str2="#tr_riddle_"+hide2;
+        $(str1).hide();
+        $(str2).hide();
+
+
 
     };
     $scope.show_exp = function () {
