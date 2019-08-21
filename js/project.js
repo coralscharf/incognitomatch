@@ -115,7 +115,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     }; //the function
 
     $scope.show_home = function(){
-        // this function show the home div - the instuctions.
+        // this function show the home div - the instructions.
         $("#home").show();
     };
 
@@ -284,7 +284,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             {
                 $("#begin_exp_user").hide();
                 $scope.exp_after_test = data.data[0];
-                // TODO: need to chose here random test schema for Ofra
+                console.log("group_name:",$scope.exp_after_test['schema_name']);
                 $scope.test_schema=data.data[1];
                 $scope.curr_user={"first":document.getElementById("new_user_first").value,
                     "last":document.getElementById("new_user_last").value,
@@ -471,7 +471,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             //console.log((data.data));
             if (data.data === "1")
             {
-                $scope.getExp($scope.curr_exp_id);
+                $scope.getExp($scope.curr_exp_id); // TODO: check for move it to the end
                 document.getElementById("user_confidence").value=0; // init range to 0
                 $scope.user_ans_match = false; // init radio button match/no match
                 // to disable init array of mouse locations add the comment sign
@@ -497,7 +497,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     }
 
                 }
-                else if($scope.done_test === true && $scope.disp_feedback === true )
+                else if($scope.done_test === true && $scope.disp_feedback === true ) // TODO: for ofra need to change to false
                 {
                     $("#disp_feedback_modal").modal('show');
                 }
@@ -842,7 +842,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         for (let i = 0; i < $scope.exp_ids.length; i++)
         {
             let name_l="upt_exp_name_"+$scope.exp_ids[i];
-            let schema_name_l="upt_exp_shema_name_"+$scope.exp_ids[i];
+            let schema_name_l="upt_exp_shcema_name_"+$scope.exp_ids[i];
             let num_pairs_l="upt_exp_num_pairs_"+$scope.exp_ids[i];
             let upt_exp_disp_instacne = "upt_exp_disp_instacne_checked_"+$scope.exp_ids[i];
 

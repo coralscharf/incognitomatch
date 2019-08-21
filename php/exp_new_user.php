@@ -37,7 +37,10 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
 
 sqlsrv_free_stmt($getResults);
 # choose randomly an active experiment which is not an test schema.
-$get_exp_id="SELECT * from experiments where is_active=1 and [name]!= 'Test'";
+#for roee:
+#->> $get_exp_id="SELECT * from experiments where is_active=1 and [name]!= 'Test'";
+# for ofra:
+$get_exp_id="SELECT * from experiments where is_active=1 and [name]= 'Test'";
 $getResults= sqlsrv_query($conn, $get_exp_id);
 if ($getResults == FALSE)
 {
@@ -49,6 +52,7 @@ $arr=array();
 while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     $arr[] = array(
         'id' => $row['id'],
+        'schema_name' => $row['schema_name'],
         'num_pairs' => $row['num_pairs'],
         'disp_instance' => $row['disp_instance'],
         'disp_type' => $row['disp_type'],
@@ -64,7 +68,11 @@ sqlsrv_free_stmt($getResults);
 $ind=rand(0,sizeof($arr)-1);
 
 # get id for test scheme
-$get_exp_id_test="SELECT * from experiments where is_active=1 and [name]= 'Test'";
+#for roee:
+# -> $get_exp_id_test="SELECT * from experiments where is_active=1 and [name]= 'Test'";
+
+#for ofra:
+$get_exp_id_test="SELECT * from experiments where is_active=1 and [name]!= 'Test'";
 $getResults= sqlsrv_query($conn, $get_exp_id_test);
 if ($getResults == FALSE)
 {
@@ -74,7 +82,7 @@ if ($getResults == FALSE)
 $test_sch="";
 while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     $test_sch=[
-    'id' => $row['id'],
+        'id' => $row['id'],
         'num_pairs' => $row['num_pairs'],
         'disp_instance' => $row['disp_instance'],
         'disp_type' => $row['disp_type'],
