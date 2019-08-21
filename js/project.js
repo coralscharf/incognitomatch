@@ -284,8 +284,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             {
                 $("#begin_exp_user").hide();
                 $scope.exp_after_test = data.data[0];
-                console.log("group_name:",$scope.exp_after_test['schema_name']);
+
                 $scope.test_schema=data.data[1];
+                console.log("group_name:",$scope.test_schema['schema_name']);
                 $scope.curr_user={"first":document.getElementById("new_user_first").value,
                     "last":document.getElementById("new_user_last").value,
                     "id": data.data[2]
