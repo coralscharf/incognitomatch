@@ -170,14 +170,14 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         //this function save the riddles answers and forward the user to the test schema.
 
         // if need to answer all riddle duplicate this.
-        if (document.getElementById("riddle_1").value === "")
+        /*if (document.getElementById("riddle_1").value === "")
         {
             document.getElementById("riddle_err_log").innerHTML="please answer riddle number 1";
             $timeout(function() {
                 document.getElementById("riddle_err_log").innerHTML="";
             },3000);
         }
-        else {
+        else {*/
 
 
             $http({
@@ -213,7 +213,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
             });
 
-        }
+        
     };
     $scope.begin_exp = function(exp){
         //this function set the experiment form accordingly to the correct settings and call getExp function
