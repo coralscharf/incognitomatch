@@ -110,6 +110,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.time_to_pause="";
         $scope.disp_feedback=false;
         $scope.test_schema="";
+        $scope.curr_realConf="";
+        $scope.user_total_ans_right=0;
 
 
     }; //the function
@@ -407,6 +409,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             {
                 $scope.curr_order = $scope.curr_order + 1;
             }
+            $scope.curr_realConf = $scope.schema[0]['realConf'];
             document.getElementById("user_confidence").value=0;
             callback($scope.schema);
         });
@@ -525,12 +528,66 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     }
 
                 }
-                else if($scope.done_test === true && $scope.disp_feedback === true ) // TODO: for ofra need to change to false
+                else if($scope.done_test === false && $scope.disp_feedback === true ) // TODO: for roee need to change to True: $scope.done_test === true
                 {
-                    $("#disp_feedback_modal").modal('show');
+                    if ($scope.test_schema['schema_name'] === 2 ) {
+                        if ($scope.curr_realConf === $scope.user_ans_match ) // the user was right
+                        {
+                            $scope.user_total_ans_right += 1;
+                        }
+                        if ($scope.curr_count_ans - 1 % 5 === 0) {
+                            document.getElementById("feedback_body").innerHTML = "You were right in ." +
+                                $scope.user_total_ans_right + " answers out of the last 5 pairs.";
+                            $scope.user_total_ans_right = 0;
+                            $("#disp_feedback_modal").modal('show');
+
+                        }
+
+                    }
+                    else if ($scope.test_schema['schema_name'] === 1)
+                    {
+                        let prefix_str ="";
+                        let body_str="";
+                        if ($scope.curr_realConf === $scope.user_ans_match ) // the user was right
+                        {
+                            prefix_str = "Well Done!";
+                        }
+                        else
+                        {
+                            prefix_str = "Your answer is wrong. In order to improve your confidence level in future - Be aware!";
+                        }
+
+                        if ($scope.curr_order === 1 || $scope.curr_order === 2 || $scope.curr_order === 4
+                            || $scope.curr_order === 7 || $scope.curr_order === 10)
+                        {
+                            body_str = "The instances of the Terms are not resembled.";
+                        }
+                        else if ($scope.curr_order === 3 || $scope.curr_order === 5)
+                        {
+                            body_str = "The instances of the Terms are resembled in their types and values.";
+                        }
+                        else if ($scope.curr_order === 6)
+                        {
+                            body_str = "The instances of the Terms are not resembled in their types.";
+                        }
+                        else if ($scope.curr_order === 8)
+                        {
+                            body_str = "The Terms are resembled in their location at the hierarchy and their instances.";
+                        }
+                        else if ($scope.curr_order === 9)
+                        {
+                            body_str = "The Terms are resembled in their instances subject";
+                        }
+                        document.getElementById("feedback_body").innerHTML = prefix_str + "<br>" + body_str;
+                        $("#disp_feedback_modal").modal('show');
+                    }
+
+
+
                 }
 
-
+                // TODO: for roee need remove the comment sign
+                    /*
                 else if($scope.done_test === true && ($scope.curr_count_ans % $scope.time_to_pause === 0)){
                     // show pause modal every $scope.time_to_pause answers
                     // show pause only for non-test schema
@@ -543,11 +600,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     //console.log("pause");
 
 
-                }
-
-
-
-
+                }*/ // untill here
 
             }
             else // error while update the answer from user
