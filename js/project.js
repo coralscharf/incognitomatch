@@ -536,7 +536,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         {
                             $scope.user_total_ans_right += 1;
                         }
-                        if ($scope.curr_count_ans - 1 % 5 === 0) {
+                        if ($scope.curr_count_ans === 6 || $scope.curr_count_ans === 11) {
                             document.getElementById("feedback_body").innerHTML = "You were right in ." +
                                 $scope.user_total_ans_right + " answers out of the last 5 pairs.";
                             $scope.user_total_ans_right = 0;
