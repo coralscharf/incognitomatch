@@ -548,6 +548,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     }
                     else if ($scope.test_schema['schema_name'] === "group1")
                     {
+                        console.log("real conf:",$scope.curr_realConf,$scope.user_ans_match,$scope.user_total_ans_right);
                         let prefix_str ="";
                         let body_str="";
                         if ($scope.curr_realConf === $scope.user_ans_match ) // the user was right
