@@ -519,6 +519,41 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         $("#instruction_after").show();
                         $scope.curr_order = 0;
                         $scope.curr_count_ans = 0;
+                        // TODO: for roee - delete this if:
+                        if ($scope.test_schema['schema_name'] === "group2") {
+                            if (($scope.curr_realConf == 0 && $scope.user_ans_match==false) ||
+                                ($scope.curr_realConf == 1 && $scope.user_ans_match==true)) // the user was right
+                            {
+                                $scope.user_total_ans_right += 1;
+                            }
+
+                            document.getElementById("feedback_body").innerHTML = "You were right in " +
+                                $scope.user_total_ans_right + " answers out of the last 5 pairs.";
+                            $scope.user_total_ans_right = 0;
+                            $("#disp_feedback_modal").modal('show');
+
+                        }
+                        else if ($scope.test_schema['schema_name'] === "group1")
+                        {
+                            let prefix_str="";
+                            let body_str="";
+                            if (($scope.curr_realConf == 0 && $scope.user_ans_match==false) ||
+                                ($scope.curr_realConf == 1 && $scope.user_ans_match==true)) // the user was right
+                            {
+                                prefix_str = "Well Done!";
+                            }
+                            else
+                            {
+                                prefix_str = "Your answer is wrong. In order to improve your confidence level in future - Be aware!";
+                            }
+                            if ($scope.curr_order === 10)
+                            {
+                                body_str = "The instances of the Terms are not resembled.";
+                                document.getElementById("feedback_body").innerHTML = prefix_str + "<br>" + body_str;
+                                $("#disp_feedback_modal").modal('show');
+                            }
+                        }
+
                     }
                     else {
                         console.log($scope.curr_count_ans);
@@ -618,7 +653,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.show_pause_after_feedback = function(){
         // this function show pause modal after the feedback modal dismissed.
-
+        // TODO: for roee need remove the comment sign
+        /*
         if($scope.done_test === true && ($scope.curr_count_ans % $scope.time_to_pause === 0)) {
             // show pause modal every $scope.time_to_pause answers
             // show pause only for non-test schema
@@ -627,7 +663,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
             $("#pause_exp_modal").modal('show');
             //console.log("pause");
-        }
+        }*/
+
+
+
 
     };
 
