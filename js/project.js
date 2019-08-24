@@ -505,7 +505,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             {
                 $scope.getExp($scope.curr_exp_id); // TODO: check for move it to the end
                 document.getElementById("user_confidence").value=0; // init range to 0
-                $scope.user_ans_match = false; // init radio button match/no match
+
                 // to disable init array of mouse locations add the comment sign
                 $scope.mouse_moves=[];
 
@@ -606,7 +606,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
 
                 }*/ // untill here
-
+                $scope.user_ans_match = false; // init radio button match/no match
             }
             else // error while update the answer from user
             {
