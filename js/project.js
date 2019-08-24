@@ -547,12 +547,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             {
                                 prefix_str = "Your answer is wrong. In order to improve your confidence level in future - Be aware!";
                             }
-                            if ($scope.curr_order === 11)
-                            {
-                                body_str = "The instances of the Terms are not resembled.";
-                                document.getElementById("feedback_body").innerHTML = prefix_str + "<br>" + body_str;
-                                $("#disp_feedback_modal").modal('show');
-                            }
+                            
+                            body_str = "The instances of the Terms are not resembled.";
+                            document.getElementById("feedback_body").innerHTML = prefix_str + "<br>" + body_str;
+                            $("#disp_feedback_modal").modal('show');
+
                         }
                         else
                         {
