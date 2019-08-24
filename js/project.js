@@ -112,6 +112,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.test_schema="";
         $scope.curr_realConf="";
         $scope.user_total_ans_right=0;
+        $scope.last_ans=false;
 
 
     }; //the function
@@ -520,8 +521,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         $scope.curr_count_ans = 0;
                         // TODO: for roee - delete this if:
                         if ($scope.test_schema['schema_name'] === "group2") {
-                            if (($scope.curr_realConf == 0 && $scope.user_ans_match==false) ||
-                                ($scope.curr_realConf == 1 && $scope.user_ans_match==true)) // the user was right
+                            if (($scope.curr_realConf === 0 && $scope.user_ans_match===false) ||
+                                ($scope.curr_realConf === 1 && $scope.user_ans_match===true)) // the user was right
                             {
                                 $scope.user_total_ans_right += 1;
                             }
@@ -536,8 +537,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         {
                             let prefix_str="";
                             let body_str="";
-                            if (($scope.curr_realConf == 0 && $scope.user_ans_match==false) ||
-                                ($scope.curr_realConf == 1 && $scope.user_ans_match==true)) // the user was right
+                            if (($scope.curr_realConf === 0 && $scope.last_ans===false) ||
+                                ($scope.curr_realConf === 1 && $scope.last_ans===true)) // the user was right
                             {
                                 prefix_str = "Well Done!";
                             }
@@ -545,7 +546,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             {
                                 prefix_str = "Your answer is wrong. In order to improve your confidence level in future - Be aware!";
                             }
-                            if ($scope.curr_order === 10)
+                            if ($scope.curr_order === 11)
                             {
                                 body_str = "The instances of the Terms are not resembled.";
                                 document.getElementById("feedback_body").innerHTML = prefix_str + "<br>" + body_str;
@@ -646,6 +647,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
 
                 }*/ // untill here
+                $scope.last_ans = $scope.user_ans_match;
                 $scope.user_ans_match = false; // init radio button match/no match
             }
             else // error while update the answer from user
@@ -671,8 +673,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         }*/
 
         // TODO: for roee delete this.
-        if ($scope.done_test)
+        if ($scope.done_test === true)
         {
+            console.log("enter");
             $("#experiment").hide();
             $("#instruction_after").show();
         }
