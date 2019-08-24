@@ -532,6 +532,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 else if($scope.done_test === false && $scope.disp_feedback === true ) // TODO: for roee need to change to True: $scope.done_test === true
                 {
                     if ($scope.test_schema['schema_name'] === "group2") {
+                        console.log("real conf:",$scope.curr_realConf,$scope.user_ans_match,$scope.user_total_ans_right);
                         if ($scope.curr_realConf === $scope.user_ans_match ) // the user was right
                         {
                             $scope.user_total_ans_right += 1;
