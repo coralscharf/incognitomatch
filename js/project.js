@@ -515,8 +515,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     if($scope.done_test === false) // check if user in test exp, if yes - show instruction, else show finished
                     {
                         $scope.done_test = true;
-                        $("#experiment").hide();
-                        $("#instruction_after").show();
+
                         $scope.curr_order = 0;
                         $scope.curr_count_ans = 0;
                         // TODO: for roee - delete this if:
@@ -552,6 +551,12 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                                 document.getElementById("feedback_body").innerHTML = prefix_str + "<br>" + body_str;
                                 $("#disp_feedback_modal").modal('show');
                             }
+                        }
+                        else
+                        {
+                            //TODO: for roee not to delete!!!!! need to be out of the if
+                            $("#experiment").hide();
+                            $("#instruction_after").show();
                         }
 
                     }
@@ -651,7 +656,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         });
     };
 
-    $scope.show_pause_after_feedback = function(){
+    $scope.show_pause_after_feedback = function() {
         // this function show pause modal after the feedback modal dismissed.
         // TODO: for roee need remove the comment sign
         /*
@@ -665,6 +670,12 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             //console.log("pause");
         }*/
 
+        // TODO: for roee delete this.
+        if ($scope.done_test)
+        {
+            $("#experiment").hide();
+            $("#instruction_after").show();
+        }
 
 
 
