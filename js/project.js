@@ -533,7 +533,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 {
                     if ($scope.test_schema['schema_name'] === "group2") {
                         console.log("real conf:",$scope.curr_realConf,$scope.user_ans_match,$scope.user_total_ans_right);
-                        if ($scope.curr_realConf === $scope.user_ans_match ) // the user was right
+                        if (($scope.curr_realConf == 0 && $scope.user_ans_match==false) ||
+                            ($scope.curr_realConf == 1 && $scope.user_ans_match==true)) // the user was right
                         {
                             $scope.user_total_ans_right += 1;
                         }
@@ -551,7 +552,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         console.log("real conf:",$scope.curr_realConf,$scope.user_ans_match,$scope.user_total_ans_right);
                         let prefix_str ="";
                         let body_str="";
-                        if ($scope.curr_realConf === $scope.user_ans_match ) // the user was right
+                        if (($scope.curr_realConf == 0 && $scope.user_ans_match==false) ||
+                            ($scope.curr_realConf == 1 && $scope.user_ans_match==true)) // the user was right
                         {
                             prefix_str = "Well Done!";
                         }
