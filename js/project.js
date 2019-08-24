@@ -511,6 +511,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 $scope.mouse_moves=[];
 
                 $scope.curr_count_ans = $scope.curr_count_ans + 1;
+                console.log("count",$scope.curr_count_ans,$scope.total_ans_needed);
                 if ($scope.curr_count_ans >=  $scope.total_ans_needed) // check if exp is done
                 {
                     if($scope.done_test === false) // check if user in test exp, if yes - show instruction, else show finished
