@@ -59,7 +59,7 @@ $sql="insert into experiments(name, schema_name, num_pairs, disp_instance, disp_
 values('$exp_name','$exp_sch_name',$exp_num_pairs,$show_instance,$show_type,$show_hierarchy,$show_feedback,$show_control,1)";
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
-    return (sqlsrv_errors());
+    echo "err";
 $exp_id="";
 while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     $exp_id=$row['id'];
@@ -83,4 +83,4 @@ echo $out;
 //exec( "D:\home\site\wwwroot\aviv\scripts\cluster.exe \"BANK OF AMERICA CORPORATION\"", $output,$ret);
 //exec( "D:\home\site\wwwroot\aviv\scripts\hello.exe", $output,$ret);
 //echo $ret;*/
-echo "err";
+
