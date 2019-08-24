@@ -261,6 +261,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         else {
             $scope.disp_feedback=false;
         }
+        console.log("disp_feedback:",$scope.disp_feedback);
         $scope.curr_exp_id=exp['id'];
         $scope.total_ans_needed = exp['num_pairs'];
 
@@ -530,7 +531,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 }
                 else if($scope.done_test === false && $scope.disp_feedback === true ) // TODO: for roee need to change to True: $scope.done_test === true
                 {
-                    if ($scope.test_schema['schema_name'] === 2 ) {
+                    if ($scope.test_schema['schema_name'] === "group2") {
                         if ($scope.curr_realConf === $scope.user_ans_match ) // the user was right
                         {
                             $scope.user_total_ans_right += 1;
@@ -544,7 +545,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         }
 
                     }
-                    else if ($scope.test_schema['schema_name'] === 1)
+                    else if ($scope.test_schema['schema_name'] === "group1")
                     {
                         let prefix_str ="";
                         let body_str="";
