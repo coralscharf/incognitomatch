@@ -536,6 +536,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         }
                         else if ($scope.test_schema['schema_name'] === "group1")
                         {
+                            console.log("i am here");
                             let prefix_str="";
                             let body_str="";
                             if (($scope.curr_realConf === 0 && $scope.last_ans===false) ||
@@ -547,7 +548,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             {
                                 prefix_str = "Your answer is wrong. In order to improve your confidence level in future - Be aware!";
                             }
-                            
+
                             body_str = "The instances of the Terms are not resembled.";
                             document.getElementById("feedback_body").innerHTML = prefix_str + "<br>" + body_str;
                             $("#disp_feedback_modal").modal('show');
