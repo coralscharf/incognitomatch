@@ -522,6 +522,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         $scope.curr_count_ans = 0;
                         // TODO: for roee - delete this if:
                         if ($scope.test_schema['schema_name'] === "group2") {
+                            //Coral - change === to ==
                             if (($scope.curr_realConf == 0 && $scope.user_ans_match==false) ||
                                 ($scope.curr_realConf == 1 && $scope.user_ans_match==true)) // the user was right
                             {
