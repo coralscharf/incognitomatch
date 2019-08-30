@@ -630,6 +630,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         }
                         document.getElementById("feedback_body").innerHTML = prefix_str + "<br>" + body_str;
                         $("#disp_feedback_modal").modal('show');
+
+                        //CORAL: After line 608 - add curr_order 1 for the next function
+                        $scope.curr_order = $scope.curr_order + 1;
                     }
 
 
