@@ -522,8 +522,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         $scope.curr_count_ans = 0;
                         // TODO: for roee - delete this if:
                         if ($scope.test_schema['schema_name'] === "group2") {
-                            if (($scope.curr_realConf === 0 && $scope.user_ans_match===false) ||
-                                ($scope.curr_realConf === 1 && $scope.user_ans_match===true)) // the user was right
+                            if (($scope.curr_realConf == 0 && $scope.user_ans_match==false) ||
+                                ($scope.curr_realConf == 1 && $scope.user_ans_match==true)) // the user was right
                             {
                                 $scope.user_total_ans_right += 1;
                             }
@@ -540,8 +540,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             let prefix_str="";
                             let body_str="";
                             //Coral: change last_ans after && to user_ans_match
-                            if (($scope.curr_realConf === 0 && $scope.user_ans_match===false) ||
-                                ($scope.curr_realConf === 1 && $scope.user_ans_match===true)) // the user was right
+                            if (($scope.curr_realConf == 0 && $scope.user_ans_match==false) ||
+                                ($scope.curr_realConf == 1 && $scope.user_ans_match==true)) // the user was right
                             {
                                 prefix_str = "Well Done!";
                             }
