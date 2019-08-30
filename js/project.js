@@ -605,7 +605,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         }
 
                         //CORAL: Add line 608 - reduce curr_order by 1
-                        $scope.curr_order = $scope.curr_order - 1
+                        $scope.curr_order = $scope.curr_order - 1;
+                        console.log("$scope.curr_order ", $scope.curr_order);
                         if ($scope.curr_order === 1 || $scope.curr_order === 2 || $scope.curr_order === 4
                             || $scope.curr_order === 7 || $scope.curr_order === 10)
                         {
