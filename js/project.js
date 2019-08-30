@@ -539,8 +539,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             console.log("i am here");
                             let prefix_str="";
                             let body_str="";
-                            if (($scope.curr_realConf === 0 && $scope.last_ans===false) ||
-                                ($scope.curr_realConf === 1 && $scope.last_ans===true)) // the user was right
+                            //Coral: change last_ans after && to user_ans_match
+                            if (($scope.curr_realConf === 0 && $scope.user_ans_match===false) ||
+                                ($scope.curr_realConf === 1 && $scope.user_ans_match===true)) // the user was right
                             {
                                 prefix_str = "Well Done!";
                             }
@@ -626,7 +627,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         }
                         else if ($scope.curr_order === 9)
                         {
-                            body_str = "The Terms are resembled in their instances subject";
+                            body_str = "The Terms are resembled in their instances subject.";
                         }
                         document.getElementById("feedback_body").innerHTML = prefix_str + "<br>" + body_str;
                         $("#disp_feedback_modal").modal('show');
