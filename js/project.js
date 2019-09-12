@@ -522,8 +522,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         $scope.curr_count_ans = 0;
                         // TODO: for roee - delete this if:
                         if ($scope.test_schema['schema_name'] === "group2") {
-                            if (($scope.curr_realConf === 0 && $scope.user_ans_match===false) ||
-                                ($scope.curr_realConf === 1 && $scope.user_ans_match===true)) // the user was right
+                            //Coral - change === to ==
+                            if (($scope.curr_realConf == 0 && $scope.user_ans_match==false) ||
+                                ($scope.curr_realConf == 1 && $scope.user_ans_match==true)) // the user was right
                             {
                                 $scope.user_total_ans_right += 1;
                             }
@@ -539,8 +540,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             console.log("i am here");
                             let prefix_str="";
                             let body_str="";
-                            if (($scope.curr_realConf === 0 && $scope.last_ans===false) ||
-                                ($scope.curr_realConf === 1 && $scope.last_ans===true)) // the user was right
+                            //Coral: change last_ans after && to user_ans_match
+                            if (($scope.curr_realConf == 0 && $scope.user_ans_match==false) ||
+                                ($scope.curr_realConf == 1 && $scope.user_ans_match==true)) // the user was right
                             {
                                 prefix_str = "Well Done!";
                             }
@@ -604,6 +606,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             prefix_str = "Your answer is wrong. In order to improve your confidence level in future - Be aware!";
                         }
 
+                        //CORAL: Add line 608 - reduce curr_order by 1
+                        $scope.curr_order = $scope.curr_order - 1;
+                        console.log("$scope.curr_order ", $scope.curr_order);
                         if ($scope.curr_order === 1 || $scope.curr_order === 2 || $scope.curr_order === 4
                             || $scope.curr_order === 7 || $scope.curr_order === 10)
                         {
@@ -623,10 +628,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         }
                         else if ($scope.curr_order === 9)
                         {
-                            body_str = "The Terms are resembled in their instances subject";
+                            body_str = "The Terms are resembled in their instances subject.";
                         }
                         document.getElementById("feedback_body").innerHTML = prefix_str + "<br>" + body_str;
                         $("#disp_feedback_modal").modal('show');
+
+                        //CORAL: After line 608 - add curr_order 1 for the next function
+                        $scope.curr_order = $scope.curr_order + 1;
                     }
 
 
