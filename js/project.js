@@ -620,7 +620,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         }
                         else if ($scope.curr_order === 6)
                         {
-                            body_str = "The instances of the Terms are not resembled in their types.";
+                            body_str = "The instances of the Terms are not resembled in their types in the instances." +
+                                "For example, the string 3 is representing a number while three is a string.";
                         }
                         else if ($scope.curr_order === 8)
                         {
@@ -628,7 +629,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         }
                         else if ($scope.curr_order === 9)
                         {
-                            body_str = "The Terms are resembled in their instances subject.";
+                            body_str = "The Terms are resembled in their instances subject." +
+                                "For Example, both 3PM and 3:00 is two ways to represent time.";
                         }
                         document.getElementById("feedback_body").innerHTML = prefix_str + "<br>" + body_str;
                         $("#disp_feedback_modal").modal('show');
