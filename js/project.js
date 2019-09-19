@@ -475,7 +475,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 document.getElementById("B_col_type").innerText=$scope.schema2[0]['col_type'];
                 document.getElementById("B_col_instance").innerText=str_instance;
                 document.getElementById("exp_pair_score").innerText=
-                    $scope.schema2[0]['order']+" similar";
+                    $scope.schema2[0]['score']+" similar";
             });
         },exp_id);
     };
