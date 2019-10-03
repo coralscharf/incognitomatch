@@ -29,13 +29,13 @@
 						</a>
 					</li>
 
-					<!--<li class="nav-item">
-						<a class="nav-link waves-effect" href="#" ng-click="">
+					<li class="nav-item">
+						<a class="nav-link waves-effect" href="#"  data-toggle="modal" data-target="#instruction_modal">
 								<span class="glyphicon glyphicon glyphicon-option-vertical" aria-hidden="true">
 								</span>
-							Statistics
+							Instructions
 						</a>
-					</li>-->
+					</li>
 
 				</ul>
 
@@ -435,6 +435,41 @@
 		</div>
 	</div>
 
+	<div class="modal fade" id="instruction_modal" tabindex="-1" role="dialog" aria-labelledby="Instructions Modal" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" >Instructions</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					In this experiment you will be asked to decide if a pair is match or not match and to scale your confidence level.
+					<br>
+					each pair consist from 2 terms from two different schemes.
+					<br>
+					A Term is a field in schema.
+					<br>
+					For each term you will be given his: name, type, hierarchy and instances (if exists).
+					<br>
+					The color in the hierarchy:
+					<br>
+					green - Parent of the term in the hierarchy.
+					<br>
+					red - The Term.
+					<br>
+					blue - Sibling of the term in the hierarchy.
+					<br>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						Close
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 </div>
