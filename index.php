@@ -32,6 +32,8 @@
     <!-- Your custom styles (optional) -->
     <link href="css/style.css" rel="stylesheet">
 
+    <!-- Add charts script -->
+    <script src="js/chart.js"></script>
 
 </head>
 <body  ng-controller='avivTest' ng-init="init_avivTest()">

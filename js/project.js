@@ -231,6 +231,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     $scope.show_statistics = function(){
         // this function show the home div - the instructions.
         $("#statistics").show();
+        $scope.showCorrectAnswersBar();
     };
 
     $scope.begin_exp = function(exp){
@@ -1124,9 +1125,117 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
 
         });
+    };
 
+    $scope.showCorrectAnswersBar = function () {
+        document.getElementById("correctAnswersBar").innerHTML = "";
 
-    }
+        const ctx = document.getElementById("correctAnswersBar").getContext("2d");
+
+        if ($scope.correctAnswersBar){
+            $scope.correctAnswersBar.destroy();
+        }
+
+        $scope.correctAnswersBar = new Chart(ctx, {
+            type: 'bar',
+            data: [1,2,3,4,5,5,6],
+        });
+
+        document.getElementById("correctAnswersBar").innerHTML = $scope.correctAnswersBar;
+
+        /*$http({
+            method: 'POST',
+            url: 'php/getBiggestCompanies.php',
+            data: $.param({
+                distinctConnections : $scope.distinctConnections
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function (data) {
+            console.log("GET TOP 5");
+            console.log(data.data);
+
+            if (data.data.length !== 0) {
+
+                let xLabels = [];
+
+                let dataForY = {};
+                for(let item in $scope.distinctConnections){
+                    if($scope.distinctConnections[item]['isChecked'] === 1){
+                        dataForY[item] = new Array(5).fill(0);
+                    }
+                }
+
+                for (let i = 1 ; i <= 5; i++){
+                    for (let item in data.data){
+                        if((data.data)[item]['id'] === i){
+                            const name = (data.data)[item]['name'];
+                            const id = (data.data)[item]['id'];
+                            if (xLabels.indexOf(name) === -1 ){
+                                xLabels.push(name);
+                            }
+                            const relationType = (data.data)[item]['relation'];
+                            if($scope.distinctConnections[relationType]['isChecked'] === 1){
+                                dataForY[relationType][id-1] = (data.data)[item]['count'];
+                            }
+                        }
+                    }
+                }
+
+                let colors = $scope.getColors(Object.keys($scope.distinctConnections).length);
+
+                let dataSets = [];
+                let j = 0;
+                for(let item in $scope.distinctConnections){
+                    const relation = item;
+                    const itemForDataSets = {label: relation,
+                        data: dataForY[relation], backgroundColor: colors[j]};
+                    dataSets.push(itemForDataSets);
+                    j++;
+                }
+
+                const ctx = document.getElementById("stackedBar").getContext("2d");
+                if ($scope.stackedBar){
+                    $scope.stackedBar.destroy();
+                }
+
+                $scope.stackedBar = new Chart(ctx, {
+                    type: 'horizontalBar',
+                    data: {
+                        labels: xLabels,
+                        datasets: dataSets
+                    },
+                    options: {
+                        scales: {
+                            xAxes: [{
+                                stacked: true,
+                                ticks: {
+                                    fontColor: "black",
+                                    fontSize: 10,
+                                    stepSize: 5,
+                                    beginAtZero: true,
+                                    autoSkip: true
+                                }
+                            }],
+                            yAxes: [{
+                                stacked: true,
+                                ticks: {
+                                    fontColor: "black",
+                                    fontSize: 10,
+                                }
+                            }]
+                        }
+                    }
+                });
+
+                document.getElementById("stackedBar").innerHTML = $scope.stackedBar;
+
+            } else {
+                console.log('get companies of showBarChart failed');
+            }
+        });*/
+    };
 
 
 });	 //app.controller
