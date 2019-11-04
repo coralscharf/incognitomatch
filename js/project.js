@@ -1159,6 +1159,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             if (data.data.length !== 0) {
 
                 let xLabels = [];
+                let yData = [];
                 let dataSets = [];
 
                 const colors = $scope.getColors(data.data.length);
@@ -1169,6 +1170,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     const totalCorrectAns = (data.data)[item]['totalCorrectAns'];
 
                     xLabels.push(expId);
+                    yData.push(totalCorrectAns);
 
                     const itemForDataSets = {label: expId,
                         data: totalCorrectAns, backgroundColor: colors[j]};
@@ -1189,28 +1191,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     type: 'bar',
                     data: {
                         labels: xLabels,
-                        datasets: dataSets
-                    },
-                    options: {
-                        scales: {
-                            xAxes: [{
-                                stacked: false,
-                                ticks: {
-                                    fontColor: "black",
-                                    fontSize: 10,
-                                    stepSize: 5,
-                                    beginAtZero: true,
-                                    autoSkip: true
-                                }
-                            }],
-                            yAxes: [{
-                                stacked: false,
-                                ticks: {
-                                    fontColor: "black",
-                                    fontSize: 10,
-                                }
-                            }]
-                        }
+                        datasets: [{
+                            data: yData,
+                            backgroundColor: colors,
+                            borderWidth: 1
+                        }]
                     }
                 });
 
