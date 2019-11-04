@@ -44,7 +44,8 @@
         include "html/riddle.html";
         include "html/exp.html";
         include "html/new_user.html";
-		include "html/instruction_after.html"
+		include "html/instruction_after.html";
+        include "html/statistics.html";
 	?>
     <script src="js/mdb.min.js"></script>
 

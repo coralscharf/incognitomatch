@@ -130,6 +130,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $("#begin_exp_user").hide();
         $("#finish_exp").hide();
         $("#instruction_after").hide();
+        $("#statistics").hide();
         //console.log("hide");
     };
 
@@ -226,6 +227,12 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
 
     };
+
+    $scope.show_statistics = function(){
+        // this function show the home div - the instructions.
+        $("#statistics").show();
+    };
+
     $scope.begin_exp = function(exp){
         //this function set the experiment form accordingly to the correct settings and call getExp function
         // to get the first pair.
@@ -772,6 +779,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     "\t\t\t\t\t\t\t<a class=\"dropdown-item\" href=\"#\"  data-toggle=\"modal\" data-target=\"#new_admin\">New Admin</a>\n" +
                     "\t\t\t\t\t\t\t<a class=\"dropdown-item\" href=\"#\"  data-toggle=\"modal\" data-target=\"#add_exp_modal\">Add Experiment</a>\n" +
                     "\t\t\t\t\t\t\t<a class=\"dropdown-item\" href=\"#\"  data-toggle=\"modal\" data-target=\"#update_exp_modal\" ng-click=\"get_exp_for_update()\">Update Experiment</a>\n" +
+                    "\t\t\t\t\t\t\t<a class=\"dropdown-item\" href=\"#\"  ng-click=\"hide_pages(); show_statistics()\">Show Statistics</a>\n" +
                     "\t\t\t\t\t\t\t<a class=\"dropdown-item\" href=\"#\"  ng-click=\"admin_logout()\">Logout</a>\n" +
                     "\t\t\t\t\t\t</div>")($scope));
                 //console.log( $scope.admin_details);
