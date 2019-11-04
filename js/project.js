@@ -1127,10 +1127,98 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         });
     };
 
+    $scope.getColors = function(numOfColors) {
+        let letters = '0123456789ABCDEF';
+        let color = '#';
+        let colors=[];
+        for (let j=0; j < numOfColors ; j++)
+        {
+            color = '#';
+            for (let i = 0; i < 6; i++ ) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            colors.push(color);
+        }
+        return colors;
+    };
+
     $scope.showCorrectAnswersBar = function () {
         document.getElementById("correctAnswersBar").innerHTML = "";
 
-        const ctx = document.getElementById("correctAnswersBar").getContext("2d");
+        $http({
+            method: 'POST',
+            url: 'php/get_num_of_correct_answers.php',
+            data: $.param({
+                expIds : []
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function (data) {
+            console.log(data.data);
+
+            if (data.data.length !== 0) {
+
+                let xLabels = [];
+                let dataSets = [];
+
+                const colors = $scope.getColors(data.data.length);
+
+                let j = 0;
+                for (let item in data.data){
+                    const expId = (data.data)[item]['exp_id'];
+                    const totalCorrectAns = (data.data)[item]['totalCorrectAns'];
+
+                    xLabels.push(expId);
+
+                    const itemForDataSets = {label: expId,
+                        data: totalCorrectAns, backgroundColor: colors[j]};
+                    dataSets.push(itemForDataSets);
+                    j++;
+                }
+
+                const ctx = document.getElementById("correctAnswersBar").getContext("2d");
+                if ($scope.correctAnswersBar){
+                    $scope.correctAnswersBar.destroy();
+                }
+
+                $scope.correctAnswersBar = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: xLabels,
+                        datasets: dataSets
+                    },
+                    options: {
+                        scales: {
+                            xAxes: [{
+                                stacked: false,
+                                ticks: {
+                                    fontColor: "black",
+                                    fontSize: 10,
+                                    stepSize: 5,
+                                    beginAtZero: true,
+                                    autoSkip: true
+                                }
+                            }],
+                            yAxes: [{
+                                stacked: false,
+                                ticks: {
+                                    fontColor: "black",
+                                    fontSize: 10,
+                                }
+                            }]
+                        }
+                    }
+                });
+
+                document.getElementById("correctAnswersBar").innerHTML = $scope.correctAnswersBar;
+
+            } else {
+                console.log('Get bar - number of correct answers failed');
+            }
+        });
+
+        /*const ctx = document.getElementById("correctAnswersBar").getContext("2d");
 
         if ($scope.correctAnswersBar){
             $scope.correctAnswersBar.destroy();
@@ -1173,100 +1261,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
         });
 
-        document.getElementById("correctAnswersBar").innerHTML = $scope.correctAnswersBar;
-
-        /*$http({
-            method: 'POST',
-            url: 'php/getBiggestCompanies.php',
-            data: $.param({
-                distinctConnections : $scope.distinctConnections
-            }),
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        }).then(function (data) {
-            console.log("GET TOP 5");
-            console.log(data.data);
-
-            if (data.data.length !== 0) {
-
-                let xLabels = [];
-
-                let dataForY = {};
-                for(let item in $scope.distinctConnections){
-                    if($scope.distinctConnections[item]['isChecked'] === 1){
-                        dataForY[item] = new Array(5).fill(0);
-                    }
-                }
-
-                for (let i = 1 ; i <= 5; i++){
-                    for (let item in data.data){
-                        if((data.data)[item]['id'] === i){
-                            const name = (data.data)[item]['name'];
-                            const id = (data.data)[item]['id'];
-                            if (xLabels.indexOf(name) === -1 ){
-                                xLabels.push(name);
-                            }
-                            const relationType = (data.data)[item]['relation'];
-                            if($scope.distinctConnections[relationType]['isChecked'] === 1){
-                                dataForY[relationType][id-1] = (data.data)[item]['count'];
-                            }
-                        }
-                    }
-                }
-
-                let colors = $scope.getColors(Object.keys($scope.distinctConnections).length);
-
-                let dataSets = [];
-                let j = 0;
-                for(let item in $scope.distinctConnections){
-                    const relation = item;
-                    const itemForDataSets = {label: relation,
-                        data: dataForY[relation], backgroundColor: colors[j]};
-                    dataSets.push(itemForDataSets);
-                    j++;
-                }
-
-                const ctx = document.getElementById("stackedBar").getContext("2d");
-                if ($scope.stackedBar){
-                    $scope.stackedBar.destroy();
-                }
-
-                $scope.stackedBar = new Chart(ctx, {
-                    type: 'horizontalBar',
-                    data: {
-                        labels: xLabels,
-                        datasets: dataSets
-                    },
-                    options: {
-                        scales: {
-                            xAxes: [{
-                                stacked: true,
-                                ticks: {
-                                    fontColor: "black",
-                                    fontSize: 10,
-                                    stepSize: 5,
-                                    beginAtZero: true,
-                                    autoSkip: true
-                                }
-                            }],
-                            yAxes: [{
-                                stacked: true,
-                                ticks: {
-                                    fontColor: "black",
-                                    fontSize: 10,
-                                }
-                            }]
-                        }
-                    }
-                });
-
-                document.getElementById("stackedBar").innerHTML = $scope.stackedBar;
-
-            } else {
-                console.log('get companies of showBarChart failed');
-            }
-        });*/
+        document.getElementById("correctAnswersBar").innerHTML = $scope.correctAnswersBar;*/
     };
 
 
