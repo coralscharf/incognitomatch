@@ -1155,7 +1155,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         }).then(function (data) {
-            console.log(data.data);
 
             if (data.data.length !== 0) {
 
@@ -1181,6 +1180,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 if ($scope.correctAnswersBar){
                     $scope.correctAnswersBar.destroy();
                 }
+
+                console.log(xLabels);
+                console.log(dataSets);
+
 
                 $scope.correctAnswersBar = new Chart(ctx, {
                     type: 'bar',
