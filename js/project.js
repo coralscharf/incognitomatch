@@ -1186,15 +1186,12 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 console.log(xLabels);
                 console.log(dataSets);
 
-
                 $scope.correctAnswersBar = new Chart(ctx, {
                     type: 'bar',
                     data: {
                         labels: xLabels,
                         datasets: [{
                             data: yData,
-                            backgroundColor: colors,
-                            borderWidth: 1
                         }]
                     }
                 });
