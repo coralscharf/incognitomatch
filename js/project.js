@@ -113,6 +113,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.curr_realConf="";
         $scope.user_total_ans_right=0;
         $scope.last_ans=false;
+        $scope.validFieldFigureEight = "";
 
 
     }; //the function
@@ -178,19 +179,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
     $scope.show_test = function() {
-
-        //this function save the riddles answers and forward the user to the test schema.
-
-        // if need to answer all riddle duplicate this.
-        /*if (document.getElementById("riddle_1").value === "")
-        {
-            document.getElementById("riddle_err_log").innerHTML="please answer riddle number 1";
-            $timeout(function() {
-                document.getElementById("riddle_err_log").innerHTML="";
-            },3000);
-        }
-        else {*/
-
 
             $http({
                 method: 'POST',
@@ -330,12 +318,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     "last":document.getElementById("new_user_last").value,
                     "id": data.data[2]
                 };
-                //console.log("test",test_schema);
 
-                // for Ofra only this:
-                //$scope.begin_exp(test_schema);
-
-                // for Roee only this:
                 $scope.show_riddle();
 
                 $scope.clear_user_form();
@@ -346,10 +329,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
 
         });
-
-
-
-
     };
 
 
@@ -575,6 +554,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     else {
                         console.log($scope.curr_count_ans);
                         $("#experiment").hide();
+
+                        // TODO: ADD generate of string
+
                         $("#finish_exp").show();
                         $scope.curr_order = 1;
                         $scope.curr_count_ans = 0;
@@ -1205,6 +1187,37 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 console.log('Get bar - number of correct answers failed');
             }
         });
+
+    };
+
+    $scope.add_user_data_finish_exp = function(){
+
+        $http({
+            method: 'POST',
+            url: 'php/exp_add_user_data_finish_exp.php',
+            data: $.param({
+                user_id:  $scope.curr_user['id'],
+                id_card: document.getElementById("new_user_card_id").value,
+                u_validFieldFigureEight: $scope.validFieldFigureEight
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function (data) {
+            //console.log((data.data));
+            if (data.data !== "err")
+            {
+                // TODO: Complete
+            }
+            else
+            {
+                console.log(data.data);
+            }
+
+        });
+
+
+
 
     };
 
