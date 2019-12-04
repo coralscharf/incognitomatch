@@ -33,7 +33,6 @@
     <link href="css/style.css" rel="stylesheet">
 
     <!-- Add charts script -->
-    <script src="js/mdb.min.js"></script>
 
     <script src="js/chart.js"></script>
     <script src="randexp/build/randexp.min.js"></script>
@@ -56,6 +55,8 @@
 		include "html/instruction_after.html";
         include "html/statistics.html";
 	?>
+
+    <script src="js/mdb.min.js"></script>
 
 </body>
 </html>
