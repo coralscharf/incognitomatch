@@ -113,9 +113,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.curr_realConf="";
         $scope.user_total_ans_right=0;
         $scope.last_ans=false;
-        //$scope.validFieldFigureEight = new RandExp(/[A-Gg-z0-9]{40}/).gen();
-        //console.log("ENTER");
-        //console.log("validFieldFigureEight ", $scope.validFieldFigureEight);
+        $scope.validFieldFigureEight = new RandExp(/[A-Gg-z0-9]{40}/).gen();
+        console.log("ENTER");
+        console.log("validFieldFigureEight ", $scope.validFieldFigureEight);
     };
 
     $scope.show_home = function(){
