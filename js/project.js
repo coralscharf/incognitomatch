@@ -1241,8 +1241,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
             colorAxis: {
                 min: 0,
-                minColor: '#ffffff52',
-                maxColor: 'rgba(6,24,255,0.17)'
+                minColor: '#ffc8bf',
+                maxColor: '#ff1800'
             },
 
             legend: {
