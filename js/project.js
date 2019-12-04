@@ -1,4 +1,3 @@
-import RandExp from "randexp";
 
 let app = angular.module('template', []);
 
@@ -88,7 +87,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     $scope.init_avivTest = function () {
         // this function called when loading the site. init all params.
 
-
         $scope.hide_pages();
         $scope.show_home();
         $scope.schema2=[];
@@ -115,8 +113,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.curr_realConf="";
         $scope.user_total_ans_right=0;
         $scope.last_ans=false;
-        $scope.validFieldFigureEight = new RandExp(/[A-Gg-z0-9]{40}/).gen();
-        console.log("validFieldFigureEight ", $scope.validFieldFigureEight);
+        //$scope.validFieldFigureEight = new RandExp(/[A-Gg-z0-9]{40}/).gen();
+        //console.log("ENTER");
+        //console.log("validFieldFigureEight ", $scope.validFieldFigureEight);
     };
 
     $scope.show_home = function(){
