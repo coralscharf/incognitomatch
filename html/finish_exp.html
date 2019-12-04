@@ -1,28 +1,34 @@
-<div id="finish_exp" style="margin-top: 100px;margin-left: 30px">
-
+<div id="finish_exp" style="margin-top: 100px;margin-left: 30px; text-align: center">
 
 	<h1>
 		Thank You!
 	</h1>
 
-	<div class="md-form">
-		<i class="fas fa-user prefix"></i>
-		<input type="text" class="form-control" id="new_user_card_id">
-		<label for="new_user_card_id">Enter your ID</label>
-	</div>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <div class="md-form">
+                <i class="fas fa-user prefix"></i>
+                <input type="text" class="form-control" id="new_user_card_id">
+                <label for="new_user_card_id">Enter your ID</label>
+            </div>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
 
-	<h4>
-		Please copy and paste the following code to Figure Eight field:<br>
-		<label id="validFieldForFigureEight">
-			<input class="form-control" type="text" placeholder="{$scope.validFieldFigureEight}" readonly>
-		</label>
 
-	</h4>
+    <h4>Please copy and paste the following code to Figure Eight field:	</h4>
+
+    <br><br>
+
+    <label>
+        <input class="form-control" type="text" placeholder={{$scope.validFieldFigureEight}} readonly
+               style="height: 44px;  width: 476px;">
+    </label>
 
 	<button class="btn btn-md btn-info m-1 px-3" type="button" ng-click="add_user_data_finish_exp()">Finish</button>
 
 	<div id="show_message_after_finish_figure_8">
 	</div>
-
 
 </div>
