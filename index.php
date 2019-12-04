@@ -34,6 +34,7 @@
 
     <!-- Add charts script -->
     <script src="js/chart.js"></script>
+    <script src="randexp/lib/randexp.js"
 
 </head>
 <body  ng-controller='avivTest' ng-init="init_avivTest()">

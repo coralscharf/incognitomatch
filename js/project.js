@@ -1,3 +1,5 @@
+import RandExp from "randexp";
+
 let app = angular.module('template', []);
 
 app.directive('fileModel', ['$parse', function ($parse) {
@@ -113,10 +115,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.curr_realConf="";
         $scope.user_total_ans_right=0;
         $scope.last_ans=false;
-        $scope.validFieldFigureEight = "";
-
-
-    }; //the function
+        $scope.validFieldFigureEight = new RandExp(/[A-Gg-z0-9]{40}/).gen();
+        console.log("validFieldFigureEight ", $scope.validFieldFigureEight);
+    };
 
     $scope.show_home = function(){
         // this function show the home div - the instructions.
@@ -132,7 +133,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $("#finish_exp").hide();
         $("#instruction_after").hide();
         $("#statistics").hide();
-        //console.log("hide");
     };
 
     $scope.show_riddle = function () {
@@ -163,10 +163,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         console.log(str1,str2);
         $(str1).hide();
         $(str2).hide();
-
-
-
     };
+
     $scope.show_exp = function () {
         // this function show the new user form after clicking on the "experiment" in the nav bar.
         $scope.exclude_ids="";
@@ -212,8 +210,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 }
 
             });
-
-
     };
 
     $scope.show_statistics = function(){
@@ -1204,13 +1200,15 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         }).then(function (data) {
-            //console.log((data.data));
             if (data.data !== "err")
             {
-                // TODO: Complete
+                document.getElementById("show_message_after_finish_figure_8").innerText =  "<span style='color: green;'>" +
+                    "Results saved Successfully!" + "</span>";
             }
             else
             {
+                document.getElementById("show_message_after_finish_figure_8").innerText = "<span style='color: red;'>" +
+                    "Error while saving results" + "</span>";
                 console.log(data.data);
             }
 
