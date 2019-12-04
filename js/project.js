@@ -1197,23 +1197,19 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         }).then(function (data) {
             if (data.data !== "err")
             {
-                document.getElementById("show_message_after_finish_figure_8").innerText =  "<span style='color: green;'>" +
-                    "Results saved Successfully!" + "</span>";
+                document.getElementById("show_message_after_finish_figure_8").innerText = "Results saved Successfully!";
+                document.getElementById("show_message_after_finish_figure_8").style.color = "green";
             }
             else
             {
-                document.getElementById("show_message_after_finish_figure_8").innerText = "<span style='color: red;'>" +
-                    "Error while saving results" + "</span>";
+                document.getElementById("show_message_after_finish_figure_8").innerText = "Error while saving results.";
+                document.getElementById("show_message_after_finish_figure_8").style.color = "red";
                 console.log(data.data);
             }
 
         });
 
-
-
-
     };
-
 
 });	 //app.controller
 

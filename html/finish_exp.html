@@ -1,6 +1,6 @@
-<div id="finish_exp" style="margin-top: 100px;margin-left: 30px; text-align: center">
+<div id="finish_exp" style="margin-top: 100px;margin-left: 30px;">
 
-	<h1>
+	<h1 style="text-align: center">
 		Thank You!
 	</h1>
 
@@ -16,19 +16,21 @@
         <div class="col-sm-2"></div>
     </div>
 
+    <div style="text-align: center">
+        <h4>Please copy and paste the following code to Figure Eight field:	</h4>
 
-    <h4>Please copy and paste the following code to Figure Eight field:	</h4>
+        <br>
 
-    <br><br>
+        <label>
+            <input class="form-control" type="text" placeholder={{$scope.validFieldFigureEight}} readonly
+                   style="height: 44px;  width: 476px;">
+        </label>
+        {{$scope.validFieldFigureEight}}
+        <br>
+        <button class="btn btn-md btn-info m-1 px-3" type="button" ng-click="add_user_data_finish_exp()">Finish</button>
 
-    <label>
-        <input class="form-control" type="text" placeholder={{$scope.validFieldFigureEight}} readonly
-               style="height: 44px;  width: 476px;">
-    </label>
-
-	<button class="btn btn-md btn-info m-1 px-3" type="button" ng-click="add_user_data_finish_exp()">Finish</button>
-
-	<div id="show_message_after_finish_figure_8">
-	</div>
+        <div id="show_message_after_finish_figure_8">
+        </div>
+    </div>
 
 </div>
