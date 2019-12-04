@@ -114,7 +114,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.user_total_ans_right=0;
         $scope.last_ans=false;
         $scope.validFieldFigureEight = new RandExp(/[A-Gg-z0-9]{40}/).gen();
-        document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
     };
 
     $scope.show_home = function(){
@@ -549,6 +548,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         console.log($scope.curr_count_ans);
                         $("#experiment").hide();
 
+                        document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
                         $("#finish_exp").show();
                         $scope.curr_order = 1;
                         $scope.curr_count_ans = 0;
