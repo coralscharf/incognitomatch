@@ -33,8 +33,14 @@
     <link href="css/style.css" rel="stylesheet">
 
     <!-- Add charts script -->
+    <script src="js/mdb.min.js"></script>
+
     <script src="js/chart.js"></script>
     <script src="randexp/build/randexp.min.js"></script>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
 </head>
 <body  ng-controller='avivTest' ng-init="init_avivTest()">
@@ -50,7 +56,6 @@
 		include "html/instruction_after.html";
         include "html/statistics.html";
 	?>
-    <script src="js/mdb.min.js"></script>
 
 </body>
 </html>
