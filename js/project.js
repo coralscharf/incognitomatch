@@ -1306,7 +1306,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 const all_clicks_list = all_clicks_for_q.split(';');
                 // console.log(all_clicks_list);
                 for (let i_click in all_clicks_list){
-                    if('(' in all_clicks_list[i_click]) {
+                    if((all_clicks_list[i_click]).includes('(')) {
                         let click = JSON.parse((all_clicks_list[i_click].replace('(','['))
                             .replace(')',']'));
                         const key_for_click = [click[1],click[2]];
