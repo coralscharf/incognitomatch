@@ -142,7 +142,7 @@
                                     </small>
                                     -->
                                     <input id="user_confidence" class="custom-range" type="range" min="0" max="100" step="1"
-                                           onchange="$scope.update_confidence_TextInput(this.value);"/>
+                                           ng-change="$scope.update_confidence_TextInput(this.value);"/>
                                     <label for="user_confidence" data-error="wrong" data-success="right" style="padding-left: 15px;padding-top: 10px">Your Confidence</label>
                                     <input type="text" id="text_confidence_input" value="">
                                 </div>
