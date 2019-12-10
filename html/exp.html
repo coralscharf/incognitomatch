@@ -141,8 +141,10 @@
                                         Insert Confidence level that this two terms are the same (in [0,1])
                                     </small>
                                     -->
-                                    <input id="user_confidence" class="custom-range" type="range" min="0" max="100" step="1" data-show-value="true"/>
+                                    <input id="user_confidence" class="custom-range" type="range" min="0" max="100" step="1"
+                                           onchange="$scope.update_confidence_TextInput(this.value);"/>
                                     <label for="user_confidence" data-error="wrong" data-success="right" style="padding-left: 15px;padding-top: 10px">Your Confidence</label>
+                                    <input type="text" id="text_confidence_input" value="">
                                 </div>
                             </div>
                         </td>
