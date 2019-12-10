@@ -1325,7 +1325,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
     $scope.update_confidence_TextInput = function(val){
-        document.getElementById('text_confidence_input').value=val;
+        document.getElementById('text_confidence_input').value=document.getElementById("user_confidence");
     };
 
 });	 //app.controller
