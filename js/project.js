@@ -1305,8 +1305,12 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 const all_clicks_for_q = data.data[index];
                 if(count === 1){
                     const all_clicks_list = all_clicks_for_q.split(';');
-                    count++;
                     console.log(all_clicks_list);
+                    for (let click in all_clicks_list.values()){
+                        click = JSON.parse(click);
+                        console.log(click);
+                    }
+                    count++;
                 }
             }
         });
