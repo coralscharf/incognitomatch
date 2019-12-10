@@ -1299,7 +1299,15 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
         }).then(function (data) {
             console.log("GET MOUSE DATA ");
-            console.log(data.data);
+            #console.log(data.data);
+            let count = 1;
+            for(const all_clicks_for_q in data.data){
+                if(count === 1){
+                    const all_clicks_list = all_clicks_for_q.split(';');
+                    count++;
+                    console.log(all_clicks_list);
+                }
+            }
         });
     };
 
