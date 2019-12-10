@@ -116,6 +116,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.validFieldFigureEight = new RandExp(/[A-Gg-z0-9]{40}/).gen();
 
         $scope.create_heat_map();
+        $scope.get_mouse_click_data();
     };
 
     $scope.show_home = function(){
@@ -329,7 +330,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.getExp2 = function (callback,exp_id) {
         // function to retrieves the term from shcema 1
-        console.log("bla:",$scope.curr_order,exp_id);
+        // console.log("bla:",$scope.curr_order,exp_id);
         $http({
             method: 'POST',
             url: 'php/get_exp_info.php',
@@ -343,7 +344,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         }).then(function (data) {
-            console.log((data.data));
+            // console.log((data.data));
             //console.log((data.data)[0]);
 
             $scope.schema=data.data;
@@ -388,7 +389,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             document.getElementById("A_col_type").innerText=$scope.schema[0]['col_type'];
             document.getElementById("A_col_instance").innerText=str_instance;
             $scope.exclude_ids = $scope.exclude_ids +  " and id!=" + $scope.schema[0]['index'];
-            console.log("ex_id",$scope.exclude_ids);
+            // console.log("ex_id",$scope.exclude_ids);
             if ($scope.schema[0]['return_order'] === "change")
             {
                 $scope.curr_order = $scope.curr_order + 1;
@@ -418,7 +419,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             }).then(function (data) {
-                console.log((data.data));
+                // console.log((data.data));
                 //console.log((data.data)[0]);
 
                 $scope.schema2=data.data;
@@ -493,7 +494,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 $scope.mouse_moves=[];
 
                 $scope.curr_count_ans = $scope.curr_count_ans + 1;
-                console.log("count",$scope.curr_count_ans,$scope.total_ans_needed);
+                // console.log("count",$scope.curr_count_ans,$scope.total_ans_needed);
                 if ($scope.curr_count_ans >=  $scope.total_ans_needed) // check if exp is done
                 {
                     if($scope.done_test === false) // check if user in test exp, if yes - show instruction, else show finished
@@ -519,7 +520,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         }
                         else if ($scope.test_schema['schema_name'] === "group1")
                         {
-                            console.log("i am here");
+                            // console.log("i am here");
                             let prefix_str="";
                             let body_str="";
                             //Coral: change last_ans after && to user_ans_match
@@ -547,7 +548,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                     }
                     else {
-                        console.log($scope.curr_count_ans);
+                        // console.log($scope.curr_count_ans);
                         $("#experiment").hide();
 
                         document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
@@ -560,7 +561,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 else if($scope.done_test === false && $scope.disp_feedback === true ) // TODO: for roee need to change to True: $scope.done_test === true
                 {
                     if ($scope.test_schema['schema_name'] === "group2") {
-                        console.log("real conf:",$scope.curr_realConf,$scope.user_ans_match,$scope.user_total_ans_right);
+                        // console.log("real conf:",$scope.curr_realConf,$scope.user_ans_match,$scope.user_total_ans_right);
                         if (($scope.curr_realConf == 0 && $scope.user_ans_match==false) ||
                             ($scope.curr_realConf == 1 && $scope.user_ans_match==true)) // the user was right
                         {
@@ -577,7 +578,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     }
                     else if ($scope.test_schema['schema_name'] === "group1")
                     {
-                        console.log("real conf:",$scope.curr_realConf,$scope.user_ans_match,$scope.user_total_ans_right);
+                        // console.log("real conf:",$scope.curr_realConf,$scope.user_ans_match,$scope.user_total_ans_right);
                         let prefix_str ="";
                         let body_str="";
                         if (($scope.curr_realConf == 0 && $scope.user_ans_match==false) ||
@@ -592,7 +593,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                         //CORAL: Add line 608 - reduce curr_order by 1
                         $scope.curr_order = $scope.curr_order - 1;
-                        console.log("$scope.curr_order ", $scope.curr_order);
+                        // console.log("$scope.curr_order ", $scope.curr_order);
                         if ($scope.curr_order === 1 || $scope.curr_order === 2 || $scope.curr_order === 4
                             || $scope.curr_order === 7 || $scope.curr_order === 10)
                         {
@@ -802,7 +803,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.files_to_upload={"csv":"","xml":[],"xsd":[]};
 
         let file = $scope.first_xml_file;
-        console.log(file);
+        // console.log(file);
         let exp_name = document.getElementById("exp_name").value;
         let uploadUrl = "php/fileUpload.php";
         let text = file.name;
@@ -1282,6 +1283,23 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 }]
             }
 
+        });
+    };
+
+    $scope.get_mouse_click_data = function(){
+
+        $http({
+            method: 'POST',
+            url: 'php/get_mouse_click_data.php',
+            data: $.param({
+                // TODO: Complete conditions
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function (data) {
+            console.log("GET MOUSE DATA ");
+            console.log(data.data);
         });
     };
 
