@@ -1287,7 +1287,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
     $scope.get_mouse_click_data = function(){
-
+        $scope.allClicks = {};
         $http({
             method: 'POST',
             url: 'php/get_mouse_click_data.php',
@@ -1303,18 +1303,22 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             let count = 1;
             for(let index in data.data){
                 const all_clicks_for_q = data.data[index];
-                if(count === 1){
-                    const all_clicks_list = all_clicks_for_q.split(';');
-                    console.log(all_clicks_list);
-                    for (let i_click in all_clicks_list){
-                        let click = JSON.parse((all_clicks_list[i_click].replace('(','['))
-                                                .replace(')',']'));
-                        console.log(click);
-
+                const all_clicks_list = all_clicks_for_q.split(';');
+                console.log(all_clicks_list);
+                for (let i_click in all_clicks_list){
+                    let click = JSON.parse((all_clicks_list[i_click].replace('(','['))
+                                            .replace(')',']'));
+                    if( (click[1],click[2]) in $scope.allClicks ){
+                        $scope.allClicks[(click[1],click[2])] += 1;
                     }
-                    count++;
+                    else{
+                        $scope.allClicks[(click[1],click[2])] = 1;
+                    }
+
                 }
             }
+            console.log($scope.allClicks);
+
         });
     };
 
