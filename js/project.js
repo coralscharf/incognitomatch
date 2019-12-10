@@ -1306,22 +1306,17 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 const all_clicks_list = all_clicks_for_q.split(';');
                 // console.log(all_clicks_list);
                 for (let i_click in all_clicks_list){
-                    try {
+                    if('(' in all_clicks_list[i_click]) {
                         let click = JSON.parse((all_clicks_list[i_click].replace('(','['))
                             .replace(')',']'));
-                        if( (click[1],click[2]) in $scope.allClicks ){
-                            $scope.allClicks[(click[1],click[2])] += 1;
+                        const key_for_click = [click[1],click[2]];
+                        if(key_for_click in $scope.allClicks && click){
+                            $scope.allClicks[key_for_click] += 1;
                         }
                         else{
-                            $scope.allClicks[(click[1],click[2])] = 1;
+                            $scope.allClicks[key_for_click] = 1;
                         }
                     }
-                    catch (e) {
-                        console.log("ERROR");
-                        console.log(all_clicks_list[i_click]);
-                    }
-
-
                 }
             }
             console.log($scope.allClicks);
