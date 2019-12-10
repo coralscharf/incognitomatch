@@ -1301,7 +1301,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             console.log("GET MOUSE DATA ");
             // console.log(data.data);
             let count = 1;
-            for(const all_clicks_for_q in data.data){
+            for(let index in data.data){
+                const all_clicks_for_q = data.data[index];
                 if(count === 1){
                     const all_clicks_list = all_clicks_for_q.split(';');
                     count++;
