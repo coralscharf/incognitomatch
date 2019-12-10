@@ -114,6 +114,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.user_total_ans_right=0;
         $scope.last_ans=false;
         $scope.validFieldFigureEight = new RandExp(/[A-Gg-z0-9]{40}/).gen();
+        $scope.user_current_confidence = 0;
 
         // $scope.create_heat_map();
         $scope.get_mouse_click_data();
