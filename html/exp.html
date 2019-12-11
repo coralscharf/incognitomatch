@@ -134,18 +134,12 @@
                         </td>
                         <td style="width:450px">
                             <div>
-                                < class="md-form" style="margin: 0 auto;float: none;">
-                                    <!--<input type="number" id="user_confidence" class="form-control validate" aria-describedby="user_confidenceMD" min="0" max="1" step="0.01">
-                                    <label for="user_confidence" data-error="wrong" data-success="right">Your Confidence</label>
-                                    <small id="user_confidenceMD" class="form-text text-muted">
-                                        Insert Confidence level that this two terms are the same (in [0,1])
-                                    </small>
-                                    -->
+                                <div class="md-form" style="margin: 0 auto;float: none;">
                                     <form oninput="text_confidence_input.value=document.getElementById('user_confidence').value">
                                         <input id="user_confidence" value="0" class="custom-range" type="range" min="0" max="100" step="1"/>
 
                                         <div class="row" style="padding-left: 15px;padding-top: 10px">
-                                            <label for="user_confidence" data-error="wrong" data-success="right" >Your Confidence</label>
+                                            <label for="user_confidence" data-error="wrong" data-success="right" >Your Confidence </label>
                                             <output name="text_confidence_input" for="user_confidence"></output>
                                         </div>
                                     </form>
