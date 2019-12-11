@@ -397,6 +397,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
             $scope.curr_realConf = $scope.schema[0]['realConf'];
             document.getElementById("user_confidence").value=50;
+            document.getElementById("text_confidence_input").value = 50;
             callback($scope.schema);
         });
 
@@ -490,6 +491,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             {
                 $scope.getExp($scope.curr_exp_id); // TODO: check for move it to the end
                 document.getElementById("user_confidence").value=50; // init range to 0
+                document.getElementById("text_confidence_input").value = 50;
 
                 // to disable init array of mouse locations add the comment sign
                 $scope.mouse_moves=[];
