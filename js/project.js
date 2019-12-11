@@ -1188,6 +1188,74 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     };
 
+
+    $scope.showConfidenctLineGraph = function () {
+        document.getElementById("correctAnswersBar").innerHTML = "";
+
+        $http({
+            method: 'POST',
+            url: 'php/get_confidence_values.php',
+            data: $.param({
+                expIds : []
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function (data) {
+
+            if (data.data.length !== 0) {
+
+                let xLabels = [];
+                let yData = [];
+
+                let j = 1;
+                for (let item in data.data){
+                    const user_conf = (data.data)[item]['user_conf'];
+
+                    xLabels.push(j);
+                    yData.push(user_conf);
+
+                    j++;
+                }
+
+                const ctx = document.getElementById("confidenctLineGraph").getContext("2d");
+                if ($scope.confidenctLineGraph){
+                    $scope.confidenctLineGraph.destroy();
+                }
+
+                console.log(xLabels);
+                console.log(dataSets);
+
+                $scope.confidenctLineGraph = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: xLabels,
+                        datasets: [{
+                            data: yData,
+                            label: "Confidence Level",
+                            borderColor: "#3235cd",
+                            fill: false
+                        }
+                        ]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Confidence Level as function of number of Questions'
+                        }
+                    }
+                });
+
+                document.getElementById("confidenctLineGraph").innerHTML = $scope.confidenctLineGraph;
+
+            } else {
+                console.log('Get line graph data - confidence levels failed');
+            }
+        });
+
+    };
+
+
     $scope.add_user_data_finish_exp = function(){
 
         $http({
