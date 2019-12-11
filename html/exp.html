@@ -138,17 +138,9 @@
                                     <form oninput="text_confidence_input.value=document.getElementById('user_confidence').value">
                                         <input id="user_confidence" value="0" class="custom-range" type="range" min="0" max="100" step="1"/>
 
-                                        <table>
-                                            <tr style="padding-left: 15px;padding-top: 10px">
-                                                <td>
-                                                    <label for="user_confidence" data-error="wrong" data-success="right" >Your Confidence </label>
-                                                </td>
-                                                <td>
-                                                    <output name="text_confidence_input" for="user_confidence"></output>
-                                                </td>
-                                            </tr>
-                                        </table>
-
+                                        <label for="user_confidence" data-error="wrong" data-success="right" style="display: block">
+                                            Your Confidence </label>
+                                        <output name="text_confidence_input" for="user_confidence"></output>
                                     </form>
 
                                 </div>
