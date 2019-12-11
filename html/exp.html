@@ -141,18 +141,11 @@
                                         Insert Confidence level that this two terms are the same (in [0,1])
                                     </small>
                                     -->
-                                    <input id="user_confidence" class="custom-range" type="range" min="0" max="100" step="1"
-                                           ng-model="user_current_confidence" ng-change="$scope.update_confidence_TextInput();"/>
-                                    <table>
-                                        <tr>
-                                            <td>
-                                                <label for="user_confidence" data-error="wrong" data-success="right" style="padding-left: 15px;padding-top: 10px">Your Confidence</label>
-                                            </td>
-                                            <td>
-                                                <output id="text_confidence_input"></output>
-                                            </td>
-                                        </tr>
-                                    </table>
+                                    <form oninput="text_confidence_input.value=document.getElementById('user_confidence').value">
+                                        <input id="user_confidence" value="0" class="custom-range" type="range" min="0" max="100" step="1"/>
+                                        <label for="user_confidence" data-error="wrong" data-success="right" style="padding-left: 15px;padding-top: 10px">Your Confidence</label>
+                                        <output name="text_confidence_input" for="user_confidence"></output>
+                                    </form>
 
                                 </div>
                             </div>
