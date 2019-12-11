@@ -396,7 +396,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 $scope.curr_order = $scope.curr_order + 1;
             }
             $scope.curr_realConf = $scope.schema[0]['realConf'];
-            document.getElementById("user_confidence").value=0;
+            document.getElementById("user_confidence").value=50;
             callback($scope.schema);
         });
 
@@ -489,7 +489,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             if (data.data === "1")
             {
                 $scope.getExp($scope.curr_exp_id); // TODO: check for move it to the end
-                document.getElementById("user_confidence").value=0; // init range to 0
+                document.getElementById("user_confidence").value=50; // init range to 0
 
                 // to disable init array of mouse locations add the comment sign
                 $scope.mouse_moves=[];
