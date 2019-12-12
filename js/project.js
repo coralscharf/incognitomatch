@@ -1334,6 +1334,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             data: yData,
                             borderColor: "#000000",
                             backgroundColor: colorOfPoints,
+                            beginAtZero: true
                         }
                         ]
                     },
