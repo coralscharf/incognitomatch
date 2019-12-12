@@ -119,7 +119,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.confidenceLineGraph = "";
         // $scope.create_heat_map();
         $scope.get_mouse_click_data();
-        $scope.showConfidenceLineGraph();
     };
 
     $scope.show_home = function(){
@@ -556,6 +555,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         // console.log($scope.curr_count_ans);
                         $("#experiment").hide();
 
+                        $scope.showConfidenceLineGraph();
                         document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
                         $("#finish_exp").show();
                         $scope.curr_order = 1;
@@ -680,9 +680,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             $("#experiment").hide();
             $("#instruction_after").show();
         }
-
-
-
     };
 
     $scope.after_instructions = function () {
@@ -1198,7 +1195,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             method: 'POST',
             url: 'php/get_confidence_and_answer_values.php',
             data: $.param({
-                expIds : []
+                curr_user: $scope.curr_user['id'],
+                curr_exp_id: $scope.curr_exp_id
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
