@@ -116,6 +116,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.validFieldFigureEight = new RandExp(/[A-Gg-z0-9]{40}/).gen();
         $scope.user_current_confidence = 0;
 
+        $scope.confidenctLineGraph = "";
         // $scope.create_heat_map();
         $scope.get_mouse_click_data();
         $scope.showConfidenctLineGraph();
@@ -1195,7 +1196,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
         $http({
             method: 'POST',
-            url: 'php/get_confidence_values.php',
+            url: 'php/get_confidence_and_answer_values.php',
             data: $.param({
                 expIds : []
             }),
@@ -1208,13 +1209,21 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                 let xLabels = [];
                 let yData = [];
+                let colorOfPoints = [];
 
                 let j = 1;
                 for (let item in data.data){
                     const user_conf = (data.data)[item]['user_conf'];
+                    const isCorrectAnswer = (data.data)[item]['isCorrectAnswer'];
 
                     xLabels.push(j);
                     yData.push(user_conf);
+
+                    if(isCorrectAnswer == 1){
+                        colorOfPoints.push("#0ccd00");
+                    }else{
+                        colorOfPoints.push("#cd0800");
+                    }
 
                     j++;
                 }
@@ -1233,8 +1242,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         labels: xLabels,
                         datasets: [{
                             data: yData,
+                            backgroundColor: colorOfPoints,
                             label: "Confidence Level",
-                            borderColor: "#3235cd",
+                            borderColor: "#000000",
                             fill: false
                         }
                         ]
