@@ -1251,6 +1251,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         ]
                     },
                     options: {
+                        legend: {
+                            display: true
+                        },
                         title: {
                             display: true,
                             text: 'Confidence Level as function of number of Questions'
