@@ -1257,7 +1257,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     },
                     options: {
                         legend: {
-                            display: true
+                            display: false
                         },
                         title: {
                             display: true,
@@ -1339,7 +1339,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     },
                     options: {
                         legend: {
-                            display: true
+                            display: false
                         },
                         title: {
                             display: true,
