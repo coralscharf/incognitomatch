@@ -117,6 +117,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.user_current_confidence = 0;
 
         $scope.confidenceLineGraph = "";
+        $scope.timeBarGraph = "";
         // $scope.create_heat_map();
         $scope.get_mouse_click_data();
     };
@@ -556,12 +557,16 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         // console.log($scope.curr_count_ans);
                         $("#experiment").hide();
                         $("#loading").show();
-                        $scope.showConfidenceLineGraph(function(finish) {
-                            document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
-                            $("#loading").hide();
-                            $("#finish_exp").show();
-                            $scope.curr_order = 1;
-                            $scope.curr_count_ans = 0;
+                        $scope.showConfidenceLineGraph(function(finish_conf) {
+
+                            $scope.showTimeRangeBarGraph(function(finish_time) {
+                                document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
+                                $("#loading").hide();
+                                $("#finish_exp").show();
+                                $scope.curr_order = 1;
+                                $scope.curr_count_ans = 0;
+                            });
+
                         });
                     }
 
@@ -1266,6 +1271,87 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
             } else {
                 console.log('Get line graph data - confidence levels failed');
+            }
+        });
+
+    };
+
+
+    $scope.showTimeRangeBarGraph = function (callback) {
+        document.getElementById("timeBarGraph").innerHTML = "";
+
+        $http({
+            method: 'POST',
+            url: 'php/get_time_range_and_answers.php',
+            data: $.param({
+                curr_user: $scope.curr_user['id'],
+                curr_exp_id: $scope.curr_exp_id
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function (data) {
+
+            if (data.data.length !== 0) {
+
+                let xLabels = [];
+                let yData = [];
+                let colorOfPoints = [];
+
+                let j = 1;
+                for (let item in data.data){
+                    const diff_sec = (data.data)[item]['diff_sec'];
+                    const isCorrectAnswer = (data.data)[item]['isCorrectAnswer'];
+
+                    xLabels.push(j);
+                    yData.push(diff_sec);
+
+                    if(isCorrectAnswer == 1){
+                        colorOfPoints.push("#0ccd00");
+                    }else{
+                        colorOfPoints.push("#cd0800");
+                    }
+
+                    j++;
+                }
+
+                const ctx = document.getElementById("timeBarGraph").getContext("2d");
+                if ($scope.timeBarGraph){
+                    $scope.timeBarGraph.destroy();
+                }
+
+                console.log(xLabels);
+                console.log(yData);
+                console.log(colorOfPoints);
+
+                $scope.timeBarGraph = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: xLabels,
+                        datasets: [{
+                            data: yData,
+                            borderColor: "#000000",
+                            backgroundColor: colorOfPoints,
+                            fill: false,
+                        }
+                        ]
+                    },
+                    options: {
+                        legend: {
+                            display: true
+                        },
+                        title: {
+                            display: true,
+                            text: 'Time Range as function of number of Questions'
+                        }
+                    }
+                });
+
+                document.getElementById("timeBarGraph").innerHTML = $scope.timeBarGraph;
+                callback(true);
+
+            } else {
+                console.log('Get bar graph data - time range failed');
             }
         });
 
