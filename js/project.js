@@ -1271,6 +1271,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
             } else {
                 console.log('Get line graph data - confidence levels failed');
+                callback(false);
+
             }
         });
 
@@ -1332,7 +1334,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             data: yData,
                             borderColor: "#000000",
                             backgroundColor: colorOfPoints,
-                            fill: false,
                         }
                         ]
                     },
@@ -1352,6 +1353,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
             } else {
                 console.log('Get bar graph data - time range failed');
+                callback(false);
             }
         });
 
