@@ -1334,7 +1334,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             data: yData,
                             borderColor: "#000000",
                             backgroundColor: colorOfPoints,
-                            beginAtZero: true
                         }
                         ]
                     },
@@ -1345,6 +1344,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         title: {
                             display: true,
                             text: 'Time Range as function of number of Questions'
+                        },
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
                         }
                     }
                 });
