@@ -1243,10 +1243,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         labels: xLabels,
                         datasets: [{
                             data: yData,
-                            backgroundColor: colorOfPoints,
+                            pointBackgroundColor: colorOfPoints,
                             label: "Confidence Level",
                             borderColor: "#000000",
-                            fill: true
+                            fill: false
                         }
                         ]
                     },
