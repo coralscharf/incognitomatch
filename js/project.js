@@ -555,11 +555,12 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         // console.log($scope.curr_count_ans);
                         $("#experiment").hide();
 
-                        $scope.showConfidenceLineGraph();
-                        document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
-                        $("#finish_exp").show();
-                        $scope.curr_order = 1;
-                        $scope.curr_count_ans = 0;
+                        $scope.showConfidenceLineGraph(function(finish) {
+                            document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
+                            $("#finish_exp").show();
+                            $scope.curr_order = 1;
+                            $scope.curr_count_ans = 0;
+                        });
                     }
 
                 }
@@ -1188,7 +1189,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
 
-    $scope.showConfidenceLineGraph = function () {
+    $scope.showConfidenceLineGraph = function (callback) {
         document.getElementById("correctAnswersBar").innerHTML = "";
 
         $http({
@@ -1257,6 +1258,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 });
 
                 document.getElementById("confidenceLineGraph").innerHTML = $scope.confidenceLineGraph;
+                callback(true);
 
             } else {
                 console.log('Get line graph data - confidence levels failed');
