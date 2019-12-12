@@ -118,6 +118,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
         // $scope.create_heat_map();
         $scope.get_mouse_click_data();
+        $scope.showConfidenctLineGraph();
     };
 
     $scope.show_home = function(){
@@ -1218,13 +1219,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     j++;
                 }
 
-                const ctx = document.getElementById("confidenctLineGraph").getContext("2d");
+                const ctx = document.getElementById("confidenceLineGraph").getContext("2d");
                 if ($scope.confidenctLineGraph){
                     $scope.confidenctLineGraph.destroy();
                 }
 
                 console.log(xLabels);
-                console.log(dataSets);
+                console.log(yData);
 
                 $scope.confidenctLineGraph = new Chart(ctx, {
                     type: 'line',
