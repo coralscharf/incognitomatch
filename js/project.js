@@ -133,6 +133,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $("#experiment").hide();
         $("#begin_exp_user").hide();
         $("#finish_exp").hide();
+        // $("#loading").hide();
         $("#instruction_after").hide();
         $("#statistics").hide();
     };
@@ -554,9 +555,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     else {
                         // console.log($scope.curr_count_ans);
                         $("#experiment").hide();
-
+                        $("#loading").show();
                         $scope.showConfidenceLineGraph(function(finish) {
                             document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
+                            $("#loading").hide();
                             $("#finish_exp").show();
                             $scope.curr_order = 1;
                             $scope.curr_count_ans = 0;
@@ -1242,16 +1244,15 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         labels: xLabels,
                         datasets: [{
                             data: yData,
-                            label: "Confidence Level",
                             borderColor: "#000000",
-                            fill: false
+                            pointBackgroundColor: colorOfPoints,
+                            fill: false,
                         }
                         ]
                     },
                     options: {
                         title: {
                             display: true,
-                            pointBackgroundColor: colorOfPoints,
                             text: 'Confidence Level as function of number of Questions'
                         }
                     }
