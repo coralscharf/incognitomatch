@@ -1235,6 +1235,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                 console.log(xLabels);
                 console.log(yData);
+                console.log(colorOfPoints);
 
                 $scope.confidenceLineGraph = new Chart(ctx, {
                     type: 'line',
@@ -1242,10 +1243,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         labels: xLabels,
                         datasets: [{
                             data: yData,
-                            //backgroundColor: colorOfPoints,
+                            backgroundColor: colorOfPoints,
                             label: "Confidence Level",
                             borderColor: "#000000",
-                            fill: false
+                            fill: true
                         }
                         ]
                     },
