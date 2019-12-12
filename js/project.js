@@ -124,7 +124,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     $scope.show_home = function(){
         // this function show the home div - the instructions.
         $("#home").show();
-        $("#loading").show();
     };
 
     $scope.hide_pages = function () {
