@@ -116,10 +116,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.validFieldFigureEight = new RandExp(/[A-Gg-z0-9]{40}/).gen();
         $scope.user_current_confidence = 0;
 
-        $scope.confidenctLineGraph = "";
+        $scope.confidenceLineGraph = "";
         // $scope.create_heat_map();
         $scope.get_mouse_click_data();
-        $scope.showConfidenctLineGraph();
+        $scope.showConfidenceLineGraph();
     };
 
     $scope.show_home = function(){
@@ -1191,7 +1191,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
 
-    $scope.showConfidenctLineGraph = function () {
+    $scope.showConfidenceLineGraph = function () {
         document.getElementById("correctAnswersBar").innerHTML = "";
 
         $http({
@@ -1229,20 +1229,20 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 }
 
                 const ctx = document.getElementById("confidenceLineGraph").getContext("2d");
-                if ($scope.confidenctLineGraph){
-                    $scope.confidenctLineGraph.destroy();
+                if ($scope.confidenceLineGraph){
+                    $scope.confidenceLineGraph.destroy();
                 }
 
                 console.log(xLabels);
                 console.log(yData);
 
-                $scope.confidenctLineGraph = new Chart(ctx, {
+                $scope.confidenceLineGraph = new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: xLabels,
                         datasets: [{
                             data: yData,
-                            //backgroundColor: colorOfPoints,
+                            backgroundColor: colorOfPoints,
                             label: "Confidence Level",
                             borderColor: "#000000",
                             fill: false
@@ -1257,7 +1257,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     }
                 });
 
-                document.getElementById("confidenctLineGraph").innerHTML = $scope.confidenctLineGraph;
+                document.getElementById("confidenceLineGraph").innerHTML = $scope.confidenceLineGraph;
 
             } else {
                 console.log('Get line graph data - confidence levels failed');
