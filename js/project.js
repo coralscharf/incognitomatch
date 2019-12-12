@@ -1243,7 +1243,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         labels: xLabels,
                         datasets: [{
                             data: yData,
-                            pointBackgroundColor: colorOfPoints,
                             label: "Confidence Level",
                             borderColor: "#000000",
                             fill: false
@@ -1253,6 +1252,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     options: {
                         title: {
                             display: true,
+                            pointBackgroundColor: colorOfPoints,
                             text: 'Confidence Level as function of number of Questions'
                         }
                     }
