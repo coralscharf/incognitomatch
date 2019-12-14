@@ -118,7 +118,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
         $scope.confidenceLineGraph = "";
         $scope.timeBarGraph = "";
-        // $scope.create_heat_map();
+        $scope.create_heat_map();
         $scope.get_mouse_click_data();
     };
 
@@ -1397,6 +1397,17 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
     $scope.create_heat_map = function() {
+
+        let xLabels = [];
+        for(let x=30; x<=1290; x=x+30){
+            xLabels.push(x);
+        }
+
+        let yLabels = [];
+        for(let y=30; y<=1290; y=y+30){
+            yLabels.push(y);
+        }
+
         Highcharts.chart('heatMap_container', {
 
             chart: {
@@ -1413,13 +1424,15 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             },
 
             xAxis: {
-                categories: ['Alexander', 'Marie', 'Maximilian', 'Sophia', 'Lukas', 'Maria', 'Leon', 'Anna', 'Tim', 'Laura']
+                categories: xLabels
+                //categories: ['Alexander', 'Marie', 'Maximilian', 'Sophia', 'Lukas', 'Maria', 'Leon', 'Anna', 'Tim', 'Laura']
             },
 
             yAxis: {
-                categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-                title: null,
-                reversed: true
+                //categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                categories: yLabels,
+                title: true,
+                reversed: false
             },
 
             colorAxis: {
@@ -1483,13 +1496,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             console.log("GET MOUSE DATA ");
             // console.log(data.data);
 
-            const max_x = 1279.0
-            const max_y = 1023.0
+            //const max_x = 1279.0
+            //const max_y = 1023.0
 
-            let arrForHeatMap = {}
+            $scope.arrForHeatMap = {};
             for(let x=30; x<=1290; x=x+30){
-                for(let y=30; y<=1050; y=y+30){
-                    arrForHeatMap[[x, y]] = 0
+                for(let y=30; y<=1290; y=y+30){
+                    $scope.arrForHeatMap[[x, y]] = 0;
                 }
             }
 
@@ -1509,7 +1522,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         const y_reminder = click[2] % 30;
                         const y_cell = 30*(Math.floor((click[2]-y_reminder)/30)+1);
 
-                        arrForHeatMap[[x_cell, y_cell]] += 1;
+                        $scope.arrForHeatMap[[x_cell, y_cell]] += 1;
                         /*const key_for_click = [click[1],click[2]];
                         if(key_for_click in $scope.allClicks && click){
                             $scope.allClicks[key_for_click] += 1;
