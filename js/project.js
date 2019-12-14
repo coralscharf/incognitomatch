@@ -1408,6 +1408,12 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         }
 
         $scope.get_mouse_click_data(function() {
+            console.log("x ");
+            console.log(xLabels);
+            console.log("y ");
+            console.log(yLabels);
+            console($scope.arrDataForHeatMap);
+
             Highcharts.chart('heatMap_container', {
 
                 chart: {
