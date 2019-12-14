@@ -1489,7 +1489,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             let arrForHeatMap = {}
             for(let x=30; x<=1290; x=x+30){
                 for(let y=30; y<=1050; y=y+30){
-                    arrForHeatMap[(x, y)] = 0
+                    arrForHeatMap[[x, y]] = 0
                 }
             }
 
@@ -1509,7 +1509,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         const y_reminder = click[2] % 30;
                         const y_cell = 30*(Math.floor((click[2]-y_reminder)/30)+1);
 
-                        arrForHeatMap[(x_cell, y_cell)] += 1;
+                        arrForHeatMap[[x_cell, y_cell]] += 1;
                         /*const key_for_click = [click[1],click[2]];
                         if(key_for_click in $scope.allClicks && click){
                             $scope.allClicks[key_for_click] += 1;
