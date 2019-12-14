@@ -1412,7 +1412,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             console.log(xLabels);
             console.log("y ");
             console.log(yLabels);
-            console($scope.arrDataForHeatMap);
+            console.log($scope.arrDataForHeatMap);
 
             Highcharts.chart('heatMap_container', {
 
