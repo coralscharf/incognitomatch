@@ -1482,6 +1482,17 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         }).then(function (data) {
             console.log("GET MOUSE DATA ");
             // console.log(data.data);
+
+            const max_x = 1279.0
+            const max_y = 1023.0
+
+            let arrForHeatMap = {}
+            for(let x=30; x<=1290; x=x+30){
+                for(let y=30; y<=1050; y=y+30){
+                    arrForHeatMap[(x, y)] = 0
+                }
+            }
+
             let count = 1;
             for(let index in data.data){
                 const all_clicks_for_q = data.data[index];
@@ -1491,17 +1502,25 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     if((all_clicks_list[i_click]).includes('(')) {
                         let click = JSON.parse((all_clicks_list[i_click].replace('(','['))
                             .replace(')',']'));
-                        const key_for_click = [click[1],click[2]];
+
+                        const x_reminder = click[1] % 30;
+                        const x_cell = 30*(Math.floor((click[1]-x_reminder)/30)+1);
+
+                        const y_reminder = click[2] % 30;
+                        const y_cell = 30*(Math.floor((click[2]-y_reminder)/30)+1);
+
+                        arrForHeatMap[(x_cell, y_cell)] += 1;
+                        /*const key_for_click = [click[1],click[2]];
                         if(key_for_click in $scope.allClicks && click){
                             $scope.allClicks[key_for_click] += 1;
                         }
                         else{
                             $scope.allClicks[key_for_click] = 1;
-                        }
+                        }*/
                     }
                 }
             }
-            console.log($scope.allClicks);
+            console.log(arrForHeatMap);
 
         });
     };
