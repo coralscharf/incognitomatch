@@ -1549,7 +1549,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             for(let x=30; x<=1290; x=x+30){
                 let j = 0;
                 for(let y=30; y<=1290; y=y+30){
-                    const item = [i,j,$scope.arrDataForHeatMap[[x, y]]]
+                    const item = [i,j,$scope.arrDataForHeatMap[[x, y]]];
+                    $scope.arrDataForHeatMap.push(item);
                     j += 1;
                 }
                 i += 1;
