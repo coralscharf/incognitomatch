@@ -1481,16 +1481,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     //}
                 },
 
-                plotOptions: {
-                    heatmap: {
-                        states: {
-                            hover: {
-                                enabled: false
-                            }
-                        }
-                    }
-                },
-
                 responsive: {
                     rules: [{
                         condition: {
