@@ -1429,6 +1429,16 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     plotBackgroundImage: '/images/questionScreen.png'
                 },
 
+                plotOptions: {
+                    heatmap: {
+                        states: {
+                            hover: {
+                                enabled: false
+                            }
+                        }
+                    }
+                },
+
 
                 title: {
                     text: 'Mouse Location During The Experiement'
