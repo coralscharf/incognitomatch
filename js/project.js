@@ -1530,7 +1530,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             yLabels.push(y);
         }
 
-        $scope.get_mouse_click_data(function() {
+        $scope.get_mouse_click_data(function(finish) {
             console.log("x ");
             console.log(xLabels);
             console.log("y ");
@@ -1684,7 +1684,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 }
                 i += 1;
             }
-            callback();
+            callback(true);
 
         });
     };
