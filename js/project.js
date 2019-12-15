@@ -118,6 +118,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
         $scope.confidenceLineGraph = "";
         $scope.timeBarGraph = "";
+
+        $scope.get_mouse_click_data();
+        $scope.create_heat_map();
     };
 
     $scope.show_home = function(){
