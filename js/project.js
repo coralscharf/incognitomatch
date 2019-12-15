@@ -1464,7 +1464,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     }
                 },
 
-                series: {
+                series: [{
                     name: 'Mouse Location',
                     borderWidth: 0,
                     opacity: 0.5,
@@ -1479,7 +1479,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     //  enabled: false,
                     //color: '#000000'
                     //}
-                },
+                }],
 
                 responsive: {
                     rules: [{
