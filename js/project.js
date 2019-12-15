@@ -1441,7 +1441,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 yAxis: {
                     categories: yLabels,
                     title: true,
-                    reversed: false
+                    reversed: true
                 },
 
                 colorAxis: {
