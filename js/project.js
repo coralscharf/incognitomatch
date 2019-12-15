@@ -1426,12 +1426,12 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     marginTop: 40,
                     marginBottom: 80,
                     plotBorderWidth: 1,
-                    plotBackgroundImage: 'https://www.highcharts.com/samples/graphics/skies.jpg'
+                    plotBackgroundImage: '/images/questionScreen.png' //'https://www.highcharts.com/samples/graphics/skies.jpg'
                 },
 
 
                 title: {
-                    text: 'Sales per employee per weekday'
+                    text: 'Mouse Location During The Experiement'
                 },
 
                 xAxis: {
@@ -1446,7 +1446,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                 colorAxis: {
                     min: 0,
-                    minColor: '#fff20f',
+                    minColor: '#fcfffa',
                     maxColor: '#ff1034'
                 },
 
