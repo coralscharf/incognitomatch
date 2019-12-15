@@ -119,13 +119,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.confidenceLineGraph = "";
         $scope.timeBarGraph = "";
 
-        $scope.get_mouse_click_data(function() {
-
-            $scope.create_heat_map(function() {
-                console.log("TTT");
-            });
-
-        });
     };
 
     $scope.show_home = function(){
@@ -566,11 +559,18 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         $scope.showConfidenceLineGraph(function(finish_conf) {
 
                             $scope.showTimeRangeBarGraph(function(finish_time) {
-                                document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
-                                $("#loading").hide();
-                                $("#finish_exp").show();
-                                $scope.curr_order = 1;
-                                $scope.curr_count_ans = 0;
+
+                                $scope.get_mouse_click_data(function() {
+
+                                    $scope.create_heat_map(function() {
+                                        document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
+                                        $("#loading").hide();
+                                        $("#finish_exp").show();
+                                        $scope.curr_order = 1;
+                                        $scope.curr_count_ans = 0;
+                                    });
+                                });
+
                             });
 
                         });
