@@ -34,10 +34,14 @@ table.table th, table.table td {
     opacity: 1;
 }
 
-.highcharts-legend-item.highcharts-undefined-series.highcharts-color-undefined {
+#heatMap_container .highcharts-container .highcharts-root .highcharts-legend .highcharts-legend-item .highcharts-undefined-series .highcharts-color-undefined {
     pointer-events: none;
 }
 
 #heatMap_container .highcharts-container .highcharts-root .highcharts-exporting-group{
+    display: none;
+}
+
+#heatMap_container .highcharts-container .highcharts-root .highcharts-axis-labels highcharts-yaxis-labels .highcharts-credits{
     display: none;
 }
