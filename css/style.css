@@ -30,28 +30,10 @@ table.table th, table.table td {
     100% { transform: rotate(360deg); }
 }
 
-#heatMap_container .highcharts-legend-series-active g.highcharts-series:not(.highcharts-series-hover), .highcharts-legend-point-active .highcharts-point:not(.highcharts-point-hover), .highcharts-legend-series-active .highcharts-markers:not(.highcharts-series-hover), .highcharts-legend-series-active .highcharts-data-labels:not(.highcharts-series-hover) {
-    opacity: 1;
-}
-
-#heatMap_container .highcharts-container .highcharts-root .highcharts-legend .highcharts-legend-item .highcharts-undefined-series .highcharts-color-undefined {
-    pointer-events: none;
-}
-
 #heatMap_container .highcharts-container .highcharts-root .highcharts-exporting-group{
     display: none;
 }
 
 #heatMap_container .highcharts-container .highcharts-root .highcharts-credits{
     display: none;
-}
-
-#heatMap_container .highcharts-container .highcharts-root
-.highcharts-series-group .highcharts-series .highcharts-series-0 .highcharts-heatmap-series .highcharts-color-0 .highcharts-tracker .highcharts-point .highcharts-color-0{
-    pointer-events: none;
-}
-
-#heatMap_container .highcharts-container .highcharts-root
-.highcharts-series-group .highcharts-series .highcharts-series-0 .highcharts-heatmap-series .highcharts-color-0 .highcharts-tracker{
-    pointer-events: none;
 }
