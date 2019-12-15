@@ -9,7 +9,7 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 
 
 #$sql="select mouse_loc from exp_results where exp_id = ". $curr_exp_id ." and user_id = ". $curr_user ;
-$sql="select mouse_loc from exp_results where exp_id = 3 and user_id = 394" ;
+$sql="select mouse_loc from exp_results where exp_id = " . $curr_exp_id . "and user_id = ". $curr_user;
 
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
