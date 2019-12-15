@@ -1459,6 +1459,12 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     symbolHeight: 280
                 },
 
+                tooltip: {
+                    formatter: function () {
+                        return '<b>' + this.point.value + '</b> Mouse Location Observed.';
+                    }
+                },
+
                 series: [{
                     name: 'Mouse Location',
                     borderWidth: 0,
