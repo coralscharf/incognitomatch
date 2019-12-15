@@ -556,8 +556,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         $("#experiment").hide();
                         $("#loading").show();
                         $scope.showConfidenceLineGraph(function(finish_conf) {
+                            console.log("FINISH CONF GRAPH");
 
                             $scope.showTimeRangeBarGraph(function(finish_time) {
+                                console.log("FINISH TIME GRAPH");
 
                                 $scope.create_heat_map(function() {
                                     document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
@@ -1400,6 +1402,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.create_heat_map = function(callback) {
 
+        console.log("START HEAT MAP");
+
         const max_x = 1300; //1290.0;
         const max_y = 1300; //1290.0;
         const jump_in_x = 100; //30;
@@ -1416,6 +1420,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         }
 
         $scope.get_mouse_click_data(function() {
+            console.log("FINISH get_mouse_click_data");
             console.log("x ");
             console.log(xLabels);
             console.log("y ");
