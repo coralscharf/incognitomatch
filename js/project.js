@@ -121,6 +121,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
         $scope.get_mouse_click_data();
         $scope.create_heat_map();
+
+        $scope.get_mouse_click_data(function() {
+            $scope.create_heat_map(function() {
+                document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
+
+            });
+        });
     };
 
     $scope.show_home = function(){
