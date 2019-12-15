@@ -1397,13 +1397,18 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.create_heat_map = function() {
 
+        const max_x = 1300; //1290.0;
+        const max_y = 1300; //1290.0;
+        const jump_in_x = 100; //30;
+        const jump_in_y = 100; //30;
+
         let xLabels = [];
-        for(let x=30; x<=1290; x=x+30){
+        for(let x=jump_in_x; x<=max_x; x=x+jump_in_x){
             xLabels.push(x);
         }
 
         let yLabels = [];
-        for(let y=30; y<=1290; y=y+30){
+        for(let y=jump_in_y; y<=max_y; y=y+jump_in_y){
             yLabels.push(y);
         }
 
