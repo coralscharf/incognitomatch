@@ -1436,11 +1436,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                 xAxis: {
                     categories: xLabels
-                    //categories: ['Alexander', 'Marie', 'Maximilian', 'Sophia', 'Lukas', 'Maria', 'Leon', 'Anna', 'Tim', 'Laura']
                 },
 
                 yAxis: {
-                    //categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
                     categories: yLabels,
                     title: true,
                     reversed: false
@@ -1448,8 +1446,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                 colorAxis: {
                     min: 0,
-                    minColor: '#ffc8bf',
-                    maxColor: '#ff1800'
+                    minColor: '#fff20f',
+                    maxColor: '#ff1034'
                 },
 
                 legend: {
@@ -1462,7 +1460,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 },
 
                 series: [{
-                    name: 'Sales per employee',
+                    name: 'Mouse Location',
                     borderWidth: 0,
                     opacity: 0.5,
                     data: $scope.arrDataForHeatMap
