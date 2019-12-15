@@ -1487,9 +1487,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 borderWidth: 0,
                 opacity: 0.5,
                 data: $scope.arrDataForHeatMap
-            }],
+            }]
 
-            responsive: {
+            /*responsive: {
                 rules: [{
                     condition: {
                         maxWidth: 500
@@ -1504,7 +1504,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         }
                     }
                 }]
-            }
+            }*/
 
         });
 
