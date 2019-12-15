@@ -120,7 +120,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.timeBarGraph = "";
 
         $scope.get_mouse_click_data(function() {
-            $scope.create_heat_map();
+
+            $scope.create_heat_map(function() {
+                console.log("TTT");
+            });
+
         });
     };
 
@@ -1392,7 +1396,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         });
     };
 
-    $scope.create_heat_map = function() {
+    $scope.create_heat_map = function(callback) {
 
         const max_x = 1300; //1290.0;
         const max_y = 1300; //1290.0;
@@ -1496,6 +1500,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
 
         });
+        callback();
 
     };
 
