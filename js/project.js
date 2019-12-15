@@ -1510,8 +1510,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             method: 'POST',
             url: 'php/get_mouse_click_data.php',
             data: $.param({
-                curr_user: 394, //$scope.curr_user['id'],
-                curr_exp_id: 3 //$scope.curr_exp_id
+                curr_user: $scope.curr_user['id'],
+                curr_exp_id: $scope.curr_exp_id
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
