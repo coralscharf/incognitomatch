@@ -42,16 +42,16 @@ table.table th, table.table td {
     display: none;
 }
 
-#heatMap_container .highcharts-container .highcharts-root .highcharts-axis-labels highcharts-yaxis-labels .highcharts-credits{
+#heatMap_container .highcharts-container .highcharts-root .highcharts-axis-labels .highcharts-yaxis-labels .highcharts-credits{
     display: none;
 }
 
 #heatMap_container .highcharts-container .highcharts-root
-.highcharts-series-group .highcharts-series highcharts-series-0 highcharts-heatmap-series highcharts-color-0 highcharts-tracker .highcharts-point highcharts-color-0{
+.highcharts-series-group .highcharts-series .highcharts-series-0 .highcharts-heatmap-series .highcharts-color-0 .highcharts-tracker .highcharts-point .highcharts-color-0{
     pointer-events: none;
 }
 
 #heatMap_container .highcharts-container .highcharts-root
-.highcharts-series-group .highcharts-series highcharts-series-0 highcharts-heatmap-series highcharts-color-0 highcharts-tracker{
+.highcharts-series-group .highcharts-series .highcharts-series-0 .highcharts-heatmap-series .highcharts-color-0 .highcharts-tracker{
     pointer-events: none;
 }
