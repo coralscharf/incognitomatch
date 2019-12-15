@@ -29,3 +29,7 @@ table.table th, table.table td {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+#container .highcharts-legend-series-active g.highcharts-series:not(.highcharts-series-hover), .highcharts-legend-point-active .highcharts-point:not(.highcharts-point-hover), .highcharts-legend-series-active .highcharts-markers:not(.highcharts-series-hover), .highcharts-legend-series-active .highcharts-data-labels:not(.highcharts-series-hover) {
+    opacity: 0.5;
+}
