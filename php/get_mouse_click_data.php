@@ -1,11 +1,14 @@
 <?php
 
+$curr_user = stripcslashes($_POST['curr_user']);
+$curr_exp_id = stripcslashes($_POST['curr_exp_id']);
+
 $connectionInfo = array("UID" => "avivf@avivtest", "pwd" => "1qaZ2wsX!", "Database" => "avivtest", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
 $serverName = "tcp:avivtest.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 
 
-$sql="select mouse_loc from exp_results";
+$sql="select mouse_loc from exp_results where exp_id = ". $curr_exp_id ." and user_id = ". $curr_user ;
 
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
