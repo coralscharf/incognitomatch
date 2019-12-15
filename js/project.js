@@ -1,4 +1,3 @@
-
 let app = angular.module('template', []);
 
 app.directive('fileModel', ['$parse', function ($parse) {
@@ -43,41 +42,41 @@ app.directive('starRating', function () {
     }
 });
 
-		// We can write our own fileUpload service to reuse it in the controller
-		app.service('fileUpload', ['$http', function ($http) {
-			this.uploadFileToUrl = function(files, uploadUrl, name, exp_name){
-				let fd = new FormData();
-                angular.forEach(files,function(file){
-                    fd.append('file[]',file);
-                });
-				fd.append('name', name);
-                fd.append('exp_name', exp_name);
-				$http.post(uploadUrl, fd, {
-					transformRequest: angular.identity,
-					headers: {'Content-Type': undefined,'Process-Data': false}
-				}).then(function(data){
-                    let res=data.data;
-                    //console.log(res);
-                    if (res==="0")
-                    {
-                        //console.log("good");
+// We can write our own fileUpload service to reuse it in the controller
+app.service('fileUpload', ['$http', function ($http) {
+    this.uploadFileToUrl = function(files, uploadUrl, name, exp_name){
+        let fd = new FormData();
+        angular.forEach(files,function(file){
+            fd.append('file[]',file);
+        });
+        fd.append('name', name);
+        fd.append('exp_name', exp_name);
+        $http.post(uploadUrl, fd, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined,'Process-Data': false}
+        }).then(function(data){
+            let res=data.data;
+            //console.log(res);
+            if (res==="0")
+            {
+                //console.log("good");
 
-                    }
-                    else {
-                        console.log("error upload files");
+            }
+            else {
+                console.log("error upload files");
 
-                    }
-                    //console.log("res",res );
-
-
-
-					//$scope.uploadFile(data,name);
+            }
+            //console.log("res",res );
 
 
-				})
 
-			}
-		}]);
+            //$scope.uploadFile(data,name);
+
+
+        })
+
+    }
+}]);
 
 
 //		 myApp.controller('myCtrl', ['$scope', 'fileUpload', function($scope, fileUpload){
@@ -118,16 +117,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
         $scope.confidenceLineGraph = "";
         $scope.timeBarGraph = "";
-
-        $scope.get_mouse_click_data();
-
         $scope.create_heat_map();
-        /*$scope.get_mouse_click_data(function() {
-            $scope.create_heat_map(function() {
-                document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
-
-            });
-        });*/
     };
 
     $scope.show_home = function(){
@@ -190,38 +180,38 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.show_test = function() {
 
-            $http({
-                method: 'POST',
-                url: 'php/riddles.php',
-                data: $.param({
-                    riddle_1: document.getElementById("riddle_1").value,
-                    riddle_2: document.getElementById("riddle_2").value,
-                    riddle_3: document.getElementById("riddle_3").value,
-                    riddle_4: document.getElementById("riddle_4").value,
-                    riddle_5: document.getElementById("riddle_5").value,
-                    riddle_6: document.getElementById("riddle_6").value,
-                    riddle_7: document.getElementById("riddle_7").value,
-                    user_id: $scope.curr_user['id']
-                }),
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            }).then(function (data) {
-                if (data.data !== "err") {
-                    $("#riddle").hide();
-                    document.getElementById("riddle_1").value = "";
-                    document.getElementById("riddle_2").value = "";
-                    document.getElementById("riddle_3").value = "";
-                    document.getElementById("riddle_4").value = "";
-                    document.getElementById("riddle_5").value = "";
-                    document.getElementById("riddle_6").value = "";
-                    document.getElementById("riddle_7").value = "";
-                    $scope.begin_exp($scope.test_schema);
-                } else {
-                    console.log(data.data);
-                }
+        $http({
+            method: 'POST',
+            url: 'php/riddles.php',
+            data: $.param({
+                riddle_1: document.getElementById("riddle_1").value,
+                riddle_2: document.getElementById("riddle_2").value,
+                riddle_3: document.getElementById("riddle_3").value,
+                riddle_4: document.getElementById("riddle_4").value,
+                riddle_5: document.getElementById("riddle_5").value,
+                riddle_6: document.getElementById("riddle_6").value,
+                riddle_7: document.getElementById("riddle_7").value,
+                user_id: $scope.curr_user['id']
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function (data) {
+            if (data.data !== "err") {
+                $("#riddle").hide();
+                document.getElementById("riddle_1").value = "";
+                document.getElementById("riddle_2").value = "";
+                document.getElementById("riddle_3").value = "";
+                document.getElementById("riddle_4").value = "";
+                document.getElementById("riddle_5").value = "";
+                document.getElementById("riddle_6").value = "";
+                document.getElementById("riddle_7").value = "";
+                $scope.begin_exp($scope.test_schema);
+            } else {
+                console.log(data.data);
+            }
 
-            });
+        });
     };
 
     $scope.show_statistics = function(){
@@ -566,21 +556,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         $("#experiment").hide();
                         $("#loading").show();
                         $scope.showConfidenceLineGraph(function(finish_conf) {
-                            console.log("FINISH CONF GRAPH");
 
                             $scope.showTimeRangeBarGraph(function(finish_time) {
-                                console.log("FINISH TIME GRAPH");
-
-                                $scope.get_mouse_click_data(function() {
-
-                                    $scope.create_heat_map(function() {
-                                        document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
-                                        $("#loading").hide();
-                                        $("#finish_exp").show();
-                                        $scope.curr_order = 1;
-                                        $scope.curr_count_ans = 0;
-                                    });
-                                });
+                                document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
+                                $("#loading").hide();
+                                $("#finish_exp").show();
+                                $scope.curr_order = 1;
+                                $scope.curr_count_ans = 0;
                             });
 
                         });
@@ -658,20 +640,15 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 }
 
                 // TODO: for roee need remove the comment sign
-                    /*
-                else if($scope.done_test === true && ($scope.curr_count_ans % $scope.time_to_pause === 0)){
-                    // show pause modal every $scope.time_to_pause answers
-                    // show pause only for non-test schema
-
-                    document.getElementById("pause_modal_body").innerHTML="Get ready for the next Step." +
-                        "<br>Pairs remaining: " + ($scope.total_ans_needed - $scope.curr_count_ans);;
-
-
-                    $("#pause_exp_modal").modal('show');
-                    //console.log("pause");
-
-
-                }*/ // untill here
+                /*
+            else if($scope.done_test === true && ($scope.curr_count_ans % $scope.time_to_pause === 0)){
+                // show pause modal every $scope.time_to_pause answers
+                // show pause only for non-test schema
+                document.getElementById("pause_modal_body").innerHTML="Get ready for the next Step." +
+                    "<br>Pairs remaining: " + ($scope.total_ans_needed - $scope.curr_count_ans);;
+                $("#pause_exp_modal").modal('show');
+                //console.log("pause");
+            }*/ // untill here
                 $scope.last_ans = $scope.user_ans_match;
                 $scope.user_ans_match = false; // init radio button match/no match
             }
@@ -692,7 +669,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             // show pause only for non-test schema
             document.getElementById("pause_modal_body").innerHTML="Get ready for the next Step." +
                 "<br>Pairs remaining: " + ($scope.total_ans_needed - $scope.curr_count_ans);
-
             $("#pause_exp_modal").modal('show');
             //console.log("pause");
         }*/
@@ -967,7 +943,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
 
-    
+
     $scope.get_exp_for_update = function () {
         // this function get all the experiments meta data for the update modal for the admin.
         $http({
@@ -1411,107 +1387,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
         });
     };
-    /*
-    $scope.create_heat_map = function(callback) {
-
-        console.log("START HEAT MAP");
-
-        const max_x = 1300; //1290.0;
-        const max_y = 1300; //1290.0;
-        const jump_in_x = 100; //30;
-        const jump_in_y = 100; //30;
-
-        let xLabels = [];
-        for(let x=jump_in_x; x<=max_x; x=x+jump_in_x){
-            xLabels.push(x);
-        }
-
-        let yLabels = [];
-        for(let y=jump_in_y; y<=max_y; y=y+jump_in_y){
-            yLabels.push(y);
-        }
-
-        console.log("FINISH get_mouse_click_data");
-        console.log("x ");
-        console.log(xLabels);
-        console.log("y ");
-        console.log(yLabels);
-        console.log($scope.arrDataForHeatMap);
-
-        Highcharts.chart('heatMap_container', {
-
-            chart: {
-                type: 'heatmap',
-                marginTop: 40,
-                marginBottom: 80,
-                plotBorderWidth: 1,
-                plotBackgroundImage: '/images/questionScreen.png'
-            },
-
-            title: {
-                text: 'Mouse Location During The Experiement'
-            },
-
-            xAxis: {
-                categories: xLabels
-            },
-
-            yAxis: {
-                categories: yLabels,
-                title: true,
-                reversed: true
-            },
-
-            colorAxis: {
-                min: 0,
-                minColor: '#fcfffa',
-                maxColor: '#ff1034'
-            },
-
-            legend: {
-                align: 'right',
-                layout: 'vertical',
-                margin: 0,
-                verticalAlign: 'top',
-                y: 25,
-                symbolHeight: 280
-            },
-
-            tooltip: {
-                formatter: function () {
-                    return '<b>' + this.point.value + '</b> Mouse Location Observed.';
-                }
-            },
-
-            series: [{
-                name: 'Mouse Location',
-                borderWidth: 0,
-                opacity: 0.5,
-                data: $scope.arrDataForHeatMap
-            }],
-
-            responsive: {
-                rules: [{
-                    condition: {
-                        maxWidth: 500
-                    },
-                    chartOptions: {
-                        yAxis: {
-                            labels: {
-                                formatter: function () {
-                                    return this.value.charAt(0);
-                                }
-                            }
-                        }
-                    }
-                }]
-            }
-
-        });
-        console.log("CHECK");
-        callback();
-
-    };*/
 
     $scope.create_heat_map = function() {
 
@@ -1530,7 +1405,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             yLabels.push(y);
         }
 
-        $scope.get_mouse_click_data(function(finish) {
+        $scope.get_mouse_click_data(function() {
             console.log("x ");
             console.log(xLabels);
             console.log("y ");
@@ -1547,7 +1422,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     plotBackgroundImage: '/images/questionScreen.png'
                 },
 
-
                 title: {
                     text: 'Mouse Location During The Experiement'
                 },
@@ -1559,7 +1433,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 yAxis: {
                     categories: yLabels,
                     title: true,
-                    reversed: false
+                    reversed: true
                 },
 
                 colorAxis: {
@@ -1587,13 +1461,30 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     name: 'Mouse Location',
                     borderWidth: 0,
                     opacity: 0.5,
-                    data: $scope.arrDataForHeatMap
+                    data: $scope.arrDataForHeatMap,
+                    events: {
+                        mouseOut: function() {
+                            this.update({
+                                color: this.color
+                            });
+                        }
+                    }
                     // data: [[0, 0, 10], [0, 1, 19], [0, 2, 8], [0, 3, 24], [0, 4, 67], [1, 0, 92], [1, 1, 58], [1, 2, 78], [1, 3, 117], [1, 4, 48], [2, 0, 35], [2, 1, 15], [2, 2, 123], [2, 3, 64], [2, 4, 52], [3, 0, 72], [3, 1, 132], [3, 2, 114], [3, 3, 19], [3, 4, 16], [4, 0, 38], [4, 1, 5], [4, 2, 8], [4, 3, 117], [4, 4, 115], [5, 0, 88], [5, 1, 32], [5, 2, 12], [5, 3, 6], [5, 4, 120], [6, 0, 13], [6, 1, 44], [6, 2, 88], [6, 3, 98], [6, 4, 96], [7, 0, 31], [7, 1, 1], [7, 2, 82], [7, 3, 32], [7, 4, 30], [8, 0, 85], [8, 1, 97], [8, 2, 123], [8, 3, 64], [8, 4, 84], [9, 0, 47], [9, 1, 114], [9, 2, 31], [9, 3, 48], [9, 4, 91]],
                     //dataLabels: {
                     //  enabled: false,
                     //color: '#000000'
                     //}
                 }],
+
+                plotOptions: {
+                    heatmap: {
+                        states: {
+                            hover: {
+                                enabled: false
+                            }
+                        }
+                    }
+                },
 
                 responsive: {
                     rules: [{
@@ -1684,11 +1575,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 }
                 i += 1;
             }
-            callback(true);
+            callback();
 
         });
     };
 
 });	 //app.controller
-
-
