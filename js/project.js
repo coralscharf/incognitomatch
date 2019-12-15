@@ -1505,12 +1505,14 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             console.log("GET MOUSE DATA ");
             // console.log(data.data);
 
-            //const max_x = 1279.0
-            //const max_y = 1023.0
+            const max_x = 1300; //1290.0;
+            const max_y = 1300; //1290.0;
+            const jump_in_x = 100; //30;
+            const jump_in_y = 100; //30;
 
             $scope.arrForHeatMap = {};
-            for(let x=30; x<=1290; x=x+30){
-                for(let y=30; y<=1290; y=y+30){
+            for(let x=jump_in_x; x<=max_x; x=x+jump_in_x){
+                for(let y=jump_in_y; y<=max_y; y=y+jump_in_y){
                     $scope.arrForHeatMap[[x, y]] = 0;
                 }
             }
@@ -1525,11 +1527,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         let click = JSON.parse((all_clicks_list[i_click].replace('(','['))
                             .replace(')',']'));
 
-                        const x_reminder = click[1] % 30;
-                        const x_cell = 30*(Math.floor((click[1]-x_reminder)/30)+1);
+                        const x_reminder = click[1] % jump_in_x;
+                        const x_cell = jump_in_x*(Math.floor((click[1]-x_reminder)/jump_in_x)+1);
 
-                        const y_reminder = click[2] % 30;
-                        const y_cell = 30*(Math.floor((click[2]-y_reminder)/30)+1);
+                        const y_reminder = click[2] % jump_in_y;
+                        const y_cell = jump_in_y*(Math.floor((click[2]-y_reminder)/jump_in_y)+1);
 
                         $scope.arrForHeatMap[[x_cell, y_cell]] += 1;
                         /*const key_for_click = [click[1],click[2]];
@@ -1546,9 +1548,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
             $scope.arrDataForHeatMap = [];
             let i = 0;
-            for(let x=30; x<=1290; x=x+30){
+            for(let x=jump_in_x; x<=max_x; x=x+jump_in_x){
                 let j = 0;
-                for(let y=30; y<=1290; y=y+30){
+                for(let y=jump_in_y; y<=max_y; y=y+jump_in_y){
                     const item = [i,j,$scope.arrForHeatMap[[x, y]]];
                     $scope.arrDataForHeatMap.push(item);
                     j += 1;
