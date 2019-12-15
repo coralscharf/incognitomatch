@@ -121,12 +121,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
         $scope.get_mouse_click_data();
 
-        $scope.get_mouse_click_data(function() {
+        $scope.create_heat_map();
+        /*$scope.get_mouse_click_data(function() {
             $scope.create_heat_map(function() {
                 document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
 
             });
-        });
+        });*/
     };
 
     $scope.show_home = function(){
@@ -1410,7 +1411,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
         });
     };
-
+    /*
     $scope.create_heat_map = function(callback) {
 
         console.log("START HEAT MAP");
@@ -1509,6 +1510,110 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         });
         console.log("CHECK");
         callback();
+
+    };*/
+
+    $scope.create_heat_map = function() {
+
+        const max_x = 1300; //1290.0;
+        const max_y = 1300; //1290.0;
+        const jump_in_x = 100; //30;
+        const jump_in_y = 100; //30;
+
+        let xLabels = [];
+        for(let x=jump_in_x; x<=max_x; x=x+jump_in_x){
+            xLabels.push(x);
+        }
+
+        let yLabels = [];
+        for(let y=jump_in_y; y<=max_y; y=y+jump_in_y){
+            yLabels.push(y);
+        }
+
+        $scope.get_mouse_click_data(function() {
+            console.log("x ");
+            console.log(xLabels);
+            console.log("y ");
+            console.log(yLabels);
+            console.log($scope.arrDataForHeatMap);
+
+            Highcharts.chart('heatMap_container', {
+
+                chart: {
+                    type: 'heatmap',
+                    marginTop: 40,
+                    marginBottom: 80,
+                    plotBorderWidth: 1,
+                    plotBackgroundImage: '/images/questionScreen.png'
+                },
+
+
+                title: {
+                    text: 'Mouse Location During The Experiement'
+                },
+
+                xAxis: {
+                    categories: xLabels
+                },
+
+                yAxis: {
+                    categories: yLabels,
+                    title: true,
+                    reversed: false
+                },
+
+                colorAxis: {
+                    min: 0,
+                    minColor: '#fcfffa',
+                    maxColor: '#ff1034'
+                },
+
+                legend: {
+                    align: 'right',
+                    layout: 'vertical',
+                    margin: 0,
+                    verticalAlign: 'top',
+                    y: 25,
+                    symbolHeight: 280
+                },
+
+                tooltip: {
+                    formatter: function () {
+                        return '<b>' + this.point.value + '</b> Mouse Location Observed.';
+                    }
+                },
+
+                series: [{
+                    name: 'Mouse Location',
+                    borderWidth: 0,
+                    opacity: 0.5,
+                    data: $scope.arrDataForHeatMap
+                    // data: [[0, 0, 10], [0, 1, 19], [0, 2, 8], [0, 3, 24], [0, 4, 67], [1, 0, 92], [1, 1, 58], [1, 2, 78], [1, 3, 117], [1, 4, 48], [2, 0, 35], [2, 1, 15], [2, 2, 123], [2, 3, 64], [2, 4, 52], [3, 0, 72], [3, 1, 132], [3, 2, 114], [3, 3, 19], [3, 4, 16], [4, 0, 38], [4, 1, 5], [4, 2, 8], [4, 3, 117], [4, 4, 115], [5, 0, 88], [5, 1, 32], [5, 2, 12], [5, 3, 6], [5, 4, 120], [6, 0, 13], [6, 1, 44], [6, 2, 88], [6, 3, 98], [6, 4, 96], [7, 0, 31], [7, 1, 1], [7, 2, 82], [7, 3, 32], [7, 4, 30], [8, 0, 85], [8, 1, 97], [8, 2, 123], [8, 3, 64], [8, 4, 84], [9, 0, 47], [9, 1, 114], [9, 2, 31], [9, 3, 48], [9, 4, 91]],
+                    //dataLabels: {
+                    //  enabled: false,
+                    //color: '#000000'
+                    //}
+                }],
+
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500
+                        },
+                        chartOptions: {
+                            yAxis: {
+                                labels: {
+                                    formatter: function () {
+                                        return this.value.charAt(0);
+                                    }
+                                }
+                            }
+                        }
+                    }]
+                }
+
+            });
+        });
 
     };
 
