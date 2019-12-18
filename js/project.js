@@ -226,6 +226,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         // to get the first pair.
 
         $("#experiment").show();
+
+        // Set Height for Hierarchy area
+        const HierarchyHeight = window.innerHeight - 300;
+        document.getElementById("HierarchyTable").style = 'height: ' + HierarchyHeight + 'px';
+
         if (exp['disp_type'] === 0)
         {
             $("#row_type_A").hide();
@@ -392,7 +397,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
             //let index = Math.floor((Math.random() * schema.length) + 1);
             //console.log(schema[index]);
-            document.getElementById("A_col_name").innerText=$scope.schema[0]['col_name'];
+            document.getElementById("A_col_name").innerText= 'Term A - ' + $scope.schema[0]['col_name'];
             document.getElementById("A_col_type").innerText=$scope.schema[0]['col_type'];
             document.getElementById("A_col_instance").innerText=str_instance;
             $scope.exclude_ids = $scope.exclude_ids +  " and id!=" + $scope.schema[0]['index'];
@@ -462,7 +467,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 }
                 //let index = Math.floor((Math.random() * schema.length) + 1);
                 //console.log(schema[index]);
-                document.getElementById("B_col_name").innerText=$scope.schema2[0]['col_name'];
+                document.getElementById("B_col_name").innerText='Term B - ' + $scope.schema2[0]['col_name'];
                 document.getElementById("B_col_type").innerText=$scope.schema2[0]['col_type'];
                 document.getElementById("B_col_instance").innerText=str_instance;
                 document.getElementById("exp_pair_score").innerText=
