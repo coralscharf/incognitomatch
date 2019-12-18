@@ -229,7 +229,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
         // Set Height for Hierarchy area
         const HierarchyHeight = window.innerHeight - 300;
-        document.getElementById("HierarchyTable").style = 'height: ' + HierarchyHeight + 'px';
+        document.getElementById("HierarchyTable").style.height = HierarchyHeight + 'px';
 
         if (exp['disp_type'] === 0)
         {
@@ -366,17 +366,17 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             for (let j=0;j<h_1_temp.length;j++)
             {
                 if ($scope.schema[0]['col_name'] === h_1_temp[j]){
-                    $scope.h_1.push({"index":j,"val":h_1_temp[j],"color":'red'});
+                    $scope.h_1.push({"index":j,"val":h_1_temp[j],"color":'red', "weight":700});
                 }
                 else{
-                    $scope.h_1.push({"index":j,"val":h_1_temp[j],"color":'green'});
+                    $scope.h_1.push({"index":j,"val":h_1_temp[j],"color":'green', "weight":100});
                 }
 
                 last=j;
             }
             for (let k=0;k<$scope.schema[0]['brothers'].length;k++)
             {
-                $scope.h_1.push({"index":last,"val":$scope.schema[0]['brothers'][k],"color":'blue'});
+                $scope.h_1.push({"index":last,"val":$scope.schema[0]['brothers'][k],"color":'blue', "weight":100});
             }
 
 
@@ -442,10 +442,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 for (let j=0;j<h_2_temp.length;j++)
                 {
                     if ($scope.schema2[0]['col_name'] === h_2_temp[j]){
-                        $scope.h_2.push({"index":j,"val":h_2_temp[j],"color":'red'});
+                        $scope.h_2.push({"index":j,"val":h_2_temp[j],"color":'red', "weight":700});
                     }
                     else{
-                        $scope.h_2.push({"index":j,"val":h_2_temp[j],"color":'green'});
+                        $scope.h_2.push({"index":j,"val":h_2_temp[j],"color":'green', "weight":100});
                     }
 
                     last=j;
@@ -453,7 +453,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                 for (let k=0;k<$scope.schema2[0]['brothers'].length;k++)
                 {
-                    $scope.h_2.push({"index":last,"val":$scope.schema2[0]['brothers'][k],"color":'blue'});
+                    $scope.h_2.push({"index":last,"val":$scope.schema2[0]['brothers'][k],"color":'blue', "weight":100});
                 }
                 let str_instance="";
                 if ("instance" in $scope.schema2[0]) {

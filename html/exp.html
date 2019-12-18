@@ -18,7 +18,7 @@
             <table class="sideTableExp" style="display: block">
                 <thead>
                     <tr>
-                        <th colspan="2" scope="colgroup" id="A_col_name">
+                        <th colspan="2" scope="colgroup" id="A_col_name" style="font-weight: 700; font-size: larger;">
                             Term A - FirstName
                         </th>
                     </tr>
@@ -73,7 +73,7 @@
                     <td></td>
                 </tr>
                 <tr id="row_control">
-                    <th colspan="2" scope="row">
+                    <th colspan="2" scope="colgroup">
                         System Suggestion
                     </th>
                 </tr>
@@ -110,7 +110,7 @@
                                 <!--<td id="table_a_{{$index}}">
                                     {{decorateWithSpace($index,item.val)}}
                                 </td>-->
-                                <td style="color:{{item.color}}">
+                                <td style="color:{{item.color}}; font-weight:{{item.weight}}">
                                     <i class="fa fa-angle-double-right" ng-repeat="t in getCustomRepeatArray(item.index)"></i><i class="fa fa-folder-open"></i>{{item.val}}
                                 </td>
                             </tr>
@@ -146,7 +146,7 @@
 
                 <thead>
                 <tr>
-                    <th colspan="2" scope="colgroup" id="B_col_name">
+                    <th colspan="2" scope="colgroup" id="B_col_name" style="font-weight: 700; font-size: larger;">
                         Term B - FirstName
                     </th>
                 </tr>
