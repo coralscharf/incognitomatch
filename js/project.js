@@ -229,11 +229,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         if (exp['disp_type'] === 0)
         {
             $("#row_type_A").hide();
+            $("#A_col_type").hide();
             $("#row_type_B").hide();
         }
         else
         {
             $("#row_type_A").show();
+            $("#A_col_type").show();
             $("#row_type_B").show();
         }
         if (exp['disp_h'] === 0)

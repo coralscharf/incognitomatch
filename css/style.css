@@ -8,6 +8,10 @@ table.table th, table.table td {
     padding-bottom: 0.7rem;
 }
 
+.sideTableExp td, th{
+    text-align: center;
+}
+
 .loader {
     border: 16px solid #f3f3f3;
     border-radius: 50%;
