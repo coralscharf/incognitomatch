@@ -217,7 +217,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.show_statistics = function(){
         // this function show the home div - the instructions.
-        $scope.showConfidenceLineGraph(function(finish_conf) {
+        $scope.showAggregateConfidenceLineGraph(function(finish_conf) {
 
             $("#statistics").show();
             $scope.showCorrectAnswersBar();
