@@ -230,6 +230,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         //this function set the experiment form accordingly to the correct settings and call getExp function
         // to get the first pair.
 
+        window.scrollTo(0,0);
         document.getElementById("schemaMatchingExp").style.overflow = 'hidden';
 
         $("#experiment").show();
