@@ -217,8 +217,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.show_statistics = function(){
         // this function show the home div - the instructions.
-        $("#statistics").show();
-        $scope.showCorrectAnswersBar();
+        $scope.showConfidenceLineGraph(function(finish_conf) {
+
+            $("#statistics").show();
+            $scope.showCorrectAnswersBar();
+
+        });
+
     };
 
     $scope.begin_exp = function(exp){
@@ -1204,6 +1209,84 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     };
 
+    $scope.showAggregateConfidenceLineGraph = function (callback) {
+        document.getElementById("confidenceLineGraphAggregate").innerHTML = "";
+
+        $http({
+            method: 'POST',
+            url: 'php/get_agg_confidence_and_answer_values.php',
+            data: $.param({
+
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function (data) {
+
+            if (data.data.length !== 0) {
+
+                let xLabels = [];
+                let yDataConf = [];
+                let yDataCorrAns = [];
+
+                let j = 1;
+                for (let item in data.data){
+                    const avgConf = (data.data)[item]['avgConf'];
+                    const avgCorrAns = (data.data)[item]['avgCorrAns'];
+
+                    xLabels.push(j);
+                    yDataConf.push(avgConf);
+                    yDataCorrAns.push(avgCorrAns);
+
+                    j++;
+                }
+
+                const ctx = document.getElementById("confidenceLineGraphAggregate").getContext("2d");
+                if ($scope.confidenceLineGraphAggregate){
+                    $scope.confidenceLineGraphAggregate.destroy();
+                }
+
+                $scope.confidenceLineGraphAggregate = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: xLabels,
+                        datasets: [
+                            {
+                                label: "Confidence Avg. Level",
+                                data: yDataConf,
+                                borderColor: "#5185ad",
+                                fill: false,
+                            },
+                            {
+                                label: "Correct Number Of Answers Avg. Level",
+                                data: yDataCorrAns,
+                                borderColor: "#ad6020",
+                                fill: false,
+                            }
+                        ]
+                    },
+                    options: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Confidence Level & Answer as function of number of Questions'
+                        }
+                    }
+                });
+
+                document.getElementById("confidenceLineGraphAggregate").innerHTML = $scope.confidenceLineGraphAggregate;
+                callback(true);
+
+            } else {
+                console.log('Get line graph data - confidence levels failed');
+                callback(false);
+
+            }
+        });
+
+    };
 
     $scope.showConfidenceLineGraph = function (callback) {
         document.getElementById("correctAnswersBar").innerHTML = "";
