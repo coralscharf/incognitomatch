@@ -12,7 +12,7 @@ $sql="WITH answers_table AS (
     from exp_results
     where exp_id = 3
 )
-select [order], AVG(userconf) as avgConf, AVG(CAST(isCorrectAnswer AS DECIMAL(5,2))) as avgCorrAns
+select [order], AVG(userconf) as avgConf, 100*AVG(CAST(isCorrectAnswer AS DECIMAL(5,4))) as avgCorrAns
 from answers_table join (select [order], sch_id_1, sch_id_2
                          from exp_pairs
                          where exp_id = 3 and [order]<=20) questions_orders

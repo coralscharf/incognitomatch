@@ -1260,7 +1260,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             {
                                 label: "Correct Number Of Answers Avg. Level",
                                 data: yDataCorrAns,
-                                borderColor: "#ad6020",
+                                borderColor: "#aa62ad",
                                 fill: false,
                             }
                         ]
