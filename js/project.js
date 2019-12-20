@@ -937,6 +937,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
 
             $scope.mouse_moves.push({"time":d.getTime(),"x":$event['pageX'],"y":$event['pageY'],"l":left,"r":right,"s":scroll});
+            console.log("x", $event['pageX'], "y", $event['pageY']);
         }
         else if (d.getTime() -  $scope.last_time_mouse > 500 )
         {
@@ -952,6 +953,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
             $scope.mouse_moves.push({"time":d.getTime(),"x":$event['pageX'],"y":$event['pageY'],"l":left,"r":right,"s":scroll});
             $scope.last_time_mouse = d.getTime();
+            console.log("x", $event['pageX'], "y", $event['pageY']);
+
         }
 
     };
