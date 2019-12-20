@@ -937,9 +937,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
 
             $scope.mouse_moves.push({"time":d.getTime(),"x":$event['pageX'],"y":$event['pageY'],"l":left,"r":right,"s":scroll});
-            console.log("x", $event['pageX'], "y", $event['pageY']);
+            //console.log("x", $event['pageX'], "y", $event['pageY']);
         }
-        else if (d.getTime() -  $scope.last_time_mouse > 500 )
+        else if (d.getTime() -  $scope.last_time_mouse > 250 )
         {
             let left=false,right=false,scroll=false;
             if ($event['which']===0){
@@ -953,7 +953,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
             $scope.mouse_moves.push({"time":d.getTime(),"x":$event['pageX'],"y":$event['pageY'],"l":left,"r":right,"s":scroll});
             $scope.last_time_mouse = d.getTime();
-            console.log("x", $event['pageX'], "y", $event['pageY']);
+            //console.log("x", $event['pageX'], "y", $event['pageY']);
 
         }
 
@@ -1632,8 +1632,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
             colorAxis: {
                 min: 0,
-                minColor: '#fcfffa',
-                maxColor: '#ff1034'
+                minColor: 'rgb(255,165,162)',
+                maxColor: '#ff2b00'
             },
 
             legend: {
