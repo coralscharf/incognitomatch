@@ -1464,6 +1464,91 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     };
 
+    $scope.showAggregateTimeRangeBarGraph = function (callback) {
+        document.getElementById("timeBarGraphAggregate").innerHTML = "";
+
+        $http({
+            method: 'POST',
+            url: 'php/get_agg_time_range_and_answers.php',
+            data: $.param({
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function (data) {
+
+            if (data.data.length !== 0) {
+
+                let xLabels = [];
+                let yData = [];
+                let colorOfPoints = [];
+
+                let j = 1;
+                for (let item in data.data){
+                    const diff_sec = (data.data)[item]['diff_sec'];
+                    const isCorrectAnswer = (data.data)[item]['isCorrectAnswer'];
+
+                    xLabels.push(j);
+                    yData.push(diff_sec);
+
+                    if(isCorrectAnswer == 1){
+                        colorOfPoints.push("#0ccd00");
+                    }else{
+                        colorOfPoints.push("#cd0800");
+                    }
+
+                    j++;
+                }
+
+                const ctx = document.getElementById("timeBarGraphAggregate").getContext("2d");
+                if ($scope.timeBarGraphAggregate){
+                    $scope.timeBarGraphAggregate.destroy();
+                }
+
+                console.log(xLabels);
+                console.log(yData);
+                console.log(colorOfPoints);
+
+                $scope.timeBarGraphAggregate = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: xLabels,
+                        datasets: [{
+                            data: yData,
+                            borderColor: "#000000",
+                            backgroundColor: colorOfPoints,
+                        }
+                        ]
+                    },
+                    options: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Time Range as function of number of Questions'
+                        },
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+
+                document.getElementById("timeBarGraphAggregate").innerHTML = $scope.timeBarGraphAggregate;
+                callback(true);
+
+            } else {
+                console.log('Get bar graph data - time range failed');
+                callback(false);
+            }
+        });
+
+    };
+
 
     $scope.add_user_data_finish_exp = function(){
 
