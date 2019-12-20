@@ -230,7 +230,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         //this function set the experiment form accordingly to the correct settings and call getExp function
         // to get the first pair.
 
-        document.getElementsByClassName("html.ng-scope").style.overflow = 'hidden';
+        document.getElementsByClassName("ng-scope").style.overflow = 'hidden';
 
         $("#experiment").show();
 
@@ -572,7 +572,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         // console.log($scope.curr_count_ans);
                         $("#experiment").hide();
 
-                        document.getElementsByClassName("html.ng-scope").style.overflow = 'auto';
+                        document.getElementsByClassName("ng-scope").style.overflow = 'auto';
 
                         $("#loading").show();
                         $scope.showConfidenceLineGraph(function(finish_conf) {
