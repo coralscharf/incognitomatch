@@ -119,6 +119,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.confidenceLineGraph = "";
         $scope.timeBarGraph = "";
 
+        // Var for stats
+        $scope.allUserNames = [];
+        $scope.allTestExpNames = [];
+
     };
 
     $scope.show_home = function(){
@@ -1761,6 +1765,39 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             callback();
 
         });
+    };
+
+    $scope.getDataForFiterStatistics = function (callback) {
+
+        $http({
+            method: 'POST',
+            url: 'php/get_data_for_filter_stats.php',
+            data: $.param({
+
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function (data) {
+
+            if (data.data !== '1') {
+
+                for (let i = 0; i < data.data.length; i++)
+                {
+                    if(data.data[i]['isSingleUser'] === 'True'){
+                        $scope.allUserNames.push(data.data[i]['fullName']);
+                    }else {
+                        $scope.allTestExpNames.push(data.data[i]['exp_name']);
+                    }
+                }
+                callback(true);
+            } else {
+                console.log('Get data for statistics filter failed');
+                callback(false);
+
+            }
+        });
+
     };
 
 });	 //app.controller
