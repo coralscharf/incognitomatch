@@ -221,10 +221,16 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.show_statistics = function(){
         // this function show the home div - the instructions.
-        $scope.showAggregateConfidenceLineGraph(function(finish_conf) {
+        getDataForFiterStatistics
 
-            $("#statistics").show();
-            $scope.showCorrectAnswersBar();
+        $scope.getDataForFiterStatistics(function(finish_conf) {
+
+            $scope.showAggregateConfidenceLineGraph(function(finish_conf) {
+
+                $("#statistics").show();
+                $scope.showCorrectAnswersBar();
+
+            });
 
         });
 
