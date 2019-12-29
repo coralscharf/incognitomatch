@@ -65,10 +65,10 @@
                             <label for="filter_stat_by_user">Filter By User</label>
                         </div>
 
-                        <table border="0">
+                        <table border="0" style="margin-left: 12%; height: 250px; display: inline-block; overflow: auto; width: 88%;">
                             <tr ng-repeat="userName in allUserNames">
                                 <td>
-                                    <input type="checkbox" class="custom-control-input" id="filter_stat_user_{{userName}}" checked>
+                                    <input type="checkbox" class="custom-control-input" id="filter_stat_user_{{userName}}">
                                 </td>
 
                                 <td>
@@ -86,7 +86,7 @@
                             <label for="filter_stat_by_group">Filter By Exp Group</label>
                         </div>
 
-                        <table border="0">
+                        <table border="0" style="margin-left: 12%; height: 250px; display: inline-block; overflow: auto; width: 88%;">
                             <tr ng-repeat="expName in allTestExpNames">
                                 <td>
                                     <input type="checkbox" class="custom-control-input" id="filter_stat_group_{{expName}}">
