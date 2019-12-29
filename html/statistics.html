@@ -68,11 +68,15 @@
                         <table border="0" style="margin-left: 12%; height: 250px; display: inline-block; overflow: auto; width: 88%;">
                             <tr ng-repeat="userName in allUserNames">
                                 <td>
-                                    <input type="checkbox" class="custom-control-input" id="filter_stat_user_{{userName}}">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="filter_stat_user_{{userName}}">
+                                    </div>
                                 </td>
 
                                 <td>
-                                    <label class="custom-control-label" for="filter_stat_user_{{userName}}">{{userName}}</label>
+                                    <div class="custom-control custom-checkbox">
+                                        <label class="custom-control-label" for="filter_stat_user_{{userName}}">{{userName}}</label>
+                                    </div>
                                 </td>
                             </tr>
                         </table>
@@ -89,11 +93,17 @@
                         <table border="0" style="margin-left: 12%; height: 250px; display: inline-block; overflow: auto; width: 88%;">
                             <tr ng-repeat="expName in allTestExpNames">
                                 <td>
-                                    <input type="checkbox" class="custom-control-input" id="filter_stat_group_{{expName}}">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="filter_stat_group_{{expName}}">
+                                    </div>
+
                                 </td>
 
                                 <td>
-                                    <label class="custom-control-label" for="filter_stat_group_{{expName}}">{{expName}}</label>
+                                    <div class="custom-control custom-checkbox">
+                                        <label class="custom-control-label" for="filter_stat_group_{{expName}}">{{expName}}</label>
+                                    </div>
+
                                 </td>
                             </tr>
                         </table>
