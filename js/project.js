@@ -1815,7 +1815,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 document.getElementById("filter_stat_user_none").checked = false;
                 document.getElementById("filter_stat_user_all").checked = true;
                 for (let username in $scope.allUserNames){
-                    document.getElementById("filter_stat_user_" + username).checked = true;
+                    const fieldToUpdateCheck = "filter_stat_user_" + username;
+                    document.getElementById(fieldToUpdateCheck).checked = true;
                 }
 
             }else if(itemClicked === 'None'){
@@ -1823,7 +1824,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 document.getElementById("filter_stat_user_none").checked = true;
                 document.getElementById("filter_stat_user_all").checked = false;
                 for (let username in $scope.allUserNames){
-                    document.getElementById("filter_stat_user_" + username).checked = false;
+                    const fieldToUpdateCheck = "filter_stat_user_" + username;
+                    document.getElementById(fieldToUpdateCheck).checked = false;
                 }
 
             }else {
@@ -1835,16 +1837,18 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                 document.getElementById("filter_stat_group_none").checked = false;
                 document.getElementById("filter_stat_group_all").checked = true;
-                for (let username in $scope.allUserNames){
-                    document.getElementById("filter_stat_group_" + username).checked = true;
+                for (let expName in $scope.allTestExpNames){
+                    const fieldToUpdateCheck = "filter_stat_group_" + expName;
+                    document.getElementById(fieldToUpdateCheck).checked = true;
                 }
 
             }else if(itemClicked === 'None'){
 
                 document.getElementById("filter_stat_group_none").checked = true;
                 document.getElementById("filter_stat_group_all").checked = false;
-                for (let username in $scope.allUserNames){
-                    document.getElementById("filter_stat_group_" + username).checked = false;
+                for (let expName in $scope.allTestExpNames){
+                    const fieldToUpdateCheck = "filter_stat_group_" + expName;
+                    document.getElementById(fieldToUpdateCheck).checked = false;
                 }
 
             }else {
