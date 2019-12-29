@@ -1817,7 +1817,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 for (let username in $scope.allUserNames){
                     const startOfString = "filter_stat_user_";
                     const fieldToUpdateCheck = startOfString.concat($scope.allUserNames[username]);
-                    console.log(fieldToUpdateCheck);
                     document.getElementById(fieldToUpdateCheck).checked = true;
                 }
 
@@ -1826,7 +1825,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 document.getElementById("filter_stat_user_none").checked = true;
                 document.getElementById("filter_stat_user_all").checked = false;
                 for (let username in $scope.allUserNames){
-                    const fieldToUpdateCheck = ("filter_stat_user_").concat(username);
+                    const startOfString = "filter_stat_user_";
+                    const fieldToUpdateCheck = startOfString.concat($scope.allUserNames[username]);
                     document.getElementById(fieldToUpdateCheck).checked = false;
                 }
 
@@ -1840,7 +1840,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 document.getElementById("filter_stat_group_none").checked = false;
                 document.getElementById("filter_stat_group_all").checked = true;
                 for (let expName in $scope.allTestExpNames){
-                    const fieldToUpdateCheck = ("filter_stat_group_").concat(expName);
+                    const startOfString = "filter_stat_group_";
+                    const fieldToUpdateCheck = startOfString.concat($scope.allTestExpNames[expName]);
                     document.getElementById(fieldToUpdateCheck).checked = true;
                 }
 
@@ -1849,7 +1850,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 document.getElementById("filter_stat_group_none").checked = true;
                 document.getElementById("filter_stat_group_all").checked = false;
                 for (let expName in $scope.allTestExpNames){
-                    const fieldToUpdateCheck = ("filter_stat_group_").concat(expName);
+                    const startOfString = "filter_stat_group_";
+                    const fieldToUpdateCheck = startOfString.concat($scope.allTestExpNames[expName]);
                     document.getElementById(fieldToUpdateCheck).checked = false;
                 }
 
