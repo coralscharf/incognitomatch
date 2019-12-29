@@ -1815,7 +1815,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 document.getElementById("filter_stat_user_none").checked = false;
                 document.getElementById("filter_stat_user_all").checked = true;
                 for (let username in $scope.allUserNames){
-                    const fieldToUpdateCheck = ("filter_stat_user_").concat(username);
+                    const startOfString = "filter_stat_user_";
+                    const fieldToUpdateCheck = startOfString.concat(username);
+                    console.log(fieldToUpdateCheck);
                     document.getElementById(fieldToUpdateCheck).checked = true;
                 }
 
