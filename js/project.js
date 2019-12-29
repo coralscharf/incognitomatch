@@ -221,7 +221,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.show_statistics = function(){
         // this function show the home div - the instructions.
-        getDataForFiterStatistics
 
         $scope.getDataForFiterStatistics(function(finish_conf) {
 
