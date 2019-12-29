@@ -65,10 +65,17 @@
                             <label for="filter_stat_by_user">Filter By User</label>
                         </div>
 
-                        <div ng-repeat="userName in allUserNames">
-                            <input type="checkbox" class="custom-control-input" id="filter_stat_user_{{userName}}" checked>
-                            <label class="custom-control-label" for="filter_stat_user_{{userName}}"></label>
-                        </div>
+                        <table border="0">
+                            <tr ng-repeat="userName in allUserNames">
+                                <td>
+                                    <input type="checkbox" class="custom-control-input" id="filter_stat_user_{{userName}}" checked>
+                                </td>
+
+                                <td>
+                                    <label class="custom-control-label" for="filter_stat_user_{{userName}}">{{userName}}</label>
+                                </td>
+                            </tr>
+                        </table>
 
                     </div>
 
@@ -79,10 +86,18 @@
                             <label for="filter_stat_by_group">Filter By Exp Group</label>
                         </div>
 
-                        <div ng-repeat="expName in allTestExpNames">
-                            <input type="checkbox" class="custom-control-input" id="filter_stat_group_{{expName}}" checked>
-                            <label class="custom-control-label" for="filter_stat_group_{{expName}}"></label>
-                        </div>
+                        <table border="0">
+                            <tr ng-repeat="expName in allTestExpNames">
+                                <td>
+                                    <input type="checkbox" class="custom-control-input" id="filter_stat_group_{{expName}}">
+                                </td>
+
+                                <td>
+                                    <label class="custom-control-label" for="filter_stat_group_{{expName}}">{{expName}}</label>
+                                </td>
+                            </tr>
+                        </table>
+
                     </div>
 
                 </div>
