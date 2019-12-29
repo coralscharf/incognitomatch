@@ -66,11 +66,13 @@
                         </div>
 
                         <table border="0" style="height: 250px; display: inline-block; overflow: auto; width: 100%;">
+
                             <tr>
                                 <td>
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="filter_stat_user_all">
-                                        <label class="custom-control-label" for="filter_stat_user_all">All</label>
+                                        <input type="checkbox" class="custom-control-input" id="filter_stat_user_none"
+                                               ng-click="update_checkbox_stats('True', 'None')" checked>
+                                        <label class="custom-control-label" for="filter_stat_user_none"><b>None</b></label>
                                     </div>
                                 </td>
                             </tr>
@@ -78,16 +80,18 @@
                             <tr>
                                 <td>
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="filter_stat_user_none">
-                                        <label class="custom-control-label" for="filter_stat_user_none">None</label>
+                                        <input type="checkbox" class="custom-control-input" id="filter_stat_user_all"
+                                               ng-click="update_checkbox_stats('True', 'All')">
+                                        <label class="custom-control-label" for="filter_stat_user_all"><b>All</b></label>
                                     </div>
                                 </td>
                             </tr>
 
-                            <tr ng-repeat="userName in allUserNames | filter:filter_stat_by_user" style="margin-left: 12%; width: 88%">
+                            <tr ng-repeat="userName in allUserNames | filter:filter_stat_by_user">
                                 <td>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="filter_stat_user_{{userName}}">
+                                    <div class="custom-control custom-checkbox" style="margin-left: 25px;">
+                                        <input type="checkbox" class="custom-control-input" id="filter_stat_user_{{userName}}"
+                                               ng-click="update_checkbox_stats('True', userName)">
                                         <label class="custom-control-label" for="filter_stat_user_{{userName}}">{{userName}}</label>
                                     </div>
                                 </td>
@@ -108,8 +112,9 @@
                             <tr>
                                 <td>
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="filter_stat_group_all">
-                                        <label class="custom-control-label" for="filter_stat_group_all">All</label>
+                                        <input type="checkbox" class="custom-control-input" id="filter_stat_group_none"
+                                               ng-click="update_checkbox_stats('False', 'None')" checked>
+                                        <label class="custom-control-label" for="filter_stat_group_none"><b>None</b></label>
                                     </div>
                                 </td>
                             </tr>
@@ -117,16 +122,18 @@
                             <tr>
                                 <td>
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="filter_stat_group_none">
-                                        <label class="custom-control-label" for="filter_stat_group_none">None</label>
+                                        <input type="checkbox" class="custom-control-input" id="filter_stat_group_all"
+                                               ng-click="update_checkbox_stats('False', 'All')">
+                                        <label class="custom-control-label" for="filter_stat_group_all"><b>All</b></label>
                                     </div>
                                 </td>
                             </tr>
 
-                            <tr ng-repeat="expName in allTestExpNames| filter:filter_stat_by_group" style="margin-left: 12%; width: 88%">
+                            <tr ng-repeat="expName in allTestExpNames| filter:filter_stat_by_group">
                                 <td>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="filter_stat_group_{{expName}}">
+                                    <div class="custom-control custom-checkbox" style="margin-left: 25px;">
+                                        <input type="checkbox" class="custom-control-input" id="filter_stat_group_{{expName}}"
+                                               ng-click="update_checkbox_stats('False', expName)">
                                         <label class="custom-control-label" for="filter_stat_group_{{expName}}">{{expName}}</label>
                                     </div>
 

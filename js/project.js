@@ -1807,4 +1807,52 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     };
 
+    $scope.update_checkbox_stats = function (isUser, itemClicked) {
+
+        if(isUser === 'True'){
+            if(itemClicked === 'All'){
+
+                document.getElementById("filter_stat_user_none").checked = false;
+                document.getElementById("filter_stat_user_all").checked = true;
+                for (let username in $scope.allUserNames){
+                    document.getElementById("filter_stat_user_" + username).checked = true;
+                }
+
+            }else if(itemClicked === 'None'){
+
+                document.getElementById("filter_stat_user_none").checked = true;
+                document.getElementById("filter_stat_user_all").checked = false;
+                for (let username in $scope.allUserNames){
+                    document.getElementById("filter_stat_user_" + username).checked = false;
+                }
+
+            }else {
+                document.getElementById("filter_stat_user_none").checked = false;
+                document.getElementById("filter_stat_user_all").checked = false;
+            }
+        }else {
+            if(itemClicked === 'All'){
+
+                document.getElementById("filter_stat_group_none").checked = false;
+                document.getElementById("filter_stat_group_all").checked = true;
+                for (let username in $scope.allUserNames){
+                    document.getElementById("filter_stat_group_" + username).checked = true;
+                }
+
+            }else if(itemClicked === 'None'){
+
+                document.getElementById("filter_stat_group_none").checked = true;
+                document.getElementById("filter_stat_group_all").checked = false;
+                for (let username in $scope.allUserNames){
+                    document.getElementById("filter_stat_group_" + username).checked = false;
+                }
+
+            }else {
+                document.getElementById("filter_stat_group_none").checked = false;
+                document.getElementById("filter_stat_group_all").checked = false;
+            }
+        }
+
+    };
+
 });	 //app.controller
