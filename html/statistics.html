@@ -61,12 +61,12 @@
                     <div class="col-sm-6">
                         <div class="md-form">
                             <i class="fas fa-user prefix"></i>
-                            <input type="text" class="form-control" id="filter_stat_by_user">
+                            <input type="text" class="form-control" id="filter_stat_by_user" ng-model="filter_stat_by_user">                            filter_stat_by_user">
                             <label for="filter_stat_by_user">Filter By User</label>
                         </div>
 
                         <table border="0" style="margin-left: 12%; height: 250px; display: inline-block; overflow: auto; width: 88%;">
-                            <tr ng-repeat="userName in allUserNames">
+                            <tr ng-repeat="userName in allUserNames | filter:filter_stat_by_user">
                                 <td>
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="filter_stat_user_{{userName}}">
@@ -81,12 +81,12 @@
                     <div class="col-sm-6">
                         <div class="md-form">
                             <i class="fas fa-users prefix"></i>
-                            <input type="text" class="form-control" id="filter_stat_by_group">
+                            <input type="text" class="form-control" id="filter_stat_by_group" ng-model="filter_stat_by_group">
                             <label for="filter_stat_by_group">Filter By Exp Group</label>
                         </div>
 
                         <table border="0" style="margin-left: 12%; height: 250px; display: inline-block; overflow: auto; width: 88%;">
-                            <tr ng-repeat="expName in allTestExpNames">
+                            <tr ng-repeat="expName in allTestExpNames| filter:filter_stat_by_group">
                                 <td>
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="filter_stat_group_{{expName}}">

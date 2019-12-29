@@ -122,6 +122,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         // Var for stats
         $scope.allUserNames = [];
         $scope.allTestExpNames = [];
+        $scope.filter_stat_by_user = "";
+        $scope.filter_stat_by_group = "";
 
     };
 
