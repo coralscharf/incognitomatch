@@ -221,13 +221,69 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         });
     };
 
-    $scope.show_statistics = function(){
+    $scope.show_statistics = function(applyChanges){
         // this function show the home div - the instructions.
+
+        $("#loading").show();
+
+        $scope.usersToShowStats = [];
+        $scope.groupsToShowStats = [];
+
+        if(applyChanges === true){
+            // TODO: complete + update graphs + add loading
+
+            if(document.getElementById("filter_stat_user_all").checked === true){
+
+                $scope.usersToShowStats.push('all');
+
+            } else if(document.getElementById("filter_stat_user_none").checked === true){
+
+                $scope.usersToShowStats.push('none');
+
+            } else {
+
+                for (let userID in $scope.allUserNames){
+                    const startOfString = "filter_stat_user_";
+                    const fieldToUpdateCheck = startOfString.concat($scope.allUserNames[userID]);
+
+                    if(document.getElementById(fieldToUpdateCheck).checked === true){
+                        $scope.usersToShowStats.push(userID);
+                    }
+                }
+
+            }
+
+            console.log("usersToShowStats : ", $scope.usersToShowStats);
+            console.log("groupsToShowStats : ", $scope.groupsToShowStats);
+
+            if(document.getElementById("filter_stat_group_all").checked === true){
+
+                $scope.groupsToShowStats.push('all');
+
+            } else if(document.getElementById("filter_stat_group_none").checked === true){
+
+                $scope.groupsToShowStats.push('none');
+
+            } else {
+
+                for (let expID in $scope.allTestExpNames){
+                    const startOfString = "filter_stat_group_";
+                    const fieldToUpdateCheck = startOfString.concat($scope.allTestExpNames[expID]);
+
+                    if(document.getElementById(fieldToUpdateCheck).checked === true){
+                        $scope.usersToShowStats.push(expID);
+                    }
+                }
+
+            }
+
+        }
 
         $scope.getDataForFiterStatistics(function(finish_conf) {
 
             $scope.showAggregateConfidenceLineGraph(function(finish_conf) {
 
+                $("#loading").hide();
                 $("#statistics").show();
                 $scope.showCorrectAnswersBar();
 
@@ -798,7 +854,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     "\t\t\t\t\t\t\t<a class=\"dropdown-item\" href=\"#\"  data-toggle=\"modal\" data-target=\"#new_admin\">New Admin</a>\n" +
                     "\t\t\t\t\t\t\t<a class=\"dropdown-item\" href=\"#\"  data-toggle=\"modal\" data-target=\"#add_exp_modal\">Add Experiment</a>\n" +
                     "\t\t\t\t\t\t\t<a class=\"dropdown-item\" href=\"#\"  data-toggle=\"modal\" data-target=\"#update_exp_modal\" ng-click=\"get_exp_for_update()\">Update Experiment</a>\n" +
-                    "\t\t\t\t\t\t\t<a class=\"dropdown-item\" href=\"#\"  ng-click=\"hide_pages(); show_statistics()\">Show Statistics</a>\n" +
+                    "\t\t\t\t\t\t\t<a class=\"dropdown-item\" href=\"#\"  ng-click=\"hide_pages(); show_statistics(false)\">Show Statistics</a>\n" +
                     "\t\t\t\t\t\t\t<a class=\"dropdown-item\" href=\"#\"  ng-click=\"admin_logout()\">Logout</a>\n" +
                     "\t\t\t\t\t\t</div>")($scope));
                 //console.log( $scope.admin_details);
@@ -1792,9 +1848,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 for (let i = 0; i < data.data.length; i++)
                 {
                     if(data.data[i]['isSingleUser'] === 'True'){
-                        $scope.allUserNames.push(data.data[i]['fullName']);
+                        $scope.allUserNames.push({"fullName" : data.data[i]['fullName'],
+                                                    "id" : data.data[i]['id']});
                     }else {
-                        $scope.allTestExpNames.push(data.data[i]['exp_name']);
+                        $scope.allTestExpNames.push({"exp_name" : data.data[i]['exp_name'],
+                            "id" : data.data[i]['id']});
                     }
                 }
                 callback(true);
@@ -1814,9 +1872,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                 document.getElementById("filter_stat_user_none").checked = false;
                 document.getElementById("filter_stat_user_all").checked = true;
-                for (let username in $scope.allUserNames){
+                for (let userID in $scope.allUserNames){
                     const startOfString = "filter_stat_user_";
-                    const fieldToUpdateCheck = startOfString.concat($scope.allUserNames[username]);
+                    const fieldToUpdateCheck = startOfString.concat($scope.allUserNames[userID]);
                     document.getElementById(fieldToUpdateCheck).checked = true;
                 }
 
@@ -1824,9 +1882,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                 document.getElementById("filter_stat_user_none").checked = true;
                 document.getElementById("filter_stat_user_all").checked = false;
-                for (let username in $scope.allUserNames){
+                for (let userID in $scope.allUserNames){
                     const startOfString = "filter_stat_user_";
-                    const fieldToUpdateCheck = startOfString.concat($scope.allUserNames[username]);
+                    const fieldToUpdateCheck = startOfString.concat($scope.allUserNames[userID]);
                     document.getElementById(fieldToUpdateCheck).checked = false;
                 }
 
@@ -1839,9 +1897,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                 document.getElementById("filter_stat_group_none").checked = false;
                 document.getElementById("filter_stat_group_all").checked = true;
-                for (let expName in $scope.allTestExpNames){
+                for (let expID in $scope.allTestExpNames){
                     const startOfString = "filter_stat_group_";
-                    const fieldToUpdateCheck = startOfString.concat($scope.allTestExpNames[expName]);
+                    const fieldToUpdateCheck = startOfString.concat($scope.allTestExpNames[expID]);
                     document.getElementById(fieldToUpdateCheck).checked = true;
                 }
 
@@ -1849,9 +1907,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                 document.getElementById("filter_stat_group_none").checked = true;
                 document.getElementById("filter_stat_group_all").checked = false;
-                for (let expName in $scope.allTestExpNames){
+                for (let expID in $scope.allTestExpNames){
                     const startOfString = "filter_stat_group_";
-                    const fieldToUpdateCheck = startOfString.concat($scope.allTestExpNames[expName]);
+                    const fieldToUpdateCheck = startOfString.concat($scope.allTestExpNames[expID]);
                     document.getElementById(fieldToUpdateCheck).checked = false;
                 }
 

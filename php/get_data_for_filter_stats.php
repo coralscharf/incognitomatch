@@ -4,7 +4,7 @@ $connectionInfo = array("UID" => "avivf@avivtest", "pwd" => "1qaZ2wsX!", "Databa
 $serverName = "tcp:avivtest.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 
-$sql="select CONCAT(u_first, ' ', u_last) as fullName
+$sql="select CONCAT(u_first, ' ', u_last) as fullName, id
 from exp_users
 where id in (
     select distinct user_id
@@ -19,12 +19,13 @@ $array = array();
 while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     $array[] = array(
         'fullName'=>$row['fullName'],
+        'id'=>$row['id'],
         'isSingleUser' => 'True'
     );
 }
 sqlsrv_free_stmt($getResults);
 
-$sql="select schema_name
+$sql="select schema_name, id
 from experiments
 where name!='Test'";
 
@@ -35,6 +36,7 @@ if ($getResults == FALSE)
 while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     $array[] = array(
         'exp_name'=>$row['schema_name'],
+        'id'=>$row['id'],
         'isSingleUser' => 'False'
     );
 }
