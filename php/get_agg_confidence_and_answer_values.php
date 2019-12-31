@@ -34,7 +34,7 @@ foreach ($groupsToShowStats as $group){
     }
 }
 
-/*
+
 $sql="WITH answers_table AS (
     select sch_id_1, sch_id_2, userconf, IIF(realconf = user_ans_is_match, 1, 0) as isCorrectAnswer
     from exp_results
@@ -47,8 +47,9 @@ from answers_table join (select [order], sch_id_1, sch_id_2
 on answers_table.sch_id_1 = questions_orders.sch_id_1
        and answers_table.sch_id_2 = questions_orders.sch_id_2
 group by [order]
-order by [order] asc";*/
+order by [order] asc";
 
+/*
 $sql="WITH answers_table AS (
     select sch_id_1, sch_id_2, userconf, IIF(realconf = user_ans_is_match, 1, 0) as isCorrectAnswer
     from exp_results ".
@@ -63,8 +64,7 @@ on answers_table.sch_id_1 = questions_orders.sch_id_1
 group by [order]
 order by [order] asc";
 
-echo $sql;
-
+echo $sql;*/
 
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)

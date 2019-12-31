@@ -98,7 +98,7 @@
                                 <td>
                                     <div class="custom-control custom-checkbox" style="margin-left: 25px;">
                                         <input type="checkbox" class="custom-control-input" id="filter_stat_user_{{userName.id}}"
-                                               ng-click="update_checkbox_stats('True', userName.id)">
+                                               ng-click="update_checkbox_stats('True', userName.id)" checked>
                                         <label class="custom-control-label" for="filter_stat_user_{{userName.id}}">{{userName.fullName}}</label>
                                     </div>
                                 </td>
@@ -140,7 +140,7 @@
                                 <td>
                                     <div class="custom-control custom-checkbox" style="margin-left: 25px;">
                                         <input type="checkbox" class="custom-control-input" id="filter_stat_group_{{expName.id}}"
-                                               ng-click="update_checkbox_stats('False', expName.id)">
+                                               ng-click="update_checkbox_stats('False', expName.id)" checked>
                                         <label class="custom-control-label" for="filter_stat_group_{{expName.id}}">{{expName.exp_name}}</label>
                                     </div>
 
