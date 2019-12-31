@@ -224,6 +224,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     $scope.show_statistics = function(applyChanges){
         // this function show the home div - the instructions.
 
+        $("#statistics").show();
         $("#loading").show();
 
         $scope.usersToShowStats = [];
@@ -242,12 +243,12 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
             } else {
 
-                for (let userID in $scope.allUserNames){
+                for (let index in $scope.allUserNames){
                     const startOfString = "filter_stat_user_";
-                    const fieldToUpdateCheck = startOfString.concat($scope.allUserNames[userID]);
+                    const fieldToUpdateCheck = startOfString.concat($scope.allUserNames[index].id);
 
                     if(document.getElementById(fieldToUpdateCheck).checked === true){
-                        $scope.usersToShowStats.push(userID);
+                        $scope.usersToShowStats.push($scope.allUserNames[index].id);
                     }
                 }
 
@@ -263,12 +264,12 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
             } else {
 
-                for (let expID in $scope.allTestExpNames){
+                for (let index in $scope.allTestExpNames){
                     const startOfString = "filter_stat_group_";
-                    const fieldToUpdateCheck = startOfString.concat($scope.allTestExpNames[expID]);
+                    const fieldToUpdateCheck = startOfString.concat($scope.allTestExpNames[index].id);
 
                     if(document.getElementById(fieldToUpdateCheck).checked === true){
-                        $scope.usersToShowStats.push(expID);
+                        $scope.usersToShowStats.push($scope.allTestExpNames[index].id);
                     }
                 }
 
