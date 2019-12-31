@@ -224,20 +224,15 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     $scope.show_statistics = function(applyChanges){
         // this function show the home div - the instructions.
 
-        $("#statistics").show();
+        $("#statistics").hide();
         $("#loading").show();
 
         $scope.usersToShowStats = [];
         $scope.groupsToShowStats = [];
 
         if(applyChanges === true){
-            // TODO: update graphs
 
-            if(document.getElementById("filter_stat_user_all").checked === true){
-
-                $scope.usersToShowStats.push('all');
-
-            } else if(document.getElementById("filter_stat_user_none").checked === true){
+            if(document.getElementById("filter_stat_user_none").checked === true){
 
                 $scope.usersToShowStats.push('none');
 
@@ -254,11 +249,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
             }
 
-            if(document.getElementById("filter_stat_group_all").checked === true){
-
-                $scope.groupsToShowStats.push('all');
-
-            } else if(document.getElementById("filter_stat_group_none").checked === true){
+            if(document.getElementById("filter_stat_group_none").checked === true){
 
                 $scope.groupsToShowStats.push('none');
 
@@ -269,7 +260,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     const fieldToUpdateCheck = startOfString.concat($scope.allTestExpNames[index].id);
 
                     if(document.getElementById(fieldToUpdateCheck).checked === true){
-                        $scope.usersToShowStats.push($scope.allTestExpNames[index].id);
+                        $scope.groupsToShowStats.push({"id" : $scope.allTestExpNames[index].id,
+                            "num_pairs" : $scope.allTestExpNames[index].num_pairs});
                     }
                 }
 
@@ -280,17 +272,29 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         console.log("usersToShowStats : ", $scope.usersToShowStats);
         console.log("groupsToShowStats : ", $scope.groupsToShowStats);
 
-        $scope.getDataForFiterStatistics(function(finish_conf) {
+        if($scope.usersToShowStats === ['none'] || $scope.groupsToShowStats === ['none']){
 
-            $scope.showAggregateConfidenceLineGraph(function(finish_conf) {
+            $("#loading").hide();
+            $("#statistics_body_full").hide();
+            $("#statistics_body_empty").show();
+            $("#statistics").show();
 
-                $("#loading").hide();
-                $("#statistics").show();
-                $scope.showCorrectAnswersBar();
+        } else {
+            $scope.getDataForFiterStatistics(function(finish_conf) {
+
+                $scope.showAggregateConfidenceLineGraph(function(finish_conf) {
+
+                    $("#loading").hide();
+                    $("#statistics_body_empty").hide();
+                    $("#statistics_body_full").show();
+                    $("#statistics").show();
+
+                    //$scope.showCorrectAnswersBar();
+
+                });
 
             });
-
-        });
+        }
 
     };
 
@@ -1293,7 +1297,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             method: 'POST',
             url: 'php/get_agg_confidence_and_answer_values.php',
             data: $.param({
-
+                usersToShowStats : $scope.usersToShowStats,
+                groupsToShowStats : $scope.groupsToShowStats
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -1301,6 +1306,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         }).then(function (data) {
 
             if (data.data.length !== 0) {
+
+                console.log('get_agg_confidence_and_answer_values ');
+                console.log(data.data);
 
                 let xLabels = [];
                 let yDataConf = [];
@@ -1853,7 +1861,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                                                     "id" : data.data[i]['id']});
                     }else {
                         $scope.allTestExpNames.push({"exp_name" : data.data[i]['exp_name'],
-                            "id" : data.data[i]['id']});
+                            "id" : data.data[i]['id'], "num_pairs" : data.data[i]['num_pairs']});
                     }
                 }
                 callback(true);
