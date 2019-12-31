@@ -230,7 +230,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.groupsToShowStats = [];
 
         if(applyChanges === true){
-            // TODO: complete + update graphs + add loading
+            // TODO: update graphs
 
             if(document.getElementById("filter_stat_user_all").checked === true){
 
@@ -252,9 +252,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 }
 
             }
-
-            console.log("usersToShowStats : ", $scope.usersToShowStats);
-            console.log("groupsToShowStats : ", $scope.groupsToShowStats);
 
             if(document.getElementById("filter_stat_group_all").checked === true){
 
@@ -278,6 +275,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
 
         }
+
+        console.log("usersToShowStats : ", $scope.usersToShowStats);
+        console.log("groupsToShowStats : ", $scope.groupsToShowStats);
 
         $scope.getDataForFiterStatistics(function(finish_conf) {
 
