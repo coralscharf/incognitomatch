@@ -12,29 +12,45 @@ $secondWhereClause = "where ";
 foreach ($usersToShowStats as $user){
 
     if($firstWhereClause !== "where "){
-        $firstWhereClause = $firstWhereClause . "and user_id = " . $user . " ";
+        $firstWhereClause = $firstWhereClause . "or user_id = " . $user . " ";
 
     } else{
-        $firstWhereClause = $firstWhereClause . "user_id = " . $user . " ";
+        $firstWhereClause = $firstWhereClause . "( user_id = " . $user . " ";
     }
 
 }
 
+if($firstWhereClause !== "where "){
+    $firstWhereClause = $firstWhereClause . ") ";
+}
+
+$firstGroupForFirstStatement = True;
 foreach ($groupsToShowStats as $group){
 
     if($firstWhereClause !== "where "){
-        $firstWhereClause = $firstWhereClause . "and exp_id = " . $group["id"] . " ";
+
+        if($firstGroupForFirstStatement === True){
+            $firstWhereClause = $firstWhereClause . "and ( exp_id = " . $group["id"] . " ";
+            $firstGroupForFirstStatement = False;
+        } else {
+            $firstWhereClause = $firstWhereClause . "or exp_id = " . $group["id"] . " ";
+        }
 
     } else{
-        $firstWhereClause = $firstWhereClause . "exp_id = " . $group["id"] . " ";
+        $firstWhereClause = $firstWhereClause . "( exp_id = " . $group["id"] . " ";
+        $firstGroupForFirstStatement = False;
     }
 
     if($secondWhereClause !== "where "){
-        $secondWhereClause = $secondWhereClause . "and exp_id = " . $group["id"] . " and [order] <= " . $group["num_pairs"] . " ";
+        $secondWhereClause = $secondWhereClause . "or (exp_id = " . $group["id"] . " and [order] <= " . $group["num_pairs"] . ") ";
 
     } else{
-        $secondWhereClause = $secondWhereClause . "exp_id = " . $group["id"] . " and [order] <= " . $group["num_pairs"] . " ";
+        $secondWhereClause = $secondWhereClause . "(exp_id = " . $group["id"] . " and [order] <= " . $group["num_pairs"] . ") ";
     }
+}
+
+if($firstWhereClause !== "where "){
+    $firstWhereClause = $firstWhereClause . ") ";
 }
 
 /*
