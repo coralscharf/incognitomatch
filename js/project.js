@@ -1542,7 +1542,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 let j = 1;
                 for (let item in data.data){
                     const avgTime = (data.data)[item]['avgTime'];
-                    const avgCorrAns = (data.data)[item]['avgCorrAns'] * 100;
+                    var avgCorrAns = (data.data)[item]['avgCorrAns'] * 100;
 
                     xLabels.push(j);
                     yData.push(avgTime);
