@@ -1303,7 +1303,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
             if (data.data.length !== 0) {
 
-                console.log('get_agg_confidence_and_answer_values ');
+                console.log('get_agg_confidence_and_answer_values! ');
                 console.log(data.data);
 
                 let xLabels = [];
