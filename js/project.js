@@ -1548,7 +1548,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     yData.push(avgTime);
 
                     // Colors
-                    var red = new Color(232, 9, 26),
+                    red = new Color(232, 9, 26),
                         white = new Color(255, 255, 255),
                         green = new Color(6, 170, 60),
                         start = green,
