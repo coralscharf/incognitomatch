@@ -83,8 +83,6 @@ on answers_table.sch_id_1 = questions_orders.sch_id_1
 group by [order]
 order by [order] asc";
 
-echo $sql;
-
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
     echo "1";
