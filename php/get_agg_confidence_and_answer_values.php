@@ -10,6 +10,10 @@ $firstWhereClause = "where ";
 $secondWhereClause = "where ";
 
 foreach ($usersToShowStats as $user){
+
+    echo "USER: ";
+    echo $user;
+
     if($firstWhereClause !== "where "){
         $firstWhereClause = $firstWhereClause . "and user_id = " . $user . " ";
 
@@ -19,6 +23,10 @@ foreach ($usersToShowStats as $user){
 }
 
 foreach ($groupsToShowStats as $group){
+
+    echo "GROUP: ";
+    echo $group;
+
     if($firstWhereClause !== "where "){
         $firstWhereClause = $firstWhereClause . "and exp_id = " . $group.id . " ";
 
