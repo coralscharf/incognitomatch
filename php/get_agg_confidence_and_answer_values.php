@@ -22,8 +22,6 @@ foreach ($usersToShowStats as $user){
 
 foreach ($groupsToShowStats as $group){
 
-    echo $group;
-
     if($firstWhereClause !== "where "){
         $firstWhereClause = $firstWhereClause . "and exp_id = " . $group["id"] . " ";
 
@@ -69,8 +67,6 @@ on answers_table.sch_id_1 = questions_orders.sch_id_1
 group by [order]
 order by [order] asc";
 
-echo $sql;
-
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
     echo "1";
@@ -84,4 +80,4 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
 }
 sqlsrv_free_stmt($getResults);
 
-//echo json_encode($array);
+echo json_encode($array);
