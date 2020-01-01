@@ -222,6 +222,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     $scope.show_statistics = function(applyChanges){
         // this function show the home div - the instructions.
 
+        $scope.NotFirstShowOfStatistics = applyChanges;
+
         $scope.getDataForFiterStatistics(function(finish_conf) {
 
             $("#statistics").hide();
@@ -251,10 +253,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                 for (let index in $scope.allUserNames){
                     $scope.usersToShowStats.push($scope.allUserNames[index].id);
-
-                    const startOfString = "filter_stat_user_";
-                    const fieldToUpdateCheck = startOfString.concat($scope.allUserNames[index].id);
-                    document.getElementById(fieldToUpdateCheck).checked = true;
                 }
             }
 
@@ -281,10 +279,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 for (let index in $scope.allTestExpNames){
                     $scope.groupsToShowStats.push({"id" : $scope.allTestExpNames[index].id,
                         "num_pairs" : $scope.allTestExpNames[index].num_pairs});
-
-                    const startOfString = "filter_stat_group_";
-                    const fieldToUpdateCheck = startOfString.concat($scope.allTestExpNames[index].id);
-                    document.getElementById(fieldToUpdateCheck).checked = true;
                 }
             }
 
