@@ -10,6 +10,7 @@ $firstWhereClause = "where ";
 $secondWhereClause = "where ";
 
 echo $usersToShowStats;
+echo "usersToShowStats";
 
 foreach ($usersToShowStats as $user){
 
