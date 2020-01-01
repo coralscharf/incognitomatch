@@ -92,6 +92,8 @@ FROM time_table time_table1
 GROUP BY time_table1.[order]
 order by time_table1.[order] asc";
 
+echo $sql;
+
 
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
