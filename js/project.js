@@ -240,11 +240,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 } else {
 
                     for (let index in $scope.allUserNames){
-                        const startOfString = "filter_stat_user_";
-                        const fieldToUpdateCheck = startOfString.concat($scope.allUserNames[index].id);
+                        if(index >= 2){
+                            const startOfString = "filter_stat_user_";
+                            const fieldToUpdateCheck = startOfString.concat($scope.allUserNames[index].id);
 
-                        if(document.getElementById(fieldToUpdateCheck).checked === true){
-                            $scope.usersToShowStats.push($scope.allUserNames[index].id);
+                            if(document.getElementById(fieldToUpdateCheck).checked === true){
+                                $scope.usersToShowStats.push($scope.allUserNames[index].id);
+                            }
                         }
                     }
 
@@ -252,7 +254,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             } catch (e) {
 
                 for (let index in $scope.allUserNames){
-                    $scope.usersToShowStats.push($scope.allUserNames[index].id);
+                    if(index >= 2) {
+                        $scope.usersToShowStats.push($scope.allUserNames[index].id);
+                    }
                 }
             }
 
@@ -265,20 +269,24 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 } else {
 
                     for (let index in $scope.allTestExpNames){
-                        const startOfString = "filter_stat_group_";
-                        const fieldToUpdateCheck = startOfString.concat($scope.allTestExpNames[index].id);
+                        if(index >= 2) {
+                            const startOfString = "filter_stat_group_";
+                            const fieldToUpdateCheck = startOfString.concat($scope.allTestExpNames[index].id);
 
-                        if(document.getElementById(fieldToUpdateCheck).checked === true){
-                            $scope.groupsToShowStats.push({"id" : $scope.allTestExpNames[index].id,
-                                "num_pairs" : $scope.allTestExpNames[index].num_pairs});
+                            if(document.getElementById(fieldToUpdateCheck).checked === true){
+                                $scope.groupsToShowStats.push({"id" : $scope.allTestExpNames[index].id,
+                                    "num_pairs" : $scope.allTestExpNames[index].num_pairs});
+                            }
                         }
                     }
 
                 }
             } catch (e) {
                 for (let index in $scope.allTestExpNames){
-                    $scope.groupsToShowStats.push({"id" : $scope.allTestExpNames[index].id,
-                        "num_pairs" : $scope.allTestExpNames[index].num_pairs});
+                    if(index >= 2) {
+                        $scope.groupsToShowStats.push({"id" : $scope.allTestExpNames[index].id,
+                            "num_pairs" : $scope.allTestExpNames[index].num_pairs});
+                    }
                 }
             }
 

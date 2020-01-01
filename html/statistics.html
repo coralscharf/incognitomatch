@@ -95,7 +95,7 @@
                                 </td>
                             </tr>
 
-                            <tr ng-repeat="userName in allUserNames | filter:filter_stat_by_user">
+                            <tr ng-repeat="userName in allUserNames | filter:filter_stat_by_user" ng-show="userName.fullName!='None' && userName.fullName!='All'">
                                 <td>
                                     <div class="custom-control custom-checkbox" style="margin-left: 25px;">
                                         <input type="checkbox" class="custom-control-input" id="filter_stat_user_{{userName.id}}"
@@ -137,7 +137,7 @@
                                 </td>
                             </tr>
 
-                            <tr ng-repeat="expName in allTestExpNames| filter:filter_stat_by_group">
+                            <tr ng-repeat="expName in allTestExpNames| filter:filter_stat_by_group" ng-show="expName.exp_name!='None' && expName.exp_name!='All'">
                                 <td>
                                     <div class="custom-control custom-checkbox" style="margin-left: 25px;">
                                         <input type="checkbox" class="custom-control-input" id="filter_stat_group_{{expName.id}}"
