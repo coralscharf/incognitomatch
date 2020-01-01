@@ -1864,76 +1864,84 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
         if(isUser === 'True'){
             if(itemClicked === 'All'){
+                $scope.allUserNames[0].checked = false; // None
 
-                for (let index in $scope.allUserNames){
-                    if(index === 0){ // None
-                        $scope.allUserNames[index].checked = false;
-                    } else { // All or Others
-                        $scope.allUserNames[index].checked = true;
-                    }
-                }
-
-            }else if(itemClicked === 'None'){
-
-                for (let index in $scope.allUserNames){
-                    if(index === 0){ // None
-                        $scope.allUserNames[index].checked = true;
-                    } else { // All or Others
-                        $scope.allUserNames[index].checked = false;
-                    }
-                }
-
-            }else {
-
-                for (let index in $scope.allUserNames){
-                    if(index <= 1){ // None or All
-                        $scope.allUserNames[index].checked = false;
-                    } else { // Others
-                        if($scope.allUserNames[index].id === itemClicked){
-                            $scope.allUserNames[index].checked = true;
-                        } else {
+                if($scope.allUserNames[1].checked === true){ // All was clicked
+                    for (let index in $scope.allUserNames){
+                        if(index >= 1 ) { // All or Others
                             $scope.allUserNames[index].checked = false;
                         }
+                    }
+                } else {
+                    for (let index in $scope.allUserNames){
+                        if(index >= 1 ) { // All or Others
+                            $scope.allUserNames[index].checked = true;
+                        }
+                    }
+                }
+
+            } else if(itemClicked === 'None'){
+                if($scope.allUserNames[0].checked === true){ // None
+                    $scope.allUserNames[0].checked = false;
+                } else {
+                    $scope.allUserNames[0].checked = true;
+                }
+
+                for (let index in $scope.allUserNames){
+                    if(index >= 1 ) { // All or Others
+                        $scope.allUserNames[index].checked = false;
+                    }
+                }
+            } else {
+                $scope.allUserNames[0].checked = false; // None
+                $scope.allUserNames[1].checked = false; // All
+
+                for (let index in $scope.allUserNames){
+                    if($scope.allUserNames[index].id === itemClicked){
+                        $scope.allUserNames[index].checked = !($scope.allUserNames[index].checked);
                     }
                 }
             }
         }else {
-
             if(itemClicked === 'All'){
+                $scope.allTestExpNames[0].checked = false; // None
 
-                for (let index in $scope.allTestExpNames){
-                    if(index === 0){ // None
-                        $scope.allTestExpNames[index].checked = false;
-                    } else { // All or Others
-                        $scope.allTestExpNames[index].checked = true;
-                    }
-                }
-
-            }else if(itemClicked === 'None'){
-
-                for (let index in $scope.allTestExpNames){
-                    if(index === 0){ // None
-                        $scope.allTestExpNames[index].checked = true;
-                    } else { // All or Others
-                        $scope.allTestExpNames[index].checked = false;
-                    }
-                }
-
-            }else {
-
-                for (let index in $scope.allTestExpNames){
-                    if(index <= 1){ // None or All
-                        $scope.allTestExpNames[index].checked = false;
-                    } else { // Others
-                        if($scope.allTestExpNames[index].id === itemClicked){
-                            $scope.allTestExpNames[index].checked = true;
-                        } else {
+                if($scope.allTestExpNames[1].checked === true){ // All was clicked
+                    for (let index in $scope.allTestExpNames){
+                        if(index >= 1 ) { // All or Others
                             $scope.allTestExpNames[index].checked = false;
                         }
                     }
+                } else {
+                    for (let index in $scope.allTestExpNames){
+                        if(index >= 1 ) { // All or Others
+                            $scope.allTestExpNames[index].checked = true;
+                        }
+                    }
+                }
+
+            } else if(itemClicked === 'None'){
+                if($scope.allTestExpNames[0].checked === true){ // None
+                    $scope.allTestExpNames[0].checked = false;
+                } else {
+                    $scope.allTestExpNames[0].checked = true;
+                }
+
+                for (let index in $scope.allTestExpNames){
+                    if(index >= 1 ) { // All or Others
+                        $scope.allTestExpNames[index].checked = false;
+                    }
+                }
+            } else {
+                $scope.allTestExpNames[0].checked = false; // None
+                $scope.allTestExpNames[1].checked = false; // All
+
+                for (let index in $scope.allTestExpNames){
+                    if($scope.allTestExpNames[index].id === itemClicked){
+                        $scope.allTestExpNames[index].checked = !($scope.allTestExpNames[index].checked);
+                    }
                 }
             }
-
         }
 
     };
