@@ -9,6 +9,8 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 $firstWhereClause = "where ";
 $secondWhereClause = "where ";
 
+echo $usersToShowStats;
+
 foreach ($usersToShowStats as $user){
 
     echo "USER: ";
