@@ -232,43 +232,55 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             $scope.usersToShowStats = [];
             $scope.groupsToShowStats = [];
 
-            if(document.getElementById("filter_stat_user_none").checked === true){
+            try {
+                if(document.getElementById("filter_stat_user_none").checked === true){
 
-                $scope.usersToShowStats.push('none');
+                    $scope.usersToShowStats.push('none');
 
-            } else {
+                } else {
+
+                    for (let index in $scope.allUserNames){
+                        const startOfString = "filter_stat_user_";
+                        const fieldToUpdateCheck = startOfString.concat($scope.allUserNames[index].id);
+
+                        if(document.getElementById(fieldToUpdateCheck).checked === true){
+                            $scope.usersToShowStats.push($scope.allUserNames[index].id);
+                        }
+                    }
+
+                }
+            } catch (e) {
 
                 for (let index in $scope.allUserNames){
-                    const startOfString = "filter_stat_user_";
-                    const fieldToUpdateCheck = startOfString.concat($scope.allUserNames[index].id);
-
-                    if(document.getElementById(fieldToUpdateCheck).checked === true){
-                        $scope.usersToShowStats.push($scope.allUserNames[index].id);
-                    }
+                    $scope.usersToShowStats.push($scope.allUserNames[index].id);
                 }
-
             }
 
-            if(document.getElementById("filter_stat_group_none").checked === true){
 
-                $scope.groupsToShowStats.push('none');
+            try {
+                if(document.getElementById("filter_stat_group_none").checked === true){
 
-            } else {
+                    $scope.groupsToShowStats.push('none');
 
+                } else {
+
+                    for (let index in $scope.allTestExpNames){
+                        const startOfString = "filter_stat_group_";
+                        const fieldToUpdateCheck = startOfString.concat($scope.allTestExpNames[index].id);
+
+                        if(document.getElementById(fieldToUpdateCheck).checked === true){
+                            $scope.groupsToShowStats.push({"id" : $scope.allTestExpNames[index].id,
+                                "num_pairs" : $scope.allTestExpNames[index].num_pairs});
+                        }
+                    }
+
+                }
+            } catch (e) {
                 for (let index in $scope.allTestExpNames){
-                    const startOfString = "filter_stat_group_";
-                    const fieldToUpdateCheck = startOfString.concat($scope.allTestExpNames[index].id);
-
-                    if(document.getElementById(fieldToUpdateCheck).checked === true){
-                        $scope.groupsToShowStats.push({"id" : $scope.allTestExpNames[index].id,
-                            "num_pairs" : $scope.allTestExpNames[index].num_pairs});
-                    }
+                    $scope.groupsToShowStats.push({"id" : $scope.allTestExpNames[index].id,
+                        "num_pairs" : $scope.allTestExpNames[index].num_pairs});
                 }
-
             }
-
-            console.log("usersToShowStats : ", $scope.usersToShowStats);
-            console.log("groupsToShowStats : ", $scope.groupsToShowStats);
 
             if($scope.usersToShowStats === ['none'] || $scope.groupsToShowStats === ['none']){
 
