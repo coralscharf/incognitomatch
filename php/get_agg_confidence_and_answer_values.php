@@ -22,6 +22,8 @@ foreach ($usersToShowStats as $user){
 
 foreach ($groupsToShowStats as $group){
 
+    echo $group;
+
     if($firstWhereClause !== "where "){
         $firstWhereClause = $firstWhereClause . "and exp_id = " . $group["id"] . " ";
 
