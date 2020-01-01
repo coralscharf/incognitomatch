@@ -232,68 +232,22 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             $scope.usersToShowStats = [];
             $scope.groupsToShowStats = [];
 
-            try {
-                if(document.getElementById("filter_stat_user_none").checked === true){
-
-                    $scope.usersToShowStats.push('none');
-
-                } else {
-
-                    for (let index in $scope.allUserNames){
-                        if(index >= 2){
-                            const startOfString = "filter_stat_user_";
-                            const fieldToUpdateCheck = startOfString.concat($scope.allUserNames[index].id);
-
-                            if(document.getElementById(fieldToUpdateCheck).checked === true){
-                                $scope.usersToShowStats.push($scope.allUserNames[index].id);
-                            }
-                        }
-                    }
-
-                }
-            } catch (e) {
-
-                for (let index in $scope.allUserNames){
-                    if(index >= 2) {
-                        $scope.usersToShowStats.push($scope.allUserNames[index].id);
-                    }
+            for (let index in $scope.allUserNames){
+                if(index >= 2 && $scope.allUserNames[index].checked === true){
+                    $scope.usersToShowStats.push($scope.allUserNames[index].id);
                 }
             }
 
-
-            try {
-                if(document.getElementById("filter_stat_group_none").checked === true){
-
-                    $scope.groupsToShowStats.push('none');
-
-                } else {
-
-                    for (let index in $scope.allTestExpNames){
-                        if(index >= 2) {
-                            const startOfString = "filter_stat_group_";
-                            const fieldToUpdateCheck = startOfString.concat($scope.allTestExpNames[index].id);
-
-                            if(document.getElementById(fieldToUpdateCheck).checked === true){
-                                $scope.groupsToShowStats.push({"id" : $scope.allTestExpNames[index].id,
-                                    "num_pairs" : $scope.allTestExpNames[index].num_pairs});
-                            }
-                        }
-                    }
-
-                }
-            } catch (e) {
-                for (let index in $scope.allTestExpNames){
-                    if(index >= 2) {
-                        $scope.groupsToShowStats.push({"id" : $scope.allTestExpNames[index].id,
-                            "num_pairs" : $scope.allTestExpNames[index].num_pairs});
-                    }
+            for (let index in $scope.allTestExpNames){
+                if(index >= 2 && $scope.allTestExpNames[index].checked === true){
+                    $scope.groupsToShowStats.push($scope.allTestExpNames[index].id);
                 }
             }
 
             console.log($scope.usersToShowStats);
             console.log($scope.groupsToShowStats);
 
-            if( ($scope.usersToShowStats[0] === 'none') || ( $scope.groupsToShowStats[0] === 'none')){
+            if( ($scope.usersToShowStats.length === 0) || ( $scope.groupsToShowStats.length === 0)){
 
                 $("#loading").hide();
                 $("#statistics_body_full").hide();
@@ -1910,53 +1864,75 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         if(isUser === 'True'){
             if(itemClicked === 'All'){
 
-                document.getElementById("filter_stat_user_none").checked = false;
-                document.getElementById("filter_stat_user_all").checked = true;
                 for (let index in $scope.allUserNames){
-                    const startOfString = "filter_stat_user_";
-                    const fieldToUpdateCheck = startOfString.concat($scope.allUserNames[index].id);
-                    document.getElementById(fieldToUpdateCheck).checked = true;
+                    if(index === 0){ // None
+                        $scope.allUserNames[index].checked = false;
+                    } else { // All or Others
+                        $scope.allUserNames[index].checked = true;
+                    }
                 }
 
             }else if(itemClicked === 'None'){
 
-                document.getElementById("filter_stat_user_none").checked = true;
-                document.getElementById("filter_stat_user_all").checked = false;
                 for (let index in $scope.allUserNames){
-                    const startOfString = "filter_stat_user_";
-                    const fieldToUpdateCheck = startOfString.concat($scope.allUserNames[index].id);
-                    document.getElementById(fieldToUpdateCheck).checked = false;
+                    if(index === 0){ // None
+                        $scope.allUserNames[index].checked = true;
+                    } else { // All or Others
+                        $scope.allUserNames[index].checked = false;
+                    }
                 }
 
             }else {
-                document.getElementById("filter_stat_user_none").checked = false;
-                document.getElementById("filter_stat_user_all").checked = false;
+
+                for (let index in $scope.allUserNames){
+                    if(index <= 1){ // None or All
+                        $scope.allUserNames[index].checked = false;
+                    } else { // Others
+                        if($scope.allUserNames[index].id === itemClicked){
+                            $scope.allUserNames[index].checked = true;
+                        } else {
+                            $scope.allUserNames[index].checked = false;
+                        }
+                    }
+                }
             }
         }else {
+
             if(itemClicked === 'All'){
 
-                document.getElementById("filter_stat_group_none").checked = false;
-                document.getElementById("filter_stat_group_all").checked = true;
                 for (let index in $scope.allTestExpNames){
-                    const startOfString = "filter_stat_group_";
-                    const fieldToUpdateCheck = startOfString.concat($scope.allTestExpNames[index].id);
-                    document.getElementById(fieldToUpdateCheck).checked = true;
+                    if(index === 0){ // None
+                        $scope.allTestExpNames[index].checked = false;
+                    } else { // All or Others
+                        $scope.allTestExpNames[index].checked = true;
+                    }
                 }
 
             }else if(itemClicked === 'None'){
 
-                document.getElementById("filter_stat_group_none").checked = true;
-                document.getElementById("filter_stat_group_all").checked = false;
                 for (let index in $scope.allTestExpNames){
-                    const startOfString = "filter_stat_group_";
-                    const fieldToUpdateCheck = startOfString.concat($scope.allTestExpNames[index].id);
-                    document.getElementById(fieldToUpdateCheck).checked = false;
+                    if(index === 0){ // None
+                        $scope.allTestExpNames[index].checked = true;
+                    } else { // All or Others
+                        $scope.allTestExpNames[index].checked = false;
+                    }
                 }
 
             }else {
-                document.getElementById("filter_stat_group_none").checked = false;
-                document.getElementById("filter_stat_group_all").checked = false;
+
+                for (let index in $scope.allTestExpNames){
+                    if(index <= 1){ // None or All
+                        $scope.allTestExpNames[index].checked = false;
+                    } else { // Others
+                        if($scope.allTestExpNames[index].id === itemClicked){
+                            $scope.allTestExpNames[index].checked = true;
+                        } else {
+                            $scope.allTestExpNames[index].checked = false;
+                        }
+                    }
+                }
             }
+
         }
 
     };
