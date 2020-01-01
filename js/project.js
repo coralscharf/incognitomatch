@@ -120,8 +120,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.timeBarGraph = "";
 
         // Var for stats
-        $scope.allUserNames = [];
-        $scope.allTestExpNames = [];
         $scope.filter_stat_by_user = "";
         $scope.filter_stat_by_group = "";
 
@@ -1848,6 +1846,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
     $scope.getDataForFiterStatistics = function (callback) {
+
+        $scope.allUserNames = [];
+        $scope.allTestExpNames = [];
 
         $http({
             method: 'POST',
