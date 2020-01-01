@@ -17,22 +17,23 @@ foreach ($usersToShowStats as $user){
     } else{
         $firstWhereClause = $firstWhereClause . "user_id = " . $user . " ";
     }
+
 }
 
 foreach ($groupsToShowStats as $group){
 
     if($firstWhereClause !== "where "){
-        $firstWhereClause = $firstWhereClause . "and exp_id = " . $group.id . " ";
+        $firstWhereClause = $firstWhereClause . "and exp_id = " . $group["id"] . " ";
 
     } else{
-        $firstWhereClause = $firstWhereClause . "exp_id = " . $group.id . " ";
+        $firstWhereClause = $firstWhereClause . "exp_id = " . $group["id"] . " ";
     }
 
     if($secondWhereClause !== "where "){
-        $secondWhereClause = $secondWhereClause . "and exp_id = " . $group.id . " and [order] <= " . $group.num_pairs . " ";
+        $secondWhereClause = $secondWhereClause . "and exp_id = " . $group["id"] . " and [order] <= " . $group["num_pairs"] . " ";
 
     } else{
-        $secondWhereClause = $secondWhereClause . "exp_id = " . $group.id . " and [order] <= " . $group.num_pairs . " ";
+        $secondWhereClause = $secondWhereClause . "exp_id = " . $group["id"] . " and [order] <= " . $group["num_pairs"] . " ";
     }
 }
 
