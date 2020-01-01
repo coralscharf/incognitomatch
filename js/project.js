@@ -240,7 +240,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
             for (let index in $scope.allTestExpNames){
                 if(index >= 2 && $scope.allTestExpNames[index].checked === true){
-                    $scope.groupsToShowStats.push($scope.allTestExpNames[index].id);
+                    $scope.groupsToShowStats.push({"id" : $scope.allTestExpNames[index].id,
+                        "num_pairs" : $scope.allTestExpNames[index].num_pairs});
                 }
             }
 
