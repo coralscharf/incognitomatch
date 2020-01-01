@@ -1542,16 +1542,37 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 let j = 1;
                 for (let item in data.data){
                     const avgTime = (data.data)[item]['avgTime'];
-                    const avgCorrAns = (data.data)[item]['avgCorrAns'];
+                    const avgCorrAns = (data.data)[item]['avgCorrAns'] * 100;
 
                     xLabels.push(j);
                     yData.push(avgTime);
 
-                    if(avgCorrAns > 0.5){
+                    // Colors
+                    var red = new Color(232, 9, 26),
+                        white = new Color(255, 255, 255),
+                        green = new Color(6, 170, 60),
+                        start = green,
+                        end = white;
+
+                    if (avgCorrAns > 50) {
+                        start = white,
+                            end = red;
+                        avgCorrAns = avgCorrAns % 51;
+                    }
+                    var startColors = start.getColors(),
+                        endColors = end.getColors();
+                    var r = Interpolate(startColors.r, endColors.r, 50, avgCorrAns);
+                    var g = Interpolate(startColors.g, endColors.g, 50, avgCorrAns);
+                    var b = Interpolate(startColors.b, endColors.b, 50, avgCorrAns);
+
+                    var colorString = "rgb(" + r + "," + g + "," + b + ")";
+                    colorOfPoints.push(colorString);
+
+                    /*if(avgCorrAns > 0.5){
                         colorOfPoints.push("#0ccd00");
                     }else{
                         colorOfPoints.push("#cd0800");
-                    }
+                    }*/
 
                     j++;
                 }
@@ -1952,6 +1973,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 });	 //app.controller
 
 
+// functions for bar colors - agg time range
 function Interpolate(start, end, steps, count) {
     var s = start,
         e = end,
@@ -1977,34 +1999,3 @@ function Color(_r, _g, _b) {
         return colors;
     };
 }
-
-$(document).on({
-    change: function(e) {
-
-        var self = this,
-            span = $(self).parent("span"),
-            val = parseInt(self.value),
-            red = new Color(232, 9, 26),
-            white = new Color(255, 255, 255),
-            green = new Color(6, 170, 60),
-            start = green,
-            end = white;
-
-        $(".value", span).text(val);
-
-        if (val > 50) {
-            start = white,
-                end = red;
-            val = val % 51;
-        }
-        var startColors = start.getColors(),
-            endColors = end.getColors();
-        var r = Interpolate(startColors.r, endColors.r, 50, val);
-        var g = Interpolate(startColors.g, endColors.g, 50, val);
-        var b = Interpolate(startColors.b, endColors.b, 50, val);
-
-        span.css({
-            backgroundColor: "rgb(" + r + "," + g + "," + b + ")"
-        });
-    }
-}, "input[type='range']");

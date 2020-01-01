@@ -47,7 +47,7 @@
     <script type="text/javascript" src="https://www.highcharts.com/samples/data/usdeur.js"></script>-->
 
 </head>
-<body  ng-controller='avivTest' ng-init="init_avivTest()">
+<body ng-controller='avivTest' ng-init="init_avivTest()" style="max-width: 95%">
     
 	<?php
 
