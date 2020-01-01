@@ -224,59 +224,60 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     $scope.show_statistics = function(applyChanges){
         // this function show the home div - the instructions.
 
-        $("#statistics").hide();
-        $("#loading").show();
+        $scope.getDataForFiterStatistics(function(finish_conf) {
 
-        $scope.usersToShowStats = [];
-        $scope.groupsToShowStats = [];
+            $("#statistics").hide();
+            $("#loading").show();
 
-        if(document.getElementById("filter_stat_user_none").checked === true){
+            $scope.usersToShowStats = [];
+            $scope.groupsToShowStats = [];
 
-            $scope.usersToShowStats.push('none');
+            if(document.getElementById("filter_stat_user_none").checked === true){
 
-        } else {
+                $scope.usersToShowStats.push('none');
 
-            for (let index in $scope.allUserNames){
-                const startOfString = "filter_stat_user_";
-                const fieldToUpdateCheck = startOfString.concat($scope.allUserNames[index].id);
+            } else {
 
-                if(document.getElementById(fieldToUpdateCheck).checked === true){
-                    $scope.usersToShowStats.push($scope.allUserNames[index].id);
+                for (let index in $scope.allUserNames){
+                    const startOfString = "filter_stat_user_";
+                    const fieldToUpdateCheck = startOfString.concat($scope.allUserNames[index].id);
+
+                    if(document.getElementById(fieldToUpdateCheck).checked === true){
+                        $scope.usersToShowStats.push($scope.allUserNames[index].id);
+                    }
                 }
+
             }
 
-        }
+            if(document.getElementById("filter_stat_group_none").checked === true){
 
-        if(document.getElementById("filter_stat_group_none").checked === true){
+                $scope.groupsToShowStats.push('none');
 
-            $scope.groupsToShowStats.push('none');
+            } else {
 
-        } else {
+                for (let index in $scope.allTestExpNames){
+                    const startOfString = "filter_stat_group_";
+                    const fieldToUpdateCheck = startOfString.concat($scope.allTestExpNames[index].id);
 
-            for (let index in $scope.allTestExpNames){
-                const startOfString = "filter_stat_group_";
-                const fieldToUpdateCheck = startOfString.concat($scope.allTestExpNames[index].id);
-
-                if(document.getElementById(fieldToUpdateCheck).checked === true){
-                    $scope.groupsToShowStats.push({"id" : $scope.allTestExpNames[index].id,
-                        "num_pairs" : $scope.allTestExpNames[index].num_pairs});
+                    if(document.getElementById(fieldToUpdateCheck).checked === true){
+                        $scope.groupsToShowStats.push({"id" : $scope.allTestExpNames[index].id,
+                            "num_pairs" : $scope.allTestExpNames[index].num_pairs});
+                    }
                 }
+
             }
 
-        }
+            console.log("usersToShowStats : ", $scope.usersToShowStats);
+            console.log("groupsToShowStats : ", $scope.groupsToShowStats);
 
-        console.log("usersToShowStats : ", $scope.usersToShowStats);
-        console.log("groupsToShowStats : ", $scope.groupsToShowStats);
+            if($scope.usersToShowStats === ['none'] || $scope.groupsToShowStats === ['none']){
 
-        if($scope.usersToShowStats === ['none'] || $scope.groupsToShowStats === ['none']){
+                $("#loading").hide();
+                $("#statistics_body_full").hide();
+                $("#statistics_body_empty").show();
+                $("#statistics").show();
 
-            $("#loading").hide();
-            $("#statistics_body_full").hide();
-            $("#statistics_body_empty").show();
-            $("#statistics").show();
-
-        } else {
-            $scope.getDataForFiterStatistics(function(finish_conf) {
+            } else {
 
                 $scope.showAggregateConfidenceLineGraph(function(finish_conf) {
 
@@ -289,9 +290,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                 });
 
-            });
-        }
-
+            }
+        });
     };
 
     $scope.begin_exp = function(exp){
