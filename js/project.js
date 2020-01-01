@@ -245,9 +245,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 }
             }
 
-            console.log($scope.usersToShowStats);
-            console.log($scope.groupsToShowStats);
-
             if( ($scope.usersToShowStats.length === 0) || ( $scope.groupsToShowStats.length === 0)){
 
                 $("#loading").hide();
@@ -259,12 +256,15 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                 $scope.showAggregateConfidenceLineGraph(function(finish_conf) {
 
-                    $("#loading").hide();
-                    $("#statistics_body_empty").hide();
-                    $("#statistics_body_full").show();
-                    $("#statistics").show();
+                    $scope.showAggregateTimeRangeBarGraph(function(finish_conf) {
 
-                    //$scope.showCorrectAnswersBar();
+                        $("#loading").hide();
+                        $("#statistics_body_empty").hide();
+                        $("#statistics_body_full").show();
+                        $("#statistics").show();
+
+                        //$scope.showCorrectAnswersBar();
+                    });
 
                 });
 
@@ -1239,8 +1239,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     $scope.correctAnswersBar.destroy();
                 }
 
-                console.log(xLabels);
-                console.log(dataSets);
+                //console.log(xLabels);
+                //console.log(dataSets);
 
                 $scope.correctAnswersBar = new Chart(ctx, {
                     type: 'bar',
@@ -1281,8 +1281,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
             if (data.data.length !== 0) {
 
-                console.log('get_agg_confidence_and_answer_values! ');
-                console.log(data.data);
+                //console.log('get_agg_confidence_and_answer_values! ');
+                //console.log(data.data);
 
                 let xLabels = [];
                 let yDataConf = [];
@@ -1524,6 +1524,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             method: 'POST',
             url: 'php/get_agg_time_range_and_answers.php',
             data: $.param({
+                usersToShowStats : $scope.usersToShowStats,
+                groupsToShowStats : $scope.groupsToShowStats
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -1538,13 +1540,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                 let j = 1;
                 for (let item in data.data){
-                    const diff_sec = (data.data)[item]['diff_sec'];
-                    const isCorrectAnswer = (data.data)[item]['isCorrectAnswer'];
+                    const avgTime = (data.data)[item]['avgTime'];
+                    const avgCorrAns = (data.data)[item]['avgCorrAns'];
 
                     xLabels.push(j);
-                    yData.push(diff_sec);
+                    yData.push(avgTime);
 
-                    if(isCorrectAnswer == 1){
+                    if(avgCorrAns > 0.5){
                         colorOfPoints.push("#0ccd00");
                     }else{
                         colorOfPoints.push("#cd0800");
@@ -1947,3 +1949,61 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
 });	 //app.controller
+
+
+function Interpolate(start, end, steps, count) {
+    var s = start,
+        e = end,
+        final = s + (((e - s) / steps) * count);
+    return Math.floor(final);
+}
+
+function Color(_r, _g, _b) {
+    var r, g, b;
+    var setColors = function(_r, _g, _b) {
+        r = _r;
+        g = _g;
+        b = _b;
+    };
+
+    setColors(_r, _g, _b);
+    this.getColors = function() {
+        var colors = {
+            r: r,
+            g: g,
+            b: b
+        };
+        return colors;
+    };
+}
+
+$(document).on({
+    change: function(e) {
+
+        var self = this,
+            span = $(self).parent("span"),
+            val = parseInt(self.value),
+            red = new Color(232, 9, 26),
+            white = new Color(255, 255, 255),
+            green = new Color(6, 170, 60),
+            start = green,
+            end = white;
+
+        $(".value", span).text(val);
+
+        if (val > 50) {
+            start = white,
+                end = red;
+            val = val % 51;
+        }
+        var startColors = start.getColors(),
+            endColors = end.getColors();
+        var r = Interpolate(startColors.r, endColors.r, 50, val);
+        var g = Interpolate(startColors.g, endColors.g, 50, val);
+        var b = Interpolate(startColors.b, endColors.b, 50, val);
+
+        span.css({
+            backgroundColor: "rgb(" + r + "," + g + "," + b + ")"
+        });
+    }
+}, "input[type='range']");
