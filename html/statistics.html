@@ -46,8 +46,9 @@
         </div>-->
     </div>
 
-    <div id="statistics_body_empty">
-        <h2>No data is available to show. Please choose users and groups to show data about.</h2>
+    <div id="statistics_body_empty" style="text-align: center">
+        <h2>No data is available to show.<br>
+            Please choose users and groups to show data about.</h2>
     </div>
 
 
@@ -78,7 +79,7 @@
                                 <td>
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="filter_stat_user_none"
-                                               ng-click="update_checkbox_stats('True', 'None')">
+                                               ng-click="update_checkbox_stats('True', 'None')" ng-checked="allUserNames[0].checked">
                                         <label class="custom-control-label" for="filter_stat_user_none"><b>None</b></label>
                                     </div>
                                 </td>
@@ -88,7 +89,7 @@
                                 <td>
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="filter_stat_user_all"
-                                               ng-click="update_checkbox_stats('True', 'All')">
+                                               ng-click="update_checkbox_stats('True', 'All')" ng-checked="allUserNames[1].checked">
                                         <label class="custom-control-label" for="filter_stat_user_all"><b>All</b></label>
                                     </div>
                                 </td>
@@ -98,7 +99,7 @@
                                 <td>
                                     <div class="custom-control custom-checkbox" style="margin-left: 25px;">
                                         <input type="checkbox" class="custom-control-input" id="filter_stat_user_{{userName.id}}"
-                                               ng-click="update_checkbox_stats('True', userName.id)">
+                                               ng-click="update_checkbox_stats('True', userName.id)" ng-checked="userName.checked">
                                         <label class="custom-control-label" for="filter_stat_user_{{userName.id}}">{{userName.fullName}}</label>
                                     </div>
                                 </td>
@@ -120,7 +121,7 @@
                                 <td>
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="filter_stat_group_none"
-                                               ng-click="update_checkbox_stats('False', 'None')">
+                                               ng-click="update_checkbox_stats('False', 'None')" ng-checked="allTestExpNames[0].checked">
                                         <label class="custom-control-label" for="filter_stat_group_none"><b>None</b></label>
                                     </div>
                                 </td>
@@ -130,7 +131,7 @@
                                 <td>
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="filter_stat_group_all"
-                                               ng-click="update_checkbox_stats('False', 'All')">
+                                               ng-click="update_checkbox_stats('False', 'All')" ng-checked="allTestExpNames[0].checked">
                                         <label class="custom-control-label" for="filter_stat_group_all"><b>All</b></label>
                                     </div>
                                 </td>
@@ -140,7 +141,7 @@
                                 <td>
                                     <div class="custom-control custom-checkbox" style="margin-left: 25px;">
                                         <input type="checkbox" class="custom-control-input" id="filter_stat_group_{{expName.id}}"
-                                               ng-click="update_checkbox_stats('False', expName.id)">
+                                               ng-click="update_checkbox_stats('False', expName.id)" ng-checked="expName.checked">
                                         <label class="custom-control-label" for="filter_stat_group_{{expName.id}}">{{expName.exp_name}}</label>
                                     </div>
 

@@ -1852,40 +1852,49 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.getDataForFiterStatistics = function (callback) {
 
-        $scope.allUserNames = [];
-        $scope.allTestExpNames = [];
+        if($scope.NotFirstShowOfStatistics === false){
+            $scope.allUserNames = [];
+            $scope.allTestExpNames = [];
 
-        $http({
-            method: 'POST',
-            url: 'php/get_data_for_filter_stats.php',
-            data: $.param({
+            $http({
+                method: 'POST',
+                url: 'php/get_data_for_filter_stats.php',
+                data: $.param({
 
-            }),
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        }).then(function (data) {
-
-            if (data.data !== '1') {
-
-                for (let i = 0; i < data.data.length; i++)
-                {
-                    if(data.data[i]['isSingleUser'] === 'True'){
-                        $scope.allUserNames.push({"fullName" : data.data[i]['fullName'],
-                                                    "id" : data.data[i]['id']});
-                    }else {
-                        $scope.allTestExpNames.push({"exp_name" : data.data[i]['exp_name'],
-                            "id" : data.data[i]['id'], "num_pairs" : data.data[i]['num_pairs']});
-                    }
+                }),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 }
-                callback(true);
-            } else {
-                console.log('Get data for statistics filter failed');
-                callback(false);
+            }).then(function (data) {
 
-            }
-        });
+                if (data.data !== '1') {
 
+                    $scope.allUserNames.push({"fullName" : "None", "checked" : false});
+                    $scope.allUserNames.push({"fullName" : "All", "checked" : true});
+
+                    $scope.allTestExpNames.push({"exp_name" : "None", "checked" : false});
+                    $scope.allTestExpNames.push({"exp_name" : "All", "checked" : true});
+
+                    for (let i = 0; i < data.data.length; i++)
+                    {
+                        if(data.data[i]['isSingleUser'] === 'True'){
+                            $scope.allUserNames.push({"fullName" : data.data[i]['fullName'],
+                                "id" : data.data[i]['id'], "checked" : true});
+                        }else {
+                            $scope.allTestExpNames.push({"exp_name" : data.data[i]['exp_name'],
+                                "id" : data.data[i]['id'], "num_pairs" : data.data[i]['num_pairs'], "checked" : true});
+                        }
+                    }
+                    callback(true);
+                } else {
+                    console.log('Get data for statistics filter failed');
+                    callback(false);
+
+                }
+            });
+        } else {
+            callback(true);
+        }
     };
 
     $scope.update_checkbox_stats = function (isUser, itemClicked) {
