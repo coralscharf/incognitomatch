@@ -1555,8 +1555,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         end = white;
 
                     if (avgCorrAns > 50) {
-                        start = white,
-                            end = red;
+                        start = white;
+                        end = red;
                         avgCorrAns = avgCorrAns % 51;
                     }
                     var startColors = start.getColors(),
