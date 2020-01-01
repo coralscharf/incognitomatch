@@ -1548,7 +1548,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     yData.push(avgTime);
 
                     // Colors
-                    red = new Color(232, 9, 26),
+                    /*red = new Color(232, 9, 26),
                         white = new Color(255, 255, 255),
                         green = new Color(6, 170, 60),
                         start = green,
@@ -1566,13 +1566,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     var b = Interpolate(startColors.b, endColors.b, 50, avgCorrAns);
 
                     var colorString = "rgb(" + r + "," + g + "," + b + ")";
-                    colorOfPoints.push(colorString);
+                    colorOfPoints.push(colorString);*/
 
-                    /*if(avgCorrAns > 0.5){
+                    if(avgCorrAns > 0.5){
                         colorOfPoints.push("#0ccd00");
                     }else{
                         colorOfPoints.push("#cd0800");
-                    }*/
+                    }
 
                     j++;
                 }
