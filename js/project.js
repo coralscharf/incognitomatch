@@ -285,7 +285,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             console.log($scope.usersToShowStats);
             console.log($scope.groupsToShowStats);
 
-            if($scope.usersToShowStats === ['none',] || $scope.groupsToShowStats === ['none',]){
+            if( ($scope.usersToShowStats[0] === 'none') || ( $scope.groupsToShowStats[0] === 'none')){
 
                 $("#loading").hide();
                 $("#statistics_body_full").hide();
