@@ -30,14 +30,14 @@ foreach ($groupsToShowStats as $group){
     if($firstWhereClause !== "where "){
 
         if($firstGroupForFirstStatement === True){
-            $firstWhereClause = $firstWhereClause . "and ( exp_id = " . $group["id"] . " ";
+            $firstWhereClause = $firstWhereClause . "and ( exp_results.exp_id = " . $group["id"] . " ";
             $firstGroupForFirstStatement = False;
         } else {
-            $firstWhereClause = $firstWhereClause . "or exp_id = " . $group["id"] . " ";
+            $firstWhereClause = $firstWhereClause . "or exp_results.exp_id = " . $group["id"] . " ";
         }
 
     } else{
-        $firstWhereClause = $firstWhereClause . "( exp_id = " . $group["id"] . " ";
+        $firstWhereClause = $firstWhereClause . "( exp_results.exp_id = " . $group["id"] . " ";
         $firstGroupForFirstStatement = False;
     }
 
@@ -91,8 +91,6 @@ FROM time_table time_table1
                   and time_table1.user_id = time_table2.user_id)
 GROUP BY time_table1.[order]
 order by time_table1.[order] asc";
-
-echo $sql;
 
 
 $getResults= sqlsrv_query($conn, $sql);
