@@ -624,9 +624,14 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         $("#loading").show();
                         $scope.showConfidenceLineGraph(function(finish_conf) {
 
+                            console.log("FINISH1");
+
                             $scope.showTimeRangeBarGraph(function(finish_time) {
 
+                                console.log("FINISH2");
+
                                 $scope.get_mouse_click_data(function() {
+                                    console.log("FINISH3");
 
                                     $scope.create_heat_map(function() {
                                         document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
@@ -1405,9 +1410,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     $scope.confidenceLineGraph.destroy();
                 }
 
-                // console.log(xLabels);
-                // console.log(yData);
-                // console.log(colorOfPoints);
+                console.log(xLabels);
+                console.log(yData);
+                console.log(colorOfPoints);
 
                 $scope.confidenceLineGraph = new Chart(ctx, {
                     type: 'line',
