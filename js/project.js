@@ -1325,13 +1325,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         ]
                     },
                     options: {
-                        legend: {
-                            display: true
-                        },
-                        title: {
-                            display: true,
-                            text: 'Confidence Level & Answer as function of number of Questions'
-                        },
                         yAxes: [{
                             ticks: {
                                 beginAtZero: true
@@ -1347,6 +1340,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                                 labelString: 'Question Number'
                             }
                         }],
+                        legend: {
+                            display: true
+                        },
+                        title: {
+                            display: true,
+                            text: 'Confidence Level & Answer as function of number of Questions'
+                        }
                     }
                 });
 
