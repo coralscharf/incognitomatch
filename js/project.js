@@ -1596,12 +1596,12 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     red = new Color(232, 9, 26),
                         yellow = new Color(255, 255, 0),
                         green = new Color(6, 170, 60),
-                        start = green,
+                        start = red,
                         end = yellow;
 
-                    if (avgCorrAns < 50) {
+                    if (avgCorrAns > 50) {
                         start = yellow;
-                        end = red;
+                        end = green;
                         avgCorrAns = avgCorrAns % 51;
                     }
                     var startColors = start.getColors(),
