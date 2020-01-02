@@ -472,6 +472,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         // this function retrieves from the DB a pair to display in the expertiment.
         // first the callback function run - the term from schema 1.
 
+        clearInterval($scope.timeElapsed);
+
         $scope.getExp2(function(schema){
             // then this function - the term from schema 2.
             $http({
@@ -526,6 +528,15 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 document.getElementById("B_col_instance").innerText=str_instance;
                 document.getElementById("exp_pair_score").innerText=
                     $scope.schema2[0]['score']+" similar";
+
+                const initialTime = new Date().getTime();
+                $scope.timeElapsed = setInterval(function() {
+                    var now = new Date().getTime();
+                    var distance = now - initialTime;
+                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                    document.getElementById("time_elapsed").innerHTML =  "Time Elapsed: " + minutes + "m, " + seconds + "s ";
+                }, 1000);
             });
         },exp_id);
     };
