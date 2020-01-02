@@ -1636,7 +1636,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     },
                     tooltip: {
                         formatter: function () {
-                            return 'Question number ' + this.point.x + ' takes on average <b>' + this.point.value +
+                            return 'Question number ' + ' takes on average <b>' + this.point.value +
                                 'sec </b> and has on average ... % of correct answers.';
                         }
                     },
