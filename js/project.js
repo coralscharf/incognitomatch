@@ -1599,7 +1599,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         start = green,
                         end = yellow;
 
-                    if (avgCorrAns > 50) {
+                    if (avgCorrAns < 50) {
                         start = yellow;
                         end = red;
                         avgCorrAns = avgCorrAns % 51;
