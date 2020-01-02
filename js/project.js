@@ -621,8 +621,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                         document.getElementById("schemaMatchingExp").style.overflow = 'auto';
 
-                        $("#finish_exp").show();
-                        $("#finish_exp").hide();
                         $("#loading").show();
                         $scope.showConfidenceLineGraph(function(finish_conf) {
 
@@ -1365,7 +1363,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
     $scope.showConfidenceLineGraph = function (callback) {
-        document.getElementById("correctAnswersBar").innerHTML = "";
+        document.getElementById("confidenceLineGraph").innerHTML = "";
 
         $http({
             method: 'POST',
