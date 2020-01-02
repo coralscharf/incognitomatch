@@ -1634,13 +1634,19 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         }
                         ]
                     },
-                    tooltip: {
-                        formatter: function () {
-                            return 'Question number ' + ' takes on average <b>' + this.point.value +
-                                'sec </b> and has on average ... % of correct answers.';
-                        }
-                    },
                     options: {
+                        tooltips: {
+                            callbacks: {
+                                title: function(tooltipItem, data) {
+                                    return 'Question Number ' + data[labels][tooltipItem['index']];
+                                },
+                                label: function(tooltipItem, data) {
+                                    return 'Avg. Time: ' + data['datasets'][0]['data'][tooltipItem['index']] + ' seconds';
+                                },
+                                afterLabel: function(tooltipItem, data) {
+                                    return 'Avg. correct answers ' + yData[tooltipItem['index']] + ' %';
+                                }
+                        },
                         legend: {
                             display: false
                         },
