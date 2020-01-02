@@ -1637,15 +1637,16 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     options: {
                         tooltips: {
                             callbacks: {
-                                title: function(tooltipItem, data) {
+                                title: function (tooltipItem, data) {
                                     return 'Question Number ' + data[labels][tooltipItem['index']];
                                 },
-                                label: function(tooltipItem, data) {
+                                label: function (tooltipItem, data) {
                                     return 'Avg. Time: ' + data['datasets'][0]['data'][tooltipItem['index']] + ' seconds';
                                 },
-                                afterLabel: function(tooltipItem, data) {
+                                afterLabel: function (tooltipItem, data) {
                                     return 'Avg. correct answers ' + yData[tooltipItem['index']] + ' %';
                                 }
+                            }
                         },
                         legend: {
                             display: false
