@@ -621,6 +621,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                         document.getElementById("schemaMatchingExp").style.overflow = 'auto';
 
+                        $("#finish_exp").show();
+                        $("#finish_exp").hide();
                         $("#loading").show();
                         $scope.showConfidenceLineGraph(function(finish_conf) {
 
@@ -1405,9 +1407,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     $scope.confidenceLineGraph.destroy();
                 }
 
-                console.log(xLabels);
-                console.log(yData);
-                console.log(colorOfPoints);
+                // console.log(xLabels);
+                // console.log(yData);
+                // console.log(colorOfPoints);
 
                 $scope.confidenceLineGraph = new Chart(ctx, {
                     type: 'line',
