@@ -1553,6 +1553,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 console.log(data.data);
                 let xLabels = [];
                 let yData = [];
+                let avgCorrAnsArr = [];
                 let colorOfPoints = [];
 
                 let j = 1;
@@ -1562,6 +1563,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                     xLabels.push(j);
                     yData.push(avgTime);
+                    avgCorrAnsArr.push(avgCorrAns);
 
                     // Colors
                     // functions for bar colors - agg time range
@@ -1638,13 +1640,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         tooltips: {
                             callbacks: {
                                 title: function (tooltipItem, data) {
-                                    return 'Question Number ' + data['labels'][tooltipItem['index']];
+                                    return 'Question Number ' + data['labels'][tooltipItem[0]['index']];
                                 },
                                 label: function (tooltipItem, data) {
                                     return 'Avg. Time: ' + data['datasets'][0]['data'][tooltipItem['index']] + ' seconds';
                                 },
                                 afterLabel: function (tooltipItem, data) {
-                                    return 'Avg. correct answers ' + yData[tooltipItem['index']] + ' %';
+                                    return 'Avg. correct answers ' + avgCorrAnsArr[tooltipItem['index']] + ' %';
                                 }
                             }
                         },
