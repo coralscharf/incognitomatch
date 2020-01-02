@@ -1638,7 +1638,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         tooltips: {
                             callbacks: {
                                 title: function (tooltipItem, data) {
-                                    return 'Question Number ' + data[labels][tooltipItem['index']];
+                                    return 'Question Number ' + data['labels'][tooltipItem['index']];
                                 },
                                 label: function (tooltipItem, data) {
                                     return 'Avg. Time: ' + data['datasets'][0]['data'][tooltipItem['index']] + ' seconds';
