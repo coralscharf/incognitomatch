@@ -1326,12 +1326,21 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     },
                     options: {
                         legend: {
-                            display: false
+                            display: true
                         },
                         title: {
                             display: true,
                             text: 'Confidence Level & Answer as function of number of Questions'
-                        }
+                        },
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: '%'
+                            }
+                        }],
                     }
                 });
 
@@ -1488,6 +1497,12 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         }
                         ]
                     },
+
+                    tooltip: {
+                        formatter: function () {
+                            return '<b>' + this.point.x + '</b> Mouse Location Observed.';
+                        }
+                    },
                     options: {
                         legend: {
                             display: false
@@ -1576,13 +1591,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     }
 
                     red = new Color(232, 9, 26),
-                        white = new Color(255, 255, 255),
+                        yellow = new Color(255, 255, 0),
                         green = new Color(6, 170, 60),
                         start = green,
-                        end = white;
+                        end = yellow;
 
                     if (avgCorrAns > 50) {
-                        start = white;
+                        start = yellow;
                         end = red;
                         avgCorrAns = avgCorrAns % 51;
                     }
@@ -1594,12 +1609,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                     var colorString = "rgb(" + r + "," + g + "," + b + ")";
                     colorOfPoints.push(colorString);
-
-                    /*if(avgCorrAns > 0.5){
-                        colorOfPoints.push("#0ccd00");
-                    }else{
-                        colorOfPoints.push("#cd0800");
-                    }*/
 
                     j++;
                 }
@@ -1636,8 +1645,18 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             yAxes: [{
                                 ticks: {
                                     beginAtZero: true
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Time (sec)'
                                 }
-                            }]
+                            }],
+                            xAxes: [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Questions'
+                                }
+                            }],
                         }
                     }
                 });
