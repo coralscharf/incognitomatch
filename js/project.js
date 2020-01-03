@@ -563,7 +563,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         } else {
                             newSharedCorrForB = sharedCorrForB.substring(0, sharedCorrForB.length - 2);
                         }
-                        let initString = "Other Correspondences" + "<br>" + "With ";
+                        let initString = "Other Correspondences With ";
 
                         document.getElementById("more_shared_correspondence_A").innerText= initString + $scope.schema[0]['col_name'];
                         document.getElementById("A_more_shared_correspondence_names").innerText= newSharedCorrForA;
