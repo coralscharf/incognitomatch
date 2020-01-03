@@ -320,7 +320,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         else {
             $scope.disp_feedback=false;
         }
-        console.log("disp_feedback:",$scope.disp_feedback);
+
         $scope.curr_exp_id=exp['id'];
         $scope.total_ans_needed = exp['num_pairs'];
 
@@ -538,8 +538,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     if (data.data === "1") { console.log(data.data); } //error
                     else {
 
-                        let sharedCorrForA = "";
-                        let sharedCorrForB = "";
+                        var sharedCorrForA = "";
+                        var sharedCorrForB = "";
 
                         for (let item in data.data){
                             const anotherCorr = (data.data)[item]['col_name'];
@@ -554,10 +554,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         sharedCorrForA = sharedCorrForA.substring(0, sharedCorrForA.length - 2);
                         sharedCorrForB = sharedCorrForB.substring(0, sharedCorrForB.length - 2);
 
-                        document.getElementById("more_shared_correspondence_A").innerText='Other Correspondence With ' + $scope.schema[0]['col_name'];
+                        document.getElementById("more_shared_correspondence_A").innerText='Other Correspondence <br>With ' + $scope.schema[0]['col_name'];
                         document.getElementById("A_more_shared_correspondence_names").innerText= sharedCorrForA;
 
-                        document.getElementById("more_shared_correspondence_B").innerText='Other Correspondence With ' + $scope.schema2[0]['col_name'];
+                        document.getElementById("more_shared_correspondence_B").innerText='Other Correspondence <br>With ' + $scope.schema2[0]['col_name'];
                         document.getElementById("B_more_shared_correspondence_names").innerText= sharedCorrForB;
 
                     }
