@@ -2111,7 +2111,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
         $http({
             method: 'POST',
-            url: 'php/compute_precision_and_recall.php',
+            url: 'php/compute_precision_recall.php',
             data: $.param({
                 //usersToShowStats : $scope.usersToShowStats,
                 //groupsToShowStats : $scope.groupsToShowStats
