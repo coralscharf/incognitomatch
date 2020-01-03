@@ -40,8 +40,8 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     $array[] = array(
         'user_id'=>$row['user_id'],
         'exp_id'=>$row['exp_id'],
-        'precision'=>$row['precision'],
-        'recall'=>$row['recall']
+        'precision'=>$precision,
+        'recall'=>$recall
     );
 }
 sqlsrv_free_stmt($getResults);
