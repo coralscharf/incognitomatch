@@ -551,16 +551,17 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             }
                         }
 
+                        let newSharedCorrForA, newSharedCorrForB;
                         if (sharedCorrForA === ""){
-                            let newSharedCorrForA = "N/A";
+                            newSharedCorrForA = "N/A";
                         } else {
-                            let newSharedCorrForA = sharedCorrForA.substring(0, sharedCorrForA.length - 2);
+                            newSharedCorrForA = sharedCorrForA.substring(0, sharedCorrForA.length - 2);
                         }
 
                         if (sharedCorrForB === ""){
-                            let newSharedCorrForB = "N/A";
+                            newSharedCorrForB = "N/A";
                         } else {
-                            let newSharedCorrForB = sharedCorrForB.substring(0, sharedCorrForB.length - 2);
+                            newSharedCorrForB = sharedCorrForB.substring(0, sharedCorrForB.length - 2);
                         }
                         let initString = "Other Correspondences" + "<br>" + "With ";
 
