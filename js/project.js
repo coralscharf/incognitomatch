@@ -527,8 +527,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     method: 'POST',
                     url: 'php/get_another_shared_correspondence.php',
                     data: $.param({
-                        index_from_a: $scope.schema[0]['index'],
-                        index_from_b: $scope.schema2[0]['index']
+                        index_from_a: $scope.schema[0]['sch_id'],
+                        index_from_b: $scope.schema2[0]['sch_id']
                     }),
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
