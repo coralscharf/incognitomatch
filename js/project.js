@@ -122,7 +122,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         // Var for stats
         $scope.filter_stat_by_user = "";
         $scope.filter_stat_by_group = "";
-        $scope.computeMeasures();
     };
 
     $scope.show_home = function(){
@@ -258,12 +257,15 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                     $scope.showAggregateTimeRangeBarGraph(function(finish_conf) {
 
-                        $("#loading").hide();
-                        $("#statistics_body_empty").hide();
-                        $("#statistics_body_full").show();
-                        $("#statistics").show();
+                        $scope.computeMeasures(function(finish_conf) {
+                            $("#loading").hide();
+                            $("#statistics_body_empty").hide();
+                            $("#statistics_body_full").show();
+                            $("#statistics").show();
 
-                        //$scope.showCorrectAnswersBar();
+                            //$scope.showCorrectAnswersBar();
+                        });
+
                     });
 
                 });
@@ -1271,7 +1273,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         return colors;
     };
 
-    $scope.showCorrectAnswersBar = function () {
+    /*$scope.showCorrectAnswersBar = function () {
         document.getElementById("correctAnswersBar").innerHTML = "";
 
         $http({
@@ -1335,7 +1337,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
         });
 
-    };
+    };*/
 
     $scope.showAggregateConfidenceLineGraph = function (callback) {
         document.getElementById("confidenceLineGraphAggregate").innerHTML = "";
@@ -2125,6 +2127,23 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                 console.log('get_precision_and_recall! ');
                 console.log(data.data);
+
+                $scope.expMeasures = {};
+                for(let index in $scope.groupsToShowStats){
+                    $scope.expMeasures[$scope.groupsToShowStats[index]['id']] = {'sumPrec': 0, 'sumRec': 0, 'sumUsers' : 0};
+                }
+
+                for(let index in data.data){
+                    const exp_id = (data.data[index])['exp_id'];
+                    const prec = (data.data[index])['precision'];
+                    const rec = (data.data[index])['recall'];
+
+                    scope.expMeasures[exp_id]['sumPrec'] += prec;
+                    scope.expMeasures[exp_id]['sumRec'] += rec;
+                    scope.expMeasures[exp_id]['sumRec'] += rec;
+                }
+
+                console.log($scope.expMeasures);
                 callback(true);
 
             } else {
