@@ -2113,8 +2113,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             method: 'POST',
             url: 'php/compute_precision_and_recall.php',
             data: $.param({
-                usersToShowStats : $scope.usersToShowStats,
-                groupsToShowStats : $scope.groupsToShowStats
+                //usersToShowStats : $scope.usersToShowStats,
+                //groupsToShowStats : $scope.groupsToShowStats
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
