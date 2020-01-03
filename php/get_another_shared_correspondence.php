@@ -21,8 +21,6 @@ $getResults= sqlsrv_query($conn, $sqlForA);
 if ($getResults == FALSE)
     echo "1";
 
-echo $sqlForA;
-
 $array = array();
 while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     $array[] = array(
