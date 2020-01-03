@@ -538,8 +538,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     if (data.data === "1") { console.log(data.data); } //error
                     else {
 
-                        var sharedCorrForA = "";
-                        var sharedCorrForB = "";
+                        let sharedCorrForA = "";
+                        let sharedCorrForB = "";
 
                         for (let item in data.data){
                             const anotherCorr = (data.data)[item]['col_name'];
@@ -552,22 +552,22 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         }
 
                         if (sharedCorrForA === ""){
-                            var newSharedCorrForA = "N/A";
+                            let newSharedCorrForA = "N/A";
                         } else {
-                            var newSharedCorrForA = sharedCorrForA.substring(0, sharedCorrForA.length - 2);
+                            let newSharedCorrForA = sharedCorrForA.substring(0, sharedCorrForA.length - 2);
                         }
 
                         if (sharedCorrForA === ""){
-                            var newSharedCorrForB = "N/A";
+                            let newSharedCorrForB = "N/A";
                         } else {
-                            var newSharedCorrForB = sharedCorrForB.substring(0, sharedCorrForB.length - 2);
+                            let newSharedCorrForB = sharedCorrForB.substring(0, sharedCorrForB.length - 2);
                         }
-                        var initString = 'Other Correspondence With ';
+                        let initString = "Other Correspondences With ";
 
-                        document.getElementById("more_shared_correspondence_A").innerText= initString + "<br>" + $scope.schema[0]['col_name'];
+                        document.getElementById("more_shared_correspondence_A").innerText= initString + $scope.schema[0]['col_name'];
                         document.getElementById("A_more_shared_correspondence_names").innerText= newSharedCorrForA;
 
-                        document.getElementById("more_shared_correspondence_B").innerText= initString + "<br>" + $scope.schema2[0]['col_name'];
+                        document.getElementById("more_shared_correspondence_B").innerText= initString + $scope.schema2[0]['col_name'];
                         document.getElementById("B_more_shared_correspondence_names").innerText= newSharedCorrForB;
 
                     }
