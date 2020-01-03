@@ -521,13 +521,56 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 else {
                     str_instance = "N/A";
                 }
+
+                // Find correspondece also viewed with $scope.schema[0]['index'] and $scope.schema2[0]['index']
+                $http({
+                    method: 'POST',
+                    url: 'php/get_another_shared_correspondence.php',
+                    data: $.param({
+                        index_from_a: $scope.schema[0]['index'],
+                        index_from_b: $scope.schema2[0]['index']
+                    }),
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                }).then(function (data) {
+                    //console.log((data.data));
+                    if (data.data === "1") { console.log(data.data); } //error
+                    else {
+
+                        let sharedCorrForA = "";
+                        let sharedCorrForB = "";
+
+                        for (let item in data.data){
+                            const anotherCorr = (data.data)[item]['col_name'];
+
+                            if( (data.data)[item]['forWho'] === 'A' ){
+                                sharedCorrForA = sharedCorrForA + anotherCorr + ", ";
+                            } else {
+                                sharedCorrForB = sharedCorrForB + anotherCorr + ", ";
+                            }
+                        }
+
+                        sharedCorrForA = sharedCorrForA.substring(0, sharedCorrForA.length - 2);
+                        sharedCorrForB = sharedCorrForB.substring(0, sharedCorrForB.length - 2);
+
+                        document.getElementById("more_shared_correspondence_A").innerText='Other Correspondence With ' + $scope.schema[0]['col_name'];
+                        document.getElementById("A_more_shared_correspondence_names").innerText= sharedCorrForA;
+
+                        document.getElementById("more_shared_correspondence_B").innerText='Other Correspondence With ' + $scope.schema2[0]['col_name'];
+                        document.getElementById("B_more_shared_correspondence_names").innerText= sharedCorrForB;
+
+                    }
+
+                });
+
+
                 //let index = Math.floor((Math.random() * schema.length) + 1);
                 //console.log(schema[index]);
                 document.getElementById("B_col_name").innerText='Term B - ' + $scope.schema2[0]['col_name'];
                 document.getElementById("B_col_type").innerText=$scope.schema2[0]['col_type'];
                 document.getElementById("B_col_instance").innerText=str_instance;
-                document.getElementById("exp_pair_score").innerText=
-                    $scope.schema2[0]['score']+" similar";
+                document.getElementById("exp_pair_score").innerText=$scope.schema2[0]['score']+" similar";
 
                 const initialTime = new Date().getTime();
                 $scope.timeElapsed = setInterval(function() {
@@ -622,6 +665,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         {
                             //TODO: for roee not to delete!!!!! need to be out of the if
                             $("#experiment").hide();
+                            clearInterval($scope.timeElapsed);
                             $("#instruction_after").show();
                         }
 
@@ -629,6 +673,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     else {
                         // console.log($scope.curr_count_ans);
                         $("#experiment").hide();
+                        clearInterval($scope.timeElapsed);
 
                         document.getElementById("schemaMatchingExp").style.overflow = 'auto';
 
@@ -768,6 +813,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         {
             console.log("enter");
             $("#experiment").hide();
+            clearInterval($scope.timeElapsed);
             $("#instruction_after").show();
         }
     };
