@@ -563,12 +563,12 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         } else {
                             newSharedCorrForB = sharedCorrForB.substring(0, sharedCorrForB.length - 2);
                         }
-                        let initString = "Other Correspondences With ";
+                        let initString = "Other Correspondences" + "<br>" + "With ";
 
-                        document.getElementById("more_shared_correspondence_A").innerText= initString + $scope.schema[0]['col_name'];
+                        document.getElementById("more_shared_correspondence_A").innerHTML= initString + $scope.schema[0]['col_name'];
                         document.getElementById("A_more_shared_correspondence_names").innerText= newSharedCorrForA;
 
-                        document.getElementById("more_shared_correspondence_B").innerText= initString + $scope.schema2[0]['col_name'];
+                        document.getElementById("more_shared_correspondence_B").innerHTML= initString + $scope.schema2[0]['col_name'];
                         document.getElementById("B_more_shared_correspondence_names").innerText= newSharedCorrForB;
 
                     }
