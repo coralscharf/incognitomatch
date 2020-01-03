@@ -2138,10 +2138,15 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     const exp_id = (data.data[index])['exp_id'];
                     const prec = (data.data[index])['precision'];
                     const rec = (data.data[index])['recall'];
+                    
+                    try {
+                        $scope.expMeasures[exp_id]['sumPrec'] += prec;
+                        $scope.expMeasures[exp_id]['sumRec'] += rec;
+                        $scope.expMeasures[exp_id]['sumRec'] += rec;
+                    } catch (e) {
+                        
+                    }
 
-                    $scope.expMeasures[exp_id]['sumPrec'] += prec;
-                    $scope.expMeasures[exp_id]['sumRec'] += rec;
-                    $scope.expMeasures[exp_id]['sumRec'] += rec;
                 }
 
                 console.log($scope.expMeasures);
