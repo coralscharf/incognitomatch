@@ -551,18 +551,24 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             }
                         }
 
-                        var newSharedCorrForA = sharedCorrForA.substring(0, sharedCorrForA.length - 2);
-                        var newSharedCorrForB = sharedCorrForB.substring(0, sharedCorrForB.length - 2);
+                        if (sharedCorrForA === ""){
+                            var newSharedCorrForA = "N/A";
+                        } else {
+                            var newSharedCorrForA = sharedCorrForA.substring(0, sharedCorrForA.length - 2);
+                        }
 
-                        document.getElementById("more_shared_correspondence_A").innerText= 'Other Correspondence<br/>With ' + $scope.schema[0]['col_name'];
+                        if (sharedCorrForA === ""){
+                            var newSharedCorrForB = "N/A";
+                        } else {
+                            var newSharedCorrForB = sharedCorrForB.substring(0, sharedCorrForB.length - 2);
+                        }
+                        var initString = 'Other Correspondence With ';
+
+                        document.getElementById("more_shared_correspondence_A").innerText= initString + "<br>" + $scope.schema[0]['col_name'];
                         document.getElementById("A_more_shared_correspondence_names").innerText= newSharedCorrForA;
 
-                        // console.log(sharedCorrForA);
-
-                        document.getElementById("more_shared_correspondence_B").innerText= 'Other Correspondence<br/>With ' + $scope.schema2[0]['col_name'];
+                        document.getElementById("more_shared_correspondence_B").innerText= initString + "<br>" + $scope.schema2[0]['col_name'];
                         document.getElementById("B_more_shared_correspondence_names").innerText= newSharedCorrForB;
-
-                        // console.log(sharedCorrForB);
 
                     }
 
