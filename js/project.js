@@ -2150,10 +2150,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 }
 
                 for(let index in $scope.groupsToShowStats){
-                    $scope.expMeasures[$scope.groupsToShowStats[index]['id']]['avgPrec'] =
-                        ($scope.expMeasures[exp_id]['sumPrec'] * 100 ) / $scope.expMeasures[exp_id]['sumUsers'];
-                    $scope.expMeasures[$scope.groupsToShowStats[index]['id']]['avgRec'] =
-                        ($scope.expMeasures[exp_id]['sumRec'] * 100 ) / $scope.expMeasures[exp_id]['sumUsers'];
+                    const exp_id = $scope.groupsToShowStats[index]['id'];
+                    $scope.expMeasures[exp_id]['avgPrec'] = ($scope.expMeasures[exp_id]['sumPrec'] * 100 ) / $scope.expMeasures[exp_id]['sumUsers'];
+                    $scope.expMeasures[exp_id]['avgRec'] = ($scope.expMeasures[exp_id]['sumRec'] * 100 ) / $scope.expMeasures[exp_id]['sumUsers'];
                 }
 
                 console.log($scope.expMeasures);
