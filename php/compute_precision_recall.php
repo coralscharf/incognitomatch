@@ -1,4 +1,6 @@
 <?php
+$usersToShowStats = $_POST['usersToShowStats'];
+$groupsToShowStats = $_POST['groupsToShowStats'];
 
 $connectionInfo = array("UID" => "avivf@avivtest", "pwd" => "1qaZ2wsX!", "Database" => "avivtest", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
 $serverName = "tcp:avivtest.database.windows.net,1433";
