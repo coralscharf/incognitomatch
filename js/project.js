@@ -2132,6 +2132,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 for(let index in $scope.groupsToShowStats){
                     $scope.expMeasures[$scope.groupsToShowStats[index]['id']] = {'sumPrec': 0, 'sumRec': 0, 'sumUsers' : 0};
                 }
+                console.log($scope.expMeasures);
 
                 for(let index in data.data){
                     const exp_id = (data.data[index])['exp_id'];
