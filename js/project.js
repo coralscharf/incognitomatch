@@ -122,7 +122,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         // Var for stats
         $scope.filter_stat_by_user = "";
         $scope.filter_stat_by_group = "";
-
+        $scope.computeMeasures();
     };
 
     $scope.show_home = function(){
@@ -563,7 +563,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         } else {
                             newSharedCorrForB = sharedCorrForB.substring(0, sharedCorrForB.length - 2);
                         }
-                        let initString = "Other Correspondences" + "<br>" + "With ";
+                        let initString = "Other Correspondences With" + "<br>";
 
                         document.getElementById("more_shared_correspondence_A").innerHTML= initString + $scope.schema[0]['col_name'];
                         document.getElementById("A_more_shared_correspondence_names").innerText= newSharedCorrForA;
@@ -1841,7 +1841,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
             colorAxis: {
                 min: 0,
-                minColor: 'rgb(255,215,207)',
+                minColor: 'rgb(255,243,225)',
                 maxColor: '#ff2b00'
             },
 
@@ -2102,6 +2102,37 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 }
             }
         }
+
+    };
+
+
+    $scope.computeMeasures = function (callback) {
+        document.getElementById("confidenceLineGraphAggregate").innerHTML = "";
+
+        $http({
+            method: 'POST',
+            url: 'php/compute_precision_and_recall.php',
+            data: $.param({
+                usersToShowStats : $scope.usersToShowStats,
+                groupsToShowStats : $scope.groupsToShowStats
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function (data) {
+
+            if (data.data.length !== 0) {
+
+                console.log('get_precision_and_recall! ');
+                console.log(data.data);
+                callback(true);
+
+            } else {
+                console.log('Get precision and recall data - failed');
+                callback(false);
+
+            }
+        });
 
     };
 

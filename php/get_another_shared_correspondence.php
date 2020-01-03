@@ -10,11 +10,7 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 $sqlForA="select col_name
 from (select sch_id_2 as sch_id
     from exp_pairs
-    where sch_id_1 = ". $index_from_a ." and sch_id_2 != ". $index_from_b ." and [order]<=100
-    union
-    select sch_id_1 as sch_id
-    from exp_pairs
-      where sch_id_2 = ". $index_from_a ." and sch_id_1 != ".$index_from_b." and [order]<=100) more_sch_ids
+    where sch_id_1 = ". $index_from_a ." and sch_id_2 != ". $index_from_b ." and [order]<=100) more_sch_ids
        join exp_schema on more_sch_ids.sch_id = exp_schema.id";
 
 $getResults= sqlsrv_query($conn, $sqlForA);
@@ -31,11 +27,7 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
 sqlsrv_free_stmt($getResults);
 
 $sqlForB="select col_name
-from (select sch_id_2 as sch_id
-    from exp_pairs
-    where sch_id_1 = ". $index_from_b ." and sch_id_2 != ". $index_from_a ." and [order]<=100
-    union
-    select sch_id_1 as sch_id
+from (select sch_id_1 as sch_id
     from exp_pairs
       where sch_id_2 = ". $index_from_b ." and sch_id_1 != ".$index_from_a." and [order]<=100) more_sch_ids
        join exp_schema on more_sch_ids.sch_id = exp_schema.id";
