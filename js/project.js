@@ -2186,10 +2186,29 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             yAxes: [{
                                 ticks: {
                                     min: 0,
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: '%'
                                 }
-                            }]
+                            }],
+                            xAxes: [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Experiement ID'
+                                }
+                            }],
+
+                        },
+                        legend: {
+                            display: true
+                        },
+                        title: {
+                            display: true,
+                            text: 'Evaluation Measures as function of Experiement'
                         }
                     }
+
                 });
 
                 document.getElementById("evaluationMeasuresGraphAggregate").innerHTML = $scope.evaluationMeasuresGraphAggregate;

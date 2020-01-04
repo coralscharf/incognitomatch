@@ -11,10 +11,10 @@ $whereClause = "where ";
 foreach ($usersToShowStats as $user){
 
     if($whereClause !== "where "){
-        $whereClause = $whereClause . "or user_id = " . $user . " ";
+        $whereClause = $whereClause . "or users.user_id = " . $user . " ";
 
     } else{
-        $whereClause = $whereClause . "( user_id = " . $user . " ";
+        $whereClause = $whereClause . "( users.user_id = " . $user . " ";
     }
 
 }
@@ -29,14 +29,14 @@ foreach ($groupsToShowStats as $group){
     if($whereClause !== "where "){
 
         if($firstGroupForStatement === True){
-            $whereClause = $whereClause . "and ( exp_id = " . $group["id"] . " ";
+            $whereClause = $whereClause . "and ( users.exp_id = " . $group["id"] . " ";
             $firstGroupForStatement = False;
         } else {
-            $whereClause = $whereClause . "or exp_id = " . $group["id"] . " ";
+            $whereClause = $whereClause . "or users.exp_id = " . $group["id"] . " ";
         }
 
     } else{
-        $whereClause = $whereClause . "( exp_id = " . $group["id"] . " ";
+        $whereClause = $whereClause . "( users.exp_id = " . $group["id"] . " ";
         $firstGroupForStatement = False;
     }
 }
