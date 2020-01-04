@@ -64,6 +64,10 @@ from exp_results users join experiments on users.exp_id = experiments.id ".
     $whereClause .
 "group by users.user_id, users.exp_id, experiments.num_pairs";
 
+
+echo $sql;
+
+
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
     echo "1";

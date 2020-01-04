@@ -1400,21 +1400,23 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         ]
                     },
                     options: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            },
-                            scaleLabel: {
-                                display: true,
-                                labelString: '%'
-                            }
-                        }],
-                        xAxes: [{
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Question Number'
-                            }
-                        }],
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    min: 0,
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: '%'
+                                }
+                            }],
+                            xAxes: [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Question Number'
+                                }
+                            }],
+                        },
                         legend: {
                             display: true
                         },
@@ -2198,7 +2200,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                                     labelString: 'Experiement ID'
                                 }
                             }],
-
                         },
                         legend: {
                             display: true
