@@ -6,6 +6,44 @@ $connectionInfo = array("UID" => "avivf@avivtest", "pwd" => "1qaZ2wsX!", "Databa
 $serverName = "tcp:avivtest.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 
+$whereClause = "where ";
+
+foreach ($usersToShowStats as $user){
+
+    if($whereClause !== "where "){
+        $whereClause = $whereClause . "or user_id = " . $user . " ";
+
+    } else{
+        $whereClause = $whereClause . "( user_id = " . $user . " ";
+    }
+
+}
+
+if($whereClause !== "where "){
+    $whereClause = $whereClause . ") ";
+}
+
+$firstGroupForStatement = True;
+foreach ($groupsToShowStats as $group){
+
+    if($whereClause !== "where "){
+
+        if($firstGroupForStatement === True){
+            $whereClause = $whereClause . "and ( exp_id = " . $group["id"] . " ";
+            $firstGroupForStatement = False;
+        } else {
+            $whereClause = $whereClause . "or exp_id = " . $group["id"] . " ";
+        }
+
+    } else{
+        $whereClause = $whereClause . "( exp_id = " . $group["id"] . " ";
+        $firstGroupForStatement = False;
+    }
+}
+
+if($whereClause !== "where "){
+    $whereClause = $whereClause . ") ";
+}
 
 $sql="select users.user_id, users.exp_id, (select count(*)
         from (
@@ -22,8 +60,9 @@ $sql="select users.user_id, users.exp_id, (select count(*)
        (select count(*)
         from exp_pairs
         where realConf = 1 and exp_id = users.exp_id and exp_pairs.[order] <= experiments.num_pairs) as exactMatchNum
-from exp_results users join experiments on users.exp_id = experiments.id
-group by users.user_id, users.exp_id, experiments.num_pairs";
+from exp_results users join experiments on users.exp_id = experiments.id ".
+    $whereClause .
+"group by users.user_id, users.exp_id, experiments.num_pairs";
 
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)

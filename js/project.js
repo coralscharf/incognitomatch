@@ -2125,37 +2125,75 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
             if (data.data.length !== 0) {
 
+                let expIds = [];
+                let precision = [];
+                let recall = [];
+
                 $scope.expMeasures = {};
                 for(let index in $scope.groupsToShowStats){
                     $scope.expMeasures[$scope.groupsToShowStats[index]['id']] = {'sumPrec': 0, 'sumRec': 0, 'sumUsers' : 0};
+                    expIds.push($scope.groupsToShowStats[index]['id']);
                 }
 
                 for(let index in data.data){
                     const exp_id = (data.data[index])['exp_id'];
                     const prec = (data.data[index])['precision'];
                     const rec = (data.data[index])['recall'];
-                    
-                    try {
-                        $scope.expMeasures[exp_id]['sumPrec'] += prec;
-                        $scope.expMeasures[exp_id]['sumRec'] += rec;
-                        $scope.expMeasures[exp_id]['sumUsers'] += 1;
 
-                        $scope.expMeasures[exp_id]['avgPrec'] += 1;
-                        $scope.expMeasures[exp_id]['avgRec'] += 1;
-
-                    } catch (e) {
-                        
-                    }
-
+                    $scope.expMeasures[exp_id]['sumPrec'] += prec;
+                    $scope.expMeasures[exp_id]['sumRec'] += rec;
+                    $scope.expMeasures[exp_id]['sumUsers'] += 1;
                 }
 
                 for(let index in $scope.groupsToShowStats){
                     const exp_id = $scope.groupsToShowStats[index]['id'];
                     $scope.expMeasures[exp_id]['avgPrec'] = ($scope.expMeasures[exp_id]['sumPrec'] * 100 ) / $scope.expMeasures[exp_id]['sumUsers'];
                     $scope.expMeasures[exp_id]['avgRec'] = ($scope.expMeasures[exp_id]['sumRec'] * 100 ) / $scope.expMeasures[exp_id]['sumUsers'];
+
+                    precision.push($scope.expMeasures[exp_id]['avgPrec']);
+                    recall.push($scope.expMeasures[exp_id]['avgRec']);
                 }
 
                 console.log($scope.expMeasures);
+
+
+                document.getElementById("evaluationMeasuresGraphAggregate").innerHTML = "";
+                var ctx = document.getElementById("evaluationMeasuresGraphAggregate").getContext("2d");
+
+                if ($scope.evaluationMeasuresGraphAggregate){
+                    $scope.evaluationMeasuresGraphAggregate.destroy();
+                }
+
+                $scope.evaluationMeasuresGraphAggregate = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: expIds,
+                        datasets: [
+                            {
+                                label: "Precision",
+                                backgroundColor: "blue",
+                                data: precision
+                            },
+                            {
+                                label: "Recall",
+                                backgroundColor: "green",
+                                data: recall
+                            }]
+                    },
+                    options: {
+                        barValueSpacing: 20,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    min: 0,
+                                }
+                            }]
+                        }
+                    }
+                });
+
+                document.getElementById("evaluationMeasuresGraphAggregate").innerHTML = $scope.evaluationMeasuresGraphAggregate;
+
                 callback(true);
 
             } else {
