@@ -49,24 +49,20 @@ $sql="select users.user_id, users.exp_id, (select count(*)
         from (
                  select sch_id_1, sch_id_2
                  from exp_results
-                 where user_id = users.user_id and exp_id = users.exp_id and realconf = 1
+                 where user_id = users.user_id and exp_id = users.exp_id and exp_results.user_ans_is_match = 1
                  intersect
                  select sch_id_1, sch_id_2
                  from exp_pairs
                  where realConf = 1 and exp_id = users.exp_id and exp_pairs.[order] <= experiments.num_pairs) A) as commonCorrNum,
        (select count(*)
         from exp_results
-        where user_id = users.user_id and exp_id = users.exp_id and realconf = 1) as matchNum,
+        where user_id = users.user_id and exp_id = users.exp_id and exp_results.user_ans_is_match = 1) as matchNum,
        (select count(*)
         from exp_pairs
         where realConf = 1 and exp_id = users.exp_id and exp_pairs.[order] <= experiments.num_pairs) as exactMatchNum
 from exp_results users join experiments on users.exp_id = experiments.id ".
     $whereClause .
 "group by users.user_id, users.exp_id, experiments.num_pairs";
-
-
-echo $sql;
-
 
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)

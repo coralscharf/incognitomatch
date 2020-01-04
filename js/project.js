@@ -2127,8 +2127,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
             if (data.data.length !== 0) {
 
-                console.log(data.data);
-
                 let expIds = [];
                 let precision = [];
                 let recall = [];
