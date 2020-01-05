@@ -1737,7 +1737,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         console.log($scope.arrDataForHeatMap);
 
         var idForHeatMap = 'heatMapGraphAggregate';
-        if(isSingleUser){
+        if(isSingleUser == true){
             idForHeatMap = 'heatMapUser';
         }
 
