@@ -1861,7 +1861,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         let click = JSON.parse((all_clicks_list[i_click].replace('(','['))
                             .replace(')',']'));
 
-                        if(click[1] <= max_x && click[2] <= max_y){
+                        if(click[1] < max_x && click[2] < max_y){
                             const x_reminder = click[1] % jump_in_x;
                             const x_cell = jump_in_x*(Math.floor((click[1]-x_reminder)/jump_in_x)+1);
 
