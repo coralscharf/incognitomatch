@@ -7,7 +7,7 @@ $usersToShowStats = $_POST['usersToShowStats'];
 $groupsToShowStats = $_POST['groupsToShowStats'];
 
 $sql = "";
-if ($isSingleUser == true){
+if ($isSingleUser === 'True'){
     $sql="select mouse_loc from exp_results where exp_id = " . $curr_exp_id . "and user_id = ". $curr_user;
 } else {
     $whereClause = "where ";

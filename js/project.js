@@ -246,7 +246,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
             } else {
 
-                var isSingleUser = false;
+                var isSingleUser = 'False';
                 $scope.showAggregateConfidenceLineGraph(function(finish_conf) {
 
                     $scope.showAggregateTimeRangeBarGraph(function(finish_conf) {
@@ -682,7 +682,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         document.getElementById("schemaMatchingExp").style.overflow = 'auto';
 
                         $("#loading").show();
-                        var isSingleUser = true;
+                        var isSingleUser = 'True';
                         $scope.showConfidenceLineGraph(function(finish_conf) {
 
                             console.log("FINISH1");
@@ -1737,7 +1737,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         console.log($scope.arrDataForHeatMap);
 
         var idForHeatMap = 'heatMapGraphAggregate';
-        if(isSingleUser == true){
+        if(isSingleUser === 'True'){
             idForHeatMap = 'heatMapUser';
         }
 
@@ -1840,8 +1840,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             console.log("GET MOUSE DATA ");
             // console.log(data.data);
 
-            const max_x = 1300; //window.innerWidth + (100 - (window.innerWidth % 100)); //1300; //1290.0;
-            const max_y = 600; //window.innerHeight + (100 - (window.innerHeight % 100)); //window.screen.availHeight + (100 - window.screen.availHeight % 100); //1290.0;
+            const max_x = 1300; //window.innerWidth + (100 - (window.innerWidth % 100));
+            const max_y = 600; //window.innerHeight + (100 - (window.innerHeight % 100));
             const jump_in_x = 100; //30;
             const jump_in_y = 50; // 100 \ 30;
 
@@ -1863,10 +1863,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                         if(click[1] < max_x && click[2] < max_y){
                             const x_reminder = click[1] % jump_in_x;
-                            const x_cell = jump_in_x*(Math.floor((click[1]-x_reminder)/jump_in_x)+1);
+                            const x_cell = jump_in_x*(Math.floor((click[1]-x_reminder)/jump_in_x));
 
                             const y_reminder = click[2] % jump_in_y;
-                            const y_cell = jump_in_y*(Math.floor((click[2]-y_reminder)/jump_in_y)+1);
+                            const y_cell = jump_in_y*(Math.floor((click[2]-y_reminder)/jump_in_y));
 
                             $scope.arrForHeatMap[[x_cell, y_cell]] += 1;
                         }
