@@ -37,10 +37,7 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
 
 sqlsrv_free_stmt($getResults);
 # choose randomly an active experiment which is not an test schema.
-#for roee:
-#->> $get_exp_id="SELECT * from experiments where is_active=1 and [name]!= 'Test'";
-# for ofra:
-$get_exp_id="SELECT * from experiments where is_active=1 and [name]= 'Test'";
+$get_exp_id="SELECT * from experiments where is_active=1 and [name]!= 'Test'";
 $getResults= sqlsrv_query($conn, $get_exp_id);
 if ($getResults == FALSE)
 {
@@ -68,11 +65,7 @@ sqlsrv_free_stmt($getResults);
 $ind=rand(0,sizeof($arr)-1);
 
 # get id for test scheme
-#for roee:
-# -> $get_exp_id_test="SELECT * from experiments where is_active=1 and [name]= 'Test'";
-
-#for ofra:
-$get_exp_id_test="SELECT * from experiments where is_active=1 and [name]!= 'Test'";
+$get_exp_id_test="SELECT * from experiments where is_active=1 and [name]= 'Test'";
 $getResults= sqlsrv_query($conn, $get_exp_id_test);
 if ($getResults == FALSE)
 {
@@ -91,9 +84,6 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
         'disp_control' => $row['disp_control']
     ];
 }
-#for roee:
-#->>$res=[$arr[$ind],$test_sch,$user_id];
 
-#for ofra:
-$res=[$test_sch,$arr[$ind],$user_id];
+$res=[$arr[$ind],$test_sch,$user_id];
 echo json_encode($res);
