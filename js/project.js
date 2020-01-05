@@ -1804,7 +1804,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     condition: {
                         maxWidth: 500
                     },
-                    chartOptions: {
+                    /*chartOptions: {
                         yAxis: {
                             labels: {
                                 formatter: function () {
@@ -1812,7 +1812,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                                 }
                             }
                         }
-                    }
+                    }*/
                 }]
             }
 
