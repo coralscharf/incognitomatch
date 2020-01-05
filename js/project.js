@@ -1715,8 +1715,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.create_heat_map = function(callback, isSingleUser) {
 
-        const max_x = 600; //window.innerWidth + (100 - (window.innerWidth % 100)); //1300; //1290.0;
-        const max_y = 1300; //window.innerHeight + (100 - (window.innerHeight % 100));//window.screen.availHeight + (100 - window.screen.availHeight % 100);  //1300; //1290.0;
+        const max_x = 1300; //window.innerWidth + (100 - (window.innerWidth % 100)); //1300; //1290.0;
+        const max_y = 600; //window.innerHeight + (100 - (window.innerHeight % 100));//window.screen.availHeight + (100 - window.screen.availHeight % 100);  //1300; //1290.0;
         const jump_in_x = 100; //30;
         const jump_in_y = 50; //100 \ 30;
 
@@ -1840,8 +1840,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             console.log("GET MOUSE DATA ");
             // console.log(data.data);
 
-            const max_x = 600; //window.innerWidth + (100 - (window.innerWidth % 100)); //1300; //1290.0;
-            const max_y = 1300; //window.innerHeight + (100 - (window.innerHeight % 100)); //window.screen.availHeight + (100 - window.screen.availHeight % 100); //1290.0;
+            const max_x = 1300; //window.innerWidth + (100 - (window.innerWidth % 100)); //1300; //1290.0;
+            const max_y = 600; //window.innerHeight + (100 - (window.innerHeight % 100)); //window.screen.availHeight + (100 - window.screen.availHeight % 100); //1290.0;
             const jump_in_x = 100; //30;
             const jump_in_y = 50; // 100 \ 30;
 
