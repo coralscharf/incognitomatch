@@ -27,7 +27,7 @@ sqlsrv_free_stmt($getResults);
 
 $sql="select schema_name, id, num_pairs
 from experiments
-where name!='Test'";
+where name='Test'";
 
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)

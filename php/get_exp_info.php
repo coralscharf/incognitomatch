@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: avivf
- * Date: 2019-04-05
- * Time: 17:59
- */
-
 
 $exp_id=stripcslashes($_POST['exp_id']);
 $term_a_or_b=stripcslashes($_POST['term_a_or_b']);
