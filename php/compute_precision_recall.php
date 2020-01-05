@@ -1,4 +1,5 @@
 <?php
+
 $usersToShowStats = $_POST['usersToShowStats'];
 $groupsToShowStats = $_POST['groupsToShowStats'];
 

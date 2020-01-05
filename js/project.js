@@ -30,7 +30,6 @@ app.directive('ngFile', ['$parse', function ($parse) {
     };
 }]);
 
-
 app.directive('starRating', function () {
     return {
         scope: {
@@ -67,20 +66,12 @@ app.service('fileUpload', ['$http', function ($http) {
                 console.log("error upload files");
 
             }
-            //console.log("res",res );
-
-
-
-            //$scope.uploadFile(data,name);
-
-
         })
 
     }
 }]);
 
-
-//		 myApp.controller('myCtrl', ['$scope', 'fileUpload', function($scope, fileUpload){
+// myApp.controller('myCtrl', ['$scope', 'fileUpload', function($scope, fileUpload){
 
 app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUpload, $window, $element, $timeout) {
 
@@ -122,6 +113,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         // Var for stats
         $scope.filter_stat_by_user = "";
         $scope.filter_stat_by_group = "";
+        $scope.usersToShowStats = [];
+        $scope.groupsToShowStats = [];
     };
 
     $scope.show_home = function(){
@@ -253,17 +246,24 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
             } else {
 
+                var isSingleUser = false;
                 $scope.showAggregateConfidenceLineGraph(function(finish_conf) {
 
                     $scope.showAggregateTimeRangeBarGraph(function(finish_conf) {
 
                         $scope.computeMeasures(function(finish_conf) {
-                            $("#loading").hide();
-                            $("#statistics_body_empty").hide();
-                            $("#statistics_body_full").show();
-                            $("#statistics").show();
 
-                            //$scope.showCorrectAnswersBar();
+                            $scope.get_mouse_click_data(function(isSingleUser) {
+
+                                $scope.create_heat_map(function(isSingleUser) {
+
+                                    $("#loading").hide();
+                                    $("#statistics_body_empty").hide();
+                                    $("#statistics_body_full").show();
+                                    $("#statistics").show();
+
+                                });
+                            });
                         });
 
                     });
@@ -347,7 +347,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         document.getElementById("new_user_edu").value="";
     };
 
-
     $scope.new_user_exp = function(){
         // this function create new user for experiment.
 
@@ -412,8 +411,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         }).then(function (data) {
-            // console.log((data.data));
-            //console.log((data.data)[0]);
 
             $scope.schema=data.data;
             $scope.h_1=[];
@@ -434,9 +431,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             {
                 $scope.h_1.push({"index":last,"val":$scope.schema[0]['brothers'][k],"color":'blue', "weight":100});
             }
-
-
-
 
             let str_instance="";
             if ("instance" in $scope.schema[0])
@@ -490,9 +484,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             }).then(function (data) {
-                // console.log((data.data));
-                //console.log((data.data)[0]);
-
                 $scope.schema2=data.data;
                 $scope.h_2=[];
                 let h_2_temp=$scope.schema2[0]['h_2'].split(".");
@@ -691,6 +682,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         document.getElementById("schemaMatchingExp").style.overflow = 'auto';
 
                         $("#loading").show();
+                        var isSingleUser = true;
                         $scope.showConfidenceLineGraph(function(finish_conf) {
 
                             console.log("FINISH1");
@@ -699,10 +691,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                                 console.log("FINISH2");
 
-                                $scope.get_mouse_click_data(function() {
+                                $scope.get_mouse_click_data(function(isSingleUser) {
                                     console.log("FINISH3");
 
-                                    $scope.create_heat_map(function() {
+                                    $scope.create_heat_map(function(isSingleUser) {
                                         document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
                                         $("#loading").hide();
                                         $("#finish_exp").show();
@@ -870,6 +862,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         });
 
     };
+
     $scope.admin_login = function() {
         // this function check if admin authenticate correctly and adds menu options for admin.
         $http({
@@ -1080,8 +1073,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     };
 
-
-
     $scope.getCustomRepeatArray = function (size) {
         // this function makes the hierarchy design in the exp form.
         // get the current level in the hierarchy and return an array in that size - this is for ng repeat.
@@ -1093,8 +1084,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
         return sized_array;
     };
-
-
 
     $scope.get_exp_for_update = function () {
         // this function get all the experiments meta data for the update modal for the admin.
@@ -1273,72 +1262,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         return colors;
     };
 
-    /*$scope.showCorrectAnswersBar = function () {
-        document.getElementById("correctAnswersBar").innerHTML = "";
-
-        $http({
-            method: 'POST',
-            url: 'php/get_num_of_correct_answers.php',
-            data: $.param({
-                expIds : []
-            }),
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        }).then(function (data) {
-
-            if (data.data.length !== 0) {
-
-                let xLabels = [];
-                let yData = [];
-                let dataSets = [];
-
-                const colors = $scope.getColors(data.data.length);
-
-                let j = 0;
-                for (let item in data.data){
-                    const expId = (data.data)[item]['exp_id'];
-                    const totalCorrectAns = (data.data)[item]['totalCorrectAns'];
-
-                    xLabels.push(expId);
-                    yData.push(totalCorrectAns);
-
-                    const itemForDataSets = {label: expId,
-                        data: totalCorrectAns, backgroundColor: colors[j]};
-                    dataSets.push(itemForDataSets);
-                    j++;
-                }
-
-                const ctx = document.getElementById("correctAnswersBar").getContext("2d");
-                if ($scope.correctAnswersBar){
-                    $scope.correctAnswersBar.destroy();
-                }
-
-                //console.log(xLabels);
-                //console.log(dataSets);
-
-                $scope.correctAnswersBar = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: xLabels,
-                        datasets: [{
-                            label: '# of Correct Answers',
-                            data: yData,
-                            backgroundColor: colors,
-                            borderWidth: 1
-                        }]
-                    }
-                });
-
-                document.getElementById("correctAnswersBar").innerHTML = $scope.correctAnswersBar;
-
-            } else {
-                console.log('Get bar - number of correct answers failed');
-            }
-        });
-
-    };*/
-
     $scope.showAggregateConfidenceLineGraph = function (callback) {
         document.getElementById("confidenceLineGraphAggregate").innerHTML = "";
 
@@ -1355,9 +1278,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         }).then(function (data) {
 
             if (data.data.length !== 0) {
-
-                //console.log('get_agg_confidence_and_answer_values! ');
-                //console.log(data.data);
 
                 let xLabels = [];
                 let yDataConf = [];
@@ -1520,7 +1440,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         });
 
     };
-
 
     $scope.showTimeRangeBarGraph = function (callback) {
         document.getElementById("timeBarGraph").innerHTML = "";
@@ -1765,7 +1684,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     };
 
-
     $scope.add_user_data_finish_exp = function(){
 
         $http({
@@ -1795,10 +1713,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         });
     };
 
-    $scope.create_heat_map = function(callback) {
+    $scope.create_heat_map = function(callback, isSingleUser) {
 
-        const max_x = window.innerWidth + (100 - (window.innerWidth % 100)); //1300; //1290.0;
-        const max_y = window.innerHeight + (100 - (window.innerHeight % 100));//window.screen.availHeight + (100 - window.screen.availHeight % 100);  //1300; //1290.0;
+        const max_x = 600; //window.innerWidth + (100 - (window.innerWidth % 100)); //1300; //1290.0;
+        const max_y = 1300; //window.innerHeight + (100 - (window.innerHeight % 100));//window.screen.availHeight + (100 - window.screen.availHeight % 100);  //1300; //1290.0;
         const jump_in_x = 100; //30;
         const jump_in_y = 50; //100 \ 30;
 
@@ -1818,7 +1736,12 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         console.log(yLabels);
         console.log($scope.arrDataForHeatMap);
 
-        Highcharts.chart('heatMap_container', {
+        var idForHeatMap = 'heatMapGraphAggregate';
+        if(isSingleUser){
+            idForHeatMap = 'heatMapUser';
+        }
+
+        Highcharts.chart(idForHeatMap, {
 
             chart: {
                 type: 'heatmap',
@@ -1874,11 +1797,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         enabled: false
                     }
                 }
-                // data: [[0, 0, 10], [0, 1, 19], [0, 2, 8], [0, 3, 24], [0, 4, 67], [1, 0, 92], [1, 1, 58], [1, 2, 78], [1, 3, 117], [1, 4, 48], [2, 0, 35], [2, 1, 15], [2, 2, 123], [2, 3, 64], [2, 4, 52], [3, 0, 72], [3, 1, 132], [3, 2, 114], [3, 3, 19], [3, 4, 16], [4, 0, 38], [4, 1, 5], [4, 2, 8], [4, 3, 117], [4, 4, 115], [5, 0, 88], [5, 1, 32], [5, 2, 12], [5, 3, 6], [5, 4, 120], [6, 0, 13], [6, 1, 44], [6, 2, 88], [6, 3, 98], [6, 4, 96], [7, 0, 31], [7, 1, 1], [7, 2, 82], [7, 3, 32], [7, 4, 30], [8, 0, 85], [8, 1, 97], [8, 2, 123], [8, 3, 64], [8, 4, 84], [9, 0, 47], [9, 1, 114], [9, 2, 31], [9, 3, 48], [9, 4, 91]],
-                //dataLabels: {
-                //  enabled: false,
-                //color: '#000000'
-                //}
             }],
 
             responsive: {
@@ -1903,14 +1821,17 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     };
 
-    $scope.get_mouse_click_data = function(callback){
+    $scope.get_mouse_click_data = function(callback, isSingleUser){
         $scope.allClicks = {};
         $http({
             method: 'POST',
             url: 'php/get_mouse_click_data.php',
             data: $.param({
                 curr_user: $scope.curr_user['id'],
-                curr_exp_id: $scope.curr_exp_id
+                curr_exp_id: $scope.curr_exp_id,
+                isSingleUser : isSingleUser,
+                usersToShowStats : $scope.usersToShowStats,
+                groupsToShowStats : $scope.groupsToShowStats
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -1919,8 +1840,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             console.log("GET MOUSE DATA ");
             // console.log(data.data);
 
-            const max_x = window.innerWidth + (100 - (window.innerWidth % 100)); //1300; //1290.0;
-            const max_y = window.innerHeight + (100 - (window.innerHeight % 100)); //window.screen.availHeight + (100 - window.screen.availHeight % 100); //1290.0;
+            const max_x = 600; //window.innerWidth + (100 - (window.innerWidth % 100)); //1300; //1290.0;
+            const max_y = 1300; //window.innerHeight + (100 - (window.innerHeight % 100)); //window.screen.availHeight + (100 - window.screen.availHeight % 100); //1290.0;
             const jump_in_x = 100; //30;
             const jump_in_y = 50; // 100 \ 30;
 
@@ -1935,30 +1856,24 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             for(let index in data.data){
                 const all_clicks_for_q = data.data[index];
                 const all_clicks_list = all_clicks_for_q.split(';');
-                // console.log(all_clicks_list);
                 for (let i_click in all_clicks_list){
                     if((all_clicks_list[i_click]).includes('(')) {
                         let click = JSON.parse((all_clicks_list[i_click].replace('(','['))
                             .replace(')',']'));
 
-                        const x_reminder = click[1] % jump_in_x;
-                        const x_cell = jump_in_x*(Math.floor((click[1]-x_reminder)/jump_in_x)+1);
+                        if(click[1] <= max_x && click[2] <= max_y){
+                            const x_reminder = click[1] % jump_in_x;
+                            const x_cell = jump_in_x*(Math.floor((click[1]-x_reminder)/jump_in_x)+1);
 
-                        const y_reminder = click[2] % jump_in_y;
-                        const y_cell = jump_in_y*(Math.floor((click[2]-y_reminder)/jump_in_y)+1);
+                            const y_reminder = click[2] % jump_in_y;
+                            const y_cell = jump_in_y*(Math.floor((click[2]-y_reminder)/jump_in_y)+1);
 
-                        $scope.arrForHeatMap[[x_cell, y_cell]] += 1;
-                        /*const key_for_click = [click[1],click[2]];
-                        if(key_for_click in $scope.allClicks && click){
-                            $scope.allClicks[key_for_click] += 1;
+                            $scope.arrForHeatMap[[x_cell, y_cell]] += 1;
                         }
-                        else{
-                            $scope.allClicks[key_for_click] = 1;
-                        }*/
+
                     }
                 }
             }
-            console.log($scope.arrForHeatMap);
 
             $scope.arrDataForHeatMap = [];
             let i = 0;
@@ -2109,7 +2024,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     };
 
-
     $scope.computeMeasures = function (callback) {
         document.getElementById("confidenceLineGraphAggregate").innerHTML = "";
 
@@ -2224,7 +2138,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         });
 
     };
-
 
 });	 //app.controller
 
