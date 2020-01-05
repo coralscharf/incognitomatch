@@ -1804,15 +1804,15 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     condition: {
                         maxWidth: 500
                     },
-                    /*chartOptions: {
+                    chartOptions: {
                         yAxis: {
                             labels: {
                                 formatter: function () {
-                                    return this.value.charAt(0); // CHECK
+                                    return this.value.charAt(0);
                                 }
                             }
                         }
-                    }*/
+                    }
                 }]
             }
 
