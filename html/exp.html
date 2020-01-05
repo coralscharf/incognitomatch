@@ -74,20 +74,20 @@
 
             <table class="table" id="HierarchyTable" style="height: 300px; display: block; overflow: auto;">
                 <tr>
-                    <th scope="col">
+                    <th scope="col" style="width: 25%">
                         Term A Hierarchy
                     </th>
-                    <th scope="col">
+                    <th scope="col" style="width: 25%">
                         Term B Hierarchy
                     </th>
                 </tr>
 
                 <tr>
-                    <td>
+                    <td style="width: 25%">
                         <table class="table table-borderless"  id="term_a_table_h">
                             <tbody ng-repeat="item in h_1">
                             <tr ng-if="item.index==0">
-                                <td  style="color:{{item.color}}">
+                                <td  style="color:{{item.color}}; width: 25%">
                                     <i class="fas fa-folder"></i>{{item.val}}
                                 </td>
                             </tr>
@@ -95,7 +95,7 @@
                                 <!--<td id="table_a_{{$index}}">
                                     {{decorateWithSpace($index,item.val)}}
                                 </td>-->
-                                <td style="color:{{item.color}}; font-weight:{{item.weight}}">
+                                <td style="color:{{item.color}}; font-weight:{{item.weight}}; width: 25%">
                                     <i class="fa fa-angle-double-right" ng-repeat="t in getCustomRepeatArray(item.index)"></i><i class="fa fa-folder-open"></i>{{item.val}}
                                 </td>
                             </tr>
@@ -103,11 +103,11 @@
                         </table>
                     </td>
 
-                    <td >
+                    <td style="width: 25%">
                         <table class="table table-borderless" id="term_b_table_h">
                             <tbody ng-repeat="item2 in h_2">
                             <tr ng-if="item2.index==0">
-                                <td  style="color:{{item2.color}}">
+                                <td  style="color:{{item2.color}}; width: 25%">
                                     <i class="fas fa-folder"></i> {{item2.val}}
                                 </td>
                             </tr>
@@ -115,7 +115,7 @@
                                 <!--<td id="table_b_{{$index}}">
                                     {{decorateWithSpace($index,item2.val)}}
                                 </td>-->
-                                <td style="color:{{item2.color}}; font-weight:{{item2.weight}}">
+                                <td style="color:{{item2.color}}; font-weight:{{item2.weight}}; width: 25%">
                                     <i class="fa fa-angle-double-right" ng-repeat="t in getCustomRepeatArray(item2.index)"></i><i class="fa fa-folder-open"></i>{{item2.val}}
                                 </td>
                             </tr>
