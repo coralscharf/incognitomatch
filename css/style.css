@@ -34,10 +34,18 @@ table.table th, table.table td {
     100% { transform: rotate(360deg); }
 }
 
-#heatMap_container .highcharts-container .highcharts-root .highcharts-exporting-group{
+#heatMapUser .highcharts-container .highcharts-root .highcharts-exporting-group{
     display: none;
 }
 
-#heatMap_container .highcharts-container .highcharts-root .highcharts-credits{
+#heatMapUser .highcharts-container .highcharts-root .highcharts-credits{
+    display: none;
+}
+
+#heatMapGraphAggregate .highcharts-container .highcharts-root .highcharts-exporting-group{
+    display: none;
+}
+
+#heatMapGraphAggregate .highcharts-container .highcharts-root .highcharts-credits{
     display: none;
 }
