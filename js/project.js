@@ -1808,7 +1808,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         yAxis: {
                             labels: {
                                 formatter: function () {
-                                    return this.value.charAt(0);
+                                    return this.value.charAt(0); // CHECK
                                 }
                             }
                         }
