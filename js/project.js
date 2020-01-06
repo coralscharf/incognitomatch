@@ -1740,10 +1740,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                         if(click[1] < max_x && click[2] < max_y){
                             const x_reminder = click[1] % jump_in_x;
-                            const x_cell = jump_in_x*(Math.floor((click[1]-x_reminder)/jump_in_x));
+                            const x_cell = jump_in_x*(Math.floor((click[1]-x_reminder)/jump_in_x) + 1);
 
                             const y_reminder = click[2] % jump_in_y;
-                            const y_cell = jump_in_y*(Math.floor((click[2]-y_reminder)/jump_in_y));
+                            const y_cell = jump_in_y*(Math.floor((click[2]-y_reminder)/jump_in_y) + 1);
 
                             $scope.arrForHeatMap[[x_cell, y_cell]] += 1;
                         }
