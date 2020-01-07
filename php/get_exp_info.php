@@ -1,19 +1,20 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: avivf
+ * Date: 2019-04-05
+ * Time: 17:59
+ */
 $exp_id=stripcslashes($_POST['exp_id']);
 $term_a_or_b=stripcslashes($_POST['term_a_or_b']);
 $index_from_a = stripcslashes($_POST['index_from_a']);
 $order = stripcslashes($_POST['order']);
 $excludes = stripcslashes($_POST['exclude_ids']);
-
-
 $connectionInfo = array("UID" => "avivf@avivtest", "pwd" => "1qaZ2wsX!", "Database" => "avivtest", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
 $serverName = "tcp:avivtest.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
-
 if ($term_a_or_b == 'sch_id_2')
 {
-
     $sql="select * from exp_pairs where exp_id=$exp_id and id=".$index_from_a;
 }
 else
@@ -27,7 +28,6 @@ else
         $sql="select * from exp_pairs where exp_id=$exp_id and [order] = $order $excludes";
     }
 }
-
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
     return (sqlsrv_errors());
@@ -46,9 +46,7 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
         'return_order' => $return_order
     );
 }
-
 //echo sizeof($array);
-
 if ($term_a_or_b == 'sch_id_2')
 {
     $index=0;
@@ -62,14 +60,9 @@ else{
     else{
         $return_order="change";
     }
-
-
 }
 sqlsrv_free_stmt($getResults);
-
 $selected=$array[$index];
-
-
 # get brothers from same h
 if ($term_a_or_b == 'sch_id_2') {
     $cur_h = $selected['h_2'];
@@ -83,7 +76,6 @@ $cur_h_ind=strrpos($cur_h,".");
 $cur_for_brothers=substr($cur_h,0,$cur_h_ind);
 $cur_term=substr($cur_h,$cur_h_ind+1);
 $get_brothers="SELECT * from exp_pairs where $for_sql LIKE '$cur_for_brothers.%'";
-
 $getBrothers_res= sqlsrv_query($conn, $get_brothers);
 if ($getBrothers_res == FALSE)
     return (sqlsrv_errors());
@@ -97,13 +89,7 @@ while ($row = sqlsrv_fetch_array($getBrothers_res, SQLSRV_FETCH_ASSOC)) {
         $brothers[] = $bro;
     }
 }
-
-
-
-
-
 $sql_get_col_1="select * from exp_schema where id=".$selected[$term_a_or_b];
-
 $getResults_col= sqlsrv_query($conn, $sql_get_col_1);
 if ($getResults_col == FALSE)
     return (sqlsrv_errors());
@@ -125,8 +111,6 @@ while ($row = sqlsrv_fetch_array($getResults_col, SQLSRV_FETCH_ASSOC)) {
     );
 }
 sqlsrv_free_stmt($getResults_col);
-
-
 $sql_get_instance_1="select * from exp_instance where sch_id=".$selected[$term_a_or_b];
 $getResults_instance= sqlsrv_query($conn, $sql_get_instance_1);
 if ($getResults_instance == FALSE)
@@ -152,18 +136,10 @@ if (sqlsrv_has_rows($getResults_instance))
             'brothers' => $brothers
         );
     }
-
 }
 else{
     echo json_encode($col_prop);
     die();
 }
-
 sqlsrv_free_stmt($getResults_instance);
-
-
-
 echo json_encode($instance);
-
-
-
