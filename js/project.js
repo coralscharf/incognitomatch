@@ -1301,6 +1301,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     $scope.confidenceLineGraphAggregate.destroy();
                 }
 
+                Chart.defaults.global.defaultFontColor = 'black';
+                Chart.defaults.global.defaultFontFamily = -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+                Chart.defaults.global.defaultFontSize = 14;
+
                 $scope.confidenceLineGraphAggregate = new Chart(ctx, {
                     type: 'line',
                     data: {
@@ -1622,6 +1626,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 console.log(yData);
                 console.log(colorOfPoints);
 
+                Chart.defaults.global.defaultFontColor = 'black';
+                Chart.defaults.global.defaultFontFamily = -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+                Chart.defaults.global.defaultFontSize = 14;
+
                 $scope.timeBarGraphAggregate = new Chart(ctx, {
                     type: 'bar',
                     data: {
@@ -1864,10 +1872,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                         if(click[1] < max_x && click[2] < max_y){
                             const x_reminder = click[1] % jump_in_x;
-                            const x_cell = jump_in_x*(Math.floor((click[1]-x_reminder)/jump_in_x));
+                            const x_cell = jump_in_x*(Math.floor((click[1]-x_reminder)/jump_in_x)+1);
 
                             const y_reminder = click[2] % jump_in_y;
-                            const y_cell = jump_in_y*(Math.floor((click[2]-y_reminder)/jump_in_y));
+                            const y_cell = jump_in_y*(Math.floor((click[2]-y_reminder)/jump_in_y)+1);
 
                             $scope.arrForHeatMap[[x_cell, y_cell]] += 1;
                         }
@@ -2080,6 +2088,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 if ($scope.evaluationMeasuresGraphAggregate){
                     $scope.evaluationMeasuresGraphAggregate.destroy();
                 }
+
+                Chart.defaults.global.defaultFontColor = 'black';
+                Chart.defaults.global.defaultFontFamily = -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+                Chart.defaults.global.defaultFontSize = 14;
 
                 $scope.evaluationMeasuresGraphAggregate = new Chart(ctx, {
                     type: 'bar',
