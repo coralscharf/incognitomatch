@@ -50,10 +50,10 @@ table.table th, table.table td {
     display: none;
 }
 
-#heatMapGraphAggregate .highcharts-container .highcharts-root .highcharts-series-group .highcharts-series .highcharts-series-0 .highcharts-heatmap-series .highcharts-color-0 .highcharts-tracker:disabled{
+#heatMapGraphAggregate .highcharts-container .highcharts-root .highcharts-series-group .highcharts-series{
      opacity: 1;
  }
 
-#heatMapUser .highcharts-container .highcharts-root .highcharts-series-group .highcharts-series .highcharts-series-0 .highcharts-heatmap-series .highcharts-color-0 .highcharts-tracker:disabled{
+#heatMapUser .highcharts-container .highcharts-root .highcharts-series-group .highcharts-series{
     opacity: 1;
 }
