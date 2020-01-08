@@ -11,16 +11,13 @@ $sql="select cast(100*AVG(CAST(user_ans_is_match AS DECIMAL(5,4))) as decimal(5,
 from exp_results
 where sch_id_1 = ". $index_from_a ." and sch_id_2 = ". $index_from_b;
 
-$getResults= sqlsrv_query($conn, $sqlForA);
+$getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
     echo "1";
 
 $array = array();
 while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
-    $array[] = array(
-        'avgMatchAnswer'=>$row['avgMatchAnswer']
-    );
+    echo  $row['avgMatchAnswer'];
 }
 
 sqlsrv_free_stmt($getResults);
-echo json_encode($array);
