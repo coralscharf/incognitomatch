@@ -838,7 +838,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         const countDownDate = new Date().getTime() + 3 * 60000;
         $scope.timeElapsed = setInterval(function() {
             var now = new Date().getTime();
-            var distance = now - initialTime;
+            var distance = countDownDate - now;
             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
             document.getElementById("time_elapsed").innerHTML =  "Time Elapsed: " + minutes + "m, " + seconds + "s ";
