@@ -280,6 +280,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         //this function set the experiment form accordingly to the correct settings and call getExp function
         // to get the first pair.
 
+        $scope.userScreenWidth = window.screen.availWidth;
+        $scope.userScreenHeight = window.screen.availHeight;
+
         window.scrollTo(0,0);
         document.getElementById("schemaMatchingExp").style.overflow = 'hidden';
 
@@ -509,7 +512,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     for (let i = 0; i < $scope.schema2.length; i++) {
                         str_instance = str_instance + $scope.schema2[i]['instance'] + ", ";
                     }
-                    str_instance=str_instance.substring(0, str_instance.length-1);
+                    str_instance=str_instance.substring(0, str_instance.length-2);
                 }
                 else {
                     str_instance = "N/A";
@@ -587,8 +590,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     }
                 });
 
-                //let index = Math.floor((Math.random() * schema.length) + 1);
-                //console.log(schema[index]);
                 document.getElementById("B_col_name").innerText='Term B - ' + $scope.schema2[0]['col_name'];
                 document.getElementById("B_col_type").innerText=$scope.schema2[0]['col_type'];
                 document.getElementById("B_col_instance").innerText=str_instance;
@@ -1065,9 +1066,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 scroll=true;
             }
 
+            var xCor = ( $event['pageX'] * 700 ) / $scope.userScreenWidth;
+            var yCor = ( $event['pageY'] * 1300 ) / $scope.userScreenHeight;
 
-            $scope.mouse_moves.push({"time":d.getTime(),"x":$event['pageX'],"y":$event['pageY'],"l":left,"r":right,"s":scroll});
-            //console.log("x", $event['pageX'], "y", $event['pageY']);
+            $scope.mouse_moves.push({"time":d.getTime(),"x":xCor,"y":yCor,"l":left,"r":right,"s":scroll});
+            console.log("x", xCor, "y", yCor);
         }
         else if (d.getTime() -  $scope.last_time_mouse > 250 )
         {
@@ -1742,7 +1745,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     $scope.create_heat_map = function(callback, isSingleUser) {
 
         const max_x = 1300; //window.innerWidth + (100 - (window.innerWidth % 100)); //1300; //1290.0;
-        const max_y = 600; //window.innerHeight + (100 - (window.innerHeight % 100));//window.screen.availHeight + (100 - window.screen.availHeight % 100);  //1300; //1290.0;
+        const max_y = 700; //window.innerHeight + (100 - (window.innerHeight % 100));//window.screen.availHeight + (100 - window.screen.availHeight % 100);  //1300; //1290.0;
         const jump_in_x = 100; //30;
         const jump_in_y = 50; //100 \ 30;
 
@@ -1875,7 +1878,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             // console.log(data.data);
 
             const max_x = 1300; //window.innerWidth + (100 - (window.innerWidth % 100));
-            const max_y = 600; //window.innerHeight + (100 - (window.innerHeight % 100));
+            const max_y = 700; //window.innerHeight + (100 - (window.innerHeight % 100));
             const jump_in_x = 100; //30;
             const jump_in_y = 50; // 100 \ 30;
 
@@ -1900,7 +1903,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             const x_cell = jump_in_x*(Math.floor((click[1]-x_reminder)/jump_in_x)+1);
 
                             const y_reminder = click[2] % jump_in_y;
-                            const y_cell = jump_in_y*(Math.floor((click[2]-y_reminder)/jump_in_y)+2);
+                            const y_cell = jump_in_y*(Math.floor((click[2]-y_reminder)/jump_in_y)+1);
 
                             $scope.arrForHeatMap[[x_cell, y_cell]] += 1;
                         }
