@@ -1347,7 +1347,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         },
                         title: {
                             display: true,
-                            text: 'Confidence Level & Answer as function of number of Questions'
+                            text: 'Confidence Level & Answer as function of number of Questions',
+                            fontSize: 18
                         }
                     }
                 });
@@ -1660,7 +1661,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         },
                         title: {
                             display: true,
-                            text: 'Time Range as function of number of Questions'
+                            text: 'Time Range as function of number of Questions',
+                            fontSize: 18
                         },
                         scales: {
                             yAxes: [{
@@ -1757,12 +1759,17 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 marginTop: 40,
                 marginBottom: 80,
                 plotBorderWidth: 1,
-                plotBackgroundImage: '/images/questionScreen.png'
+                plotBackgroundImage: '/images/questionScreen.png',
+                style: {
+                    fontFamily: 'Calibri',
+                    fontSize: 14
+                }
             },
 
 
             title: {
-                text: 'Mouse Location During The Experiement'
+                text: 'Mouse Location During The Experiement',
+                fontSize: 18
             },
 
             xAxis: {
@@ -2133,7 +2140,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         },
                         title: {
                             display: true,
-                            text: 'Evaluation Measures as function of Experiement'
+                            text: 'Evaluation Measures as function of Experiement',
+                            fontSize: 18
                         }
                     }
 
