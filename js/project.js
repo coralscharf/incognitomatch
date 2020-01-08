@@ -1769,7 +1769,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
             title: {
                 text: 'Mouse Location During The Experiement',
-                fontSize: 18
+                style: {
+                    fontSize: 18,
+                    fontWeight: 'bold'
+                }
             },
 
             xAxis: {
@@ -1882,7 +1885,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             const x_cell = jump_in_x*(Math.floor((click[1]-x_reminder)/jump_in_x)+1);
 
                             const y_reminder = click[2] % jump_in_y;
-                            const y_cell = jump_in_y*(Math.floor((click[2]-y_reminder)/jump_in_y)+1);
+                            const y_cell = jump_in_y*(Math.floor((click[2]-y_reminder)/jump_in_y)+2);
 
                             $scope.arrForHeatMap[[x_cell, y_cell]] += 1;
                         }
