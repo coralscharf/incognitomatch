@@ -49,3 +49,13 @@ table.table th, table.table td {
 #heatMapGraphAggregate .highcharts-container .highcharts-root .highcharts-credits{
     display: none;
 }
+
+#heatMapGraphAggregate .highcharts-container .highcharts-root .highcharts-series-group .highcharts-series
+ .highcharts-series-0 .highcharts-heatmap-series .highcharts-color-0 .highcharts-tracker:disabled{
+     opacity: 1;
+ }
+
+#heatMapUser .highcharts-container .highcharts-root .highcharts-series-group .highcharts-series
+.highcharts-series-0 .highcharts-heatmap-series .highcharts-color-0 .highcharts-tracker:disabled{
+    opacity: 1;
+}

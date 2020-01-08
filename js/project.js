@@ -1448,6 +1448,23 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         ]
                     },
                     options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    min: 0,
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: '%'
+                                }
+                            }],
+                            xAxes: [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Question Number'
+                                }
+                            }],
+                        },
                         legend: {
                             display: false
                         },
@@ -1543,8 +1560,18 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             yAxes: [{
                                 ticks: {
                                     beginAtZero: true
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Time (sec)'
                                 }
-                            }]
+                            }],
+                            xAxes: [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Question Number'
+                                }
+                            }],
                         }
                     }
                 });
@@ -1766,19 +1793,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             yLabels.push(y);
         }
 
-        console.log("x ");
-        console.log(xLabels);
-        console.log("y ");
-        console.log(yLabels);
-        console.log($scope.arrDataForHeatMap);
-
         var idForHeatMap = 'heatMapGraphAggregate';
         if(isSingleUser === 'True'){
             idForHeatMap = 'heatMapUser';
         }
-
-        console.log("idForHeatMap");
-        console.log(idForHeatMap);
 
         Highcharts.chart(idForHeatMap, {
 
@@ -1814,9 +1832,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             },
 
             colorAxis: {
-                min: 0,
-                minColor: 'rgb(255,243,225)',
-                maxColor: '#ff2b00'
+                min: 10,
+                minColor: 'rgb(255,209,206)',
+                maxColor: '#ff2400'
             },
 
             legend: {
