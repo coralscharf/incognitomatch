@@ -441,7 +441,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 {
                     str_instance=str_instance+$scope.schema[i]['instance']+", ";
                 }
-                str_instance=str_instance.substring(0, str_instance.length-1);
+                str_instance=str_instance.substring(0, str_instance.length-2);
             }
             else {
                 str_instance = "N/A";
