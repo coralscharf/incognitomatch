@@ -1770,9 +1770,12 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         console.log($scope.arrDataForHeatMap);
 
         var idForHeatMap = 'heatMapGraphAggregate';
-        if(isSingleUser === 'True'){
+        if(isSingleUser == 'True'){
             idForHeatMap = 'heatMapUser';
         }
+
+        console.log("idForHeatMap");
+        console.log(idForHeatMap);
 
         Highcharts.chart(idForHeatMap, {
 
