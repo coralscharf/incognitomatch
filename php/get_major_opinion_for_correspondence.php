@@ -17,6 +17,10 @@ if ($getResults == FALSE)
 
 $array = array();
 while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
-    echo $row['avgMatchAnswer'];
+    $array[] = array(
+        'avgMatchAnswer'=>$row['avgMatchAnswer']
+    );
 }
+
 sqlsrv_free_stmt($getResults);
+echo json_encode($array);
