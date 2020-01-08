@@ -569,9 +569,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                 });*/
 
-
                 // Find major opinion on that pair
-                /*$http({
+                $http({
                     method: 'POST',
                     url: 'php/get_major_opinion_for_correspondence.php',
                     data: $.param({
@@ -585,43 +584,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     console.log((data.data));
                     if (data.data === "1") { console.log(data.data); } //error
                     else {
-
-                        let sharedCorrForA = "";
-                        let sharedCorrForB = "";
-
-                        for (let item in data.data){
-                            const anotherCorr = (data.data)[item]['col_name'];
-
-                            if( (data.data)[item]['forWho'] === 'A' ){
-                                sharedCorrForA = sharedCorrForA + anotherCorr + ", ";
-                            } else {
-                                sharedCorrForB = sharedCorrForB + anotherCorr + ", ";
-                            }
-                        }
-
-                        let newSharedCorrForA, newSharedCorrForB;
-                        if (sharedCorrForA === ""){
-                            newSharedCorrForA = "N/A";
-                        } else {
-                            newSharedCorrForA = sharedCorrForA.substring(0, sharedCorrForA.length - 2);
-                        }
-
-                        if (sharedCorrForB === ""){
-                            newSharedCorrForB = "N/A";
-                        } else {
-                            newSharedCorrForB = sharedCorrForB.substring(0, sharedCorrForB.length - 2);
-                        }
-                        let initString = "Other Correspondences" + "<br>" + "With ";
-
-                        document.getElementById("more_shared_correspondence_A").innerHTML= initString + $scope.schema[0]['col_name'];
-                        document.getElementById("A_more_shared_correspondence_names").innerText= newSharedCorrForA;
-
-                        document.getElementById("more_shared_correspondence_B").innerHTML= initString + $scope.schema2[0]['col_name'];
-                        document.getElementById("B_more_shared_correspondence_names").innerText= newSharedCorrForB;
-
+                        document.getElementById("exp_pair_major").innerHTML= data.data + "% Match";
                     }
-
-                });*/
+                });
 
                 //let index = Math.floor((Math.random() * schema.length) + 1);
                 //console.log(schema[index]);
