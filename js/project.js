@@ -1072,7 +1072,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             $scope.mouse_moves.push({"time":d.getTime(),"x":xCor,"y":yCor,"l":left,"r":right,"s":scroll});
             console.log("x", xCor, "y", yCor);
         }
-        else if (d.getTime() -  $scope.last_time_mouse > 250 )
+        else if (d.getTime() - $scope.last_time_mouse > 250 )
         {
             let left=false,right=false,scroll=false;
             if ($event['which']===0){
@@ -1084,9 +1084,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             else if ($event['which']===2){
                 scroll=true;
             }
-            $scope.mouse_moves.push({"time":d.getTime(),"x":$event['pageX'],"y":$event['pageY'],"l":left,"r":right,"s":scroll});
+
+            var xCor = ( $event['pageX'] * 700 ) / $scope.userScreenWidth;
+            var yCor = ( $event['pageY'] * 1300 ) / $scope.userScreenHeight;
+
+            $scope.mouse_moves.push({"time":d.getTime(),"x":xCor,"y":yCor,"l":left,"r":right,"s":scroll});
+            console.log("x", xCor, "y", yCor);
             $scope.last_time_mouse = d.getTime();
-            //console.log("x", $event['pageX'], "y", $event['pageY']);
 
         }
 
