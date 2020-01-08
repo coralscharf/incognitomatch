@@ -255,17 +255,17 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                         $scope.computeMeasures(function(finish_conf) {
 
-                            $scope.get_mouse_click_data(function(isSingleUser) {
+                            $scope.get_mouse_click_data(function(finish_click_data) {
 
-                                $scope.create_heat_map(function(isSingleUser) {
+                                $scope.create_heat_map(function(finish_heat_map) {
 
                                     $("#loading").hide();
                                     $("#statistics_body_empty").hide();
                                     $("#statistics_body_full").show();
                                     $("#statistics").show();
 
-                                });
-                            });
+                                }, isSingleUser);
+                            }, isSingleUser);
                         });
 
                     });
@@ -701,17 +701,18 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                                 console.log("FINISH2");
 
-                                $scope.get_mouse_click_data(function(isSingleUser) {
+                                $scope.get_mouse_click_data(function(finish_click_data) {
                                     console.log("FINISH3");
 
-                                    $scope.create_heat_map(function(isSingleUser) {
+                                    $scope.create_heat_map(function(finish_heatmap) {
                                         document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
                                         $("#loading").hide();
                                         $("#finish_exp").show();
                                         $scope.curr_order = 1;
                                         $scope.curr_count_ans = 0;
-                                    });
-                                });
+                                    }, isSingleUser);
+
+                                }, isSingleUser);
 
                             });
 
@@ -1770,7 +1771,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         console.log($scope.arrDataForHeatMap);
 
         var idForHeatMap = 'heatMapGraphAggregate';
-        if(isSingleUser == 'True'){
+        if(isSingleUser === 'True'){
             idForHeatMap = 'heatMapUser';
         }
 
