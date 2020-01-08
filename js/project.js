@@ -1302,7 +1302,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 }
 
                 Chart.defaults.global.defaultFontColor = 'black';
-                Chart.defaults.global.defaultFontFamily = -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+                Chart.defaults.global.defaultFontFamily = "Calibri";
                 Chart.defaults.global.defaultFontSize = 14;
 
                 $scope.confidenceLineGraphAggregate = new Chart(ctx, {
@@ -1627,7 +1627,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 console.log(colorOfPoints);
 
                 Chart.defaults.global.defaultFontColor = 'black';
-                Chart.defaults.global.defaultFontFamily = -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+                Chart.defaults.global.defaultFontFamily = "Calibri";
                 Chart.defaults.global.defaultFontSize = 14;
 
                 $scope.timeBarGraphAggregate = new Chart(ctx, {
@@ -2090,7 +2090,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 }
 
                 Chart.defaults.global.defaultFontColor = 'black';
-                Chart.defaults.global.defaultFontFamily = -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+                Chart.defaults.global.defaultFontFamily = "Calibri";
                 Chart.defaults.global.defaultFontSize = 14;
 
                 $scope.evaluationMeasuresGraphAggregate = new Chart(ctx, {
