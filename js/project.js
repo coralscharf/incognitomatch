@@ -133,6 +133,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $("#loading").hide();
         $("#instruction_after").hide();
         $("#statistics").hide();
+        document.getElementById("schemaMatchingExp").style.overflow = 'auto';
     };
 
     $scope.show_riddle = function () {
@@ -285,7 +286,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $("#experiment").show();
 
         // Set Height for Hierarchy area
-        const HierarchyHeight = window.innerHeight - 300;
+        const HierarchyHeight = window.innerHeight - 330;
         document.getElementById("HierarchyTable").style.height = HierarchyHeight + 'px';
 
         if (exp['disp_type'] === 0)
@@ -469,8 +470,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         // this function retrieves from the DB a pair to display in the expertiment.
         // first the callback function run - the term from schema 1.
 
-        clearInterval($scope.timeElapsed);
-
         $scope.getExp2(function(schema){
             // then this function - the term from schema 2.
             $http({
@@ -595,14 +594,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 document.getElementById("B_col_instance").innerText=str_instance;
                 document.getElementById("exp_pair_score").innerText=$scope.schema2[0]['score']+" similar";
 
-                const initialTime = new Date().getTime();
-                $scope.timeElapsed = setInterval(function() {
-                    var now = new Date().getTime();
-                    var distance = now - initialTime;
-                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                    document.getElementById("time_elapsed").innerHTML =  "Time Elapsed: " + minutes + "m, " + seconds + "s ";
-                }, 1000);
             });
         },exp_id);
     };
@@ -688,7 +679,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         {
                             //TODO: for roee not to delete!!!!! need to be out of the if
                             $("#experiment").hide();
-                            clearInterval($scope.timeElapsed);
                             $("#instruction_after").show();
                         }
 
@@ -837,7 +827,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         {
             console.log("enter");
             $("#experiment").hide();
-            clearInterval($scope.timeElapsed);
             $("#instruction_after").show();
         }
     };
@@ -846,6 +835,14 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         // this function redirect user to begin the experiment
         $scope.begin_exp($scope.exp_after_test);
         $("#instruction_after").hide();
+        const countDownDate = new Date().getTime() + 3 * 60000;
+        $scope.timeElapsed = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = now - initialTime;
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("time_elapsed").innerHTML =  "Time Elapsed: " + minutes + "m, " + seconds + "s ";
+        }, 1000);
     };
 
     $scope.new_admin = function() {
