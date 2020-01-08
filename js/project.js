@@ -1431,9 +1431,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     $scope.confidenceLineGraph.destroy();
                 }
 
-                console.log(xLabels);
-                console.log(yData);
-                console.log(colorOfPoints);
+                Chart.defaults.global.defaultFontColor = 'black';
+                Chart.defaults.global.defaultFontFamily = "Calibri";
+                Chart.defaults.global.defaultFontSize = 14;
 
                 $scope.confidenceLineGraph = new Chart(ctx, {
                     type: 'line',
@@ -1453,7 +1453,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         },
                         title: {
                             display: true,
-                            text: 'Confidence Level as function of number of Questions'
+                            text: 'Confidence Level as function of number of Questions',
+                            fontSize: 18
                         }
                     }
                 });
@@ -1513,9 +1514,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     $scope.timeBarGraph.destroy();
                 }
 
-                console.log(xLabels);
-                console.log(yData);
-                console.log(colorOfPoints);
+                Chart.defaults.global.defaultFontColor = 'black';
+                Chart.defaults.global.defaultFontFamily = "Calibri";
+                Chart.defaults.global.defaultFontSize = 14;
 
                 $scope.timeBarGraph = new Chart(ctx, {
                     type: 'bar',
@@ -1535,7 +1536,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         },
                         title: {
                             display: true,
-                            text: 'Time Range as function of number of Questions'
+                            text: 'Time Range as function of number of Questions',
+                            fontSize: 18
                         },
                         scales: {
                             yAxes: [{
