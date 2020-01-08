@@ -1066,8 +1066,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 scroll=true;
             }
 
-            var xCor = 20 + ( $event['pageX'] * 1300 ) / $scope.userScreenWidth;
-            var yCor = ( $event['pageY'] * 700 ) / $scope.userScreenHeight - 20;
+            var xCor = 10 + ( $event['pageX'] * 1300 ) / $scope.userScreenWidth;
+            var yCor = ( $event['pageY'] * 700 ) / $scope.userScreenHeight - 40;
 
             $scope.mouse_moves.push({"time":d.getTime(),"x":xCor,"y":yCor,"l":left,"r":right,"s":scroll});
             console.log("x", xCor, "y", yCor);
@@ -1085,8 +1085,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 scroll=true;
             }
 
-            var xCor = 20 + ( $event['pageX'] * 1300 ) / $scope.userScreenWidth;
-            var yCor = ( $event['pageY'] * 700 ) / $scope.userScreenHeight - 20;
+            var xCor = 10 + ( $event['pageX'] * 1300 ) / $scope.userScreenWidth;
+            var yCor = ( $event['pageY'] * 700 ) / $scope.userScreenHeight - 40;
 
             $scope.mouse_moves.push({"time":d.getTime(),"x":xCor,"y":yCor,"l":left,"r":right,"s":scroll});
             console.log("x", xCor, "y", yCor);
