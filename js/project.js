@@ -1087,7 +1087,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
 
             var xCor = 5 + ( $event['pageX'] * 1300 ) / $scope.userScreenWidth;
-            var yCor = ( $event['pageY'] * 700 ) / $scope.userScreenHeight - 25;
+            var yCor = ( $event['pageY'] * 700 ) / $scope.userScreenHeight - 15;
 
             $scope.mouse_moves.push({"time":d.getTime(),"x":xCor,"y":yCor,"l":left,"r":right,"s":scroll});
             console.log("x", xCor, "y", yCor);
