@@ -84,12 +84,11 @@ $sql="WITH time_table AS (
 )
 SELECT time_table1.[order] as qOrder,
        (AVG(datediff(second, time_table1.rec_time, time_table2.rec_time)))  as avgdiffSec,
-       AVG(CAST(time_table1.isCorrectAnswer AS DECIMAL(5,2))) as avgCorrAns
+       AVG(CAST(time_table2.isCorrectAnswer AS DECIMAL(5,2))) as avgCorrAns
 FROM time_table time_table1
          JOIN time_table time_table2
               ON ( time_table1.[order] = time_table2.[order] - 1
                   and time_table1.user_id = time_table2.user_id)
-WHERE time_table1.row_number != 1
 GROUP BY time_table1.[order]
 order by time_table1.[order] asc";
 
