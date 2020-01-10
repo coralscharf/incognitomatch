@@ -695,21 +695,21 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         var isSingleUser = 'True';
                         $scope.showConfidenceLineGraph(function(finish_conf) {
 
-                            console.log("FINISH1");
-
                             $scope.showTimeRangeBarGraph(function(finish_time) {
 
-                                console.log("FINISH2");
-
                                 $scope.get_mouse_click_data(function(finish_click_data) {
-                                    console.log("FINISH3");
 
                                     $scope.create_heat_map(function(finish_heatmap) {
-                                        document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
-                                        $("#loading").hide();
-                                        $("#finish_exp").show();
-                                        $scope.curr_order = 1;
-                                        $scope.curr_count_ans = 0;
+
+                                        $scope.findClosestMatcher(function(finish_matcher) {
+
+                                            document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
+                                            $("#loading").hide();
+                                            $("#finish_exp").show();
+                                            $scope.curr_order = 1;
+                                            $scope.curr_count_ans = 0;
+                                        });
+
                                     }, isSingleUser);
 
                                 }, isSingleUser);
@@ -1068,7 +1068,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
 
             var xCor = 5 + ( $event['pageX'] * 1300 ) / $scope.userScreenWidth;
-            var yCor = ( $event['pageY'] * 700 ) / $scope.userScreenHeight - 15;
+            var yCor = ( $event['pageY'] * 720 ) / $scope.userScreenHeight;
 
             $scope.mouse_moves.push({"time":d.getTime(),"x":xCor,"y":yCor,"l":left,"r":right,"s":scroll});
             console.log("x", xCor, "y", yCor);
@@ -1087,7 +1087,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
 
             var xCor = 5 + ( $event['pageX'] * 1300 ) / $scope.userScreenWidth;
-            var yCor = ( $event['pageY'] * 700 ) / $scope.userScreenHeight - 15;
+            var yCor = ( $event['pageY'] * 720 ) / $scope.userScreenHeight;
 
             $scope.mouse_moves.push({"time":d.getTime(),"x":xCor,"y":yCor,"l":left,"r":right,"s":scroll});
             console.log("x", xCor, "y", yCor);
@@ -2202,6 +2202,44 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
             } else {
                 console.log('Get precision and recall data - failed');
+                callback(false);
+
+            }
+        });
+
+    };
+
+    $scope.findClosestMatcher = function (callback) {
+        document.getElementById("closestMatch").innerHTML = "";
+
+        $http({
+            method: 'POST',
+            url: 'php/compute_sim_to_matchers.php',
+            data: $.param({
+                curr_user: $scope.curr_user['id'],
+                curr_exp_id: $scope.curr_exp_id
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function (data) {
+
+            if (data.data !== 1) {
+
+                var bestSimAlg = "";
+                if (data.data === 'Token_Path'){
+                    bestSimAlg =  "AMC Token Path Algorithm.";
+                } else if (data.data === 'Term_Match'){
+                    bestSimAlg =  "Ontobuilder Term Match Algorithm.";
+                } else {
+                    bestSimAlg =  "WordNet Jiang Conrath Algorithm.";
+                }
+                document.getElementById("closestMatch").innerHTML = "<br><br><h2>Your Matching is most similar to " +
+                                                                                bestSimAlg +"</h2>";
+                callback(true);
+
+            } else {
+                console.log('Get similarity to matcher - failed');
                 callback(false);
 
             }
