@@ -1068,7 +1068,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 scroll=true;
             }
 
-            var xCor = 5 + ( $event['pageX'] * 1300 ) / $scope.userScreenWidth;
+            var xCor = ( $event['pageX'] * 1280 ) / $scope.userScreenWidth;
             var yCor = ( $event['pageY'] * 720 ) / $scope.userScreenHeight;
 
             $scope.mouse_moves.push({"time":d.getTime(),"x":xCor,"y":yCor,"l":left,"r":right,"s":scroll});
@@ -1087,7 +1087,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 scroll=true;
             }
 
-            var xCor = 5 + ( $event['pageX'] * 1300 ) / $scope.userScreenWidth;
+            var xCor = ( $event['pageX'] * 1280 ) / $scope.userScreenWidth;
             var yCor = ( $event['pageY'] * 720 ) / $scope.userScreenHeight;
 
             $scope.mouse_moves.push({"time":d.getTime(),"x":xCor,"y":yCor,"l":left,"r":right,"s":scroll});
@@ -1779,10 +1779,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.create_heat_map = function(callback, isSingleUser) {
 
-        const max_x = 1300; //window.innerWidth + (100 - (window.innerWidth % 100)); //1300; //1290.0;
-        const max_y = 700; //window.innerHeight + (100 - (window.innerHeight % 100));//window.screen.availHeight + (100 - window.screen.availHeight % 100);  //1300; //1290.0;
-        const jump_in_x = 100; //30;
-        const jump_in_y = 50; //100 \ 30;
+        const max_x = 1280; //window.innerWidth + (100 - (window.innerWidth % 100)); //1300; //1290.0;
+        const max_y = 720; //window.innerHeight + (100 - (window.innerHeight % 100));//window.screen.availHeight + (100 - window.screen.availHeight % 100);  //1300; //1290.0;
+        const jump_in_x = 80; //30;
+        const jump_in_y = 60; //100;
 
         let xLabels = [];
         for(let x=jump_in_x; x<=max_x; x=x+jump_in_x){
@@ -1906,10 +1906,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             console.log("GET MOUSE DATA ");
             // console.log(data.data);
 
-            const max_x = 1300; //window.innerWidth + (100 - (window.innerWidth % 100));
-            const max_y = 700; //window.innerHeight + (100 - (window.innerHeight % 100));
-            const jump_in_x = 100; //30;
-            const jump_in_y = 50; // 100 \ 30;
+            const max_x = 1280; //window.innerWidth + (100 - (window.innerWidth % 100));
+            const max_y = 720; //window.innerHeight + (100 - (window.innerHeight % 100));
+            const jump_in_x = 80; //30;
+            const jump_in_y = 60; // 100 \ 30;
 
             $scope.arrForHeatMap = {};
             for(let x=jump_in_x; x<=max_x; x=x+jump_in_x){
@@ -2234,7 +2234,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 } else {
                     bestSimAlg =  "WordNet Jiang Conrath Algorithm.";
                 }
-                document.getElementById("closestMatch").innerHTML = "<br><br><h2>Your Matching is most similar to " + bestSimAlg +"</h2>";
+                document.getElementById("closestMatch").innerHTML = "<br><br><br><br><h2 style='text-align: center'>Your Matching Action is most similar to " + bestSimAlg +"</h2>";
                 callback(true);
 
             } else {
