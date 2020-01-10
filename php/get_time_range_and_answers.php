@@ -15,7 +15,8 @@ $sql="WITH time_table AS (
 SELECT datediff(second, time_table1.rec_time, time_table2.rec_time) as diff_sec, time_table1.isCorrectAnswer
 FROM time_table time_table1
     JOIN time_table time_table2
-    ON time_table1.row_number = time_table2.row_number - 1";
+    ON time_table1.row_number = time_table2.row_number - 1
+WHERE time_table1.row_number != 1";
 
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)

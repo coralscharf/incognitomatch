@@ -89,6 +89,7 @@ FROM time_table time_table1
          JOIN time_table time_table2
               ON ( time_table1.[order] = time_table2.[order] - 1
                   and time_table1.user_id = time_table2.user_id)
+WHERE time_table1.row_number != 1
 GROUP BY time_table1.[order]
 order by time_table1.[order] asc";
 
