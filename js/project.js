@@ -336,6 +336,26 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.getExp($scope.curr_exp_id);
         document.getElementById("exp_hello").innerText="Hello, " + $scope.curr_user["last"] + " " + $scope.curr_user['first'];
 
+        // Insert tuple that presents the start of the exp
+        $http({
+            method: 'POST',
+            url: 'php/exp_res.php',
+            data: $.param({
+                exp_id: $scope.curr_exp_id,
+                user_id: $scope.curr_user['id'],
+                sch_id_1: 0,
+                sch_id_2: 0,
+                realconf: 0,
+                userconf: 0,
+                mouse_loc: [],
+                user_ans_match: 0
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function (data) {
+
+        });
     };
 
 
