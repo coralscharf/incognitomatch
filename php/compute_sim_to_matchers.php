@@ -14,7 +14,7 @@ $sql="with userWithAlgs as (
                      join exp_schema exp_schema2 on
                 exp_results.sch_id_2 = exp_schema2.id and exp_results.exp_id = exp_schema2.exp_id
                      join PO_Match_Alg on exp_schema2.col_name =  PO_Match_Alg.corr2 and exp_schema1.col_name =  PO_Match_Alg.corr1
-    where user_id = " . $curr_user . " and user_ans_is_match = 1
+    where user_id = " . $curr_user . " and user_ans_is_match = 1 and exp_results.sch_id_1 != 0
 ) ,
      norms as (
          select sqrt(sum(userWithAlgs.confOfUser * userWithAlgs.confOfUser)) as confOfUser_n2,

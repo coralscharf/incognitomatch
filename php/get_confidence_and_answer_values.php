@@ -9,7 +9,7 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 
 $sql="select userconf, IIF(realconf = user_ans_is_match, 1, 0) as isCorrectAnswer
 from exp_results
-where user_id = ". $curr_user ." and exp_id = ". $curr_exp_id. "
+where exp_results.sch_id_1 != 0 and user_id = ". $curr_user ." and exp_id = ". $curr_exp_id. "
 order by rec_time asc";
 
 $getResults= sqlsrv_query($conn, $sql);

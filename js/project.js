@@ -345,7 +345,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 user_id: $scope.curr_user['id'],
                 sch_id_1: 0,
                 sch_id_2: 0,
-                realconf: 0,
+                realconf: 1,
                 userconf: 0,
                 mouse_loc: [],
                 user_ans_match: 0
