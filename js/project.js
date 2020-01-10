@@ -701,6 +701,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                                     $scope.create_heat_map(function(finish_heatmap) {
 
+                                        console.log("FINISH HEAT MAP");
                                         $scope.findClosestMatcher(function(finish_matcher) {
 
                                             document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
@@ -2210,8 +2211,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
     $scope.findClosestMatcher = function (callback) {
-        document.getElementById("closestMatch").innerHTML = "";
-
         $http({
             method: 'POST',
             url: 'php/compute_sim_to_matchers.php',
@@ -2225,6 +2224,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         }).then(function (data) {
 
             if (data.data !== 1) {
+                console.log(data.data);
 
                 var bestSimAlg = "";
                 if (data.data === 'Token_Path'){
@@ -2234,8 +2234,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 } else {
                     bestSimAlg =  "WordNet Jiang Conrath Algorithm.";
                 }
-                document.getElementById("closestMatch").innerHTML = "<br><br><h2>Your Matching is most similar to " +
-                                                                                bestSimAlg +"</h2>";
+                document.getElementById("closestMatch").innerHTML = "<br><br><h2>Your Matching is most similar to " + bestSimAlg +"</h2>";
                 callback(true);
 
             } else {
