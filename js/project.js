@@ -721,7 +721,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                                     $scope.create_heat_map(function(finish_heatmap) {
 
-                                        console.log("FINISH HEAT MAP");
                                         $scope.findClosestMatcher(function(finish_matcher) {
 
                                             document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
@@ -1088,11 +1087,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 scroll=true;
             }
 
-            var xCor = ( $event['pageX'] * 1280 ) / $scope.userScreenWidth;
+            var xCor = 5 + ( $event['pageX'] * 1280 ) / $scope.userScreenWidth;
             var yCor = ( $event['pageY'] * 720 ) / $scope.userScreenHeight;
 
             $scope.mouse_moves.push({"time":d.getTime(),"x":xCor,"y":yCor,"l":left,"r":right,"s":scroll});
-            console.log("x", xCor, "y", yCor);
+            //console.log("x", xCor, "y", yCor);
         }
         else if (d.getTime() - $scope.last_time_mouse > 250 )
         {
@@ -1107,11 +1106,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 scroll=true;
             }
 
-            var xCor = ( $event['pageX'] * 1280 ) / $scope.userScreenWidth;
+            var xCor = 5 + ( $event['pageX'] * 1280 ) / $scope.userScreenWidth;
             var yCor = ( $event['pageY'] * 720 ) / $scope.userScreenHeight;
 
             $scope.mouse_moves.push({"time":d.getTime(),"x":xCor,"y":yCor,"l":left,"r":right,"s":scroll});
-            console.log("x", xCor, "y", yCor);
+            //console.log("x", xCor, "y", yCor);
             $scope.last_time_mouse = d.getTime();
 
         }
