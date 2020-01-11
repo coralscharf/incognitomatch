@@ -2064,7 +2064,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     $scope.expMeasures[exp_id]['sumRec'] += rec;
                     $scope.expMeasures[exp_id]['sumUsers'] += 1;
 
-                    expNames.push(exp_name);
+                    if(expNames.includes(exp_name) == false){
+                        expNames.push(exp_name);
+                    }
                 }
 
                 for(let index in $scope.groupsToShowStats){
@@ -2118,7 +2120,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             xAxes: [{
                                 scaleLabel: {
                                     display: true,
-                                    labelString: 'Experiement ID'
+                                    labelString: 'Experiement Group Names'
                                 }
                             }],
                         },
