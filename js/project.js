@@ -161,7 +161,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         let str1="#tr_riddle_"+hide1;
 
         let str2="#tr_riddle_"+hide2;
-        console.log(str1,str2);
         $(str1).hide();
         $(str2).hide();
     };
@@ -332,7 +331,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.total_ans_needed = exp['num_pairs'];
 
         $scope.time_to_pause = Math.floor(exp['num_pairs']*0.2);
-        //console.log("time_to_pause",$scope.time_to_pause);
         $scope.getExp($scope.curr_exp_id);
         document.getElementById("exp_hello").innerText="Hello, " + $scope.curr_user["last"] + " " + $scope.curr_user['first'];
 
@@ -401,7 +399,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 $scope.exp_after_test = data.data[0];
 
                 $scope.test_schema=data.data[1];
-                console.log("group_name:",$scope.test_schema['schema_name']);
                 $scope.curr_user={"first":document.getElementById("new_user_first").value,
                     "last":document.getElementById("new_user_last").value,
                     "id": data.data[2]
@@ -651,61 +648,18 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 $scope.mouse_moves=[];
 
                 $scope.curr_count_ans = $scope.curr_count_ans + 1;
-                // console.log("count",$scope.curr_count_ans,$scope.total_ans_needed);
                 if ($scope.curr_count_ans >=  $scope.total_ans_needed) // check if exp is done
                 {
                     if($scope.done_test === false) // check if user in test exp, if yes - show instruction, else show finished
                     {
                         $scope.done_test = true;
-
                         $scope.curr_order = 0;
                         $scope.curr_count_ans = 0;
-                        // TODO: for roee - delete this if:
-                        if ($scope.test_schema['schema_name'] === "group2") {
-                            //Coral - change === to ==
-                            if (($scope.curr_realConf == 0 && $scope.user_ans_match==false) ||
-                                ($scope.curr_realConf == 1 && $scope.user_ans_match==true)) // the user was right
-                            {
-                                $scope.user_total_ans_right += 1;
-                            }
 
-                            document.getElementById("feedback_body").innerHTML = "You were right in " +
-                                $scope.user_total_ans_right + " answers out of the last 5 pairs.";
-                            $scope.user_total_ans_right = 0;
-                            $("#disp_feedback_modal").modal('show');
-
-                        }
-                        else if ($scope.test_schema['schema_name'] === "group1")
-                        {
-                            // console.log("i am here");
-                            let prefix_str="";
-                            let body_str="";
-                            //Coral: change last_ans after && to user_ans_match
-                            if (($scope.curr_realConf == 0 && $scope.user_ans_match==false) ||
-                                ($scope.curr_realConf == 1 && $scope.user_ans_match==true)) // the user was right
-                            {
-                                prefix_str = "Well Done!";
-                            }
-                            else
-                            {
-                                prefix_str = "Your answer is wrong. In order to improve your confidence level in future - Be aware!";
-                            }
-
-                            body_str = "The instances of the Terms are not resembled.";
-                            document.getElementById("feedback_body").innerHTML = prefix_str + "<br>" + body_str;
-                            $("#disp_feedback_modal").modal('show');
-
-                        }
-                        else
-                        {
-                            //TODO: for roee not to delete!!!!! need to be out of the if
-                            $("#experiment").hide();
-                            $("#instruction_after").show();
-                        }
-
+                        $("#experiment").hide();
+                        $("#instruction_after").show();
                     }
                     else {
-                        // console.log($scope.curr_count_ans);
                         $("#experiment").hide();
                         clearInterval($scope.timeElapsed);
 
@@ -740,86 +694,15 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     }
 
                 }
-                else if($scope.done_test === false && $scope.disp_feedback === true ) // TODO: for roee need to change to True: $scope.done_test === true
-                {
-                    if ($scope.test_schema['schema_name'] === "group2") {
-                        // console.log("real conf:",$scope.curr_realConf,$scope.user_ans_match,$scope.user_total_ans_right);
-                        if (($scope.curr_realConf == 0 && $scope.user_ans_match==false) ||
-                            ($scope.curr_realConf == 1 && $scope.user_ans_match==true)) // the user was right
-                        {
-                            $scope.user_total_ans_right += 1;
-                        }
-                        if ($scope.curr_count_ans === 5 || $scope.curr_count_ans === 10) {
-                            document.getElementById("feedback_body").innerHTML = "You were right in " +
-                                $scope.user_total_ans_right + " answers out of the last 5 pairs.";
-                            $scope.user_total_ans_right = 0;
-                            $("#disp_feedback_modal").modal('show');
 
-                        }
-
-                    }
-                    else if ($scope.test_schema['schema_name'] === "group1")
-                    {
-                        // console.log("real conf:",$scope.curr_realConf,$scope.user_ans_match,$scope.user_total_ans_right);
-                        let prefix_str ="";
-                        let body_str="";
-                        if (($scope.curr_realConf == 0 && $scope.user_ans_match==false) ||
-                            ($scope.curr_realConf == 1 && $scope.user_ans_match==true)) // the user was right
-                        {
-                            prefix_str = "Well Done!";
-                        }
-                        else
-                        {
-                            prefix_str = "Your answer is wrong. In order to improve your confidence level in future - Be aware!";
-                        }
-
-                        //CORAL: Add line 608 - reduce curr_order by 1
-                        $scope.curr_order = $scope.curr_order - 1;
-                        // console.log("$scope.curr_order ", $scope.curr_order);
-                        if ($scope.curr_order === 1 || $scope.curr_order === 2 || $scope.curr_order === 4
-                            || $scope.curr_order === 7 || $scope.curr_order === 10)
-                        {
-                            body_str = "The instances of the Terms are not resembled.";
-                        }
-                        else if ($scope.curr_order === 3 || $scope.curr_order === 5)
-                        {
-                            body_str = "The instances of the Terms are resembled in their types and values.";
-                        }
-                        else if ($scope.curr_order === 6)
-                        {
-                            body_str = "The instances of the Terms are not resembled in their types in the instances." +
-                                "For example, the string 3 is representing a number while three is a string.";
-                        }
-                        else if ($scope.curr_order === 8)
-                        {
-                            body_str = "The Terms are resembled in their location at the hierarchy and their instances.";
-                        }
-                        else if ($scope.curr_order === 9)
-                        {
-                            body_str = "The Terms are resembled in their instances subject." +
-                                "For Example, both 3PM and 3:00 is two ways to represent time.";
-                        }
-                        document.getElementById("feedback_body").innerHTML = prefix_str + "<br>" + body_str;
-                        $("#disp_feedback_modal").modal('show');
-
-                        //CORAL: After line 608 - add curr_order 1 for the next function
-                        $scope.curr_order = $scope.curr_order + 1;
-                    }
-
-
-
+                else if($scope.done_test === true && ($scope.curr_count_ans % $scope.time_to_pause === 0)){
+                    // show pause modal every $scope.time_to_pause answers
+                    // show pause only for non-test schema
+                    document.getElementById("pause_modal_body").innerHTML="Get ready for the next Step." +
+                        "<br>Pairs remaining: " + ($scope.total_ans_needed - $scope.curr_count_ans);;
+                    $("#pause_exp_modal").modal('show');
+                    //console.log("pause");
                 }
-
-                // TODO: for roee need remove the comment sign
-                /*
-            else if($scope.done_test === true && ($scope.curr_count_ans % $scope.time_to_pause === 0)){
-                // show pause modal every $scope.time_to_pause answers
-                // show pause only for non-test schema
-                document.getElementById("pause_modal_body").innerHTML="Get ready for the next Step." +
-                    "<br>Pairs remaining: " + ($scope.total_ans_needed - $scope.curr_count_ans);;
-                $("#pause_exp_modal").modal('show');
-                //console.log("pause");
-            }*/ // untill here
                 $scope.last_ans = $scope.user_ans_match;
                 $scope.user_ans_match = false; // init radio button match/no match
             }
@@ -833,8 +716,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.show_pause_after_feedback = function() {
         // this function show pause modal after the feedback modal dismissed.
-        // TODO: for roee need remove the comment sign
-        /*
+
         if($scope.done_test === true && ($scope.curr_count_ans % $scope.time_to_pause === 0)) {
             // show pause modal every $scope.time_to_pause answers
             // show pause only for non-test schema
@@ -842,12 +724,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 "<br>Pairs remaining: " + ($scope.total_ans_needed - $scope.curr_count_ans);
             $("#pause_exp_modal").modal('show');
             //console.log("pause");
-        }*/
+        }
 
         // TODO: for roee delete this.
         if ($scope.done_test === true)
         {
-            console.log("enter");
             $("#experiment").hide();
             $("#instruction_after").show();
         }
