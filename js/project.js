@@ -1275,13 +1275,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             {
                                 label: "Confidence Avg. Level",
                                 data: yDataConf,
-                                borderColor: "#5185ad",
+                                borderColor: "#0DAD00",
                                 fill: false,
                             },
                             {
                                 label: "Correct Number Of Answers Avg. Level",
                                 data: yDataCorrAns,
-                                borderColor: "#aa62ad",
+                                borderColor: "#000dad",
                                 fill: false,
                             }
                         ]
@@ -2045,24 +2045,26 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
             if (data.data.length !== 0) {
 
-                let expIds = [];
+                let expNames = [];
                 let precision = [];
                 let recall = [];
 
                 $scope.expMeasures = {};
                 for(let index in $scope.groupsToShowStats){
                     $scope.expMeasures[$scope.groupsToShowStats[index]['id']] = {'sumPrec': 0, 'sumRec': 0, 'sumUsers' : 0};
-                    expIds.push($scope.groupsToShowStats[index]['id']);
                 }
 
                 for(let index in data.data){
                     const exp_id = (data.data[index])['exp_id'];
+                    const exp_name = (data.data[index])['exp_name'];
                     const prec = (data.data[index])['precision'];
                     const rec = (data.data[index])['recall'];
 
                     $scope.expMeasures[exp_id]['sumPrec'] += prec;
                     $scope.expMeasures[exp_id]['sumRec'] += rec;
                     $scope.expMeasures[exp_id]['sumUsers'] += 1;
+
+                    expNames.push(exp_name);
                 }
 
                 for(let index in $scope.groupsToShowStats){
@@ -2073,9 +2075,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     precision.push($scope.expMeasures[exp_id]['avgPrec']);
                     recall.push($scope.expMeasures[exp_id]['avgRec']);
                 }
-
-                console.log($scope.expMeasures);
-
 
                 document.getElementById("evaluationMeasuresGraphAggregate").innerHTML = "";
                 var ctx = document.getElementById("evaluationMeasuresGraphAggregate").getContext("2d");
@@ -2091,7 +2090,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 $scope.evaluationMeasuresGraphAggregate = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: expIds,
+                        labels: expNames,
                         datasets: [
                             {
                                 label: "Precision",

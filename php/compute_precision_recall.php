@@ -46,7 +46,7 @@ if($whereClause !== "where "){
     $whereClause = $whereClause . ") ";
 }
 
-$sql="select users.user_id, users.exp_id, (select count(*)
+$sql="select users.user_id, users.exp_id, experiments.schema_name, (select count(*)
         from (
                  select sch_id_1, sch_id_2
                  from exp_results
@@ -63,7 +63,7 @@ $sql="select users.user_id, users.exp_id, (select count(*)
         where realConf = 1 and exp_id = users.exp_id and exp_pairs.[order] <= experiments.num_pairs and exp_pairs.sch_id_1 != 0) as exactMatchNum
 from exp_results users join experiments on users.exp_id = experiments.id ".
     $whereClause .
-"group by users.user_id, users.exp_id, experiments.num_pairs";
+"group by users.user_id, users.exp_id, experiments.num_pairs, experiments.schema_name";
 
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
@@ -82,6 +82,7 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     $array[] = array(
         'user_id'=>$row['user_id'],
         'exp_id'=>$row['exp_id'],
+        'exp_name'=>$row['schema_name'],
         'precision'=>$precision,
         'recall'=>$recall
     );
