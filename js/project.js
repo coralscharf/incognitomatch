@@ -746,7 +746,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             var now = new Date().getTime();
             var distance = countDownDate - now;
 
-            if (distance === 0){ // End the exp when 3 minutes are done
+            if (distance == 0){ // End the exp when 3 minutes are done
                 $("#experiment").hide();
                 clearInterval($scope.timeElapsed);
 
