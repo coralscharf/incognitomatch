@@ -204,6 +204,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 document.getElementById("riddle_5").value = "";
                 document.getElementById("riddle_6").value = "";
                 document.getElementById("riddle_7").value = "";
+
+                document.getElementById("time_elapsed").innerHTML =  "";
+
                 $scope.begin_exp($scope.test_schema);
             } else {
                 console.log(data.data);
@@ -742,9 +745,44 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.timeElapsed = setInterval(function() {
             var now = new Date().getTime();
             var distance = countDownDate - now;
+
+            if (distance === 0){ // End the exp when 3 minutes are done
+                $("#experiment").hide();
+                clearInterval($scope.timeElapsed);
+
+                document.getElementById("schemaMatchingExp").style.overflow = 'auto';
+
+                $("#loading").show();
+                var isSingleUser = 'True';
+                $scope.showConfidenceLineGraph(function(finish_conf) {
+
+                    $scope.showTimeRangeBarGraph(function(finish_time) {
+
+                        $scope.get_mouse_click_data(function(finish_click_data) {
+
+                            $scope.create_heat_map(function(finish_heatmap) {
+
+                                $scope.findClosestMatcher(function(finish_matcher) {
+
+                                    document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
+                                    $("#loading").hide();
+                                    $("#finish_exp").show();
+                                    $scope.curr_order = 1;
+                                    $scope.curr_count_ans = 0;
+                                });
+
+                            }, isSingleUser);
+
+                        }, isSingleUser);
+
+                    });
+
+                });
+            }
+
             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            document.getElementById("time_elapsed").innerHTML =  "Time Elapsed: " + minutes + "m, " + seconds + "s ";
+            document.getElementById("time_elapsed").innerHTML =  "Time Remains: " + minutes + "m, " + seconds + "s ";
         }, 1000);
     };
 
