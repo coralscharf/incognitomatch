@@ -2100,7 +2100,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                     let gamma = 0;
                     if(den !== 0){
-                        gamma = num / float(den);
+                        gamma = num / den;
                     }
 
                     console.log("gamma", gamma);
