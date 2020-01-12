@@ -2071,40 +2071,44 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     if(expNames.includes(exp_name) == false){
                         expNames.push(exp_name);
                     }
+                    if((data.data[index])['listOfConfs'] !== null){
+                        const listOfConfs = (data.data[index])['listOfConfs'].split(",");
+                        const listOfIsCorrect = (data.data[index])['listOfIsCorrect'].split(",");
 
-                    const listOfConfs = (data.data[index])['listOfConfs'].split(",");
-                    const listOfIsCorrect = (data.data[index])['listOfIsCorrect'].split(",");
+                        console.log("LISTS");
+                        console.log(listOfConfs);
+                        console.log(listOfIsCorrect);
 
-                    console.log("LISTS");
-                    console.log(listOfConfs);
-                    console.log(listOfIsCorrect);
-
-                    let num = 0;
-                    let den = 0;
-                    for(let i = 0; i<listOfConfs.length; i++){
-                        for(let j = 0; i<listOfConfs.length; i++){
-                            if(i != j){
-                                const m_dir = listOfConfs[i] - listOfConfs[j];
-                                const n_dir = listOfIsCorrect[i] - listOfIsCorrect[j];
-                                const sign = m_dir * n_dir;
-                                if(sign > 0){
-                                    num += 1;
-                                    den += 1;
-                                } else if (sign < 0){
-                                    num -= 1;
-                                    den += 1;
+                        let num = 0;
+                        let den = 0;
+                        for(let i = 0; i<listOfConfs.length; i++){
+                            for(let j = 0; i<listOfConfs.length; i++){
+                                if(i != j){
+                                    const m_dir = listOfConfs[i] - listOfConfs[j];
+                                    const n_dir = listOfIsCorrect[i] - listOfIsCorrect[j];
+                                    const sign = m_dir * n_dir;
+                                    if(sign > 0){
+                                        num += 1;
+                                        den += 1;
+                                    } else if (sign < 0){
+                                        num -= 1;
+                                        den += 1;
+                                    }
                                 }
                             }
                         }
+
+                        let gamma = 0;
+                        if(den !== 0){
+                            gamma = num / den;
+                        }
+
+                        console.log("gamma", gamma);
+                        $scope.expMeasures[exp_id]['sumGamma'] += gamma;
+                    } else {
+                        console.log("EMPTY ", data.data[index]);
                     }
 
-                    let gamma = 0;
-                    if(den !== 0){
-                        gamma = num / den;
-                    }
-
-                    console.log("gamma", gamma);
-                    $scope.expMeasures[exp_id]['sumGamma'] += gamma;
                 }
 
                 for(let index in $scope.groupsToShowStats){
