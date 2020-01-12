@@ -63,7 +63,13 @@ $sql="select users.user_id, users.exp_id, experiments.schema_name, (select count
         where realConf = 1 and exp_id = users.exp_id and exp_pairs.[order] <= experiments.num_pairs and exp_pairs.sch_id_1 != 0) as exactMatchNum,
        (select avg(exp_results.userconf)
         from exp_results
-        where user_id = users.user_id and exp_id = users.exp_id) as avgConf
+        where user_id = users.user_id and exp_id = users.exp_id) as avgConf,
+        (select STRING_AGG(exp_results.userconf, ',')
+        from exp_results
+        where user_id = users.user_id and exp_id = users.exp_id) as listOfConfs,
+       (select STRING_AGG(IIF(realconf = user_ans_is_match, 1, 0), ',')
+        from exp_results
+        where user_id = users.user_id and exp_id = users.exp_id) as listOfIsCorrect
 from exp_results users join experiments on users.exp_id = experiments.id ".
     $whereClause .
 "group by users.user_id, users.exp_id, experiments.num_pairs, experiments.schema_name";
@@ -89,7 +95,9 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
         'exp_name'=>$row['schema_name'],
         'precision'=>$precision,
         'recall'=>$recall,
-        'cal'=>$cal
+        'cal'=>$cal,
+        'listOfConfs'=>$row['listOfConfs'],
+        'listOfIsCorrect'=>$row['listOfIsCorrect']
     );
 }
 sqlsrv_free_stmt($getResults);

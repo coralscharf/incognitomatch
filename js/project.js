@@ -2070,6 +2070,15 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     if(expNames.includes(exp_name) == false){
                         expNames.push(exp_name);
                     }
+
+                    const listOfConfs = (data.data[index])['listOfConfs'].split(",");
+                    const listOfIsCorrect = (data.data[index])['listOfIsCorrect'].split(",");
+
+                    console.log("LISTS");
+                    console.log(listOfConfs);
+                    console.log(listOfIsCorrect);
+
+
                 }
 
                 for(let index in $scope.groupsToShowStats){
