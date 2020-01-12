@@ -60,7 +60,10 @@ $sql="select users.user_id, users.exp_id, experiments.schema_name, (select count
         where user_id = users.user_id and exp_id = users.exp_id and exp_results.user_ans_is_match = 1 and exp_results.sch_id_1 != 0) as matchNum,
        (select count(*)
         from exp_pairs
-        where realConf = 1 and exp_id = users.exp_id and exp_pairs.[order] <= experiments.num_pairs and exp_pairs.sch_id_1 != 0) as exactMatchNum
+        where realConf = 1 and exp_id = users.exp_id and exp_pairs.[order] <= experiments.num_pairs and exp_pairs.sch_id_1 != 0) as exactMatchNum,
+       (select avg(exp_results.userconf)
+        from exp_results
+        where user_id = users.user_id and exp_id = users.exp_id) as avgConf
 from exp_results users join experiments on users.exp_id = experiments.id ".
     $whereClause .
 "group by users.user_id, users.exp_id, experiments.num_pairs, experiments.schema_name";
@@ -77,6 +80,7 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     if ($commonCorrNum !== 0){
         $precision = $commonCorrNum / $row['matchNum'];
         $recall = $commonCorrNum / $row['exactMatchNum'];
+        $cal = $row['avgConf'] - $precision;
     }
 
     $array[] = array(
@@ -84,7 +88,8 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
         'exp_id'=>$row['exp_id'],
         'exp_name'=>$row['schema_name'],
         'precision'=>$precision,
-        'recall'=>$recall
+        'recall'=>$recall,
+        'cal'=>$cal
     );
 }
 sqlsrv_free_stmt($getResults);

@@ -2048,10 +2048,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 let expNames = [];
                 let precision = [];
                 let recall = [];
+                let cal = [];
 
                 $scope.expMeasures = {};
                 for(let index in $scope.groupsToShowStats){
-                    $scope.expMeasures[$scope.groupsToShowStats[index]['id']] = {'sumPrec': 0, 'sumRec': 0, 'sumUsers' : 0};
+                    $scope.expMeasures[$scope.groupsToShowStats[index]['id']] = {'sumPrec': 0, 'sumRec': 0, 'sumCal': 0, 'sumUsers' : 0};
                 }
 
                 for(let index in data.data){
@@ -2059,9 +2060,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     const exp_name = (data.data[index])['exp_name'];
                     const prec = (data.data[index])['precision'];
                     const rec = (data.data[index])['recall'];
+                    const cal = (data.data[index])['cal'];
 
                     $scope.expMeasures[exp_id]['sumPrec'] += prec;
                     $scope.expMeasures[exp_id]['sumRec'] += rec;
+                    $scope.expMeasures[exp_id]['sumCal'] += cal;
                     $scope.expMeasures[exp_id]['sumUsers'] += 1;
 
                     if(expNames.includes(exp_name) == false){
@@ -2073,9 +2076,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     const exp_id = $scope.groupsToShowStats[index]['id'];
                     $scope.expMeasures[exp_id]['avgPrec'] = ($scope.expMeasures[exp_id]['sumPrec'] * 100 ) / $scope.expMeasures[exp_id]['sumUsers'];
                     $scope.expMeasures[exp_id]['avgRec'] = ($scope.expMeasures[exp_id]['sumRec'] * 100 ) / $scope.expMeasures[exp_id]['sumUsers'];
+                    $scope.expMeasures[exp_id]['avgCal'] = ($scope.expMeasures[exp_id]['sumCal']) / $scope.expMeasures[exp_id]['sumUsers'];
 
                     precision.push($scope.expMeasures[exp_id]['avgPrec']);
                     recall.push($scope.expMeasures[exp_id]['avgRec']);
+                    cal.push($scope.expMeasures[exp_id]['avgCal']);
                 }
 
                 document.getElementById("evaluationMeasuresGraphAggregate").innerHTML = "";
@@ -2103,6 +2108,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                                 label: "Recall",
                                 backgroundColor: "green",
                                 data: recall
+                            },
+                            {
+                                label: "Calibration",
+                                backgroundColor: "orange",
+                                data: cal
                             }]
                     },
                     options: {
