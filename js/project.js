@@ -2053,7 +2053,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                 $scope.expMeasures = {};
                 for(let index in $scope.groupsToShowStats){
-                    $scope.expMeasures[$scope.groupsToShowStats[index]['id']] = {'sumPrec': 0, 'sumRec': 0, 'sumCal': 0,'sumGamma': 0, 'sumUsers' : 0};
+                    $scope.expMeasures[$scope.groupsToShowStats[index]['id']] = {'expName': 'None', 'sumPrec': 0, 'sumRec': 0, 'sumCal': 0,'sumGamma': 0, 'sumUsers' : 0};
                 }
 
                 for(let index in data.data){
@@ -2063,21 +2063,18 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     const rec = (data.data[index])['recall'];
                     const cal = (data.data[index])['cal'];
 
+                    if($scope.expMeasures[exp_id]['expName'] === 'None') {
+                        $scope.expMeasures[exp_id]['expName'] = exp_name;
+                    }
+
                     $scope.expMeasures[exp_id]['sumPrec'] += prec;
                     $scope.expMeasures[exp_id]['sumRec'] += rec;
                     $scope.expMeasures[exp_id]['sumCal'] += cal;
                     $scope.expMeasures[exp_id]['sumUsers'] += 1;
 
-                    if(expNames.includes(exp_name) == false){
-                        expNames.push(exp_name);
-                    }
                     if((data.data[index])['listOfConfs'] !== null){
                         const listOfConfs = (data.data[index])['listOfConfs'].split(",");
                         const listOfIsCorrect = (data.data[index])['listOfIsCorrect'].split(",");
-
-                        console.log("LISTS");
-                        console.log(listOfConfs);
-                        console.log(listOfIsCorrect);
 
                         let num = 0;
                         let den = 0;
@@ -2103,7 +2100,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             gamma = num / den;
                         }
 
-                        console.log("gamma", gamma);
                         $scope.expMeasures[exp_id]['sumGamma'] += gamma;
                     } else {
                         console.log("EMPTY ", data.data[index]);
@@ -2117,6 +2113,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     $scope.expMeasures[exp_id]['avgRec'] = ($scope.expMeasures[exp_id]['sumRec'] * 100 ) / $scope.expMeasures[exp_id]['sumUsers'];
                     $scope.expMeasures[exp_id]['avgCal'] = ($scope.expMeasures[exp_id]['sumCal']) / $scope.expMeasures[exp_id]['sumUsers'];
                     $scope.expMeasures[exp_id]['avgRes'] = ($scope.expMeasures[exp_id]['sumGamma'] * 100 ) / $scope.expMeasures[exp_id]['sumUsers'];
+
+                    expNames.push($scope.expMeasures[exp_id]['expName']);
 
                     precision.push($scope.expMeasures[exp_id]['avgPrec']);
                     recall.push($scope.expMeasures[exp_id]['avgRec']);
