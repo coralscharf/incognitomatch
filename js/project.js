@@ -2049,10 +2049,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 let precision = [];
                 let recall = [];
                 let cal = [];
+                let res = [];
 
                 $scope.expMeasures = {};
                 for(let index in $scope.groupsToShowStats){
-                    $scope.expMeasures[$scope.groupsToShowStats[index]['id']] = {'sumPrec': 0, 'sumRec': 0, 'sumCal': 0, 'sumUsers' : 0};
+                    $scope.expMeasures[$scope.groupsToShowStats[index]['id']] = {'sumPrec': 0, 'sumRec': 0, 'sumCal': 0,'sumGamma': 0, 'sumUsers' : 0};
                 }
 
                 for(let index in data.data){
@@ -2078,7 +2079,32 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     console.log(listOfConfs);
                     console.log(listOfIsCorrect);
 
+                    let num = 0;
+                    let den = 0;
+                    for(let i = 0; i<listOfConfs.length; i++){
+                        for(let j = 0; i<listOfConfs.length; i++){
+                            if(i != j){
+                                const m_dir = listOfConfs[i] - listOfConfs[j];
+                                const n_dir = listOfIsCorrect[i] - listOfIsCorrect[j];
+                                const sign = m_dir * n_dir;
+                                if(sign > 0){
+                                    num += 1;
+                                    den += 1;
+                                } else if (sign < 0){
+                                    num -= 1;
+                                    den += 1;
+                                }
+                            }
+                        }
+                    }
 
+                    let gamma = 0;
+                    if(den !== 0){
+                        gamma = num / float(den);
+                    }
+
+                    console.log("gamma", gamma);
+                    $scope.expMeasures[exp_id]['sumGamma'] += gamma;
                 }
 
                 for(let index in $scope.groupsToShowStats){
@@ -2086,10 +2112,12 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     $scope.expMeasures[exp_id]['avgPrec'] = ($scope.expMeasures[exp_id]['sumPrec'] * 100 ) / $scope.expMeasures[exp_id]['sumUsers'];
                     $scope.expMeasures[exp_id]['avgRec'] = ($scope.expMeasures[exp_id]['sumRec'] * 100 ) / $scope.expMeasures[exp_id]['sumUsers'];
                     $scope.expMeasures[exp_id]['avgCal'] = ($scope.expMeasures[exp_id]['sumCal']) / $scope.expMeasures[exp_id]['sumUsers'];
+                    $scope.expMeasures[exp_id]['avgRes'] = ($scope.expMeasures[exp_id]['sumGamma']) / $scope.expMeasures[exp_id]['sumUsers'];
 
                     precision.push($scope.expMeasures[exp_id]['avgPrec']);
                     recall.push($scope.expMeasures[exp_id]['avgRec']);
                     cal.push($scope.expMeasures[exp_id]['avgCal']);
+                    res.push($scope.expMeasures[exp_id]['avgRes']);
                 }
 
                 document.getElementById("evaluationMeasuresGraphAggregate").innerHTML = "";
@@ -2122,6 +2150,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                                 label: "Calibration",
                                 backgroundColor: "orange",
                                 data: cal
+                            },
+                            {
+                                label: "Resolution",
+                                backgroundColor: "red",
+                                data: res
                             }]
                     },
                     options: {
