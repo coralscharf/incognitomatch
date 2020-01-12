@@ -2112,7 +2112,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     $scope.expMeasures[exp_id]['avgPrec'] = ($scope.expMeasures[exp_id]['sumPrec'] * 100 ) / $scope.expMeasures[exp_id]['sumUsers'];
                     $scope.expMeasures[exp_id]['avgRec'] = ($scope.expMeasures[exp_id]['sumRec'] * 100 ) / $scope.expMeasures[exp_id]['sumUsers'];
                     $scope.expMeasures[exp_id]['avgCal'] = ($scope.expMeasures[exp_id]['sumCal']) / $scope.expMeasures[exp_id]['sumUsers'];
-                    $scope.expMeasures[exp_id]['avgRes'] = ($scope.expMeasures[exp_id]['sumGamma']) / $scope.expMeasures[exp_id]['sumUsers'];
+                    $scope.expMeasures[exp_id]['avgRes'] = ($scope.expMeasures[exp_id]['sumGamma'] * 100 ) / $scope.expMeasures[exp_id]['sumUsers'];
 
                     precision.push($scope.expMeasures[exp_id]['avgPrec']);
                     recall.push($scope.expMeasures[exp_id]['avgRec']);
@@ -2162,7 +2162,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         scales: {
                             yAxes: [{
                                 ticks: {
-                                    min: 0,
+                                    // min: 0,
                                 },
                                 scaleLabel: {
                                     display: true,
