@@ -32,18 +32,42 @@ $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
     echo "1";
 
+$array = array();
 while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     $token_path = $row['Token_Path_Sim'];
     $term_match = $row['Term_Match_Sim'];
     $WordNet = $row['WordNet_Sim'];
 
     $max_value = max($token_path, $term_match, $WordNet);
+    $token_path_arg_max = 0;
+    $Term_Match_arg_max = 0;
+    $WordNet_arg_max = 0;
+
     if ($token_path == $max_value) {
-        echo "Token_Path";
+        $token_path_arg_max = 1;
     } elseif ($term_match == $max_value){
-        echo "Term_Match";
+        $Term_Match_arg_max = 1;
     } else {
-        echo "WordNet";
+        $WordNet_arg_max = 1;
     }
+
+    $array[] = array(
+        'algName'=>'Token_Path',
+        'algSim'=>$token_path,
+        'isMax'=>$token_path_arg_max
+    );
+
+    $array[] = array(
+        'algName'=>'Term_Match',
+        'algSim'=>$term_match,
+        'isMax'=>$Term_Match_arg_max
+    );
+
+    $array[] = array(
+        'algName'=>'WordNet',
+        'algSim'=>$WordNet,
+        'isMax'=>$WordNet_arg_max
+    );
 }
 sqlsrv_free_stmt($getResults);
+echo json_encode($array);

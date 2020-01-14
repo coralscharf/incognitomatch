@@ -2224,14 +2224,20 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             if (data.data !== 1) {
                 console.log(data.data);
 
-                var bestSimAlg = "";
+                let dataVal = [];
+                for (let item in data.data){
+                    const algSim = (data.data)[item]['algSim'];
+                    yDataConf.push(algSim);
+                }
+
+                /*var bestSimAlg = "";
                 if (data.data === 'Token_Path'){
                     bestSimAlg =  "AMC Token Path Algorithm.";
                 } else if (data.data === 'Term_Match'){
                     bestSimAlg =  "Ontobuilder Term Match Algorithm.";
                 } else {
                     bestSimAlg =  "WordNet Jiang Conrath Algorithm.";
-                }
+                }*/
 
                 const ctx = document.getElementById("closestMatch").getContext("2d");
                 if ($scope.simAlgInMatch){
@@ -2246,7 +2252,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     type: 'pie',
                     data: data = {
                         datasets: [{
-                            data: [10, 20, 30],
+                            data: dataVal,
                             backgroundColor: ["#0A00D9", "#FF5C00", "#1BAD00"],
                             radius: [10,10,20]
                         }],
