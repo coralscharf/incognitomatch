@@ -2266,6 +2266,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     },
                     plotOptions: {
                         pie: {
+                            size:'100%',
                             allowPointSelect: false,
                             colors: ["#0A00D9", "#FF5C00", "#1BAD00"],
                             dataLabels: {
@@ -2273,7 +2274,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                                 format: '<b>{point.name}</b><br>{point.y:.1f} %',
                                 distance: -50,
                             },
-                            showInLegend: true
+                            showInLegend: false
                         }
                     },
                     series: [{
