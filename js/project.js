@@ -2227,7 +2227,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 let dataVal = [];
                 for (let item in data.data){
                     const algSim = (data.data)[item]['algSim'];
-                    yDataConf.push(algSim);
+                    dataVal.push(algSim);
                 }
 
                 /*var bestSimAlg = "";
