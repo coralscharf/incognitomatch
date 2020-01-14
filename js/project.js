@@ -108,6 +108,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
         $scope.confidenceLineGraph = "";
         $scope.timeBarGraph = "";
+        $scope.simAlgInMatch = "";
 
         // Var for stats
         $scope.filter_stat_by_user = "";
@@ -2227,8 +2228,47 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 } else {
                     bestSimAlg =  "WordNet Jiang Conrath Algorithm.";
                 }
-                document.getElementById("closestMatch").innerHTML = "<br><br><br><br><h2 style='text-align: center'>Your Matching Action is most similar to " + bestSimAlg +"</h2>";
+
+                const ctx = document.getElementById("closestMatch").getContext("2d");
+                if ($scope.simAlgInMatch){
+                    $scope.simAlgInMatch.destroy();
+                }
+
+                Chart.defaults.global.defaultFontColor = 'black';
+                Chart.defaults.global.defaultFontFamily = "Calibri";
+                Chart.defaults.global.defaultFontSize = 14;
+
+                $scope.simAlgInMatch = new Chart(ctx, {
+                    type: 'pie',
+                    data: data = {
+                        datasets: [{
+                            data: [10, 20, 30]
+                        }],
+
+                        labels: [
+                            'AMC Token Path Algorithm',
+                            'Ontobuilder Term Match Algorithm',
+                            'WordNet Jiang Conrath Algorithm'
+                        ]
+                    },
+
+                    options: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Time Range as function of number of Questions',
+                            fontSize: 18
+                        }
+                    }
+                });
+
+                document.getElementById("closestMatch").innerHTML = $scope.simAlgInMatch;
                 callback(true);
+
+                //document.getElementById("closestMatch").innerHTML = "<br><br><br><br><h2 style='text-align: center'>Your Matching Action is most similar to " + bestSimAlg +"</h2>";
+                //callback(true);
 
             } else {
                 console.log('Get similarity to matcher - failed');
