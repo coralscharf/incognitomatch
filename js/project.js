@@ -2355,7 +2355,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 callback(true);*/
 
                 //document.getElementById("closestMatch").innerHTML = "<br><br><br><br><h2 style='text-align: center'>Your Matching Action is most similar to " + bestSimAlg +"</h2>";
-                //callback(true);
+                callback(true);
 
             } else {
                 console.log('Get similarity to matcher - failed');
