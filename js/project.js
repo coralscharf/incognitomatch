@@ -2255,7 +2255,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         }
                     },
                     title: {
-                        text: 'Mouse Location During The Experiement',
+                        text: 'Similarity To Algorithms',
                         style: {
                             fontSize: 18,
                             fontWeight: 'bold'
