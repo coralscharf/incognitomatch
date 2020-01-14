@@ -2260,7 +2260,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                     options: {
                         legend: {
-                            display: false
+                            display: true
                         },
                         title: {
                             display: true,
