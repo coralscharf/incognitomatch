@@ -52,19 +52,19 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     }
 
     $array[] = array(
-        'algName'=>'Token_Path',
+        'algName'=>'AMC Token Path',
         'algSim'=>$token_path,
         'isMax'=>$token_path_arg_max
     );
 
     $array[] = array(
-        'algName'=>'Term_Match',
+        'algName'=>'Ontobuilder Term Match',
         'algSim'=>$term_match,
         'isMax'=>$Term_Match_arg_max
     );
 
     $array[] = array(
-        'algName'=>'WordNet',
+        'algName'=>'WordNet Jiang Conrath',
         'algSim'=>$WordNet,
         'isMax'=>$WordNet_arg_max
     );

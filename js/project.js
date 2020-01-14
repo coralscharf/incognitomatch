@@ -2222,8 +2222,16 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                 let dataVal = [];
                 for (let item in data.data){
+                    const algName = (data.data)[item]['algName'];
                     const algSim = (data.data)[item]['algSim'] * 100;
-                    dataVal.push(algSim);
+                    const isMax = (data.data)[item]['isMax'];
+
+                    if(isMax === 1){
+                        dataVal.push({ name: algName, y: algSim, sliced: true });
+                    } else {
+                        dataVal.push({ name: algName, y: algSim, sliced: false });
+                    }
+                    //dataVal.push(algSim);
                 }
 
                 /*var bestSimAlg = "";
@@ -2235,7 +2243,46 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     bestSimAlg =  "WordNet Jiang Conrath Algorithm.";
                 }*/
 
-                const ctx = document.getElementById("closestMatch").getContext("2d");
+                Highcharts.chart('closestMatch', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie',
+                        style: {
+                            fontFamily: 'Calibri',
+                            fontSize: 14
+                        }
+                    },
+                    title: {
+                        text: 'Mouse Location During The Experiement',
+                        style: {
+                            fontSize: 18,
+                            fontWeight: 'bold'
+                        }
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: false,
+                            colors: ["#0A00D9", "#FF5C00", "#1BAD00"],
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b><br>{point.y:.1f} %',
+                                distance: -50,
+                            },
+                            showInLegend: true
+                        }
+                    },
+                    series: [{
+                        name: 'Similarity Measure',
+                        data: dataVal
+                    }]
+                });
+
+                /*const ctx = document.getElementById("closestMatch").getContext("2d");
                 if ($scope.simAlgInMatch){
                     $scope.simAlgInMatch.destroy();
                 }
@@ -2305,7 +2352,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 });
 
                 document.getElementById("closestMatch").innerHTML = $scope.simAlgInMatch;
-                callback(true);
+                callback(true);*/
 
                 //document.getElementById("closestMatch").innerHTML = "<br><br><br><br><h2 style='text-align: center'>Your Matching Action is most similar to " + bestSimAlg +"</h2>";
                 //callback(true);
