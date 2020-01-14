@@ -2276,7 +2276,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         events: false,
                         animation: {
                             duration: 500,
-                            easing: "easeOutQuart",
                             onComplete: function () {
                                 var ctx = this.chart.ctx;
                                 ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontFamily, 'normal', Chart.defaults.global.defaultFontFamily);
