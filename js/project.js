@@ -2300,7 +2300,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                                         if (i == 3){ // Darker text color for lighter background
                                             ctx.fillStyle = '#444';
                                         }
-                                        ctx.fillText(dataset.data[i] + "% Similarity for " + labels[i], model.x + x, model.y + y);
+                                        ctx.fillText(dataset.data[i] + "% Similarity", model.x + x, model.y + y);
                                     }
                                 });
                             }
