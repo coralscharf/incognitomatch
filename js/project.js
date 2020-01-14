@@ -2246,7 +2246,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     type: 'pie',
                     data: data = {
                         datasets: [{
-                            data: [10, 20, 30]
+                            data: [10, 20, 30],
+                            backgroundColor: ["#0A00D9", "#FF5C00", "#1BAD00"],
+                            radius: [10,10,20]
                         }],
 
                         labels: [
