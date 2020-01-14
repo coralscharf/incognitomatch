@@ -121,11 +121,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.show_home = function(){
         // this function show the home div - the instructions.
-        $scope.findClosestMatcher(function(finish_matcher) {
-
-            $("#home").show();
-
-        });
+        $("#home").show();
     };
 
     $scope.hide_pages = function () {
