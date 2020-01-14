@@ -23,9 +23,9 @@ $sql="with userWithAlgs as (
                 sqrt(sum(userWithAlgs.WordNet * userWithAlgs.WordNet)) as WordNet_n2
          from userWithAlgs
      )
-select sum(userWithAlgs.confOfUser * userWithAlgs.Token_Path)/(select confOfUser_n2*Token_Path_n2 from norms) as Token_Path_Sim,
-       sum(userWithAlgs.confOfUser * userWithAlgs.Term_Match)/(select confOfUser_n2*Term_Match_n2 from norms) as Term_Match_Sim,
-       sum(userWithAlgs.confOfUser * userWithAlgs.WordNet)/(select confOfUser_n2*WordNet_n2 from norms) as WordNet_Sim
+select cast(sum(userWithAlgs.confOfUser * userWithAlgs.Token_Path)/(select confOfUser_n2*Token_Path_n2 from norms) as decimal(5,4)) as Token_Path_Sim,
+       cast(sum(userWithAlgs.confOfUser * userWithAlgs.Term_Match)/(select confOfUser_n2*Term_Match_n2 from norms) as decimal(5,4)) as Term_Match_Sim,
+       cast(sum(userWithAlgs.confOfUser * userWithAlgs.WordNet)/(select confOfUser_n2*WordNet_n2 from norms)  as decimal(5,4)) as WordNet_Sim
 from userWithAlgs";
 
 $getResults= sqlsrv_query($conn, $sql);
