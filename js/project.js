@@ -2283,7 +2283,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         }
                     },
                     tooltip: {
-                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                        pointFormat: '{series.name}: <b>{point.y:.1f}%</b>'
                     },
                     legend: {
                         enabled: true,
@@ -2303,6 +2303,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                                 align: "center",
                                 distance: -50
                             },
+                            showInLegend: true
                         }
                     },
                     series: [{
