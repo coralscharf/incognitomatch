@@ -2289,7 +2289,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         enabled: true,
                         floating: false,
                         borderWidth: 0,
-                        align: "right",
+                        align: "center",
                         verticalAlign: 'top',
                     },
                     plotOptions: {
