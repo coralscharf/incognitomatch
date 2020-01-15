@@ -2288,6 +2288,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     legend: {
                         enabled: true,
                         floating: false,
+                        margin: 0,
+                        padding: 0,
                         borderWidth: 0,
                         align: "center",
                         verticalAlign: 'top',
