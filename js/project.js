@@ -2285,6 +2285,13 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     tooltip: {
                         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
                     },
+                    legend: {
+                        enabled: true,
+                        floating: false,
+                        borderWidth: 0,
+                        align: "right",
+                        verticalAlign: 'top',
+                    },
                     plotOptions: {
                         pie: {
                             size:'80%',
@@ -2293,7 +2300,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             dataLabels: {
                                 enabled: true,
                                 format: '<b>{point.name}</b><br>{point.y:.1f} %',
-                                distance: -50
+                                align: "center"
+                                //distance: -50
                             },
                             showInLegend: false
                         }
