@@ -121,8 +121,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.show_home = function(){
         // this function show the home div - the instructions.
-        $("#home").show();
-        /*
         var isSingleUser = 'True';
         $scope.curr_user = {'id': 551};
         $scope.curr_exp_id = 3;
@@ -138,7 +136,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 });
 
             }, isSingleUser);
-        }, isSingleUser);*/
+        }, isSingleUser);
 
     };
 
@@ -2313,8 +2311,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                                 format: '<b>{point.name}</b><br>{point.y:.1f} %',
                                 align: "center",
                                 distance: -50,
+                                x: 0,
+                                y: -30,
                                 style: {
-                                    fontSize: '14px',
+                                    fontSize: '12px',
                                     textShadow: false,
                                     color: 'white',
                                     borderWidth: 0,
