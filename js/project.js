@@ -2307,10 +2307,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             allowPointSelect: false,
                             colors: ["#0A00D9", "#FF005F", "#1BAD00"],
                             dataLabels: {
+                                padding: 0,
                                 enabled: true,
                                 format: '<b>{point.name}</b><br>{point.y:.1f} %',
                                 align: "center",
-                                distance: -50,
+                                distance: -70,
                                 x: 0,
                                 y: -20,
                                 style: {
