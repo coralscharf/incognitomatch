@@ -2312,9 +2312,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                                 align: "center",
                                 distance: -50,
                                 x: 0,
-                                y: -30,
+                                y: -20,
                                 style: {
-                                    fontSize: '12px',
+                                    fontSize: '11px',
                                     textShadow: false,
                                     color: 'white',
                                     borderWidth: 0,
