@@ -2292,7 +2292,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         padding: 0,
                         borderWidth: 0,
                         align: "center",
-                        verticalAlign: 'top',
+                        verticalAlign: 'top'
                     },
                     plotOptions: {
                         pie: {
@@ -2303,7 +2303,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                                 enabled: true,
                                 format: '<b>{point.name}</b><br>{point.y:.1f} %',
                                 align: "center",
-                                distance: -50
+                                distance: -50,
+                                textOutline: "0px contrast",
+                                fontSize: 14
                             },
                             showInLegend: true
                         }
