@@ -2265,15 +2265,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         plotBorderWidth: null,
                         plotShadow: false,
                         type: 'pie',
-                        events: {
-                            load: function(e) {
-                                this.options.plotOptions.series.dataLabels.distance =  (this.chartHeight / 5.5) * -1;
-                                this.series[0].update(this.options);
-                            },
-                            redraw: function() {
-                                //console.log(this);
-                            }
-                        },
                         style: {
                             fontFamily: 'Calibri',
                             fontSize: 14
