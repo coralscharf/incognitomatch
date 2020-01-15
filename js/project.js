@@ -2265,12 +2265,21 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         plotBorderWidth: null,
                         plotShadow: false,
                         type: 'pie',
+                        events: {
+                            load: function(e) {
+                                this.options.plotOptions.series.dataLabels.distance =  (this.chartHeight / 5.5) * -1;
+                                this.series[0].update(this.options);
+                            },
+                            redraw: function() {
+                                //console.log(this);
+                            }
+                        },
                         style: {
                             fontFamily: 'Calibri',
                             fontSize: 14
                         },
                         margin: [0, 0, 0, 0],
-                        spacingTop: 0,
+                        spacingTop: 10,
                         spacingBottom: 0,
                         spacingLeft: 0,
                         spacingRight: 0
@@ -2287,13 +2296,14 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     },
                     plotOptions: {
                         pie: {
-                            size:'100%',
+                            size:'80%',
                             allowPointSelect: false,
                             colors: ["#0A00D9", "#FF5C00", "#1BAD00"],
                             dataLabels: {
                                 enabled: true,
                                 format: '<b>{point.name}</b><br>{point.y:.1f} %',
                                 distance: -50,
+                                c
                             },
                             showInLegend: false
                         }
