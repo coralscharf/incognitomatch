@@ -2301,9 +2301,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                                 enabled: true,
                                 format: '<b>{point.name}</b><br>{point.y:.1f} %',
                                 align: "center"
-                                //distance: -50
+                                distance: -50
                             },
-                            showInLegend: false
                         }
                     },
                     series: [{
