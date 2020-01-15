@@ -2306,8 +2306,16 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                                 format: '<b>{point.name}</b><br>{point.y:.1f} %',
                                 align: "center",
                                 distance: -50,
-                                textOutline: "0px contrast",
-                                fontSize: 14
+                                style: {
+                                    fontSize: '14px',
+                                    textShadow: false,
+                                    color: 'white',
+                                    borderWidth: 0,
+                                    align: 'center',
+                                    textOutline: "0px",
+                                    fontWeight: "None"
+
+                                }
                             },
                             showInLegend: true
                         }
