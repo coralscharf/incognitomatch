@@ -121,7 +121,12 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.show_home = function(){
         // this function show the home div - the instructions.
-        $("#home").show();
+
+        $scope.findClosestMatcher(function(finish_matcher) {
+
+            $("#home").show();
+
+        });
     };
 
     $scope.hide_pages = function () {
@@ -2209,8 +2214,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             method: 'POST',
             url: 'php/compute_sim_to_matchers.php',
             data: $.param({
-                curr_user: $scope.curr_user['id'],
-                curr_exp_id: $scope.curr_exp_id
+                curr_user: 551, //$scope.curr_user['id'],
+                curr_exp_id: 3 //$scope.curr_exp_id
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -2252,7 +2257,12 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         style: {
                             fontFamily: 'Calibri',
                             fontSize: 14
-                        }
+                        },
+                        margin: [0, 0, 0, 0],
+                        spacingTop: 0,
+                        spacingBottom: 0,
+                        spacingLeft: 0,
+                        spacingRight: 0
                     },
                     title: {
                         text: 'Similarity To Algorithms',
@@ -2266,6 +2276,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     },
                     plotOptions: {
                         pie: {
+                            size:'100%',
                             allowPointSelect: false,
                             colors: ["#0A00D9", "#FF5C00", "#1BAD00"],
                             dataLabels: {

@@ -57,3 +57,7 @@ table.table th, table.table td {
 #heatMapUser .highcharts-container .highcharts-root .highcharts-series-group .highcharts-series{
     opacity: 1;
 }
+
+#closestMatch .highcharts-container .highcharts-root .highcharts-credits{
+    display: none;
+}
