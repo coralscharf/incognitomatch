@@ -121,7 +121,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.show_home = function(){
         // this function show the home div - the instructions.
-        var isSingleUser = 'True';
+        $("#home").show();
+
+        /*var isSingleUser = 'True';
         $scope.curr_user = {'id': 551};
         $scope.curr_exp_id = 3;
 
@@ -136,7 +138,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 });
 
             }, isSingleUser);
-        }, isSingleUser);
+        }, isSingleUser);*/
 
     };
 
@@ -2232,8 +2234,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             method: 'POST',
             url: 'php/compute_sim_to_matchers.php',
             data: $.param({
-                curr_user: 551, //$scope.curr_user['id'],
-                curr_exp_id: 3// $scope.curr_exp_id
+                curr_user: $scope.curr_user['id'],
+                curr_exp_id: $scope.curr_exp_id
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
