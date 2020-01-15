@@ -121,6 +121,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.show_home = function(){
         // this function show the home div - the instructions.
+        $("#home").show();
+        /*
         var isSingleUser = 'True';
         $scope.curr_user = {'id': 551};
         $scope.curr_exp_id = 3;
@@ -136,7 +138,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 });
 
             }, isSingleUser);
-        }, isSingleUser);
+        }, isSingleUser);*/
 
     };
 
