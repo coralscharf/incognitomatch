@@ -2227,8 +2227,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             method: 'POST',
             url: 'php/compute_sim_to_matchers.php',
             data: $.param({
-                curr_user: 551, //$scope.curr_user['id'],
-                curr_exp_id: 3 //$scope.curr_exp_id
+                curr_user: $scope.curr_user['id'],
+                curr_exp_id: $scope.curr_exp_id
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -2288,7 +2288,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         pointFormat: '{series.name}: <b>{point.y:.1f}%</b>'
                     },
                     legend: {
-                        enabled: true,
+                        enabled: false,
                         floating: false,
                         margin: 0,
                         padding: 0,
@@ -2300,7 +2300,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         pie: {
                             size:'90%',
                             allowPointSelect: false,
-                            colors: ["#0A00D9", "#FF5C00", "#1BAD00"],
+                            colors: ["#0A00D9", "#FF005F", "#1BAD00"],
                             dataLabels: {
                                 enabled: true,
                                 format: '<b>{point.name}</b><br>{point.y:.1f} %',
