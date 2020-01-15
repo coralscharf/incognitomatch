@@ -1277,6 +1277,19 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     j++;
                 }
 
+                yDataConf = [0.8,0.7,0.9,0.6,0.5,0.85,0.78,0.68,0.58,0.81,0.73,0.6,0.58,0.68,0.74,0.78,0.8,0.9,0.6,0.65];
+                yDataCorrAns = [0.25,0.184345,0.1435526,0.05,0.71,0.05,0.6,0.48,0.9,0.1,0.333,0.54,0.868,0.4465,0.76,0.57,0.66,0.39,0.7,0.3];
+
+                /*data.data = [{'avgTime': 18, 'avgCorrAns': 0.25},{'avgTime': 20, 'avgCorrAns': 0.184345},
+                    {'avgTime': 25, 'avgCorrAns': 0.1435526},{'avgTime': 26, 'avgCorrAns': 0.05},
+                    {'avgTime': 5, 'avgCorrAns': 0.71},{'avgTime': 27, 'avgCorrAns': 0.05},
+                    {'avgTime': 8, 'avgCorrAns': 0.6},{'avgTime': 12, 'avgCorrAns': 0.48},
+                    {'avgTime': 3, 'avgCorrAns': 0.9},{'avgTime': 23, 'avgCorrAns': 0.1},
+                    {'avgTime': 16, 'avgCorrAns': 0.333},{'avgTime': 9, 'avgCorrAns': 0.54},
+                    {'avgTime': 4, 'avgCorrAns': 0.868},{'avgTime': 14, 'avgCorrAns': 0.4465},
+                    {'avgTime': 5, 'avgCorrAns': 0.76},{'avgTime': 10, 'avgCorrAns': 0.57},
+                    {'avgTime': 8, 'avgCorrAns': 0.66},{'avgTime': 14, 'avgCorrAns': 0.39},
+                    {'avgTime': 6, 'avgCorrAns': 0.7},{'avgTime': 15, 'avgCorrAns': 0.3}];*/
                 const ctx = document.getElementById("confidenceLineGraphAggregate").getContext("2d");
                 if ($scope.confidenceLineGraphAggregate){
                     $scope.confidenceLineGraphAggregate.destroy();
@@ -1562,16 +1575,16 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
             if (data.data.length !== 0) {
 
-                data.data = [{'avgTime': 5, 'avgCorrAns': 0.55},{'avgTime': 20, 'avgCorrAns': 0.24345},
-                    {'avgTime': 25, 'avgCorrAns': 0.1435526},{'avgTime': 7, 'avgCorrAns': 0.432},
-                    {'avgTime': 5, 'avgCorrAns': 0.55},{'avgTime': 7, 'avgCorrAns': 0.3333},
-                    {'avgTime': 8, 'avgCorrAns': 0.55},{'avgTime': 5, 'avgCorrAns': 0.55},
-                    {'avgTime': 3, 'avgCorrAns': 0.95},{'avgTime': 5, 'avgCorrAns': 0.6},
-                    {'avgTime': 5, 'avgCorrAns': 0.55},{'avgTime': 10, 'avgCorrAns': 0.6},
-                    {'avgTime': 4, 'avgCorrAns': 0.853624},{'avgTime': 12, 'avgCorrAns': 0.4465},
-                    {'avgTime': 5, 'avgCorrAns': 0.9},{'avgTime': 10, 'avgCorrAns': 0.55},
-                    {'avgTime': 8, 'avgCorrAns': 0.66},{'avgTime': 14, 'avgCorrAns': 0.25},
-                    {'avgTime': 6, 'avgCorrAns': 0.88},{'avgTime': 15, 'avgCorrAns': 0.3}];
+                data.data = [{'avgTime': 18, 'avgCorrAns': 0.25},{'avgTime': 20, 'avgCorrAns': 0.184345},
+                    {'avgTime': 25, 'avgCorrAns': 0.1435526},{'avgTime': 26, 'avgCorrAns': 0.05},
+                    {'avgTime': 5, 'avgCorrAns': 0.71},{'avgTime': 27, 'avgCorrAns': 0.05},
+                    {'avgTime': 8, 'avgCorrAns': 0.6},{'avgTime': 12, 'avgCorrAns': 0.48},
+                    {'avgTime': 3, 'avgCorrAns': 0.9},{'avgTime': 23, 'avgCorrAns': 0.1},
+                    {'avgTime': 16, 'avgCorrAns': 0.333},{'avgTime': 9, 'avgCorrAns': 0.54},
+                    {'avgTime': 4, 'avgCorrAns': 0.868},{'avgTime': 14, 'avgCorrAns': 0.4465},
+                    {'avgTime': 5, 'avgCorrAns': 0.76},{'avgTime': 10, 'avgCorrAns': 0.57},
+                    {'avgTime': 8, 'avgCorrAns': 0.66},{'avgTime': 14, 'avgCorrAns': 0.39},
+                    {'avgTime': 6, 'avgCorrAns': 0.7},{'avgTime': 15, 'avgCorrAns': 0.3}];
 
                 console.log(data.data);
                 let xLabels = [];
