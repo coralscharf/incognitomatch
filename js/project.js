@@ -121,12 +121,23 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.show_home = function(){
         // this function show the home div - the instructions.
+        var isSingleUser = 'True';
+        $scope.curr_user = {'id': 551};
+        $scope.curr_exp_id = 3;
 
-        $scope.findClosestMatcher(function(finish_matcher) {
+        $scope.get_mouse_click_data(function(finish_click_data) {
 
-            $("#home").show();
+            $scope.create_heat_map(function(finish_heat_map) {
 
-        });
+                $scope.findClosestMatcher(function(finish_matcher) {
+
+                    $("#home").show();
+
+                });
+
+            }, isSingleUser);
+        }, isSingleUser);
+
     };
 
     $scope.hide_pages = function () {
