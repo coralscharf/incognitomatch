@@ -2271,7 +2271,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             fontFamily: 'Calibri',
                             fontSize: 14
                         },
-                        margin: [80, 0, 0, 0],
+                        margin: [10, 0, 0, 0],
                         spacingTop: 10,
                         spacingBottom: 0,
                         spacingLeft: 0,
