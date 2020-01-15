@@ -2302,8 +2302,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             dataLabels: {
                                 enabled: true,
                                 format: '<b>{point.name}</b><br>{point.y:.1f} %',
-                                distance: -50,
-                                c
+                                distance: -50
                             },
                             showInLegend: false
                         }
