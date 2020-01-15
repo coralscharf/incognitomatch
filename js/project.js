@@ -2142,6 +2142,12 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     res.push($scope.expMeasures[exp_id]['avgRes']);
                 }
 
+                expNames = ["Group 1", "Group 2"];
+                precision = [80.3, 50.4];
+                recall = [68.7, 69.9];
+                cal = [10.32, 30.5];
+                res = [71.7, 72.9]
+
                 document.getElementById("evaluationMeasuresGraphAggregate").innerHTML = "";
                 var ctx = document.getElementById("evaluationMeasuresGraphAggregate").getContext("2d");
 
