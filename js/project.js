@@ -1629,6 +1629,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 }
 
                 const ctx = document.getElementById("timeBarGraphAggregate").getContext("2d");
+                ctx.height = 400;
                 if ($scope.timeBarGraphAggregate){
                     $scope.timeBarGraphAggregate.destroy();
                 }
