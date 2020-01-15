@@ -2294,7 +2294,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     },
                     plotOptions: {
                         pie: {
-                            size:'80%',
+                            size:'60%',
                             allowPointSelect: false,
                             colors: ["#0A00D9", "#FF5C00", "#1BAD00"],
                             dataLabels: {
