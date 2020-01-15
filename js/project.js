@@ -2190,7 +2190,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         scales: {
                             yAxes: [{
                                 ticks: {
-                                    // min: 0,
+                                    min: 0
                                 },
                                 scaleLabel: {
                                     display: true,
