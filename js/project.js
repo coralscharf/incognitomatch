@@ -2269,7 +2269,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             fontFamily: 'Calibri',
                             fontSize: 14
                         },
-                        margin: [0, 0, 0, 0],
+                        margin: [50, 0, 0, 0],
                         spacingTop: 10,
                         spacingBottom: 0,
                         spacingLeft: 0,
@@ -2294,7 +2294,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     },
                     plotOptions: {
                         pie: {
-                            size:'60%',
+                            size:'70%',
                             allowPointSelect: false,
                             colors: ["#0A00D9", "#FF5C00", "#1BAD00"],
                             dataLabels: {
