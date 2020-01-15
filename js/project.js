@@ -1562,6 +1562,17 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
             if (data.data.length !== 0) {
 
+                data.data = [{'avgTime': 5, 'avgCorrAns': 0.55},{'avgTime': 20, 'avgCorrAns': 0.24345},
+                    {'avgTime': 25, 'avgCorrAns': 0.1435526},{'avgTime': 7, 'avgCorrAns': 0.432},
+                    {'avgTime': 5, 'avgCorrAns': 0.55},{'avgTime': 7, 'avgCorrAns': 0.3333},
+                    {'avgTime': 8, 'avgCorrAns': 0.55},{'avgTime': 5, 'avgCorrAns': 0.55},
+                    {'avgTime': 3, 'avgCorrAns': 0.95},{'avgTime': 5, 'avgCorrAns': 0.6},
+                    {'avgTime': 5, 'avgCorrAns': 0.55},{'avgTime': 10, 'avgCorrAns': 0.6},
+                    {'avgTime': 4, 'avgCorrAns': 0.853624},{'avgTime': 12, 'avgCorrAns': 0.4465},
+                    {'avgTime': 5, 'avgCorrAns': 0.9},{'avgTime': 10, 'avgCorrAns': 0.55},
+                    {'avgTime': 8, 'avgCorrAns': 0.66},{'avgTime': 14, 'avgCorrAns': 0.25},
+                    {'avgTime': 6, 'avgCorrAns': 0.88},{'avgTime': 15, 'avgCorrAns': 0.3}];
+
                 console.log(data.data);
                 let xLabels = [];
                 let yData = [];
