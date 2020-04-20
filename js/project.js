@@ -122,24 +122,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     $scope.show_home = function(){
         // this function show the home div - the instructions.
         $("#home").show();
-
-        /*var isSingleUser = 'True';
-        $scope.curr_user = {'id': 551};
-        $scope.curr_exp_id = 3;
-
-        $scope.get_mouse_click_data(function(finish_click_data) {
-
-            $scope.create_heat_map(function(finish_heat_map) {
-
-                $scope.findClosestMatcher(function(finish_matcher) {
-
-                    $("#home").show();
-
-                });
-
-            }, isSingleUser);
-        }, isSingleUser);*/
-
     };
 
     $scope.hide_pages = function () {
@@ -2280,17 +2262,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     } else {
                         dataVal.push({ name: algName, y: algSim, sliced: false });
                     }
-                    //dataVal.push(algSim);
                 }
-
-                /*var bestSimAlg = "";
-                if (data.data === 'Token_Path'){
-                    bestSimAlg =  "AMC Token Path Algorithm.";
-                } else if (data.data === 'Term_Match'){
-                    bestSimAlg =  "Ontobuilder Term Match Algorithm.";
-                } else {
-                    bestSimAlg =  "WordNet Jiang Conrath Algorithm.";
-                }*/
 
                 Highcharts.chart('closestMatch', {
                     chart: {
@@ -2359,82 +2331,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         data: dataVal
                     }]
                 });
-
-                /*const ctx = document.getElementById("closestMatch").getContext("2d");
-                if ($scope.simAlgInMatch){
-                    $scope.simAlgInMatch.destroy();
-                }
-
-                Chart.defaults.global.defaultFontColor = 'black';
-                Chart.defaults.global.defaultFontFamily = "Calibri";
-                Chart.defaults.global.defaultFontSize = 14;
-
-                $scope.simAlgInMatch = new Chart(ctx, {
-                    type: 'pie',
-                    data: data = {
-                        datasets: [{
-                            data: dataVal,
-                            backgroundColor: ["#0A00D9", "#FF5C00", "#1BAD00"],
-                            radius: [10,10,20],
-                        }],
-
-                        labels: [
-                            'AMC Token Path Algorithm',
-                            'Ontobuilder Term Match Algorithm',
-                            'WordNet Jiang Conrath Algorithm'
-                        ]
-                    },
-
-                    options: {
-                        legend: {
-                            display: true
-                        },
-                        title: {
-                            display: true,
-                            text: 'Time Range as function of number of Questions',
-                            fontSize: 18
-                        },
-                        events: false,
-                        animation: {
-                            duration: 500,
-                            onComplete: function () {
-                                var ctx = this.chart.ctx;
-                                ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontFamily, 'normal', Chart.defaults.global.defaultFontFamily);
-                                ctx.textAlign = 'center';
-                                ctx.textBaseline = 'bottom';
-
-                                this.data.datasets.forEach(function (dataset) {
-
-                                    for (var i = 0; i < dataset.data.length; i++) {
-                                        var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model,
-                                            total = dataset._meta[Object.keys(dataset._meta)[0]].total,
-                                            mid_radius = model.innerRadius + (model.outerRadius - model.innerRadius)/2,
-                                            start_angle = model.startAngle,
-                                            end_angle = model.endAngle,
-                                            mid_angle = start_angle + (end_angle - start_angle)/2;
-
-                                        var x = mid_radius * Math.cos(mid_angle);
-                                        var y = mid_radius * Math.sin(mid_angle);
-
-                                        ctx.fillStyle = '#fff';
-                                        if (i == 3){ // Darker text color for lighter background
-                                            ctx.fillStyle = '#444';
-                                        }
-                                        ctx.fillText(dataset.data[i] + "% Similarity", model.x + x, model.y + y);
-                                    }
-                                });
-                            }
-                        }
-                    }
-
-                });
-
-                document.getElementById("closestMatch").innerHTML = $scope.simAlgInMatch;
-                callback(true);*/
-
-                //document.getElementById("closestMatch").innerHTML = "<br><br><br><br><h2 style='text-align: center'>Your Matching Action is most similar to " + bestSimAlg +"</h2>";
                 callback(true);
-
             } else {
                 console.log('Get similarity to matcher - failed');
                 callback(false);

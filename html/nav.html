@@ -3,11 +3,13 @@
 <div id="nav">
 	<nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar" style="height: 56px">
 		<div class="container" style="padding-left: 0px; margin-left: 0px;">
-			<img border="0" alt="InCognitoMatch" src="/images/systemLogo.png" style="height: 53px;">
-			<a class="navbar-brand" href="#" ng-click="" id="navHeader" style="padding-left: 10px;">InCognitoMatch</a>
+			<a class="navbar-brand" href="#" ng-click="hide_pages(); show_home()">
+				<img border="0" alt="InCognitoMatch" src="/images/systemLogo.png" style="height: 53px;">
+			</a>
+			<a class="navbar-brand" href="#" ng-click="hide_pages(); show_home()" id="navHeader" style="padding-left: 10px;">InCognitoMatch</a>
 			<!-- Left links-->
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
+				<ul class="navbar-nav">
 					<!--<li class="nav-item">
 						<a class="nav-link waves-effect" href="#" ng-click="hide_pages();init_avivTest()">
 							<span class="glyphicon glyphicon glyphicon-option-vertical" aria-hidden="true">
@@ -41,8 +43,8 @@
 				</ul>
 
 				<!--Right links-->
-				<ul class="navbar-nav nav-flex-icons">
-					<li class="nav-item ml-auto" >
+				<ul class="navbar-nav nav-flex-icons" style="position: absolute; right:3%">
+					<li class="nav-item" >
 						<a class="nav-link" href="" id="loggin_user" readonly> </a>
 					</li>
 					<li class="nav-item dropdown" id="nav_admin">
