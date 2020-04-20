@@ -283,8 +283,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         //this function set the experiment form accordingly to the correct settings and call getExp function
         // to get the first pair.
 
-        $scope.userScreenWidth = window.screen.availWidth;
-        $scope.userScreenHeight = window.screen.availHeight;
+        $scope.userScreenWidth = document.body.clientWidth; //window.screen.availWidth;
+        $scope.userScreenHeight = document.body.clientHeight; //window.screen.availHeight;
 
         window.scrollTo(0,0);
         document.getElementById("schemaMatchingExp").style.overflow = 'hidden';
