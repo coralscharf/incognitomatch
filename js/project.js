@@ -1030,7 +1030,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             var yCor = ( $event['pageY'] * 720 ) / $scope.userScreenHeight;
 
             $scope.mouse_moves.push({"time":d.getTime(),"x":xCor,"y":yCor,"l":left,"r":right,"s":scroll});
-            //console.log("x", xCor, "y", yCor);
+            console.log("x", xCor, "y", yCor);
             $scope.last_time_mouse = d.getTime();
 
         }
