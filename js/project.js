@@ -2310,8 +2310,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                                 format: '{point.name}<br>{point.y:.1f} %',
                                 align: "center",
                                 distance: -70,
-                                x: 0,
-                                y: -20,
+                                //x: 0,
+                                //y: -20,
                                 style: {
                                     fontSize: '11px',
                                     textShadow: false,
