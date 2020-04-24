@@ -2256,6 +2256,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             dataLabels: {
                                 padding: 0,
                                 overflow: "allow",
+                                crop: false,
                                 enabled: true,
                                 format: '{point.name}<br>{point.y:.1f} %',
                                 align: "center",
