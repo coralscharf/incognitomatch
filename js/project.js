@@ -2255,6 +2255,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             colors: ["#0A00D9", "#FF005F", "#1BAD00"],
                             dataLabels: {
                                 padding: 0,
+                                overflow: "allow",
                                 enabled: true,
                                 format: '{point.name}<br>{point.y:.1f} %',
                                 align: "center",
@@ -2262,7 +2263,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                                 //x: 0,
                                 //y: -20,
                                 style: {
-                                    fontSize: '11px',
+                                    fontSize: '14px',
                                     textShadow: false,
                                     color: 'white',
                                     borderWidth: 0,
