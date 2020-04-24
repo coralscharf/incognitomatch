@@ -121,7 +121,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.show_home = function(){
         // this function show the home div - the instructions.
-        $("#home").show();
+        $scope.findClosestMatcher(function(finish_matcher) {
+            $("#home").show();
+        });
     };
 
     $scope.hide_pages = function () {
@@ -538,59 +540,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 else {
                     str_instance = "N/A";
                 }
-
-                // Find correspondece also viewed with $scope.schema[0]['index'] and $scope.schema2[0]['index']
-                /*$http({
-                    method: 'POST',
-                    url: 'php/get_another_shared_correspondence.php',
-                    data: $.param({
-                        index_from_a: $scope.schema[0]['sch_id'],
-                        index_from_b: $scope.schema2[0]['sch_id']
-                    }),
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    }
-                }).then(function (data) {
-                    console.log((data.data));
-                    if (data.data === "1") { console.log(data.data); } //error
-                    else {
-
-                        let sharedCorrForA = "";
-                        let sharedCorrForB = "";
-
-                        for (let item in data.data){
-                            const anotherCorr = (data.data)[item]['col_name'];
-
-                            if( (data.data)[item]['forWho'] === 'A' ){
-                                sharedCorrForA = sharedCorrForA + anotherCorr + ", ";
-                            } else {
-                                sharedCorrForB = sharedCorrForB + anotherCorr + ", ";
-                            }
-                        }
-
-                        let newSharedCorrForA, newSharedCorrForB;
-                        if (sharedCorrForA === ""){
-                            newSharedCorrForA = "N/A";
-                        } else {
-                            newSharedCorrForA = sharedCorrForA.substring(0, sharedCorrForA.length - 2);
-                        }
-
-                        if (sharedCorrForB === ""){
-                            newSharedCorrForB = "N/A";
-                        } else {
-                            newSharedCorrForB = sharedCorrForB.substring(0, sharedCorrForB.length - 2);
-                        }
-                        let initString = "Other Correspondences" + "<br>" + "With ";
-
-                        document.getElementById("more_shared_correspondence_A").innerHTML= initString + $scope.schema[0]['col_name'];
-                        document.getElementById("A_more_shared_correspondence_names").innerText= newSharedCorrForA;
-
-                        document.getElementById("more_shared_correspondence_B").innerHTML= initString + $scope.schema2[0]['col_name'];
-                        document.getElementById("B_more_shared_correspondence_names").innerText= newSharedCorrForB;
-
-                    }
-
-                });*/
 
                 // Find major opinion on that pair
                 $http({
@@ -2240,8 +2189,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             method: 'POST',
             url: 'php/compute_sim_to_matchers.php',
             data: $.param({
-                curr_user: $scope.curr_user['id'],
-                curr_exp_id: $scope.curr_exp_id
+                curr_user: 605, //$scope.curr_user['id'],
+                curr_exp_id: 19//$scope.curr_exp_id
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -2258,7 +2207,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     const isMax = (data.data)[item]['isMax'];
 
                     if(isMax === 1){
-                        dataVal.push({ name: algName, y: algSim, sliced: true });
+                        dataVal.push({ name: '<b>'+algName+'</b>', y: algSim, sliced: true });
                     } else {
                         dataVal.push({ name: algName, y: algSim, sliced: false });
                     }
