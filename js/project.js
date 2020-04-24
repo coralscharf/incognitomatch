@@ -2264,14 +2264,14 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                                 //x: 0,
                                 //y: -20,
                                 style: {
-                                    fontSize: '14px',
+                                    fontSize: '12px',
                                     textShadow: false,
                                     color: 'white',
                                     borderWidth: 0,
                                     align: 'center',
                                     textOutline: "0px",
-                                    fontWeight: "None"
-
+                                    fontWeight: "None",
+                                    slicedOffset: 20
                                 }
                             },
                             showInLegend: true
