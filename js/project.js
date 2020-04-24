@@ -2189,8 +2189,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             method: 'POST',
             url: 'php/compute_sim_to_matchers.php',
             data: $.param({
-                curr_user: 605, //$scope.curr_user['id'],
-                curr_exp_id: 19//$scope.curr_exp_id
+                curr_user: $scope.curr_user['id'],
+                curr_exp_id: $scope.curr_exp_id
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
