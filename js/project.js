@@ -2274,7 +2274,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                                 }
                             },
                             showInLegend: true,
-                            slicedOffset: 20
+                            slicedOffset: 15
                         }
                     },
                     series: [{
