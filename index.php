@@ -39,7 +39,7 @@
 
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <!--<script src="https://code.highcharts.com/modules/heatmap.js"></script>-->
-    <script src="http://code.highcharts.com/stock/modules/heatmap.js">
+    <script src="https://code.highcharts.com/stock/modules/heatmap.js">
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
     <!--<script src="https://code.highcharts.com/stock/highstock.js"></script>
