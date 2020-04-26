@@ -115,8 +115,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.filter_stat_by_group = "";
         $scope.usersToShowStats = [];
         $scope.groupsToShowStats = [];
-
-        console.log("!!!");
     };
 
     $scope.show_home = function(){

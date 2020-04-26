@@ -8,24 +8,21 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 
 
 $sql="with userWithAlgs as (
-    select exp_schema1.col_name as corr1, exp_schema2.col_name as corr2, userconf/100 as confOfUser, Token_Path, Term_Match, WordNet
-    from exp_results join exp_schema exp_schema1 on
-                exp_results.sch_id_1 = exp_schema1.id and exp_results.exp_id = exp_schema1.exp_id
-                     join exp_schema exp_schema2 on
-                exp_results.sch_id_2 = exp_schema2.id and exp_results.exp_id = exp_schema2.exp_id
-                     join PO_Match_Alg on exp_schema2.col_name =  PO_Match_Alg.corr2 and exp_schema1.col_name =  PO_Match_Alg.corr1
-    where user_id = " . $curr_user . " and user_ans_is_match = 1 and exp_results.sch_id_1 != 0
-) ,
+    select userconf/100 as confOfUser, token_path, term_match, word_net
+    from exp_results join exp_pairs on exp_results.sch_id_1 = exp_pairs.sch_id_1 and
+                                       exp_results.sch_id_2 = exp_pairs.sch_id_2
+    where user_id = ". $curr_user ." and user_ans_is_match = 1 and exp_results.sch_id_1 != 0 and exp_pairs.exp_id=". $curr_exp_id ."
+    ) ,
      norms as (
          select sqrt(sum(userWithAlgs.confOfUser * userWithAlgs.confOfUser)) as confOfUser_n2,
-                sqrt(sum(userWithAlgs.Token_Path * userWithAlgs.Token_Path)) as Token_Path_n2,
-                sqrt(sum(userWithAlgs.Term_Match * userWithAlgs.Term_Match)) as Term_Match_n2,
-                sqrt(sum(userWithAlgs.WordNet * userWithAlgs.WordNet)) as WordNet_n2
+                sqrt(sum(userWithAlgs.token_path * userWithAlgs.token_path)) as Token_Path_n2,
+                sqrt(sum(userWithAlgs.term_match * userWithAlgs.term_match)) as Term_Match_n2,
+                sqrt(sum(userWithAlgs.word_net * userWithAlgs.word_net)) as WordNet_n2
          from userWithAlgs
      )
-select cast(sum(userWithAlgs.confOfUser * userWithAlgs.Token_Path)/(select confOfUser_n2*Token_Path_n2 from norms) as decimal(5,4)) as Token_Path_Sim,
-       cast(sum(userWithAlgs.confOfUser * userWithAlgs.Term_Match)/(select confOfUser_n2*Term_Match_n2 from norms) as decimal(5,4)) as Term_Match_Sim,
-       cast(sum(userWithAlgs.confOfUser * userWithAlgs.WordNet)/(select confOfUser_n2*WordNet_n2 from norms)  as decimal(5,4)) as WordNet_Sim
+select cast(sum(userWithAlgs.confOfUser * userWithAlgs.token_path)/(select confOfUser_n2*Token_Path_n2 from norms) as decimal(5,4)) as Token_Path_Sim,
+       cast(sum(userWithAlgs.confOfUser * userWithAlgs.term_match)/(select confOfUser_n2*Term_Match_n2 from norms) as decimal(5,4)) as Term_Match_Sim,
+       cast(sum(userWithAlgs.confOfUser * userWithAlgs.word_net)/(select confOfUser_n2*WordNet_n2 from norms)  as decimal(5,4)) as WordNet_Sim
 from userWithAlgs";
 
 $getResults= sqlsrv_query($conn, $sql);
