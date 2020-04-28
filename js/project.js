@@ -298,12 +298,14 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             $("#row_type_A").hide();
             $("#A_col_type").hide();
             $("#row_type_B").hide();
+            $("#B_col_type").hide();
         }
         else
         {
             $("#row_type_A").show();
             $("#A_col_type").show();
             $("#row_type_B").show();
+            $("#B_col_type").show();
         }
         if (exp['disp_h'] === 0)
         {
@@ -370,6 +372,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         document.getElementById("new_user_age").value="";
         document.getElementById("new_user_occ").value="";
         document.getElementById("new_user_edu").value="";
+        document.getElementById("new_user_woman").value="";
+        document.getElementById("new_user_man").value="";
+        document.getElementById("new_user_other").value="";
     };
 
     $scope.new_user_exp = function(){
@@ -626,7 +631,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                                         $scope.findClosestMatcher(function(finish_matcher) {
 
-                                            document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
+                                            // document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
                                             $("#loading").hide();
                                             $("#finish_exp").show();
                                             $scope.curr_order = 1;
@@ -710,7 +715,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                                 $scope.findClosestMatcher(function(finish_matcher) {
 
-                                    document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
+                                    // document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
                                     $("#loading").hide();
                                     $("#finish_exp").show();
                                     $scope.curr_order = 1;
