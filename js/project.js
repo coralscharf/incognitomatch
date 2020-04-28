@@ -372,9 +372,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         document.getElementById("new_user_age").value="";
         document.getElementById("new_user_occ").value="";
         document.getElementById("new_user_edu").value="";
-        document.getElementById("new_user_woman").value="";
-        document.getElementById("new_user_man").value="";
-        document.getElementById("new_user_other").value="";
+        document.getElementById("new_user_woman").checked = false;
+        document.getElementById("new_user_man").checked = false;
+        document.getElementById("new_user_other").checked = false;
     };
 
     $scope.new_user_exp = function(){
