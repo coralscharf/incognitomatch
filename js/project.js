@@ -559,7 +559,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 document.getElementById("B_col_name").innerText='Term B - ' + $scope.schema2[0]['col_name'];
                 document.getElementById("B_col_type").innerText=$scope.schema2[0]['col_type'];
                 document.getElementById("B_col_instance").innerText=str_instance;
-                document.getElementById("exp_pair_score").innerText=$scope.schema2[0]['score']+" similar";
+                document.getElementById("exp_pair_score").innerText= Math.round(($scope.schema2[0]['score'] + Number.EPSILON) * 100) / 100+" similar";
 
             });
         },exp_id);
