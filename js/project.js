@@ -702,7 +702,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         // this function redirect user to begin the experiment
         $scope.begin_exp($scope.exp_after_test);
         $("#instruction_after").hide();
-        const countDownDate = new Date().getTime() + 3 * 60000;
+        const countDownDate = new Date().getTime() + $scope.exp_after_test['max_duration'] * 60000;
         $scope.timeElapsed = setInterval(function() {
             var now = new Date().getTime();
             var distance = countDownDate - now;
@@ -1050,7 +1050,14 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 $scope.experiments = data.data;
                 for (let i = 0; i < $scope.experiments.length; i++)
                 {
-                    $scope.exp_ids.push($scope.experiments[i]['id']);
+                    const id = $scope.experiments[i]['id']
+                    $scope.exp_ids.push(id);
+                    const max_duration_l="upt_exp_max_duration_" + id;
+                    if($scope.experiments[i]['name'] === 'Test'){
+                        document.getElementById(max_duration_l).disabled = true;
+                    } else {
+                        document.getElementById(max_duration_l).disabled = false;
+                    }
                 }
             }
 
@@ -1064,21 +1071,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         {
             let name_l="upt_exp_name_"+$scope.exp_ids[i];
             let schema_name_l="upt_exp_shcema_name_"+$scope.exp_ids[i];
-            let num_pairs_l="upt_exp_num_pairs_"+$scope.exp_ids[i];
-            let upt_exp_disp_instacne = "upt_exp_disp_instacne_checked_"+$scope.exp_ids[i];
+            let max_num_pairs_l="upt_exp_max_num_pairs_"+$scope.exp_ids[i];
+            let max_duration_l="upt_exp_max_duration_"+$scope.exp_ids[i];
 
-            let disp_inst_val=0;
-            if (angular.element("#"+upt_exp_disp_instacne).length>0  && document.getElementById(upt_exp_disp_instacne).checked === true)
-            {
-                disp_inst_val=1;
-            }
-            else{
-                upt_exp_disp_instacne = "upt_exp_disp_instacne_"+$scope.exp_ids[i];
-                if (angular.element("#"+upt_exp_disp_instacne).length>0 && document.getElementById(upt_exp_disp_instacne).checked === true)
-                {
-                    disp_inst_val=1;
-                }
-            }
             let upt_exp_disp_type = "upt_exp_disp_type_checked_"+$scope.exp_ids[i];
             let disp_type_val=0;
             if (angular.element("#"+upt_exp_disp_type).length  && document.getElementById(upt_exp_disp_type).checked === true)
@@ -1092,6 +1087,21 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     disp_type_val=1;
                 }
             }
+
+            let upt_exp_disp_instacne = "upt_exp_disp_instacne_checked_"+$scope.exp_ids[i];
+            let disp_inst_val=0;
+            if (angular.element("#"+upt_exp_disp_instacne).length>0  && document.getElementById(upt_exp_disp_instacne).checked === true)
+            {
+                disp_inst_val=1;
+            }
+            else{
+                upt_exp_disp_instacne = "upt_exp_disp_instacne_"+$scope.exp_ids[i];
+                if (angular.element("#"+upt_exp_disp_instacne).length>0 && document.getElementById(upt_exp_disp_instacne).checked === true)
+                {
+                    disp_inst_val=1;
+                }
+            }
+
             let upt_exp_disp_h = "upt_exp_disp_h_checked_"+$scope.exp_ids[i];
             let disp_h_val=0;
             if (angular.element("#"+upt_exp_disp_h).length  && document.getElementById(upt_exp_disp_h).checked === true)
@@ -1105,32 +1115,35 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     disp_h_val=1;
                 }
             }
-            let upt_exp_disp_feedback = "upt_exp_disp_feedback_checked_"+$scope.exp_ids[i];
-            let disp_feedback_val=0;
-            if (angular.element("#"+upt_exp_disp_feedback).length  && document.getElementById(upt_exp_disp_feedback).checked === true)
+
+            let upt_exp_disp_system_sugg = "upt_exp_disp_system_sugg_checked_"+$scope.exp_ids[i];
+            let disp_system_sugg_val=0;
+            if (angular.element("#"+upt_exp_disp_system_sugg).length  && document.getElementById(upt_exp_disp_system_sugg).checked === true)
             {
-                disp_feedback_val=1;
+                disp_system_sugg_val=1;
             }
             else{
-                upt_exp_disp_feedback = "upt_exp_disp_feedback_"+$scope.exp_ids[i];
-                if (angular.element("#"+upt_exp_disp_feedback).length  && document.getElementById(upt_exp_disp_feedback).checked === true)
+                upt_exp_disp_system_sugg = "upt_exp_disp_system_sugg_"+$scope.exp_ids[i];
+                if (angular.element("#"+upt_exp_disp_system_sugg).length  && document.getElementById(upt_exp_disp_system_sugg).checked === true)
                 {
-                    disp_feedback_val=1;
+                    disp_system_sugg_val=1;
                 }
             }
-            let upt_exp_disp_control = "upt_exp_disp_control_checked_"+$scope.exp_ids[i];
-            let disp_control_val=0;
-            if (angular.element("#"+upt_exp_disp_control).length  && document.getElementById(upt_exp_disp_control).checked === true)
+
+            let upt_exp_disp_major = "upt_exp_disp_major_checked_"+$scope.exp_ids[i];
+            let disp_major_val=0;
+            if (angular.element("#"+upt_exp_disp_major).length  && document.getElementById(upt_exp_disp_major).checked === true)
             {
-                disp_control_val=1;
+                disp_major_val=1;
             }
             else{
-                upt_exp_disp_control = "upt_exp_disp_control_"+$scope.exp_ids[i];
-                if (angular.element("#"+upt_exp_disp_control).length  && document.getElementById(upt_exp_disp_control).checked === true)
+                upt_exp_disp_major = "upt_exp_disp_major_"+$scope.exp_ids[i];
+                if (angular.element("#"+upt_exp_disp_major).length  && document.getElementById(upt_exp_disp_major).checked === true)
                 {
-                    disp_control_val=1;
+                    disp_major_val=1;
                 }
             }
+
             let upt_exp_active = "upt_exp_is_active_checked_"+$scope.exp_ids[i];
             let disp_active_val=0;
             if (angular.element("#"+upt_exp_active).length  && document.getElementById(upt_exp_active).checked === true)
@@ -1148,14 +1161,14 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             exps.push({'id':$scope.exp_ids[i],
                 'name':document.getElementById(name_l).value,
                 'schema_name':document.getElementById(schema_name_l).value,
-                'num_pairs':document.getElementById(num_pairs_l).value,
-                'disp_instance': disp_inst_val,
+                'max_num_pairs':document.getElementById(max_num_pairs_l).value,
+                'max_duration':document.getElementById(max_duration_l).value,
                 'disp_type': disp_type_val,
+                'disp_instance': disp_inst_val,
                 'disp_h': disp_h_val,
-                'disp_feedback': disp_feedback_val,
-                'disp_control': disp_control_val,
+                'disp_system_sugg': disp_system_sugg_val,
+                'disp_major_res': disp_major_val,
                 'is_active': disp_active_val
-
             })
         }
 
@@ -1164,7 +1177,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             url: 'php/update_exp.php',
             data: $.param({
                 exps: exps
-
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -1172,7 +1184,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         }).then(function (data) {
             if (data.data === "1") //error
             {
-                document.getElementById("update_exp_log").innerHTML="Error!";
+                document.getElementById("update_exp_log").innerHTML="Error! ";
                 $timeout(function() {
                     document.getElementById("update_exp_log").innerHTML="";
                 },3000);
@@ -1180,7 +1192,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
             else
             {
-                document.getElementById("update_exp_log").innerHTML="Changes Saved!";
+                document.getElementById("update_exp_log").innerHTML="Changes Saved! ";
                 $timeout(function() {
                     document.getElementById("update_exp_log").innerHTML="";
                 },3000);
