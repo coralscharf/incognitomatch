@@ -17,7 +17,7 @@ for( $i=0; $i<sizeof($exp_id);$i++)
     disp_h = ".$exp_id[$i]['disp_h'].",
     disp_system_sugg = ".$exp_id[$i]['disp_system_sugg'].",
     disp_major_res = ".$exp_id[$i]['disp_major_res'].",
-    is_active = ".$exp_id[$i]['is_active']."
+    is_active = ".$exp_id[$i]['is_active']." 
     where id=".$exp_id[$i]['id'];
 
     $getResults= sqlsrv_query($conn, $sql);

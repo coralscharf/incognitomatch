@@ -1050,14 +1050,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 $scope.experiments = data.data;
                 for (let i = 0; i < $scope.experiments.length; i++)
                 {
-                    const id = $scope.experiments[i]['id']
-                    $scope.exp_ids.push(id);
-                    const max_duration_l="upt_exp_max_duration_" + id;
-                    if($scope.experiments[i]['name'] === 'Test'){
-                        document.getElementById(max_duration_l).disabled = true;
-                    } else {
-                        document.getElementById(max_duration_l).disabled = false;
-                    }
+                    $scope.exp_ids.push($scope.experiments[i]['id']);
                 }
             }
 
