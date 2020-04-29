@@ -259,7 +259,6 @@
 		</div>
 	</div>
 
-
 	<div class="modal fade" id="new_admin" tabindex="-1" role="dialog" aria-labelledby="New Admin Modal" aria-hidden="true">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
@@ -327,7 +326,10 @@
 								Schema Name
 							</th>
 							<th>
-								Pairs to Display
+								Max. Pairs to Display
+							</th>
+							<th>
+								Max. Experiment Duration
 							</th>
 							<th>
 								Display Types
@@ -339,10 +341,10 @@
 								Display Hierarchy
 							</th>
 							<th>
-								Display Feedback
+								Display System Suggestion
 							</th>
 							<th>
-								Display Control
+								Display Majority Decision
 							</th>
 							<th>
 								Is Active
@@ -361,7 +363,10 @@
 									<input type="text" class="form-control" id="upt_exp_shcema_name_{{exp.id}}" value="{{exp.schema_name}}">
 								</td>
 								<td>
-									<input type="text" class="form-control" id="upt_exp_num_pairs_{{exp.id}}" value="{{exp.num_pairs}}">
+									<input type="text" class="form-control" id="upt_exp_max_num_pairs_{{exp.id}}" value="{{exp.max_num_pairs}}">
+								</td>
+								<td>
+									<input type="text" class="form-control" id="upt_exp_max_duration_{{exp.id}}" value="{{exp.max_duration}}">
 								</td>
 								<td>
 									<div class="custom-control custom-checkbox" ng-if="exp.disp_type==1">
@@ -383,7 +388,6 @@
 										<label class="custom-control-label" for="upt_exp_disp_instacne_{{exp.id}}"></label>
 									</div>
 								</td>
-
 								<td>
 									<div class="custom-control custom-checkbox" ng-if="exp.disp_h==1">
 										<input type="checkbox" class="custom-control-input" id="upt_exp_disp_h_checked_{{exp.id}}" checked>
@@ -395,23 +399,23 @@
 									</div>
 								</td>
 								<td>
-									<div class="custom-control custom-checkbox" ng-if="exp.disp_feedback==1">
-										<input type="checkbox" class="custom-control-input" id="upt_exp_disp_feedback_checked_{{exp.id}}" checked>
-										<label class="custom-control-label" for="upt_exp_disp_feedback_checked_{{exp.id}}"></label>
+									<div class="custom-control custom-checkbox" ng-if="exp.disp_system_sugg==1">
+										<input type="checkbox" class="custom-control-input" id="upt_exp_disp_system_sugg_checked_{{exp.id}}" checked>
+										<label class="custom-control-label" for="upt_exp_disp_system_sugg_checked_{{exp.id}}"></label>
 									</div>
-									<div class="custom-control custom-checkbox" ng-if="exp.disp_feedback==0">
-										<input type="checkbox" class="custom-control-input" id="upt_exp_disp_feedback_{{exp.id}}">
-										<label class="custom-control-label" for="upt_exp_disp_feedback_{{exp.id}}"></label>
+									<div class="custom-control custom-checkbox" ng-if="exp.disp_system_sugg==0">
+										<input type="checkbox" class="custom-control-input" id="upt_exp_disp_system_sugg_{{exp.id}}">
+										<label class="custom-control-label" for="upt_exp_disp_system_sugg_{{exp.id}}"></label>
 									</div>
 								</td>
 								<td>
-									<div class="custom-control custom-checkbox" ng-if="exp.disp_control==1">
-										<input type="checkbox" class="custom-control-input" id="upt_exp_disp_control_checked_{{exp.id}}" checked>
-										<label class="custom-control-label" for="upt_exp_disp_control_checked_{{exp.id}}"></label>
+									<div class="custom-control custom-checkbox" ng-if="exp.disp_major_res==1">
+										<input type="checkbox" class="custom-control-input" id="upt_exp_disp_major_checked_{{exp.id}}" checked>
+										<label class="custom-control-label" for="upt_exp_disp_major_checked_{{exp.id}}"></label>
 									</div>
-									<div class="custom-control custom-checkbox" ng-if="exp.disp_control==0">
-										<input type="checkbox" class="custom-control-input" id="upt_exp_disp_control_{{exp.id}}">
-										<label class="custom-control-label" for="upt_exp_disp_control_{{exp.id}}"></label>
+									<div class="custom-control custom-checkbox" ng-if="exp.disp_major_res==0">
+										<input type="checkbox" class="custom-control-input" id="upt_exp_disp_major_{{exp.id}}">
+										<label class="custom-control-label" for="upt_exp_disp_major_{{exp.id}}"></label>
 									</div>
 								</td>
 								<td>

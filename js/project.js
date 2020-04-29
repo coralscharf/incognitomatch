@@ -371,9 +371,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
-        }).then(function (data) {
-
-        });
+        }).then(function (data) { });
     };
 
 
