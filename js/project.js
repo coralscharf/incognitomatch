@@ -236,7 +236,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             for (let index in $scope.allTestExpNames){
                 if(index >= 2 && $scope.allTestExpNames[index].checked === true){
                     $scope.groupsToShowStats.push({"id" : $scope.allTestExpNames[index].id,
-                        "num_pairs" : $scope.allTestExpNames[index].num_pairs});
+                        "max_num_pairs" : $scope.allTestExpNames[index].max_num_pairs});
                 }
             }
 
@@ -415,7 +415,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         }).then(function (data) {
-            //console.log((data.data));
             if (data.data !== "err")
             {
                 $("#begin_exp_user").hide();
@@ -439,10 +438,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         });
     };
 
-
     $scope.getExp2 = function (callback,exp_id) {
         // function to retrieves the term from shcema 1
-        // console.log("bla:",$scope.curr_order,exp_id);
         $http({
             method: 'POST',
             url: 'php/get_exp_info.php',
@@ -586,7 +583,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         },exp_id);
     };
 
-
     $scope.exp_res = function(){
         //this function save user answer for current pair to DB.
 
@@ -601,7 +597,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 realconf: $scope.schema[0]['realConf'],
                 userconf: document.getElementById("user_confidence").value,
                 mouse_loc: $scope.mouse_moves,
-                user_ans_match:$scope.user_ans_match
+                user_ans_match: $scope.user_ans_match
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -846,7 +842,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         // this function disconnect admin user and remove the admin panel from nav bar.
         $http({
             method: 'POST',
-            url: 'php/new_exp.php',
+            url: 'php/admin_logout.php',
             data: $.param({
 
             }),
@@ -931,12 +927,14 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             data: $.param({
                 exp_name: document.getElementById("exp_name").value,
                 exp_sch_name: document.getElementById("exp_sch_name").value,
-                exp_num_pairs: document.getElementById("exp_num_pairs").value,
-                show_instance: document.getElementById("show_instance").checked,
+                exp_max_num_pairs: document.getElementById("exp_max_num_pairs").value,
+                exp_max_duration: document.getElementById("exp_max_duration").value,
                 show_type: document.getElementById("show_type").checked,
+                show_instance: document.getElementById("show_instance").checked,
                 show_hierarchy: document.getElementById("show_hierarchy").checked,
-                show_feedback: document.getElementById("show_feedback").checked,
-                show_control: document.getElementById("show_control").checked,
+                show_system_sugg: document.getElementById("show_system_sugg").checked,
+                show_major_res: document.getElementById("show_major_res").checked,
+                set_active: document.getElementById("set_active").checked
                 //files: $scope.files_to_upload
             }),
             headers: {
@@ -946,14 +944,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
             if (data.data === "err") {
                 console.log((data.data));
-
             } else {
                 console.log("new exp id:", data.data);
             }
-
         });
-
-
     };
 
     $scope.captureCoordinate = function($event){
@@ -1021,7 +1015,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             method: 'POST',
             url: 'php/get_exp_for_update.php',
             data: $.param({
-
 
             }),
             headers: {
@@ -1833,8 +1826,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         }).then(function (data) {
-            //console.log("GET MOUSE DATA ");
-            // console.log(data.data);
 
             const max_x = 1280; //window.innerWidth + (100 - (window.innerWidth % 100));
             const max_y = 720; //window.innerHeight + (100 - (window.innerHeight % 100));
@@ -1919,7 +1910,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                                 "id" : data.data[i]['id'], "checked" : true});
                         }else {
                             $scope.allTestExpNames.push({"exp_name" : data.data[i]['exp_name'],
-                                "id" : data.data[i]['id'], "num_pairs" : data.data[i]['num_pairs'], "checked" : true});
+                                "id" : data.data[i]['id'], "max_num_pairs" : data.data[i]['max_num_pairs'], "checked" : true});
                         }
                     }
                     callback(true);

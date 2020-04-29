@@ -42,10 +42,10 @@ foreach ($groupsToShowStats as $group){
     }
 
     if($secondWhereClause !== "where "){
-        $secondWhereClause = $secondWhereClause . "or (exp_id = " . $group["id"] . " and [order] <= " . $group["num_pairs"] . ") ";
+        $secondWhereClause = $secondWhereClause . "or (exp_id = " . $group["id"] . " and [order] <= " . $group["max_num_pairs"] . ") ";
 
     } else{
-        $secondWhereClause = $secondWhereClause . "(exp_id = " . $group["id"] . " and [order] <= " . $group["num_pairs"] . ") ";
+        $secondWhereClause = $secondWhereClause . "(exp_id = " . $group["id"] . " and [order] <= " . $group["max_num_pairs"] . ") ";
     }
 }
 

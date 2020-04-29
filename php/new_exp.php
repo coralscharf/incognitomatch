@@ -1,28 +1,20 @@
 <?php
 $exp_name=stripcslashes($_POST['exp_name']);
 $exp_sch_name=stripcslashes($_POST['exp_sch_name']);
-$exp_num_pairs=stripcslashes($_POST['exp_num_pairs']);
-$show_instance=stripcslashes($_POST['show_instance']);
+$exp_max_num_pairs=stripcslashes($_POST['exp_max_num_pairs']);
+$exp_max_duration=stripcslashes($_POST['exp_max_duration']);
 $show_type=stripcslashes($_POST['show_type']);
+$show_instance=stripcslashes($_POST['show_instance']);
 $show_hierarchy=stripcslashes($_POST['show_hierarchy']);
-$show_feedback=stripcslashes($_POST['show_feedback']);
-$show_control=stripcslashes($_POST['show_control']);
+$show_system_sugg=stripcslashes($_POST['show_system_sugg']);
+$show_major_res=stripcslashes($_POST['show_major_res']);
+$set_active=stripcslashes($_POST['set_active']);
 //$files = $_POST['files'];
-
 
 $connectionInfo = array("UID" => "avivf@avivtest", "pwd" => "1qaZ2wsX!", "Database" => "avivtest", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
 $serverName = "tcp:avivtest.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 
-
-if ($show_instance === "false")
-{
-    $show_instance=0;
-}
-else
-{
-    $show_instance=1;
-}
 if ($show_type === "false")
 {
     $show_type=0;
@@ -31,6 +23,15 @@ else
 {
     $show_type=1;
 }
+if ($show_instance === "false")
+{
+    $show_instance=0;
+}
+else
+{
+    $show_instance=1;
+}
+
 if ($show_hierarchy === "false")
 {
     $show_hierarchy=0;
@@ -39,24 +40,35 @@ else
 {
     $show_hierarchy=1;
 }
-if ($show_feedback === "false")
+if ($show_system_sugg === "false")
 {
-    $show_feedback=0;
+    $show_system_sugg=0;
 }
 else
 {
-    $show_feedback=1;
+    $show_system_sugg=1;
 }
-if ($show_control === "false")
+if ($show_major_res === "false")
 {
-    $show_control=0;
+    $show_major_res=0;
 }
 else
 {
-    $show_control=1;
+    $show_major_res=1;
 }
-$sql="insert into experiments(name, schema_name, num_pairs, disp_instance, disp_type, disp_h, disp_feedback, disp_control,is_active) OUTPUT INSERTED.id
-values('$exp_name','$exp_sch_name',$exp_num_pairs,$show_instance,$show_type,$show_hierarchy,$show_feedback,$show_control,1)";
+if ($set_active === "false")
+{
+    $set_active=0;
+}
+else
+{
+    $set_active=1;
+}
+
+$sql="insert into experiments (name, schema_name, max_num_pairs, max_duration,
+    disp_type, disp_instance, disp_h, disp_system_sugg, disp_major_res, is_active) OUTPUT INSERTED.id
+    values('$exp_name','$exp_sch_name',$exp_max_num_pairs,$exp_max_duration,$show_type,$show_instance,$show_hierarchy,
+    $show_system_sugg,$show_major_res,$set_active)";
 $getResults= sqlsrv_query($conn, $sql);
 if ($getResults == FALSE)
     echo "err";

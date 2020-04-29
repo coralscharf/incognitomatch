@@ -20,7 +20,7 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     );
 }
 sqlsrv_free_stmt($getResults);
-$sql="select schema_name, id, num_pairs
+$sql="select schema_name, id, max_num_pairs
 from experiments
 where name!='Test'";
 $getResults= sqlsrv_query($conn, $sql);
@@ -30,7 +30,7 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     $array[] = array(
         'exp_name'=>$row['schema_name'],
         'id'=>$row['id'],
-        'num_pairs'=>$row['num_pairs'],
+        'max_num_pairs'=>$row['max_num_pairs'],
         'isSingleUser' => 'False'
     );
 }

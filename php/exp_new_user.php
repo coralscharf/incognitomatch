@@ -37,14 +37,15 @@ if ($getResults == FALSE)
 $arr=array();
 while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     $arr[] = array(
-        'id' => $row['id'],
-        'schema_name' => $row['schema_name'],
-        'num_pairs' => $row['num_pairs'],
-        'disp_instance' => $row['disp_instance'],
+        'id'=>$row['id'],
+        'schema_name'=>$row['schema_name'],
+        'max_num_pairs'=> $row['max_num_pairs'],
+        'max_duration'=> $row['max_duration'],
         'disp_type' => $row['disp_type'],
+        'disp_instance'=> $row['disp_instance'],
         'disp_h' => $row['disp_h'],
-        'disp_feedback' => $row['disp_feedback'],
-        'disp_control' => $row['disp_control']
+        'disp_system_sugg' => $row['disp_system_sugg'],
+        'disp_major_res' => $row['disp_major_res']
     );
 }
 sqlsrv_free_stmt($getResults);
@@ -61,13 +62,15 @@ if ($getResults == FALSE)
 $test_sch="";
 while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     $test_sch=[
-        'id' => $row['id'],
-        'num_pairs' => $row['num_pairs'],
-        'disp_instance' => $row['disp_instance'],
+        'id'=>$row['id'],
+        'schema_name'=>$row['schema_name'],
+        'max_num_pairs'=> $row['max_num_pairs'],
+        'max_duration'=> $row['max_duration'],
         'disp_type' => $row['disp_type'],
+        'disp_instance'=> $row['disp_instance'],
         'disp_h' => $row['disp_h'],
-        'disp_feedback' => $row['disp_feedback'],
-        'disp_control' => $row['disp_control']
+        'disp_system_sugg' => $row['disp_system_sugg'],
+        'disp_major_res' => $row['disp_major_res']
     ];
 }
 
