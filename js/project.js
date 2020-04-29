@@ -329,7 +329,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         {
             $("#HierarchyTable").show();
         }
-        if (exp['disp_control'] === 0) // System suggestion
+        if (exp['disp_system_sugg'] === 0)
         {
             $("#system_suggest").hide();
             $("#exp_pair_score").hide();
@@ -339,18 +339,21 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             $("#system_suggest").show();
             $("#exp_pair_score").show();
         }
-        if (exp['disp_feedback'] === 1)
+        if (exp['disp_major_res'] === 0)
         {
-            $scope.disp_feedback=true;
+            $("#major_decision").hide();
+            $("#exp_pair_major").hide();
         }
-        else {
-            $scope.disp_feedback=false;
+        else
+        {
+            $("#major_decision").show();
+            $("#exp_pair_major").show();
         }
 
         $scope.curr_exp_id=exp['id'];
-        $scope.total_ans_needed = exp['num_pairs'];
+        $scope.total_ans_needed = exp['max_num_pairs'];
 
-        $scope.time_to_pause = Math.floor(exp['num_pairs']*0.2);
+        $scope.time_to_pause = Math.floor(exp['max_num_pairs']*0.2);
         $scope.getExp($scope.curr_exp_id);
         document.getElementById("exp_hello").innerText="Hello, " + $scope.curr_user["last"] + " " + $scope.curr_user['first'];
 
@@ -373,7 +376,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
         }).then(function (data) { });
     };
-
 
     $scope.clear_user_form = function()
     {
