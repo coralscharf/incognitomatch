@@ -307,21 +307,37 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             $("#row_type_B").show();
             $("#B_col_type").show();
         }
+        if (exp['disp_instance'] === 0)
+        {
+            $("#row_instance_A").hide();
+            $("#A_col_instance").hide();
+            $("#row_instance_B").hide();
+            $("#B_col_instance").hide();
+        }
+        else
+        {
+            $("#row_instance_A").show();
+            $("#A_col_instance").show();
+            $("#row_instance_B").show();
+            $("#B_col_instance").show();
+        }
         if (exp['disp_h'] === 0)
         {
-            $("#row_h").hide();
+            $("#HierarchyTable").hide();
         }
         else
         {
-            $("#row_h").show();
+            $("#HierarchyTable").show();
         }
-        if (exp['disp_control'] === 0)
+        if (exp['disp_control'] === 0) // System suggestion
         {
-            $("#row_control").hide();
+            $("#system_suggest").hide();
+            $("#exp_pair_score").hide();
         }
         else
         {
-            $("#row_control").show();
+            $("#system_suggest").show();
+            $("#exp_pair_score").show();
         }
         if (exp['disp_feedback'] === 1)
         {

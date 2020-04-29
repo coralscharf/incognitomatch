@@ -331,10 +331,10 @@
 								Pairs to Display
 							</th>
 							<th>
-								Display Instances
+								Display Types
 							</th>
 							<th>
-								Display Types
+								Display Instances
 							</th>
 							<th>
 								Display Hierarchy
@@ -365,16 +365,6 @@
 									<input type="text" class="form-control" id="upt_exp_num_pairs_{{exp.id}}" value="{{exp.num_pairs}}">
 								</td>
 								<td>
-									<div class="custom-control custom-checkbox" ng-if="exp.disp_instance==1">
-										<input type="checkbox" class="custom-control-input" id="upt_exp_disp_instacne_checked_{{exp.id}}" checked>
-										<label class="custom-control-label" for="upt_exp_disp_instacne_checked_{{exp.id}}"></label>
-									</div>
-									<div class="custom-control custom-checkbox" ng-if="exp.disp_instance==0">
-										<input type="checkbox" class="custom-control-input" id="upt_exp_disp_instacne_{{exp.id}}">
-										<label class="custom-control-label" for="upt_exp_disp_instacne_{{exp.id}}"></label>
-									</div>
-								</td>
-								<td>
 									<div class="custom-control custom-checkbox" ng-if="exp.disp_type==1">
 										<input type="checkbox" class="custom-control-input" id="upt_exp_disp_type_checked_{{exp.id}}" checked>
 										<label class="custom-control-label" for="upt_exp_disp_type_checked_{{exp.id}}"></label>
@@ -384,6 +374,17 @@
 										<label class="custom-control-label" for="upt_exp_disp_type_{{exp.id}}"></label>
 									</div>
 								</td>
+								<td>
+									<div class="custom-control custom-checkbox" ng-if="exp.disp_instance==1">
+										<input type="checkbox" class="custom-control-input" id="upt_exp_disp_instacne_checked_{{exp.id}}" checked>
+										<label class="custom-control-label" for="upt_exp_disp_instacne_checked_{{exp.id}}"></label>
+									</div>
+									<div class="custom-control custom-checkbox" ng-if="exp.disp_instance==0">
+										<input type="checkbox" class="custom-control-input" id="upt_exp_disp_instacne_{{exp.id}}">
+										<label class="custom-control-label" for="upt_exp_disp_instacne_{{exp.id}}"></label>
+									</div>
+								</td>
+
 								<td>
 									<div class="custom-control custom-checkbox" ng-if="exp.disp_h==1">
 										<input type="checkbox" class="custom-control-input" id="upt_exp_disp_h_checked_{{exp.id}}" checked>
