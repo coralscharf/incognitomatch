@@ -48,7 +48,7 @@
     <script type="text/javascript" src="https://www.highcharts.com/samples/data/usdeur.js"></script>-->
 
 </head>
-<body ng-controller='avivTest' ng-init="init_avivTest()" style="padding-left: 2.5%; padding-right: 2.5%">
+<body ng-controller='avivTest' ng-init="init_avivTest()">
     
 	<?php
 
