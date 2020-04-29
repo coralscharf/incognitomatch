@@ -943,11 +943,32 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         }).then(function (data) {
 
             if (data.data === "err") {
+                document.getElementById("add_exp_log").innerHTML="Error! ";
+                $timeout(function() {
+                    document.getElementById("add_exp_log").innerHTML="";
+                },3000);
                 console.log((data.data));
             } else {
+                document.getElementById("add_exp_log").innerHTML="Added Succesfully! ";
+                $timeout(function() {
+                    document.getElementById("add_exp_log").innerHTML="";
+                },3000);
                 console.log("new exp id:", data.data);
             }
         });
+    };
+
+    $scope.clear_add_exp_form = function() {
+        document.getElementById("exp_name").value="";
+        document.getElementById("exp_sch_name").value="";
+        document.getElementById("exp_max_num_pairs").value="";
+        document.getElementById("exp_max_duration").value="";
+        document.getElementById("show_type").checked = false;
+        document.getElementById("show_instance").checked = false;
+        document.getElementById("show_hierarchy").checked = false;
+        document.getElementById("show_system_sugg").checked = false;
+        document.getElementById("show_major_res").checked = false;
+        document.getElementById("set_active").checked = false;
     };
 
     $scope.captureCoordinate = function($event){
@@ -1153,7 +1174,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         }).then(function (data) {
             if (data.data === "1") //error
             {
-                document.getElementById("update_exp_log").innerHTML="Error!!";
+                document.getElementById("update_exp_log").innerHTML="Error!";
                 $timeout(function() {
                     document.getElementById("update_exp_log").innerHTML="";
                 },3000);
