@@ -2326,4 +2326,14 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     };
 
+    $scope.getConvas=function()
+    {
+        html2canvas($("#barcodeHtml"), {
+            onrendered: function(canvas) {
+                document.body.appendChild(canvas);
+
+            }
+        });
+    };
+
 });	 //app.controller

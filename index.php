@@ -42,12 +42,13 @@
     <script src="https://code.highcharts.com/stock/modules/heatmap.js">
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <!--<script src="https://code.highcharts.com/stock/highstock.js"></script>
     <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
     <script type="text/javascript" src="https://www.highcharts.com/samples/data/usdeur.js"></script>-->
 
 </head>
-<body ng-controller='avivTest' ng-init="init_avivTest()" style="max-width: 95%">
+<body ng-controller='avivTest' ng-init="init_avivTest()" style="padding-left: 2.5%; padding-right: 2.5%">
     
 	<?php
 
