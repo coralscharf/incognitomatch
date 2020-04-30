@@ -133,7 +133,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $("#loading").hide();
         $("#instruction_after").hide();
         $("#statistics").hide();
-        //document.getElementById("schemaMatchingExp").style.overflow = 'auto';
+        document.getElementById("schemaMatchingExp").style.overflow = 'auto';
     };
 
     $scope.show_riddle = function () {
@@ -286,7 +286,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         //$scope.userScreenHeight = document.body.clientHeight; //window.screen.availHeight;
 
         window.scrollTo(0,0);
-        //document.getElementById("schemaMatchingExp").style.overflow = 'hidden';
+        document.getElementById("schemaMatchingExp").style.overflow = 'hidden';
 
         $("#experiment").show();
 
@@ -629,7 +629,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         $("#experiment").hide();
                         clearInterval($scope.timeElapsed);
 
-                        //document.getElementById("schemaMatchingExp").style.overflow = 'auto';
+                        document.getElementById("schemaMatchingExp").style.overflow = 'auto';
 
                         $("#loading").show();
                         var isSingleUser = 'True';
@@ -716,7 +716,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 $("#experiment").hide();
                 clearInterval($scope.timeElapsed);
 
-                //document.getElementById("schemaMatchingExp").style.overflow = 'auto';
+                document.getElementById("schemaMatchingExp").style.overflow = 'auto';
 
                 $("#loading").show();
                 var isSingleUser = 'True';
