@@ -7,7 +7,7 @@
 
 
 ?>
-<html lang="en" ng-app="template" id="schemaMatchingExp">
+<html lang="en" ng-app="template" id="schemaMatchingExp" ng-click="show_coordinate($event)">
 <title>InCognitoMatch</title>
 <head>
     <!--<link rel="stylesheet" href="css/project.css">-->
