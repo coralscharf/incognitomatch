@@ -604,11 +604,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         }).then(function (data) {
-            //console.log((data.data));
             if (data.data === "1")
             {
                 $scope.getExp($scope.curr_exp_id); // TODO: check for move it to the end
-                document.getElementById("user_confidence").value=50; // init range to 0
+                document.getElementById("user_confidence").value = 50;
                 document.getElementById("text_confidence_input").value = 50;
 
                 // to disable init array of mouse locations add the comment sign
@@ -884,7 +883,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
 
         file = $scope.first_xsd_file;
-        console.log(file);
+        //console.log(file);
         exp_name = document.getElementById("exp_name").value;
         uploadUrl = "php/fileUpload.php";
         text = file.name;
@@ -893,7 +892,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
 
         file = $scope.file_csv;
-        console.log(file);
+        //console.log(file);
         exp_name = document.getElementById("exp_name").value;
         uploadUrl = "php/fileUpload.php";
         text = file.name;
@@ -901,7 +900,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);
 
         file = $scope.sec_xml_file;
-        console.log(file);
+        //console.log(file);
         exp_name = document.getElementById("exp_name").value;
         uploadUrl = "php/fileUpload.php";
         text = file.name;
@@ -912,14 +911,14 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);
 
         file = $scope.sec_xsd_file;
-        console.log(file);
+        //console.log(file);
         exp_name = document.getElementById("exp_name").value;
         uploadUrl = "php/fileUpload.php";
         text = file.name;
         $scope.files_to_upload['xsd'].push(file[0].name);
         fileUpload.uploadFileToUrl(file, uploadUrl, text,exp_name);
 
-        console.log($scope.files_to_upload);
+        //console.log($scope.files_to_upload);
 
         callback(); // create exp in db
     };
@@ -958,7 +957,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 $timeout(function() {
                     document.getElementById("add_exp_log").innerHTML="";
                 },3000);
-                console.log("new exp id:", data.data);
+                //console.log("new exp id:", data.data);
             }
         });
     };
@@ -979,8 +978,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     $scope.show_coordinate = function($event){
         var xCor = ( $event['pageX'] * 1280 ) / $scope.userScreenWidth;
         var yCor = ( $event['pageY'] * 720 ) / $scope.userScreenHeight;
-        console.log($event['pageX']);
-        console.log($event['pageY']);
+        console.log(xCor);
+        console.log(yCor);
     };
 
 
@@ -1001,11 +1000,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 scroll=true;
             }
 
-            var xCor = 5 + ( $event['pageX'] * 1280 ) / $scope.userScreenWidth;
-            var yCor = -20 + ( $event['pageY'] * 720 ) / $scope.userScreenHeight;
+            var xCor = ( $event['pageX'] * 1280 ) / $scope.userScreenWidth;
+            var yCor = ( $event['pageY'] * 720 ) / $scope.userScreenHeight;
 
             $scope.mouse_moves.push({"time":d.getTime(),"x":xCor,"y":yCor,"l":left,"r":right,"s":scroll});
-            //console.log("x", xCor, "y", yCor);
         }
         else if (d.getTime() - $scope.last_time_mouse > 250 )
         {
@@ -1020,11 +1018,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 scroll=true;
             }
 
-            var xCor = 5 + ( $event['pageX'] * 1280 ) / $scope.userScreenWidth;
+            var xCor = ( $event['pageX'] * 1280 ) / $scope.userScreenWidth;
             var yCor = ( $event['pageY'] * 720 ) / $scope.userScreenHeight;
 
             $scope.mouse_moves.push({"time":d.getTime(),"x":xCor,"y":yCor,"l":left,"r":right,"s":scroll});
-            //console.log("x", xCor, "y", yCor);
             $scope.last_time_mouse = d.getTime();
 
         }
@@ -1055,7 +1052,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         }).then(function (data) {
-            //console.log((data.data));
             if (data.data === "1") //error
             {
                 console.log(data.data);
@@ -1638,9 +1634,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     $scope.timeBarGraphAggregate.destroy();
                 }
 
-                console.log(xLabels);
-                console.log(yData);
-                console.log(colorOfPoints);
+                //console.log(xLabels);
+                //console.log(yData);
+                //console.log(colorOfPoints);
 
                 Chart.defaults.global.defaultFontColor = 'black';
                 Chart.defaults.global.defaultFontFamily = "Calibri";
@@ -2124,7 +2120,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                         $scope.expMeasures[exp_id]['sumGamma'] += gamma;
                     } else {
-                        console.log("EMPTY ", data.data[index]);
+                        //console.log("EMPTY ", data.data[index]);
                     }
 
                 }
@@ -2245,7 +2241,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         }).then(function (data) {
 
             if (data.data !== 1) {
-                console.log(data.data);
 
                 let dataVal = [];
                 for (let item in data.data){
