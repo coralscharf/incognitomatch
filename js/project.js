@@ -109,6 +109,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         $scope.confidenceLineGraph = "";
         $scope.timeBarGraph = "";
         $scope.simAlgInMatch = "";
+        $scope.userScreenshotImg = "";
 
         // Var for stats
         $scope.filter_stat_by_user = "";
@@ -703,6 +704,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     $scope.after_instructions = function () {
         // this function redirect user to begin the experiment
         $scope.begin_exp($scope.exp_after_test);
+        if ($scope.curr_order === 1){
+            $scope.capture_screen();
+        }
         $("#instruction_after").hide();
         const countDownDate = new Date().getTime() + $scope.exp_after_test['max_duration'] * 60000;
         $scope.timeElapsed = setInterval(function() {
@@ -747,6 +751,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
             document.getElementById("time_elapsed").innerHTML =  "Time Remains: " + minutes + "m, " + seconds + "s ";
         }, 1000);
+
     };
 
     $scope.new_admin = function() {
@@ -1755,7 +1760,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 marginTop: 40,
                 marginBottom: 80,
                 plotBorderWidth: 1,
-                plotBackgroundImage: '/images/questionScreen.png',
+                plotBackgroundImage: $scope.userScreenshotImg, //'/images/questionScreen.png',
                 style: {
                     fontFamily: 'Calibri',
                     fontSize: 14
@@ -2328,35 +2333,14 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.capture_screen = function()
     {
-        html2canvas($('#home'), {
+        const body_id = document.body.id;
+        html2canvas($('#' + body_id), {
             onrendered: function(canvas) {
                 var img = canvas.toDataURL()
-                console.log(img);
-                document.body.appendChild(canvas);
                 document.getElementById("capture_screen").src = img;
-                //window.open(img);
+                $scope.userScreenshotImg = img
             }
         });
-        /*const body = document.querySelector('body');
-        body.id = 'capture';
-        html2canvas(document.querySelector("#" + body.id)).then(canvas => {
-            document.body.appendChild(canvas);
-        }).then(() => {
-            var canvas = document.querySelector('canvas');
-            canvas.style.display = 'none';
-            var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-            var a = document.createElement("a");
-            a.setAttribute('download', 'myImage.png');
-            a.setAttribute('href', image);
-            a.click();
-        });*/
-
-        //html2canvas($("#barcodeHtml"), {
-          //  onrendered: function(canvas) {
-            //    document.body.appendChild(canvas);
-
-          //  }
-        //});
     };
 
 });	 //app.controller
