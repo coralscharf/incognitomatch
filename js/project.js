@@ -2334,7 +2334,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     $scope.capture_screen = function()
     {
         const body_id = document.body.id;
-        html2canvas($('#' + body_id), {
+        html2canvas($('#all_body'), {
             onrendered: function(canvas) {
                 var img = canvas.toDataURL()
                 document.getElementById("capture_screen").src = img;
