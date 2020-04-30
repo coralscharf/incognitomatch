@@ -2331,8 +2331,10 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         html2canvas($('#home'), {
             onrendered: function(canvas) {
                 var img = canvas.toDataURL()
-                console.log(img)
-                window.open(img);
+                console.log(img);
+                document.body.appendChild(canvas);
+                document.getElementById("capture_screen").src = img;
+                //window.open(img);
             }
         });
         /*const body = document.querySelector('body');
