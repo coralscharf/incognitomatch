@@ -282,8 +282,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         //this function set the experiment form accordingly to the correct settings and call getExp function
         // to get the first pair.
 
-        $scope.userScreenWidth = document.body.clientWidth; //window.screen.availWidth;
-        $scope.userScreenHeight = document.body.clientHeight; //window.screen.availHeight;
+        //$scope.userScreenWidth = document.body.clientWidth; //window.screen.availWidth;
+        //$scope.userScreenHeight = document.body.clientHeight; //window.screen.availHeight;
 
         window.scrollTo(0,0);
         //document.getElementById("schemaMatchingExp").style.overflow = 'hidden';
@@ -976,8 +976,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     };
 
     $scope.show_coordinate = function($event){
-        var xCor = ( $event['pageX'] * 1280 ) / $scope.userScreenWidth;
-        var yCor = ( $event['pageY'] * 720 ) / $scope.userScreenHeight;
+        var xCor = ( $event['pageX'] * 1280 ) / document.body.clientWidth;
+        var yCor = ( $event['pageY'] * 720 ) / document.body.clientHeight;
         console.log(xCor);
         console.log(yCor);
     };
@@ -1000,8 +1000,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 scroll=true;
             }
 
-            var xCor = ( $event['pageX'] * 1280 ) / $scope.userScreenWidth;
-            var yCor = ( $event['pageY'] * 720 ) / $scope.userScreenHeight;
+            var xCor = ( $event['pageX'] * 1280 ) / document.body.clientWidth;
+            var yCor = ( $event['pageY'] * 720 ) / document.body.clientHeight;
 
             $scope.mouse_moves.push({"time":d.getTime(),"x":xCor,"y":yCor,"l":left,"r":right,"s":scroll});
         }
@@ -1018,8 +1018,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 scroll=true;
             }
 
-            var xCor = ( $event['pageX'] * 1280 ) / $scope.userScreenWidth;
-            var yCor = ( $event['pageY'] * 720 ) / $scope.userScreenHeight;
+            var xCor = ( $event['pageX'] * 1280 ) / document.body.clientWidth;
+            var yCor = ( $event['pageY'] * 720 ) / document.body.clientHeight;
 
             $scope.mouse_moves.push({"time":d.getTime(),"x":xCor,"y":yCor,"l":left,"r":right,"s":scroll});
             $scope.last_time_mouse = d.getTime();
