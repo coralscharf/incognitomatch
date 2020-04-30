@@ -7,7 +7,7 @@
 
 
 ?>
-<html lang="en" ng-app="template" id="schemaMatchingExp" ng-click="show_coordinate($event)">
+<html lang="en" ng-app="template" id="schemaMatchingExp">
 <title>InCognitoMatch</title>
 <head>
     <!--<link rel="stylesheet" href="css/project.css">-->
@@ -48,7 +48,7 @@
     <script type="text/javascript" src="https://www.highcharts.com/samples/data/usdeur.js"></script>-->
 
 </head>
-<body ng-controller='avivTest' ng-init="init_avivTest()" id="all_body">
+<body ng-controller='avivTest' ng-init="init_avivTest()" id="all_body" ng-click="show_coordinate($event)">
     
 	<?php
 
