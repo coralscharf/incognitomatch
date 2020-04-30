@@ -2326,14 +2326,28 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     };
 
-    $scope.getConvas=function()
+    $scope.capture_screen = function()
     {
-        html2canvas($("#barcodeHtml"), {
-            onrendered: function(canvas) {
-                document.body.appendChild(canvas);
-
-            }
+        const body = document.querySelector('body');
+        body.id = 'capture';
+        html2canvas(document.querySelector("#" + body.id)).then(canvas => {
+            document.body.appendChild(canvas);
+        }).then(() => {
+            var canvas = document.querySelector('canvas');
+            canvas.style.display = 'none';
+            var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+            var a = document.createElement("a");
+            a.setAttribute('download', 'myImage.png');
+            a.setAttribute('href', image);
+            a.click();
         });
+
+        //html2canvas($("#barcodeHtml"), {
+          //  onrendered: function(canvas) {
+            //    document.body.appendChild(canvas);
+
+          //  }
+        //});
     };
 
 });	 //app.controller
