@@ -976,6 +976,14 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         document.getElementById("set_active").checked = false;
     };
 
+    $scope.show_coordinate = function($event){
+        var xCor = ( $event['pageX'] * 1280 ) / $scope.userScreenWidth;
+        var yCor = ( $event['pageY'] * 720 ) / $scope.userScreenHeight;
+        console.log(xCor);
+        console.log(yCor);
+    };
+
+
     $scope.captureCoordinate = function($event){
         // this function save mouse location every 500 milliseconds (0.5 second)
         let d = new Date();
@@ -1760,7 +1768,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 marginTop: 40,
                 marginBottom: 80,
                 plotBorderWidth: 1,
-                plotBackgroundImage: $scope.userScreenshotImg, //'/images/questionScreen.png',
+                plotBackgroundImage: '/images/questionScreen.png',
                 style: {
                     fontFamily: 'Calibri',
                     fontSize: 14
@@ -2338,7 +2346,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             onrendered: function(canvas) {
                 var img = canvas.toDataURL()
                 document.getElementById("capture_screen").src = img;
-                $scope.userScreenshotImg = img
+                $scope.userScreenshotImg = img;
             }
         });
     };
