@@ -979,8 +979,8 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
     $scope.show_coordinate = function($event){
         var xCor = ( $event['pageX'] * 1280 ) / $scope.userScreenWidth;
         var yCor = ( $event['pageY'] * 720 ) / $scope.userScreenHeight;
-        console.log(xCor);
-        console.log(yCor);
+        console.log($event['pageX']);
+        console.log($event['pageY']);
     };
 
 
