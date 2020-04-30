@@ -48,10 +48,9 @@
     <script type="text/javascript" src="https://www.highcharts.com/samples/data/usdeur.js"></script>-->
 
 </head>
-<body ng-controller='avivTest' ng-init="init_avivTest()" id="all_body" ng-click="show_coordinate($event)">
+<body ng-controller='avivTest' ng-init="init_avivTest()" id="all_body">
     
 	<?php
-
 		include "html/home.html";
         include "html/finish_exp.html";
         include "html/nav.html";

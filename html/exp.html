@@ -1,23 +1,23 @@
-<div id="experiment" class="col-sm-12" style="margin-top: 10%" ng-mousemove="captureCoordinate($event)"
+<div id="experiment" class="col-sm-12" style="margin-top: 2%; height: 94%" ng-mousemove="captureCoordinate($event)"
 ng-click="show_coordinate($event)">
 
     <div class="row" style="height: 10%">
         <div class="col-sm-12" style="height: 100%">
 
-            <div class="row" style="height: 9%">
+            <div class="row" style="height: 80%">
                 <div class="col-sm-7" style="height: 100%">
                     <h3 id="exp_hello"></h3>
                 </div>
-                <div class="col-sm-5" style="height: 100%">
-                    <h6 id="time_elapsed" style="float: right; margin-top: 0.5%;"></h6>
+                <div class="col-sm-5" style="height: 95%">
+                    <h6 id="time_elapsed" style="float: right; margin-top: 5%;"></h6>
                 </div>
             </div>
 
-            <hr style="margin-top: 0.5%; margin-bottom: 0.5%;">
+            <hr style="height: 19%; margin-top: 0.5%; margin-bottom: 0.5%;">
         </div>
     </div>
 
-    <div class="row" style="height: 50%">
+    <div class="row" style="height: 70%">
 
         <div class="col-sm-1" style="height: 100%">
 
@@ -62,28 +62,29 @@ ng-click="show_coordinate($event)">
 
         <div class="col-sm-4" style="height: 100%">
 
-            <table class="table" id="suggestionAndMajorOpinionTable" style="display: block; overflow: auto;">
+            <table class="table" id="suggestionAndMajorOpinionTable" style="height: 25%; display: block; overflow: auto;
+                                                                              margin-bottom: 0;">
                 <tr>
-                    <th id="system_suggest" scope="col" style="width: 25%; text-align:center; font-weight: 400">
+                    <th id="system_suggest" scope="col" style="height: 50%; width: 25%; text-align:center; font-weight: 400">
                         System Suggestion
                     </th>
-                    <th id="major_decision" scope="col" style="width: 25%; text-align:center; font-weight: 400">
+                    <th id="major_decision" scope="col" style="height: 50%; width: 25%; text-align:center; font-weight: 400">
                         Majority decision
                     </th>
                 </tr>
 
                 <tr>
-                    <td id="exp_pair_score" scope="col" style="width: 25%; text-align:center; font-weight: 100">
+                    <td id="exp_pair_score" scope="col" style="height: 50%; width: 25%; text-align:center; font-weight: 100">
                         0.6
                     </td>
-                    <td id="exp_pair_major" scope="col" style="width: 25%; text-align:center; font-weight: 100">
+                    <td id="exp_pair_major" scope="col" style="height: 50%; width: 25%; text-align:center; font-weight: 100">
                         80% Match
                     </td>
                 </tr>
             </table>
 
-            <table class="table" id="HierarchyTable" style="height: 300px; display: block; overflow: auto;">
-                <tr>
+            <table class="table" id="HierarchyTable" style="height: 75%; display: block; overflow: auto;">
+                <tr style="height: 25%;">
                     <th scope="col" style="width: 25%; text-align:center; font-weight: 400">
                         Term A Hierarchy
                     </th>
@@ -92,7 +93,7 @@ ng-click="show_coordinate($event)">
                     </th>
                 </tr>
 
-                <tr>
+                <tr style="height: 75%;">
                     <td style="width: 25%">
                         <table class="table table-borderless"  id="term_a_table_h">
                             <tbody ng-repeat="item in h_1">
