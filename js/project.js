@@ -2172,9 +2172,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                                 user_name = $scope.allUserNames[index].fullName;
                             }
                         }
-                        column_names[0] = 'User Name:<br>' + user_name + '<br>Exp Name:<br>' + column_names[0];
+                        column_names[0] = "User Name:<br>" + user_name + "<br>Exp Name:<br>" + column_names[0];
                     } else {
-                        column_names[0] = 'All Users,<br>Exp Name:<br>' + column_names[0];
+                        column_names[0] = "All Users,<br>Exp Name:<br>" + column_names[0];
                     }
                 } else {
                     if($scope.usersToShowStats.length === 1){
@@ -2184,9 +2184,9 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                                 user_name = $scope.allUserNames[index].fullName;
                             }
                         }
-                        column_names[0] = 'User Name:<br>' + user_name + '<br>Exp Name:<br>' + column_names[0];
+                        column_names[0] = "User Name:<br>" + user_name + "<br>Exp Name:<br>" + column_names[0];
                     } else {
-                        column_names[0] = 'All Users,<br>Exp Name:<br>' + column_names[0];
+                        column_names[0] = "All Users,<br>Exp Name:<br>" + column_names[0];
                     }
                 }
 
