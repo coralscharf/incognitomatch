@@ -2174,7 +2174,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         }
                         column_names[0] = 'User Name:\n' + user_name + '\nExp Name:' + column_names[0];
                     } else {
-                        column_names[0] = 'All Users,\nExp Name:\n' + column_names[0];
+                        column_names[0] = 'Selected Users,\nExp Name:\n' + column_names[0];
                     }
                 } else {
                     if($scope.usersToShowStats.length === 1){
@@ -2186,7 +2186,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         }
                         column_names[0] = 'User Name:\n' + user_name + '\nExp Name:\n' + column_names[0];
                     } else {
-                        column_names[0] = 'All Users,\nExp Name:\n' + column_names[0];
+                        column_names[0] = 'Selected Users,\nExp Name:\n' + column_names[0];
                     }
                 }
 
