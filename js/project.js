@@ -2126,16 +2126,19 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                 for(let index in exps){
                     const exp_id = exps[index]['id'];
-                    expMeasures[exp_id]['avgPrec'] = (expMeasures[exp_id]['sumPrec'] * 100 ) / expMeasures[exp_id]['sumUsers'];
-                    expMeasures[exp_id]['avgRec'] = (expMeasures[exp_id]['sumRec'] * 100 ) / expMeasures[exp_id]['sumUsers'];
-                    expMeasures[exp_id]['avgCal'] = (expMeasures[exp_id]['sumCal']) / expMeasures[exp_id]['sumUsers'];
-                    expMeasures[exp_id]['avgRes'] = (expMeasures[exp_id]['sumGamma'] * 100 ) / expMeasures[exp_id]['sumUsers'];
 
-                    expNames.push(expMeasures[exp_id]['expName']);
-                    precision.push(expMeasures[exp_id]['avgPrec']);
-                    recall.push(expMeasures[exp_id]['avgRec']);
-                    cal.push(expMeasures[exp_id]['avgCal']);
-                    res.push(expMeasures[exp_id]['avgRes']);
+                    if(expMeasures[exp_id]['expName'] !== 'None'){
+                        expMeasures[exp_id]['avgPrec'] = (expMeasures[exp_id]['sumPrec'] * 100 ) / expMeasures[exp_id]['sumUsers'];
+                        expMeasures[exp_id]['avgRec'] = (expMeasures[exp_id]['sumRec'] * 100 ) / expMeasures[exp_id]['sumUsers'];
+                        expMeasures[exp_id]['avgCal'] = (expMeasures[exp_id]['sumCal']) / expMeasures[exp_id]['sumUsers'];
+                        expMeasures[exp_id]['avgRes'] = (expMeasures[exp_id]['sumGamma'] * 100 ) / expMeasures[exp_id]['sumUsers'];
+
+                        expNames.push(expMeasures[exp_id]['expName']);
+                        precision.push(expMeasures[exp_id]['avgPrec']);
+                        recall.push(expMeasures[exp_id]['avgRec']);
+                        cal.push(expMeasures[exp_id]['avgCal']);
+                        res.push(expMeasures[exp_id]['avgRes']);
+                    }
                 }
                 callback(expNames, precision, recall, cal, res);
 
