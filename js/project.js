@@ -2150,6 +2150,60 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         document.getElementById("evaluationMeasuresGraphAggregate").innerHTML = "";
 
         $scope.computeMeasuresByOption(function(expNames, precision, recall, cal, res){
+
+            let column_names = expNames;
+            let precision_by_name = precision;
+            let recall_by_name = recall;
+            let cal_by_name = cal;
+            let res_by_name = res;
+
+            if(expNames.length === 1){
+                let all_users = [];
+                let all_exps = [];
+
+                for (let index in $scope.allUserNames){
+                    if(index >= 2){
+                        all_users.push($scope.allUserNames[index].id);
+                    }
+                }
+
+                for (let index in $scope.allTestExpNames){
+                    if(index >= 2){
+                        all_exps.push({"id" : $scope.allTestExpNames[index].id,
+                            "max_num_pairs" : $scope.allTestExpNames[index].max_num_pairs});
+                    }
+                }
+
+                $scope.computeMeasuresByOption(function(all_expNames, all_precision, all_recall, all_cal, all_res){
+
+                    let avg_precision = 0;
+                    let avg_recall = 0;
+                    let avg_cal = 0;
+                    let avg_res = 0;
+                    let num_of_exp = all_expNames.length;
+
+                    for(let i = 0; i < all_expNames.length; i++){
+                        avg_precision += all_precision[i]
+                        avg_recall += all_recall[i]
+                        avg_cal += all_cal[i]
+                        avg_res += all_res[i]
+                    }
+                    avg_precision = avg_precision / num_of_exp;
+                    avg_recall = avg_recall / num_of_exp;
+                    avg_cal = avg_cal / num_of_exp;
+                    avg_res = avg_res / num_of_exp;
+
+                    column_names.push('All');
+                    precision_by_name.push(avg_precision);
+                    recall_by_name.push(avg_recall);
+                    cal_by_name.push(avg_cal);
+                    res_by_name.push(avg_res);
+
+                }, all_users, all_exps);
+
+
+            }
+
             document.getElementById("evaluationMeasuresGraphAggregate").innerHTML = "";
             var ctx = document.getElementById("evaluationMeasuresGraphAggregate").getContext("2d");
 
@@ -2164,27 +2218,27 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             $scope.evaluationMeasuresGraphAggregate = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: expNames,
+                    labels: column_names,
                     datasets: [
                         {
                             label: "Precision",
                             backgroundColor: "blue",
-                            data: precision
+                            data: precision_by_name
                         },
                         {
                             label: "Recall",
                             backgroundColor: "green",
-                            data: recall
+                            data: recall_by_name
                         },
                         {
                             label: "Calibration",
                             backgroundColor: "orange",
-                            data: cal
+                            data: cal_by_name
                         },
                         {
                             label: "Resolution",
                             backgroundColor: "red",
-                            data: res
+                            data: res_by_name
                         }]
                 },
                 options: {
