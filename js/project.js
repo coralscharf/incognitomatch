@@ -2164,6 +2164,32 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 let all_users = [];
                 let all_exps = [];
 
+                if($scope.groupsToShowStats.length === 1){
+                    if($scope.usersToShowStats.length === 1){
+                        let user_name = '';
+                        for (let index in $scope.allUserNames){
+                            if($scope.allUserNames[index].id === $scope.usersToShowStats[0]){
+                                user_name = $scope.allUserNames[index].fullName;
+                            }
+                        }
+                        column_names[0] = 'User Name: ' + user_name + ', Exp Name: ' + column_names[0];
+                    } else {
+                        column_names[0] = 'All Users, Exp Name: ' + column_names[0];
+                    }
+                } else {
+                    if($scope.usersToShowStats.length === 1){
+                        let user_name = '';
+                        for (let index in $scope.allUserNames){
+                            if($scope.allUserNames[index].id === $scope.usersToShowStats[0]){
+                                user_name = $scope.allUserNames[index].fullName;
+                            }
+                        }
+                        column_names[0] = 'User Name: ' + user_name + ', Exp Name: ' + column_names[0];
+                    } else {
+                        column_names[0] = 'All Users, Exp Name: ' + column_names[0];
+                    }
+                }
+
                 for (let index in $scope.allUserNames){
                     if(index >= 2){
                         all_users.push($scope.allUserNames[index].id);
@@ -2196,7 +2222,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     avg_cal = avg_cal / num_of_exp;
                     avg_res = avg_res / num_of_exp;
 
-                    column_names.push('All');
+                    column_names.push('All Users, All Exp');
                     precision_by_name.push(avg_precision);
                     recall_by_name.push(avg_recall);
                     cal_by_name.push(avg_cal);
@@ -2259,7 +2285,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         xAxes: [{
                             scaleLabel: {
                                 display: true,
-                                labelString: 'Experiement Group Names'
+                                labelString: 'Group Names'
                             }
                         }],
                     },
@@ -2268,7 +2294,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     },
                     title: {
                         display: true,
-                        text: 'Evaluation Measures as function of Experiement',
+                        text: 'Evaluation Measures',
                         fontSize: 18
                     }
                 }
