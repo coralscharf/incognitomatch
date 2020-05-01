@@ -2046,10 +2046,184 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     };
 
-    $scope.computeMeasures = function (callback) {
-        document.getElementById("confidenceLineGraphAggregate").innerHTML = "";
+    $scope.computeMeasuresByOption = function (callback, users, exps) {
 
         $http({
+            method: 'POST',
+            url: 'php/compute_precision_recall.php',
+            data: $.param({
+                usersToShowStats : users,
+                groupsToShowStats : exps
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function (data) {
+
+            if (data.data.length !== 0) {
+
+                let expNames = [];
+                let precision = [];
+                let recall = [];
+                let cal = [];
+                let res = [];
+
+                let expMeasures = {};
+                for(let index in exps){
+                    expMeasures[exps[index]['id']] = {'expName': 'None', 'sumPrec': 0, 'sumRec': 0,
+                        'sumCal': 0,'sumGamma': 0, 'sumUsers' : 0};
+                }
+
+                for(let index in data.data){
+                    const exp_id = (data.data[index])['exp_id'];
+                    const exp_name = (data.data[index])['exp_name'];
+                    const prec = (data.data[index])['precision'];
+                    const rec = (data.data[index])['recall'];
+                    const cal = (data.data[index])['cal'];
+
+                    if(expMeasures[exp_id]['expName'] === 'None') {
+                        expMeasures[exp_id]['expName'] = exp_name;
+                    }
+
+                    expMeasures[exp_id]['sumPrec'] += prec;
+                    expMeasures[exp_id]['sumRec'] += rec;
+                    expMeasures[exp_id]['sumCal'] += cal;
+                    expMeasures[exp_id]['sumUsers'] += 1;
+
+                    if((data.data[index])['listOfConfs'] !== null){
+                        const listOfConfs = (data.data[index])['listOfConfs'].split(",");
+                        const listOfIsCorrect = (data.data[index])['listOfIsCorrect'].split(",");
+
+                        let num = 0;
+                        let den = 0;
+                        for(let i = 0; i<listOfConfs.length; i++){
+                            for(let j = 0; i<listOfConfs.length; i++){
+                                if(i != j){
+                                    const m_dir = listOfConfs[i] - listOfConfs[j];
+                                    const n_dir = listOfIsCorrect[i] - listOfIsCorrect[j];
+                                    const sign = m_dir * n_dir;
+                                    if(sign > 0){
+                                        num += 1;
+                                        den += 1;
+                                    } else if (sign < 0){
+                                        num -= 1;
+                                        den += 1;
+                                    }
+                                }
+                            }
+                        }
+
+                        let gamma = 0;
+                        if(den !== 0){
+                            gamma = num / den;
+                        }
+
+                        expMeasures[exp_id]['sumGamma'] += gamma;
+                    } else {
+                    }
+
+                }
+
+                for(let index in exps){
+                    const exp_id = exps[index]['id'];
+                    expMeasures[exp_id]['avgPrec'] = (expMeasures[exp_id]['sumPrec'] * 100 ) / expMeasures[exp_id]['sumUsers'];
+                    expMeasures[exp_id]['avgRec'] = (expMeasures[exp_id]['sumRec'] * 100 ) / expMeasures[exp_id]['sumUsers'];
+                    expMeasures[exp_id]['avgCal'] = (expMeasures[exp_id]['sumCal']) / expMeasures[exp_id]['sumUsers'];
+                    expMeasures[exp_id]['avgRes'] = (expMeasures[exp_id]['sumGamma'] * 100 ) / expMeasures[exp_id]['sumUsers'];
+
+                    expNames.push(expMeasures[exp_id]['expName']);
+                    precision.push(expMeasures[exp_id]['avgPrec']);
+                    recall.push(expMeasures[exp_id]['avgRec']);
+                    cal.push(expMeasures[exp_id]['avgCal']);
+                    res.push(expMeasures[exp_id]['avgRes']);
+                }
+                callback(expNames, precision, recall, cal, res);
+
+            } else {
+                console.log('Get precision and recall data - failed');
+                callback([]);
+            }
+        });
+    };
+
+    $scope.computeMeasures = function (callback) {
+        document.getElementById("evaluationMeasuresGraphAggregate").innerHTML = "";
+
+        $scope.computeMeasuresByOption(function(expNames, precision, recall, cal, res){
+            document.getElementById("evaluationMeasuresGraphAggregate").innerHTML = "";
+            var ctx = document.getElementById("evaluationMeasuresGraphAggregate").getContext("2d");
+
+            if ($scope.evaluationMeasuresGraphAggregate){
+                $scope.evaluationMeasuresGraphAggregate.destroy();
+            }
+
+            Chart.defaults.global.defaultFontColor = 'black';
+            Chart.defaults.global.defaultFontFamily = "Calibri";
+            Chart.defaults.global.defaultFontSize = 14;
+
+            $scope.evaluationMeasuresGraphAggregate = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: expNames,
+                    datasets: [
+                        {
+                            label: "Precision",
+                            backgroundColor: "blue",
+                            data: precision
+                        },
+                        {
+                            label: "Recall",
+                            backgroundColor: "green",
+                            data: recall
+                        },
+                        {
+                            label: "Calibration",
+                            backgroundColor: "orange",
+                            data: cal
+                        },
+                        {
+                            label: "Resolution",
+                            backgroundColor: "red",
+                            data: res
+                        }]
+                },
+                options: {
+                    barValueSpacing: 20,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: '%'
+                            }
+                        }],
+                        xAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Experiement Group Names'
+                            }
+                        }],
+                    },
+                    legend: {
+                        display: true
+                    },
+                    title: {
+                        display: true,
+                        text: 'Evaluation Measures as function of Experiement',
+                        fontSize: 18
+                    }
+                }
+
+            });
+
+            document.getElementById("evaluationMeasuresGraphAggregate").innerHTML = $scope.evaluationMeasuresGraphAggregate;
+
+            callback(true);
+        }, $scope.usersToShowStats, $scope.groupsToShowStats);
+
+        /*$http({
             method: 'POST',
             url: 'php/compute_precision_recall.php',
             data: $.param({
@@ -2140,11 +2314,11 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     res.push($scope.expMeasures[exp_id]['avgRes']);
                 }
 
-                /*expNames = ["Group 1", "Group 2"];
+                expNames = ["Group 1", "Group 2"];
                 precision = [80.3, 50.4];
                 recall = [68.7, 69.9];
                 cal = [10.32, 30.5];
-                res = [71.7, 72.9]*/
+                res = [71.7, 72.9]
 
                 document.getElementById("evaluationMeasuresGraphAggregate").innerHTML = "";
                 var ctx = document.getElementById("evaluationMeasuresGraphAggregate").getContext("2d");
@@ -2223,7 +2397,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 callback(false);
 
             }
-        });
+        });*/
 
     };
 
