@@ -2297,7 +2297,16 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         text: 'Evaluation Measures',
                         fontSize: 18
                     }
-                }
+                },
+                plugins: [{
+                    beforeInit: function (chart) {
+                        chart.data.labels.forEach(function (e, i, a) {
+                            if (/\n/.test(e)) {
+                                a[i] = e.split(/\n/)
+                            }
+                        })
+                    }
+                }]
 
             });
 
