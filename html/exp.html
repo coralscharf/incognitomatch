@@ -61,10 +61,10 @@ ng-click="show_coordinate($event)">
             <table class="table" id="suggestionAndMajorOpinionTable" style="height: 25%; display: block; overflow: auto;
                                                                               margin-bottom: 0;">
                 <tr>
-                    <th id="system_suggest" scope="col" style="height: 50%; width: 25%; text-align:center; font-weight: 400">
+                    <th id="system_suggest" scope="col" style="height: 50%; width: 50%; text-align:center; font-weight: 400">
                         System Suggestion
                     </th>
-                    <th id="major_decision" scope="col" style="height: 50%; width: 25%; text-align:center; font-weight: 400">
+                    <th id="major_decision" scope="col" style="height: 50%; width: 50%; text-align:center; font-weight: 400">
                         Majority decision
                     </th>
                 </tr>
@@ -79,18 +79,18 @@ ng-click="show_coordinate($event)">
                 </tr>
             </table>
 
-            <table class="table" id="HierarchyTable" style="height: 70%; display: block; overflow: auto;">
+            <table class="table" id="HierarchyTable" style="height: 70%; display: block; overflow: auto; padding-right: 0; padding-left: 0">
                 <tr style="height: 25%;">
-                    <th scope="col" style="width: 25%; text-align:center; font-weight: 400">
+                    <th scope="col" style="width: 50%; text-align:center; font-weight: 400">
                         Term A Hierarchy
                     </th>
-                    <th scope="col" style="width: 25%; text-align:center; font-weight: 400">
+                    <th scope="col" style="width: 50%; text-align:center; font-weight: 400">
                         Term B Hierarchy
                     </th>
                 </tr>
 
                 <tr style="height: 75%;">
-                    <td style="width: 25%">
+                    <td style="width: 50%">
                         <table class="table table-borderless"  id="term_a_table_h">
                             <tbody ng-repeat="item in h_1">
                             <tr ng-if="item.index==0">
@@ -110,7 +110,7 @@ ng-click="show_coordinate($event)">
                         </table>
                     </td>
 
-                    <td style="width: 25%">
+                    <td style="width: 50%">
                         <table class="table table-borderless" id="term_b_table_h">
                             <tbody ng-repeat="item2 in h_2">
                             <tr ng-if="item2.index==0">
