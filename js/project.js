@@ -1745,7 +1745,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         const max_x = 1280; //window.innerWidth + (100 - (window.innerWidth % 100)); //1300; //1290.0;
         const max_y = 720; //window.innerHeight + (100 - (window.innerHeight % 100));//window.screen.availHeight + (100 - window.screen.availHeight % 100);  //1300; //1290.0;
         const jump_in_x = 80; //30;
-        const jump_in_y = 120; //80; //100;
+        const jump_in_y = 80; //80; //100;
 
         let xLabels = [];
         for(let x=jump_in_x; x<=max_x; x=x+jump_in_x){
@@ -1870,7 +1870,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             const max_x = 1280; //window.innerWidth + (100 - (window.innerWidth % 100));
             const max_y = 720; //window.innerHeight + (100 - (window.innerHeight % 100));
             const jump_in_x = 80; //30;
-            const jump_in_y = 120; //80; // 100 \ 30;
+            const jump_in_y = 80; //80; // 100 \ 30;
 
             $scope.arrForHeatMap = {};
             for(let x=jump_in_x; x<=max_x; x=x+jump_in_x){
