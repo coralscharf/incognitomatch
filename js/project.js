@@ -1761,7 +1761,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         if(isSingleUser === 'True'){
             idForHeatMap = 'heatMapUser';
         }
-        /*
+
         Highcharts.chart(idForHeatMap, {
 
             chart: {
@@ -1845,7 +1845,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 }]
             }
 
-        });*/
+        });
         callback();
 
     };
