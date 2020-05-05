@@ -37,6 +37,7 @@
     <script src="js/chart.js"></script>
     <script src="randexp/build/randexp.min.js"></script>
 
+    <!-- new script -->
     <script src="highchart/highcharts.js"></script>
 
     <!--<script src="https://code.highcharts.com/highcharts.js"></script>-->
