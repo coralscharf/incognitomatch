@@ -650,7 +650,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                                     $scope.create_heat_map(function(finish_heatmap) {
 
                                         $scope.findClosestMatcher(function(finish_matcher) {
-
+                                            console.log("finish closest match");
                                             $scope.findPrecisionForUser(function(finish_precision) {
                                                 // document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
                                                 $("#loading").hide();
@@ -737,6 +737,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                             $scope.create_heat_map(function(finish_heatmap) {
 
                                 $scope.findClosestMatcher(function(finish_matcher) {
+                                    console.log("finish closest match");
 
                                     $scope.findPrecisionForUser(function(finish_precision) {
                                         // document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
@@ -2445,6 +2446,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         }).then(function (data) {
+            console.log(data.data);
 
             if (data.data !== err) {
                 const precision = data.data;
