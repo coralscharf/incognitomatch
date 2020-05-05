@@ -76,7 +76,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.init_avivTest = function () {
         // this function called when loading the site. init all params.
-
+        console.log(">");
         $scope.hide_pages();
         $scope.show_home();
         $scope.schema2=[];
