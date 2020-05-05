@@ -1761,7 +1761,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
         if(isSingleUser === 'True'){
             idForHeatMap = 'heatMapUser';
         }
-
+        /*
         Highcharts.chart(idForHeatMap, {
 
             chart: {
@@ -1845,7 +1845,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                 }]
             }
 
-        });
+        });*/
         callback();
 
     };
@@ -2349,7 +2349,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     }
                 }
 
-                Highcharts.chart('closestMatch', {
+                /*Highcharts.chart('closestMatch', {
                     chart: {
                         plotBackgroundColor: null,
                         plotBorderWidth: null,
@@ -2417,7 +2417,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         name: 'Similarity Measure',
                         data: dataVal
                     }]
-                });
+                });*/
                 callback(true);
             } else {
                 console.log('Get similarity to matcher - failed');
