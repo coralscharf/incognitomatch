@@ -76,7 +76,6 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     $scope.init_avivTest = function () {
         // this function called when loading the site. init all params.
-        console.log(">");
         $scope.hide_pages();
         $scope.show_home();
         $scope.schema2=[];
@@ -2349,7 +2348,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                     }
                 }
 
-                /*Highcharts.chart('closestMatch', {
+                Highcharts.chart('closestMatch', {
                     chart: {
                         plotBackgroundColor: null,
                         plotBorderWidth: null,
@@ -2417,7 +2416,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                         name: 'Similarity Measure',
                         data: dataVal
                     }]
-                });*/
+                });
                 callback(true);
             } else {
                 console.log('Get similarity to matcher - failed');

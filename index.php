@@ -39,7 +39,6 @@
 
     <!-- new script -->
     <script src="highchart/highcharts.js"></script>
-
     <!--<script src="https://code.highcharts.com/highcharts.js"></script>-->
     <!--<script src="https://code.highcharts.com/modules/heatmap.js"></script>-->
     <script src="https://code.highcharts.com/stock/modules/heatmap.js">
