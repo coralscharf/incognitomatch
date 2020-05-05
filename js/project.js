@@ -650,14 +650,19 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
                                     $scope.create_heat_map(function(finish_heatmap) {
 
                                         $scope.findClosestMatcher(function(finish_matcher) {
-                                            console.log("finish closest match");
+                                            $("#loading").hide();
+                                            $("#finish_exp").show();
+                                            $scope.curr_order = 1;
+                                            $scope.curr_count_ans = 0;
+
+                                            /*console.log("finish closest match");
                                             $scope.findPrecisionForUser(function(finish_precision) {
                                                 // document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
                                                 $("#loading").hide();
                                                 $("#finish_exp").show();
                                                 $scope.curr_order = 1;
                                                 $scope.curr_count_ans = 0;
-                                            });
+                                            });*/
 
                                         });
 
@@ -738,14 +743,17 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
                                 $scope.findClosestMatcher(function(finish_matcher) {
                                     console.log("finish closest match");
-
-                                    $scope.findPrecisionForUser(function(finish_precision) {
+                                    $("#loading").hide();
+                                    $("#finish_exp").show();
+                                    $scope.curr_order = 1;
+                                    $scope.curr_count_ans = 0;
+                                    /*$scope.findPrecisionForUser(function(finish_precision) {
                                         // document.getElementById("figureEightValidateField").placeholder = ($scope.validFieldFigureEight).toString();
                                         $("#loading").hide();
                                         $("#finish_exp").show();
                                         $scope.curr_order = 1;
                                         $scope.curr_count_ans = 0;
-                                    });
+                                    });*/
                                 });
 
                             }, isSingleUser);
@@ -2434,7 +2442,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     };
 
-    $scope.findPrecisionForUser = function (callback) {
+    /*$scope.findPrecisionForUser = function (callback) {
         $http({
             method: 'POST',
             url: 'php/compute_precision_for_user.php',
@@ -2463,7 +2471,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
             }
         });
 
-    };
+    };*/
 
 
     /*$scope.capture_screen = function()
