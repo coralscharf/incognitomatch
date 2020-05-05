@@ -2426,7 +2426,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
     };
 
-    $scope.findPrecisionForUser = function (callback) {
+    /*$scope.findPrecisionForUser = function (callback) {
         $http({
             method: 'POST',
             url: 'php/compute_precision_for_user.php',
@@ -2454,7 +2454,7 @@ app.controller('avivTest', function ($scope, $http,$compile, $interval, fileUplo
 
             }
         });
-    };
+    };*/
     /*$scope.capture_screen = function()
     {
         const body_id = document.body.id;
